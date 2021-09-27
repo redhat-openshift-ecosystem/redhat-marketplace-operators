@@ -1,0 +1,1 @@
+This directory contains certified operator bundles for Red Hat Marketplace.

@@ -2,6 +2,8 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/cockroachdb-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/cockroachdb-certified-rhmp/support?utm_source=openshift_console
     alm-examples: |-
       [
         {
@@ -37,7 +39,7 @@ metadata:
     categories: Database
     certified: "true"
     containerImage: registry.connect.redhat.com/cockroachdb/cockroachdb-operator@sha256:2758a795570b63d0f7a9440b322848690bd8c89cbc69c1ec23c727a1b5bdbe93
-    createdAt: 2021-11-10T13:28:15Z
+    createdAt: 2021-11-10T15:15:15Z
     description: CockroachDB Operator
     operators.operatorframework.io/builder: operator-sdk-v1.11.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3

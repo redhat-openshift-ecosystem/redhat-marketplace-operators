@@ -4,6 +4,8 @@ metadata:
   name: federatorai.v4.7.2-2
   namespace: placeholder
   annotations:
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/{federatorai-certified-rhmp}/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow:https://marketplace.redhat.com/en-us/operators/\{federatorai-certified-rhmp}/support?utm_source=openshift_console
     capabilities: Auto Pilot
     categories: "AI/Machine Learning, OpenShift Optional"
     certified: "true"
@@ -12,6 +14,8 @@ metadata:
     createdAt: 2021-11-08T16:00:00Z
     description: Federator.ai Operator provides easy configuration and management of AI-based Kubernetes resource orchestrator
     operatorframework.io/suggested-namespace: federatorai
+    operators.operatorframework.io/builder: operator-sdk-v1.11.0+git
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     support: ProphetStor Data Services, Inc.
     alm-examples: |-
       [

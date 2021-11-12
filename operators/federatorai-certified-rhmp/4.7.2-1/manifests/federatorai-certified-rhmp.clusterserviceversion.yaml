@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
-  name: federatorai.v4.7.2-2
+  name: federatorai.v4.7.2-1
   namespace: placeholder
   annotations:
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/{federatorai-certified-rhmp}/pricing?utm_source=openshift_console

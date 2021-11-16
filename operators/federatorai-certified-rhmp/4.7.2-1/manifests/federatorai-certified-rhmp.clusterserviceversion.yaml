@@ -1,0 +1,789 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  name: federatorai.v4.7.2-1
+  namespace: placeholder
+  annotations:
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/federatorai-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/federatorai-certified-rhmp/support?utm_source=openshift_console
+    capabilities: Auto Pilot
+    categories: "AI/Machine Learning, OpenShift Optional"
+    certified: "true"
+    repository: https://access.redhat.com/containers/#/registry.connect.redhat.com/prophetstor/federatorai-operator
+    containerImage: registry.connect.redhat.com/prophetstor/federatorai-operator@sha256:23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3
+    createdAt: 2021-11-08T16:00:00Z
+    description: Federator.ai Operator provides easy configuration and management of AI-based Kubernetes resource orchestrator
+    operatorframework.io/suggested-namespace: federatorai
+    operators.operatorframework.io/builder: operator-sdk-v1.11.0+git
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+    support: ProphetStor Data Services, Inc.
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "federatorai.containers.ai/v1alpha1",
+          "kind": "AlamedaService",
+          "metadata": {
+            "name": "my-alamedaservice"
+          },
+          "spec": {
+            "alamedaAi": {
+              "storages": [
+                {
+                  "accessModes": ["ReadWriteOnce"],
+                  "size": "10Gi",
+                  "type": "pvc",
+                  "usage": "data"
+                }
+              ]
+            },
+            "alamedaInfluxdb": {
+              "storages": [
+                {
+                  "accessModes": ["ReadWriteOnce"],
+                  "size": "100Gi",
+                  "type": "pvc",
+                  "usage": "data"
+                }
+              ]
+            },
+            "fedemeterInfluxdb": {
+              "storages": [
+                {
+                  "accessModes": ["ReadWriteOnce"],
+                  "size": "10Gi",
+                  "type": "pvc",
+                  "usage": "data"
+                }
+              ]
+            },
+            "imageLocation": "registry.connect.redhat.com/prophetstor",
+            "storages": [
+              {
+                "accessMode": ["ReadWriteOnce"],
+                "size": "2Gi",
+                "type": "pvc",
+                "usage": "log"
+              }
+            ],
+            "version": "v4.7.2-b1777"
+          }
+        }
+      ]
+spec:
+  #replaces: federatorai.v4.7.1-2
+  version: v4.7.2-1
+  maturity: stable
+  displayName: Federator.ai
+  description: |-
+    Federator.ai helps enterprises optimize cloud resources, maximize application performance, and save significant cost without excessive over-provisioning or under-provisioning of resources, meeting the service-level requirements of their applications.
+
+    Enterprises often lack understanding of the resources needed to support their applications. This leads to either excessive over-provisioning or under-provisioning of resources (CPU, memory, storage). Using machine learning, Federator.ai determines the optimal cloud resources needed to support any workload on OpenShift and helps users find the best-cost instances from cloud providers for their applications.
+
+
+    **Multi-layer workload prediction**
+
+    Using machine learning and math-based algorithms, Federator.ai predicts containerized application and cluster node resource usage as the basis for resource recommendations at application level as well as at cluster node level. Federator.ai supports prediction for both physical/virtual CPUs and memories.
+
+
+    **Auto-scaling via resource recommendation**
+
+    Federator.ai utilizes the predicted resource usage to recommend the right number and size of pods for applications. Integrated with Datadog's WPA, applications are automatically scaled to meet the predicted resource usage.
+
+
+    **Application-aware recommendation execution**
+
+    Optimizing the resource usage and performance goals, Federator.ai uses application specific metrics for workload prediction and pod capacity estimation to auto-scale the right number of pods for best performance without overprovisioning.
+
+
+    **Multi-cloud Cost Analysis**
+
+    With resource usage prediction, Federator.ai analyzes potential cost of a cluster on different public cloud providers. It also recommend appropriate cluster nodes and instance types based on resource usage.
+
+
+    **Custom Datadog/Sysdig Dashboards**
+
+    Predefined custom Datadog/Sysdig Dashboards for workload prediction/recommendation visualization for cluster nodes and applications.
+
+
+    **Additional resources**
+
+    Want more product information? Explore detailed information about using this product and where to find additional help.
+
+    * [Federator.ai Datasheet](https://prophetstor.com/wp-content/uploads/datasheets/Federator.ai.pdf)
+    * [Quick Start Guide](https://prophetstor.com/wp-content/uploads/documentation/Federator.ai/Latest%20Version/ProphetStor%20Federator.ai%20Quick%20Installation%20Guide.pdf)
+    * [Installation Guide](https://prophetstor.com/wp-content/uploads/2021/08/ProphetStor-Federator.ai-v4.7.0-Installation-Guide-v1.0.pdf)
+    * [User Guide](https://prophetstor.com/wp-content/uploads/2021/11/Federator.ai-User-Guide-4.7.2.pdf)
+    * [Release Notes](https://prophetstor.com/wp-content/uploads/2021/11/Federator.ai-4.7.2-Release-Notes.pdf)
+    * [Company Information](https://www.prophetstor.com/)
+
+
+    ### Prerequisite
+    *  The [Openshift](https://www.openshift.com) version 4.6.x or later if using OpenShift platform.
+    *  The [Kubernetes](https://kubernetes.io/) version 1.16 or later if using Kubernetes environment.
+
+  icon:
+  - base64data: iVBORw0KGgoAAAANSUhEUgAAAMgAAACWCAYAAACb3McZAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAyKADAAQAAAABAAAAlgAAAAA/sG4FAAAFC0lEQVR4Ae3cPYskVRQG4LrdPcEYCGaL0aDsfzBsRkER1myNTYzVwNiPVAR/gyCCgbKMkbAufgX+CN1QNDFYwZbp6rIXDGbdhd05XXWHW+eZaKbpc889z5kXZqDorvNFgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAgQIECBAgAABAo8XKC+d/b1+/Nvaf0e/XA13Xj36rv1JTFBTYDWUcqdmw6vqtej7ft97dVX99W1TYNHmtd2aQB0BAanjrEujAgLS6OJcu46AgNRx1qVRAQFpdHGuXUdAQOo469KogIA0ujjXriMgIHWcdWlUQEAaXZxr1xEQkDrOujQqICCNLs616wgISB1nXRoVEJBGF+fadQQEpI6zLo0KHPT499B1m24Yfm5j9nL/cXdfBC4lcFBAytD9dvvG8fpSHb2ZQEMC/sRqaFmuWl9AQOqb69iQgIA0tCxXrS8gIPXNdWxIQEAaWpar1hcQkPrmOjYkICANLctV6wsISH1zHRsSEJCGluWq9QUEpL65jg0JCEhDy3LV+gIHPYsVue7ms+eub3fDSaT2kJpl3/1z/Mbd7w8540lqn3rtm2dXi/ObT/Lesd+zK6vP//rq5T/GPveh8z5ar7syHD30+tQvLPtfund+/HXqNhfPrx6Q3ba8WUp59+IlanzfL4bf932uTd1rWXbPl0X5ZOo+jzp/ud3+tH99+oAshltdV55+1B0mfa1ffrg//73L9HjxbPPW0A3PXKbm4nurB+Ric98TmFpgKN3bpSsn0T7+B4nKqUshICAp1mzIqICAROXUpRAQkBRrNmRUQECicupSCAhIijUbMiogIFE5dSkEBCTFmg0ZFRCQqJy6FAICkmLNhowKCEhUTl0KAQFJsWZDRgUEJCqnLoWAgKRYsyGjAgISlVOXQkBAUqzZkFEBAYnKqUshICAp1mzIqICAROXUpRAQkBRrNmRUQECicupSCAhIijUbMiogIFE5dSkEBCTFmg0ZFRCQqJy6FAICkmLNhowKCEhUTl0KgdUwDB9EJ91/5umf0Vp1BFoQWH174/j9mhfdHe0+PtouPq3Z836voQznNXreu/XKD93NL67mQ8G/fL2vMWO3GF7otmVZpdcDTc6n/+T6B/rtP8P+fz/7kcCsBE6/3tzd/5KfRIfyP0hUTl0KAQFJsWZDRgUEJCqnLoWAgKRYsyGjAgISlVOXQkBAUqzZkFEBAYnKqUshICAp1mzIqICAROXUpRAQkBRrNmRUQECicupSCFzNQ3UpaOc75OnZ5vb+8c8reFgxZHotVPVfkYAcope0dv/w37orJcVfHymGTPp7bOwRBARkBERHzFdAQOa7W5ONICAgIyA6Yr4CAjLf3ZpsBAEBGQHREfMVEJD57tZkIwgIyAiIjpivgIDMd7cmG0FAQEZAdMR8BQRkvrs12QgCAjICoiPmKyAg892tyUYQEJAREB0xXwGPu893t5NNtlsuT5f91uc6TybsYAIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECBAgQIAAAQIECLQm8C++JGCxY0QcpAAAAABJRU5ErkJggg==
+    mediatype: image/png
+  keywords: ['AI', 'Resource Orchestration', 'NoOps']
+  maintainers:
+  - email: support@prophetstor.com
+    name: ProphetStor Data Services, Inc.
+  provider:
+    name: ProphetStor Data Services, Inc.
+  links:
+  - name: Website
+    url: https://prophetstor.com/federator-ai-2/
+  - name: Quickstart guide
+    url: https://prophetstor.com/wp-content/uploads/documentation/Federator.ai/Latest%20Version/ProphetStor%20Federator.ai%20Quick%20Installation%20Guide.pdf
+  labels:
+    alm-owner-federatorai: federatorai-operator
+    alm-status-descriptors: federatorai-operator.4.7.2
+  selector:
+    matchLabels:
+      alm-owner-federatorai: federatorai-operator
+  customresourcedefinitions:
+    owned:
+    - name: alamedaservices.federatorai.containers.ai
+      version: v1alpha1
+      kind: AlamedaService
+      displayName: AlamedaService
+      description: An instance of Federator.ai.
+      resources:
+      - kind: Deployment
+        version: v1
+      - kind: MutatingWebhookConfiguration
+        version: admissionregistration.k8s.io/v1
+      - kind: ReplicaSet
+        version: v1
+      - kind: Pod
+        version: v1
+      - kind: Secret
+        version: v1
+      - kind: ValidatingWebhookConfiguration
+        apiVersion: admissionregistration.k8s.io/v1
+      specDescriptors:
+      - description: The type of storage backend can be 'pvc' or 'ephemeral'
+        displayName: Storage Type
+        path: storages[0].type
+        x-descriptors:
+          - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:LogVolumes'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:pvc'
+          - 'urn:alm:descriptor:com.tectonic.ui:select:ephemeral'
+      - description: Default is using system default storage class
+        displayName: Storage Class
+        path: storages[0].class
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:LogVolumes'
+        - 'urn:alm:descriptor:io.kubernetes:StorageClass'
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldDependency:storages[0].type:pvc'
+      - description: Volume size of each log volume
+        displayName: Volume Size
+        path: storages[0].size
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:LogVolumes'
+        - 'urn:alm:descriptor:com.tectonic.ui:text'
+
+      - description: The type of storage backend can be 'pvc' or 'ephemeral'
+        displayName: Storage Type
+        path: alamedaAi.storages[0].type
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:AIEngineVolume'
+        - 'urn:alm:descriptor:com.tectonic.ui:select:pvc'
+        - 'urn:alm:descriptor:com.tectonic.ui:select:ephemeral'
+      - description: Default is using system default storage class
+        displayName: Storage Class
+        path: alamedaAi.storages[0].class
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:AIEngineVolume'
+        - 'urn:alm:descriptor:io.kubernetes:StorageClass'
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldDependency:alamedaAi.storages[0].type:pvc'
+      - description: Size of data volume
+        displayName: Volume Size
+        path: alamedaAi.storages[0].size
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:AIEngineVolume'
+        - 'urn:alm:descriptor:com.tectonic.ui:text'
+
+      - description: The type of storage backend can be 'pvc' or 'ephemeral'
+        displayName: Storage Type
+        path: alamedaInfluxdb.storages[0].type
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:DatabaseVolume'
+        - 'urn:alm:descriptor:com.tectonic.ui:select:pvc'
+        - 'urn:alm:descriptor:com.tectonic.ui:select:ephemeral'
+      - description: Default is using system default storage class
+        displayName: Storage Class
+        path: alamedaInfluxdb.storages[0].class
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:DatabaseVolume'
+        - 'urn:alm:descriptor:io.kubernetes:StorageClass'
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldDependency:alamedaInfluxdb.storages[0].type:pvc'
+      - description: Size of data volume
+        displayName: Volume Size
+        path: alamedaInfluxdb.storages[0].size
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:DatabaseVolume'
+        - 'urn:alm:descriptor:com.tectonic.ui:text'
+
+      - description: The type of storage backend can be 'pvc' or 'ephemeral'
+        displayName: Storage Type
+        path: fedemeterInfluxdb.storages[0].type
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:FedemeterDatabaseVolume'
+        - 'urn:alm:descriptor:com.tectonic.ui:select:pvc'
+        - 'urn:alm:descriptor:com.tectonic.ui:select:ephemeral'
+      - description: Default is using system default storage class
+        displayName: Storage Class
+        path: fedemeterInfluxdb.storages[0].class
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:FedemeterDatabaseVolume'
+        - 'urn:alm:descriptor:io.kubernetes:StorageClass'
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldDependency:fedemeterInfluxdb.storages[0].type:pvc'
+      - description: Size of data volume
+        displayName: Volume Size
+        path: fedemeterInfluxdb.storages[0].size
+        x-descriptors:
+        - 'urn:alm:descriptor:com.tectonic.ui:fieldGroup:FedemeterDatabaseVolume'
+        - 'urn:alm:descriptor:com.tectonic.ui:text'
+
+      statusDescriptors:
+      - description: Federator.ai service conditions
+        displayName: Conditions
+        path: conditions
+        x-descriptors:
+        - 'urn:alm:descriptor:io.kubernetes.conditions'
+  installModes:
+  - type: OwnNamespace
+    supported: true
+  - type: SingleNamespace
+    supported: true
+  - type: MultiNamespace
+    supported: false
+  - type: AllNamespaces
+    supported: false
+  install:
+    strategy: deployment
+    spec:
+      clusterPermissions:
+      - serviceAccountName: federatorai-operator
+        rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - endpoints
+          - pods
+          verbs:
+          - delete
+          - get
+          - list
+          - patch
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - namespaces
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - nodes
+          - persistentvolumeclaims
+          - serviceaccounts
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - persistentvolumes
+          - pods/log
+          - replicationcontrollers
+          - services
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - resourcequotas
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+        - apiGroups:
+          - ""
+          resources:
+          - secrets
+          verbs:
+          - create
+          - delete
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - serviceaccounts
+          verbs:
+          - create
+          - delete
+          - update
+        - apiGroups:
+          - ""
+          resources:
+          - services
+          verbs:
+          - create
+          - delete
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          - extensions
+          resources:
+          - replicationcontrollers
+          verbs:
+          - '*'
+        - apiGroups:
+          - admissionregistration.k8s.io
+          resources:
+          - mutatingwebhookconfigurations
+          - validatingwebhookconfigurations
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - analysis.containers.ai
+          - autoscaling.containers.ai
+          - federatorai.containers.ai
+          - notifying.containers.ai
+          - tenant.containers.ai
+          resources:
+          - '*'
+          verbs:
+          - '*'
+        - apiGroups:
+          - apiextensions.k8s.io
+          resources:
+          - customresourcedefinitions
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - apps
+          - extensions
+          resources:
+          - daemonsets
+          - deployments/scale
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - apps
+          - extensions
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps.openshift.io
+          resources:
+          - deploymentconfigs
+          verbs:
+          - '*'
+        - apiGroups:
+          - autoscaling
+          resources:
+          - horizontalpodautoscalers
+          verbs:
+          - list
+        - apiGroups:
+          - batch
+          resources:
+          - cronjobs
+          - jobs
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - extensions
+          - policy
+          resources:
+          - podsecuritypolicies
+          verbs:
+          - '*'
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - prometheuses
+          verbs:
+          - list
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - prometheusrules
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          - clusterroles
+          - clusterroles/finalizers
+          - rolebindings
+          - roles
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - '*'
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - update
+          - use
+          - watch
+        - apiGroups:
+          - storage.k8s.io
+          resources:
+          - storageclasses
+          verbs:
+          - list
+          - watch
+        - apiGroups:
+          - volumesnapshot.external-storage.k8s.io
+          resources:
+          - volumesnapshotdatas
+          - volumesnapshots
+          verbs:
+          - list
+          - watch
+      - serviceAccountName: alameda-gc
+        rules: []
+      permissions:
+      - serviceAccountName: federatorai-operator
+        rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          - endpoints
+          - events
+          - persistentvolumeclaims
+          - pods
+          - secrets
+          - services
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - nodes
+          - persistentvolumeclaims
+          - persistentvolumes
+          - pods/log
+          - replicationcontrollers
+          - services
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - apps
+          resources:
+          - daemonsets
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          resources:
+          - deployments/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - apps
+          - extensions
+          resources:
+          - deployments
+          - deployments/scale
+          - replicasets
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - batch
+          resources:
+          - cronjobs
+          - jobs
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - extensions
+          resources:
+          - deployments/scale
+          verbs:
+          - update
+        - apiGroups:
+          - extensions
+          resources:
+          - podsecuritypolicies
+          verbs:
+          - '*'
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - servicemonitors
+          verbs:
+          - create
+          - get
+        - apiGroups:
+          - storage.k8s.io
+          resources:
+          - storageclasses
+          verbs:
+          - list
+          - watch
+        - apiGroups:
+          - volumesnapshot.external-storage.k8s.io
+          resources:
+          - volumesnapshotdatas
+          - volumesnapshots
+          verbs:
+          - list
+          - watch
+      deployments:
+      - name: federatorai-operator
+        spec:
+          replicas: 1
+          strategy:
+            type: Recreate
+          selector:
+            matchLabels:
+              name: federatorai-operator
+          template:
+            metadata:
+              labels:
+                name: federatorai-operator
+                app: Federator.ai
+            spec:
+              securityContext:
+                fsGroup: 1001
+              serviceAccountName: federatorai-operator
+              initContainers:
+                - name: upgrader
+                  image: registry.connect.redhat.com/prophetstor/federatorai-operator@sha256:23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3
+                  command:
+                  - federatorai-operator
+                  args:
+                  - "upgrade"
+                  env:
+                    - name: NAMESPACE_NAME
+                      valueFrom:
+                        fieldRef:
+                          fieldPath: metadata.namespace
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_ADDRESS
+                      value: ""
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_SERVICE_NAME
+                      value: alameda-influxdb
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_SERVICE_PORT
+                      value: "8086"
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_USERNAME
+                      value: admin
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_PASSWORD
+                      value: adminpass
+                  volumeMounts:
+                  - mountPath: /var/log/alameda
+                    name: log
+              containers:
+                - name: federatorai-operator
+                  image: registry.connect.redhat.com/prophetstor/federatorai-operator@sha256:23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3
+                  imagePullPolicy: IfNotPresent
+                  command:
+                  - federatorai-operator
+                  env:
+                    - name: WATCH_NAMESPACE
+                      valueFrom:
+                        fieldRef:
+                          fieldPath: metadata.annotations['olm.targetNamespaces']
+                    - name: NAMESPACE_NAME
+                      valueFrom:
+                        fieldRef:
+                          fieldPath: metadata.namespace
+                    - name: POD_NAME
+                      valueFrom:
+                        fieldRef:
+                          fieldPath: metadata.name
+                    - name: OPERATOR_NAME
+                      value: "federatorai-operator"
+                    - name: OVERRIDE_CR_VERSION
+                      value: "true"
+                    - name: DISABLE_OPERAND_RESOURCE_PROTECTION
+                      value: "false"
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_ADDRESS
+                      value: ""
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_SERVICE_NAME
+                      value: alameda-influxdb
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_SERVICE_PORT
+                      value: "8086"
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_USERNAME
+                      value: admin
+                    - name: FEDERATORAI_OPERATOR_INFLUXDB_PASSWORD
+                      value: adminpass
+                    - name: RELATED_IMAGE_AI_DISPATCHER
+                      value: registry.connect.redhat.com/prophetstor/alameda-ai-dispatcher@sha256:68912963c3b294a38889cee015af67c855470d3d4132b07181e040fe6d57b980
+                    - name: RELATED_IMAGE_AI_ENGINE
+                      value: registry.connect.redhat.com/prophetstor/alameda-ai@sha256:9b2935b86406f8745c218299051f87513c593785663859c49d0e82025e991ade
+                    - name: RELATED_IMAGE_DATAHUB
+                      value: registry.connect.redhat.com/prophetstor/alameda-datahub-ubi@sha256:7869b6b3baf328302123668ee02a7d4475ca3e926741e496fe0ac99f075587c6
+                    - name: RELATED_IMAGE_EXECUTOR
+                      value: registry.connect.redhat.com/prophetstor/alameda-executor-ubi@sha256:c96832130c3312d47b0e913a013ac12e3d829eb0f7fe2e146a807133eedc24e5
+                    - name: RELATED_IMAGE_FEDEMETER_API
+                      value: registry.connect.redhat.com/prophetstor/fedemeter-api-ubi@sha256:cbbe65585f819392b5f957da9c5463d4b4abfb366bd7a3187ab88e0058a79059
+                    - name: RELATED_IMAGE_FEDEMETER_INFLUXDB
+                      value: registry.connect.redhat.com/prophetstor/fedemeter-influxdb@sha256:d72a7c76abefa07448500ab1112aa14d89dff9b78d7eeb19af4c7dbfed4393bc
+                    - name: RELATED_IMAGE_FEDERATORAI_AGENT
+                      value: registry.connect.redhat.com/prophetstor/federatorai-agent-ubi@sha256:a310f0fb80f63f01ddb71e2eca34a000e5e34e46a865051c1b528c724f29179e
+                    - name: RELATED_IMAGE_FEDERATORAI_AGENT_PRELOADER
+                      value: registry.connect.redhat.com/prophetstor/federatorai-agent-preloader@sha256:90733f9fabe4ecc7150f0c05fe2f8294fc462871a011757d6c8a666037d5f597
+                    - name: RELATED_IMAGE_FEDERATORAI_DASHBOARD_FRONTEND
+                      value: registry.connect.redhat.com/prophetstor/federatorai-dashboard-frontend@sha256:4f63fc8980b53baaa7f3fa3a217d83840853bccc7bf52eb7fa5035b4983d988b
+                    - name: RELATED_IMAGE_FEDERATORAI_DASHBOARD_BACKEND
+                      value: registry.connect.redhat.com/prophetstor/federatorai-dashboard-backend@sha256:f1de905a341dbee6792c96c9a30e8ae598a9e7f57c4d6c711828c8122d774778
+                    - name: RELATED_IMAGE_FEDERATORAI_DATA_ADAPTER
+                      value: registry.connect.redhat.com/prophetstor/federatorai-data-adapter@sha256:8d3435aff9908b9fe69a65fcfb5a43d305fc4733be8a577779a2e75dbb2c5d28
+                    - name: RELATED_IMAGE_FEDERATORAI_RESTAPI
+                      value: registry.connect.redhat.com/prophetstor/federatorai-rest-ubi@sha256:fd83ab68533a096ab9e510ccadf0adf2c2c9f3fb997b45e0bd9276d5db9742bf
+                    - name: RELATED_IMAGE_INFLUXDB
+                      value: registry.connect.redhat.com/prophetstor/alameda-influxdb@sha256:1cb330b73408ad9899010e879052ddb593b63bc9666d608837ea52c1f68f4aba
+                    - name: RELATED_IMAGE_NOTIFIER
+                      value: registry.connect.redhat.com/prophetstor/alameda-notifier-ubi@sha256:5614496d1da11273633ddd284ae1ecc0ad543e25b6c4d51c24b3277535690ea3
+                    - name: RELATED_IMAGE_OPERATOR
+                      value: registry.connect.redhat.com/prophetstor/alameda-operator-ubi@sha256:6dc9996f1cce8ecb2974ef38dce5cb536028520d62a2b2c0dd2c564f904a86c9
+                    - name: RELATED_IMAGE_RABBITMQ
+                      value: registry.connect.redhat.com/prophetstor/alameda-rabbitmq@sha256:a9478db71b24c0e52567175f61cddb5da0074b4a566dc9a7fdedbae7cd2dee1e
+                    - name: RELATED_IMAGE_FEDERATORAI_RECOMMEND_DISPATCHER
+                      value: registry.connect.redhat.com/prophetstor/alameda-recommender-ubi@sha256:f98b7babe414f241363816682818199fea393558f89770d2ab20f7aa262ebd58
+                    - name: RELATED_IMAGE_FEDERATORAI_RECOMMEND_WORKER
+                      value: registry.connect.redhat.com/prophetstor/alameda-recommender-ubi@sha256:f98b7babe414f241363816682818199fea393558f89770d2ab20f7aa262ebd58
+                  readinessProbe:
+                    failureThreshold: 20
+                    httpGet:
+                      path: /readyz
+                      port: 8083
+                    initialDelaySeconds: 5
+                    periodSeconds: 60
+                    successThreshold: 1
+                    timeoutSeconds: 5
+                  volumeMounts:
+                  - mountPath: /var/log/alameda
+                    name: log
+                  - mountPath: /tmp/k8s-webhook-server/serving-certs
+                    name: cert
+                    readOnly: true
+              volumes:
+                - name: log
+                  emptyDir: {}
+                - name: cert
+                  secret:
+                    defaultMode: 420
+                    secretName: federatorai-operator-service-cert
+  webhookdefinitions:
+  - type: ValidatingAdmissionWebhook
+    admissionReviewVersions:
+    - v1beta1
+    - v1
+    containerPort: 443
+    targetPort: 50443
+    deploymentName: federatorai-operator
+    failurePolicy: Ignore
+    generateName: alamedaservicevalidate.federatorai.containers.ai
+    rules:
+    - apiGroups:
+      - federatorai.containers.ai
+      apiVersions:
+      - v1alpha1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - alamedaservices
+    sideEffects: None
+    webhookPath: /validate-federatorai-containers-ai-v1alpha1-alamedaservice
+  - type: MutatingAdmissionWebhook
+    admissionReviewVersions:
+    - v1beta1
+    - v1
+    containerPort: 443
+    targetPort: 50443
+    deploymentName: federatorai-operator
+    failurePolicy: Ignore
+    generateName: alamedaservicemutate.federatorai.containers.ai
+    rules:
+    - apiGroups:
+      - federatorai.containers.ai
+      apiVersions:
+      - v1alpha1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - alamedaservices
+    sideEffects: None
+    webhookPath: /mutate-federatorai-containers-ai-v1alpha1-alamedaservice

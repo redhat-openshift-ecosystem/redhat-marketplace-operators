@@ -4,8 +4,8 @@ metadata:
   name: federatorai.v4.7.2-1
   namespace: placeholder
   annotations:
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/{federatorai-certified-rhmp}/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow:https://marketplace.redhat.com/en-us/operators/\{federatorai-certified-rhmp}/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/federatorai-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/federatorai-certified-rhmp/support?utm_source=openshift_console
     capabilities: Auto Pilot
     categories: "AI/Machine Learning, OpenShift Optional"
     certified: "true"

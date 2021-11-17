@@ -787,3 +787,40 @@ spec:
       - alamedaservices
     sideEffects: None
     webhookPath: /mutate-federatorai-containers-ai-v1alpha1-alamedaservice
+  relatedImages:
+  - name: ai-dispatcher
+    image: registry.connect.redhat.com/prophetstor/alameda-ai-dispatcher@sha256:68912963c3b294a38889cee015af67c855470d3d4132b07181e040fe6d57b980
+  - name: ai-core
+    image: registry.connect.redhat.com/prophetstor/alameda-ai@sha256:9b2935b86406f8745c218299051f87513c593785663859c49d0e82025e991ade
+  - name: datahub
+    image: registry.connect.redhat.com/prophetstor/alameda-datahub-ubi@sha256:7869b6b3baf328302123668ee02a7d4475ca3e926741e496fe0ac99f075587c6
+  - name: executor
+    image: registry.connect.redhat.com/prophetstor/alameda-executor-ubi@sha256:c96832130c3312d47b0e913a013ac12e3d829eb0f7fe2e146a807133eedc24e5
+  - name: fedemeter-api
+    image: registry.connect.redhat.com/prophetstor/fedemeter-api-ubi@sha256:cbbe65585f819392b5f957da9c5463d4b4abfb366bd7a3187ab88e0058a79059
+  - name: fedemeter-influxdb
+    image: registry.connect.redhat.com/prophetstor/fedemeter-influxdb@sha256:d72a7c76abefa07448500ab1112aa14d89dff9b78d7eeb19af4c7dbfed4393bc
+  - name: agent
+    image: registry.connect.redhat.com/prophetstor/federatorai-agent-ubi@sha256:a310f0fb80f63f01ddb71e2eca34a000e5e34e46a865051c1b528c724f29179e
+  - name: preloader
+    image: registry.connect.redhat.com/prophetstor/federatorai-agent-preloader@sha256:90733f9fabe4ecc7150f0c05fe2f8294fc462871a011757d6c8a666037d5f597
+  - name: dashboard-frontend
+    image: registry.connect.redhat.com/prophetstor/federatorai-dashboard-frontend@sha256:4f63fc8980b53baaa7f3fa3a217d83840853bccc7bf52eb7fa5035b4983d988b
+  - name: dashboard-backend
+    image: registry.connect.redhat.com/prophetstor/federatorai-dashboard-backend@sha256:f1de905a341dbee6792c96c9a30e8ae598a9e7f57c4d6c711828c8122d774778
+  - name: data-adapter
+    image: registry.connect.redhat.com/prophetstor/federatorai-data-adapter@sha256:8d3435aff9908b9fe69a65fcfb5a43d305fc4733be8a577779a2e75dbb2c5d28
+  - name: rest
+    image: registry.connect.redhat.com/prophetstor/federatorai-rest-ubi@sha256:fd83ab68533a096ab9e510ccadf0adf2c2c9f3fb997b45e0bd9276d5db9742bf
+  - name: influxdb
+    image: registry.connect.redhat.com/prophetstor/alameda-influxdb@sha256:1cb330b73408ad9899010e879052ddb593b63bc9666d608837ea52c1f68f4aba
+  - name: notifier
+    image: registry.connect.redhat.com/prophetstor/alameda-notifier-ubi@sha256:5614496d1da11273633ddd284ae1ecc0ad543e25b6c4d51c24b3277535690ea3
+  - name: alameda-operator
+    image: registry.connect.redhat.com/prophetstor/alameda-operator-ubi@sha256:6dc9996f1cce8ecb2974ef38dce5cb536028520d62a2b2c0dd2c564f904a86c9
+  - name: rabbitmq
+    image: registry.connect.redhat.com/prophetstor/alameda-rabbitmq@sha256:a9478db71b24c0e52567175f61cddb5da0074b4a566dc9a7fdedbae7cd2dee1e
+  - name: recommender-dispatcher
+    image: registry.connect.redhat.com/prophetstor/alameda-recommender-ubi@sha256:f98b7babe414f241363816682818199fea393558f89770d2ab20f7aa262ebd58
+  - name: recommender-worker
+    image: registry.connect.redhat.com/prophetstor/alameda-recommender-ubi@sha256:f98b7babe414f241363816682818199fea393558f89770d2ab20f7aa262ebd58

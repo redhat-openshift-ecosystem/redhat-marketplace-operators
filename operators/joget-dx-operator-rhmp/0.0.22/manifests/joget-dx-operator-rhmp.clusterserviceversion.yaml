@@ -12,11 +12,15 @@ metadata:
       maintain apps
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/support
     support: Joget, Inc
+    operators.openshift.io/infrastructure-features: '["disconnected"]'
   creationTimestamp: null
   name: joget-dx-openshift-operator.v0.0.22
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
+  relatedImages:
+    - name: joget-dx-openshift-operator
+      image: registry.connect.redhat.com/joget/joget-dx-operator@sha256:79856e88008da33fc0323e197819fec39fbd6b6bf2b03a0bf799b517bcf8e749
   customresourcedefinitions:
     owned:
     - description: Joget DX on JBoss EAP 7

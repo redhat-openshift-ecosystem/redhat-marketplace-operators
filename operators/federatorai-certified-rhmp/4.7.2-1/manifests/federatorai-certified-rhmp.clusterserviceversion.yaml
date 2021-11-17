@@ -810,6 +810,8 @@ spec:
     image: registry.connect.redhat.com/prophetstor/federatorai-dashboard-backend@sha256:f1de905a341dbee6792c96c9a30e8ae598a9e7f57c4d6c711828c8122d774778
   - name: data-adapter
     image: registry.connect.redhat.com/prophetstor/federatorai-data-adapter@sha256:8d3435aff9908b9fe69a65fcfb5a43d305fc4733be8a577779a2e75dbb2c5d28
+  - name: federatorai-operator
+    image: registry.connect.redhat.com/prophetstor/federatorai-operator@sha256:23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3
   - name: rest
     image: registry.connect.redhat.com/prophetstor/federatorai-rest-ubi@sha256:fd83ab68533a096ab9e510ccadf0adf2c2c9f3fb997b45e0bd9276d5db9742bf
   - name: influxdb

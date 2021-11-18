@@ -12,7 +12,6 @@ metadata:
       maintain apps
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/support
     support: Joget, Inc
-    operators.openshift.io/infrastructure-features: '["disconnected"]'
   creationTimestamp: null
   name: joget-dx-openshift-operator.v0.0.22
   namespace: placeholder

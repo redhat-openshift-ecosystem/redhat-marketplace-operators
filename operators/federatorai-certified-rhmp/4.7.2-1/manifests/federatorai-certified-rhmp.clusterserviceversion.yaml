@@ -789,10 +789,6 @@ spec:
     sideEffects: None
     webhookPath: /mutate-federatorai-containers-ai-v1alpha1-alamedaservice
   relatedImages:
-  - name: federatorai-operator-23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3-annotation
-    image: registry.connect.redhat.com/prophetstor/federatorai-operator@sha256:23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3
-  - name: federatorai-operator
-    image: registry.connect.redhat.com/prophetstor/federatorai-operator@sha256:23743249f43219d077aa0a2b899e8c08bbee7caf0577771228c7192d3b99e9f3
   - name: ai-dispatcher
     image: registry.connect.redhat.com/prophetstor/alameda-ai-dispatcher@sha256:b12df0a12196c1bf9fd036bfa64507b8469254c3ffbcbdd92333603576200e6c
   - name: ai_engine

@@ -72,7 +72,7 @@ metadata:
       ]
 spec:
   #replaces: federatorai.v4.7.1-1
-  version: v4.7.2-1
+  version: 4.7.2-1
   maturity: stable
   displayName: Federator.ai
   description: |-

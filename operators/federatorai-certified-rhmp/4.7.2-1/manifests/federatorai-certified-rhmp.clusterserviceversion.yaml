@@ -30,7 +30,9 @@ metadata:
             "alamedaAi": {
               "storages": [
                 {
-                  "accessModes": ["ReadWriteOnce"],
+                  "accessModes": [
+                    "ReadWriteOnce"
+                  ],
                   "size": "10Gi",
                   "type": "pvc",
                   "usage": "data"
@@ -40,7 +42,9 @@ metadata:
             "alamedaInfluxdb": {
               "storages": [
                 {
-                  "accessModes": ["ReadWriteOnce"],
+                  "accessModes": [
+                    "ReadWriteOnce"
+                  ],
                   "size": "100Gi",
                   "type": "pvc",
                   "usage": "data"
@@ -50,7 +54,9 @@ metadata:
             "fedemeterInfluxdb": {
               "storages": [
                 {
-                  "accessModes": ["ReadWriteOnce"],
+                  "accessModes": [
+                    "ReadWriteOnce"
+                  ],
                   "size": "10Gi",
                   "type": "pvc",
                   "usage": "data"
@@ -60,7 +66,9 @@ metadata:
             "imageLocation": "registry.connect.redhat.com/prophetstor",
             "storages": [
               {
-                "accessMode": ["ReadWriteOnce"],
+                  "accessModes": [
+                    "ReadWriteOnce"
+                  ],
                 "size": "2Gi",
                 "type": "pvc",
                 "usage": "log"

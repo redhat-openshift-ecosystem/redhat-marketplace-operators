@@ -189,7 +189,7 @@ spec:
     name: Aarna Networks
     url: https://www.aarnanetworks.com/
   version: 0.0.1
-  relatedImages: 
+  relatedImages:
   - name: ose-kube-rbac
     image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:609c19d1718947ee814b829334c37e1d720acf5fb642b0712b8ab1b14d57f53f
   - name: amcop-k8s-operator

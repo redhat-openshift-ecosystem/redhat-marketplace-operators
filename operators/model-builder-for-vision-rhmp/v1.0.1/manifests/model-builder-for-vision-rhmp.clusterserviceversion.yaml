@@ -43,7 +43,7 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Developer Tools
     certified: "false"
-    containerImage: 'registry.connect.redhat.com/ibm/modelbuilder-operator:v1.0.1-1'
+    containerImage: 'registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:f22be438b5a25894636d3a69cf13e76d144ffa425537d725916678c342590824'
     createdAt: "2021-08-28T12:00:00Z"
     operators.operatorframework.io/builder: operator-sdk-v1.11.0
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
@@ -573,22 +573,22 @@ spec:
                 - name: RELATED_IMAGE_POSTGRES_CLI
                   value: registry.access.redhat.com/rhel8/postgresql-12@sha256:1de895df0c9bce080e0a45efce78e70c99de43484de0fb6e4e5ba824d9566434
                 - name: RELATED_IMAGE_PGO_DEPLOY
-                  value: registry.connect.redhat.com/crunchydata/pgo-deployer:ubi7-4.5.0
+                  value: registry.connect.redhat.com/crunchydata/pgo-deployer@sha256:4c5f605669edc2125a6aea31c66c89cef524b57284eac302f35bbfa4680d1467
                 - name: RELATED_IMAGE_PGO_CLIENT
-                  value: registry.connect.redhat.com/ibm/modelbuilder-pgo-util:v1.0.0-1
+                  value: registry.connect.redhat.com/ibm/modelbuilder-pgo-util@sha256:7d7ac1726d07e5c0cce79fa2b7d6ea7dfac3b94a1873ceeac84a90b2f5a0273d
                 - name: RELATED_IMAGE_COREML_AUGMENTOR
-                  value: registry.connect.redhat.com/ibm/modelbuilder-augmentor:v1.0.1-1
+                  value: registry.connect.redhat.com/ibm/modelbuilder-augmentor@sha256:ac1b19ea80aff974c4e90ad5fc009a233764c98ac3286ddf58d3a326948b4292
                 - name: RELATED_IMAGE_NGINX
-                  value: registry.connect.redhat.com/ibm/modelbuilder-image-server:v1.0.1-1
+                  value: registry.connect.redhat.com/ibm/modelbuilder-image-server@sha256:3aab2228c8482eba960416aac9918e1598a55717a49ad9289fcc8df1be3b147f
                 - name: RELATED_IMAGE_MB_AUTH_COREML
-                  value: registry.connect.redhat.com/ibm/modelbuilder-auth-service:v1.0.1-1
+                  value: registry.connect.redhat.com/ibm/modelbuilder-auth-service@sha256:db23781b8a2eecb3bc27c0fd3e6fd5076757df2207bea8d96fdaad9407af02f2
                 - name: RELATED_IMAGE_MB_SERVICE_COREML
-                  value: registry.connect.redhat.com/ibm/modelbuilder-cv-training-service:v1.0.1-1
+                  value: registry.connect.redhat.com/ibm/modelbuilder-cv-training-service@sha256:bf97f2b88240e2fd14d2dbdd643728b57ebe0a94f87eb00d78c75358f0aac769
                 - name: RELATED_IMAGE_REDIS
-                  value: registry.redhat.io/rhel8/redis-6
+                  value: registry.access.redhat.com/rhel8/redis-6@sha256:2d5f9f02f09d8e957fbffdd1a84838fe0eff63f712797c757bf94cf60339e603
                 - name: RELATED_IMAGE_UTIL
-                  value: registry.connect.redhat.com/ibm/modelbuilder-util:v1.0.1-1
-                image: registry.connect.redhat.com/ibm/modelbuilder-operator:v1.0.1-1
+                  value: registry.connect.redhat.com/ibm/modelbuilder-util@sha256:22408e0392919e45280975044c5b3ea494e661e1db9f656df37c23ffdfbe8b96
+                image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:f22be438b5a25894636d3a69cf13e76d144ffa425537d725916678c342590824
                 name: modelbuilder
                 livenessProbe:
                   httpGet:

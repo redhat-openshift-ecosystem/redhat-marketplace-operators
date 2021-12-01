@@ -43,7 +43,7 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Developer Tools
     certified: "false"
-    containerImage: 'registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:f22be438b5a25894636d3a69cf13e76d144ffa425537d725916678c342590824'
+    containerImage: 'registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:sha256:5c6e6bbd4ab1b05f5cb4c353d908f6cf1c8f1eee9725d7206c7ed03c5e8c5933'
     createdAt: "2021-08-28T12:00:00Z"
     operators.operatorframework.io/builder: operator-sdk-v1.11.0
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
@@ -588,7 +588,7 @@ spec:
                   value: registry.redhat.io/rhel8/redis-6@sha256:e43443f9b8a5c0c4f228c23f302b37444f74b55539b6fd5f7ca4d6ebc9d5e0f1
                 - name: RELATED_IMAGE_UTIL
                   value: registry.connect.redhat.com/ibm/modelbuilder-util@sha256:22408e0392919e45280975044c5b3ea494e661e1db9f656df37c23ffdfbe8b96
-                image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:f22be438b5a25894636d3a69cf13e76d144ffa425537d725916678c342590824
+                image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:sha256:5c6e6bbd4ab1b05f5cb4c353d908f6cf1c8f1eee9725d7206c7ed03c5e8c5933
                 name: modelbuilder
                 livenessProbe:
                   httpGet:

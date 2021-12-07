@@ -20,7 +20,7 @@ metadata:
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/amcop-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/amcop-operator-rhmp/support?utm_source=openshift_console
-  name: amcop-operator.v0.0.1
+  name: amcop-operator-rhmp.v1.0.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -188,4 +188,4 @@ spec:
   provider:
     name: Aarna Networks
     url: https://www.aarnanetworks.com/
-  version: 0.0.1
+  version: 1.0.0

@@ -136,7 +136,7 @@ metadata:
       container infrastructures and containerized application processes.
     repository: https://github.gwd.broadcom.net/BROADCOM/uma-operator
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/uma-operator-rhmp/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow:https://marketplace.redhat.com/en-us/operators/uma-operator-rhmp/support?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/uma-operator-rhmp/support?utm_source=openshift_console
 
     support: Broadcom, Inc.
   creationTimestamp:

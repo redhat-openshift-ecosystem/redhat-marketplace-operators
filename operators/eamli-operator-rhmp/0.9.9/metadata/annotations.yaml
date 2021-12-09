@@ -16,5 +16,5 @@ annotations:
 
   com.redhat.openshift.versions: v4.6
 
-  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator/pricing?utm_source=openshift_console
-  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator/support?utm_source=openshift_console
+  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/pricing?utm_source=openshift_console
+  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/support?utm_source=openshift_console

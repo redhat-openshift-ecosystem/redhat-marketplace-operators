@@ -8,6 +8,6 @@ annotations:
   operators.operatorframework.io.bundle.package.v1: xcrypt-operator-rhmp
 
   # OpenShift annotations.
-  com.redhat.openshift.versions: "v4.6-v4.9"
+  com.redhat.openshift.versions: "v4.6"
   marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/xcrypt-operator-rhmp/pricing?utm_source=openshift_console
   marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/xcrypt-operator-rhmp/support?utm_source=openshift_console

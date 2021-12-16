@@ -17,6 +17,8 @@ metadata:
       only software-defined solution that offers transparent high performance data-at-rest
       encryption of critical data in container environments.
     support: Zettaset
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/xcrypt-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/xcrypt-operator-rhmp/support?utm_source=openshift_console
   creationTimestamp: null
   name: zts-xcrypt-operator.v1.0.0
   namespace: placeholder

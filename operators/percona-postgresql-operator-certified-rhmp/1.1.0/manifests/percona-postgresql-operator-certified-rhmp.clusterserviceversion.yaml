@@ -5,6 +5,8 @@ metadata:
   name: percona-postgresql-operator-certified-rhmp.v1.1.0
   namespace: default
   annotations:
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/percona-postgresql-operator-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/percona-postgresql-operator-certified-rhmp/support?utm_source=openshift_console
     categories: Database
     certified: 'true'
     createdAt: '2021-12-15T13:11:44.000Z'

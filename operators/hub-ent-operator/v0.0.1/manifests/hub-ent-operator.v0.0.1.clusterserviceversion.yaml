@@ -33,7 +33,7 @@ metadata:
     capabilities: Basic Install
     categories: Developer Tools
     description: "This operator deploy a Hub Enterprise Application"
-    containerImage: 'registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator:v0.0.1'
+    containerImage: 'registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5a7d85891a400c2072fc6910c9d34611f799b5e785cecbbe8168951c9eb53f85'
     createdAt: "2021-12-22T21:55:00Z"
     support: 'Openlegacy Ltd.'
     operators.operatorframework.io/builder: operator-sdk-v1.14.0+git
@@ -269,12 +269,12 @@ spec:
                 - name: OPERATOR_NAME
                   value: hub-ent-operator
                 - name: RELATED_IMAGE_HUBENT
-                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise:1.43.0
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise@sha256:b0af3e2139a00b6ee92f295d1e71c7fba39b8edf1bd501ba1cc32952e5b192f0
                 - name: RELATED_IMAGE_DB_MIGRATION
-                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration:1.43.0
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration@sha256:6b499a0b78475cca684c85f69c199f289ffbf3a8c123ae4988d39a0cc5b2ef20
                 - name: RELATED_IMAGE_KEYCLOAK
-                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak:15.0.2
-                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator:v0.0.1
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak@sha256:ca379279d540d140d552590698bdaea854c4e242fc84326fcbad4642adb1e4a8
+                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5a7d85891a400c2072fc6910c9d34611f799b5e785cecbbe8168951c9eb53f85
                 imagePullPolicy: Always
                 livenessProbe:
                   httpGet:
@@ -316,7 +316,7 @@ spec:
   maintainers:
   - email: support@openlegacy.com
     name: Openlegacy-Ltd
-  maturity: alpha
+  maturity: stable
   provider:
     name: Openlegacy Ltd.
-  version: 0.0.1
+  version: v0.0.1

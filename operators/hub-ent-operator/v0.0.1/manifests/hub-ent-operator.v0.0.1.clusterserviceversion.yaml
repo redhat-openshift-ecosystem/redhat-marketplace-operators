@@ -319,4 +319,4 @@ spec:
   maturity: stable
   provider:
     name: Openlegacy Ltd.
-  version: v0.0.1
+  version: 0.0.1

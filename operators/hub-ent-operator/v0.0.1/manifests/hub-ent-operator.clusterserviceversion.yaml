@@ -274,7 +274,7 @@ spec:
                   value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration@sha256:6b499a0b78475cca684c85f69c199f289ffbf3a8c123ae4988d39a0cc5b2ef20
                 - name: RELATED_IMAGE_KEYCLOAK
                   value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak@sha256:ca379279d540d140d552590698bdaea854c4e242fc84326fcbad4642adb1e4a8
-                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5818a84596e3545f0367f525205f955ef604eab9aa4f5562365e23d8ae4777ae
+                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5a7d85891a400c2072fc6910c9d34611f799b5e785cecbbe8168951c9eb53f85
                 imagePullPolicy: Always
                 livenessProbe:
                   httpGet:
@@ -305,9 +305,7 @@ spec:
   - name: Hub-Enterprise-Keycloak
     image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak@sha256:ca379279d540d140d552590698bdaea854c4e242fc84326fcbad4642adb1e4a8
   - name: Hub-Enterprise-Operator
-    image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5818a84596e3545f0367f525205f955ef604eab9aa4f5562365e23d8ae4777ae
-  - name: Rback-proxy
-    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:8b4f814c112d7b91dc5e7904d4f3c684f3d77227344d2b553a84d4a1bc2829d3
+    image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5a7d85891a400c2072fc6910c9d34611f799b5e785cecbbe8168951c9eb53f85
   installModes:
   - supported: true
     type: OwnNamespace

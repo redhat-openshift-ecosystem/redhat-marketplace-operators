@@ -304,6 +304,8 @@ spec:
     image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise@sha256:b0af3e2139a00b6ee92f295d1e71c7fba39b8edf1bd501ba1cc32952e5b192f0
   - name: Hub Enterprise Keycloak
     image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak@sha256:ca379279d540d140d552590698bdaea854c4e242fc84326fcbad4642adb1e4a8
+  - name: Hub Enterprise Operator
+    image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:5a7d85891a400c2072fc6910c9d34611f799b5e785cecbbe8168951c9eb53f85
   installModes:
   - supported: true
     type: OwnNamespace

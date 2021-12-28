@@ -11,15 +11,6 @@ metadata:
             "name": "hubent-sample"
           },
           "spec": {
-            "dbmigration": {
-              "image": "registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration:1.43.0"
-            },
-            "hubent": {
-              "image": "registry.connect.redhat.com/openlegacy-corp/hub-enterprise:1.43.0"
-            },
-            "keycloak": {
-              "image": "registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak:15.0.2"
-            },
             "postgres": {
               "db_host": "hub-enterprise-postgres",
               "db_port": 5432,

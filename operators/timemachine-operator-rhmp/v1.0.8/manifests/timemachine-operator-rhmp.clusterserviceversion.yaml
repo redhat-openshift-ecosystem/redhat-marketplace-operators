@@ -110,7 +110,7 @@ spec:
   description: "Time Machine operator enables time travel of OpenShift pods/deployments.
 
 
-To time travel a pod where your application is, you just need to install the Time Machine operator and create a Time Machine custom resource in the same namespace,
+To time travel a pod where your application is, you just need to install Time Machine operator and create a Time Machine custom resource in the same namespace,
 without the need of changing the container images of the application you’re using, or adding containers to the pod with your application.
 
 

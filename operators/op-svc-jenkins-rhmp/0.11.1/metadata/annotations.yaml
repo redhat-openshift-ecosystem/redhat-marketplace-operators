@@ -14,6 +14,6 @@ annotations:
   operators.operatorframework.io.test.config.v1: tests/scorecard/
 
   # RHM
-  com.redhat.openshift.versions: v4.6
+  com.redhat.openshift.versions: v4.6-v4.9
   marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/products/op-svc-jenkins-rhmp/pricing?utm_source=openshift_console
   marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/products/op-svc-jenkins-rhmp/support?utm_source=openshift_console

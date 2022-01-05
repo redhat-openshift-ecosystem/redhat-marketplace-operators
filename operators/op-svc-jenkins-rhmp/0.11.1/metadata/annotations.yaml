@@ -3,7 +3,7 @@ annotations:
   operators.operatorframework.io.bundle.mediatype.v1: registry+v1
   operators.operatorframework.io.bundle.manifests.v1: manifests/
   operators.operatorframework.io.bundle.metadata.v1: metadata/
-  operators.operatorframework.io.bundle.package.v1: op-svc-jenkins
+  operators.operatorframework.io.bundle.package.v1: op-svc-jenkins-rhmp
   operators.operatorframework.io.bundle.channels.v1: alpha
   operators.operatorframework.io.metrics.builder: operator-sdk-v1.8.0+git
   operators.operatorframework.io.metrics.mediatype.v1: metrics+v1
@@ -15,3 +15,5 @@ annotations:
 
   # RHM
   com.redhat.openshift.versions: v4.6
+  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/products/operator-service-for-jenkins/pricing?utm_source=openshift_console
+  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/products/operator-service-for-jenkins/support?utm_source=openshift_console

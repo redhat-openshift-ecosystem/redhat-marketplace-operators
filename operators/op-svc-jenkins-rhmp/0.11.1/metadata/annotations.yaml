@@ -5,6 +5,7 @@ annotations:
   operators.operatorframework.io.bundle.metadata.v1: metadata/
   operators.operatorframework.io.bundle.package.v1: op-svc-jenkins-rhmp
   operators.operatorframework.io.bundle.channels.v1: alpha
+  operators.operatorframework.io.bundle.channel.default.v1: alpha
   operators.operatorframework.io.metrics.builder: operator-sdk-v1.8.0+git
   operators.operatorframework.io.metrics.mediatype.v1: metrics+v1
   operators.operatorframework.io.metrics.project_layout: go.kubebuilder.io/v3
@@ -12,8 +13,4 @@ annotations:
   # Annotations for testing.
   operators.operatorframework.io.test.mediatype.v1: scorecard+v1
   operators.operatorframework.io.test.config.v1: tests/scorecard/
-
-  # RHM
   com.redhat.openshift.versions: v4.6-v4.9
-  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/products/op-svc-jenkins-rhmp/pricing?utm_source=openshift_console
-  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/products/op-svc-jenkins-rhmp/support?utm_source=openshift_console

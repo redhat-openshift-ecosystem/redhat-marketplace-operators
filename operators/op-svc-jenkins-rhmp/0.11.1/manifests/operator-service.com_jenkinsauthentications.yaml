@@ -1,0 +1,277 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: jenkinsauthentications.operator-service.com
+spec:
+  group: operator-service.com
+  names:
+    kind: JenkinsAuthentication
+    listKind: JenkinsAuthenticationList
+    plural: jenkinsauthentications
+    singular: jenkinsauthentication
+  scope: Namespaced
+  versions:
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: JenkinsAuthentication is the Schema for the JenkinsAuthentications
+          API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: JenkinsAuthenticationSpec defines the desired state of JenkinsAuthentication.
+              It's used only for authentication purposes, to check if user with provided
+              credentials exists. For granular access properties, look at JenkinsAuthorization
+              CRD.
+            properties:
+              githubOAuth:
+                description: GithubOAuth is configuration for GitHub OAuth provider
+                properties:
+                  apiUri:
+                    description: APIURI used if you are using GitHub Enterprise. The
+                      URI to the API root of your GitHub installation. The 'https://'
+                      or 'http://' part needs to be specified. There should not be
+                      any trailing slash (/). By default set to 'https://api.github.com'.
+                    type: string
+                  clientID:
+                    description: ClientID is the client ID you received from GitHub
+                      for your OAuth App.
+                    type: string
+                  clientSecretRef:
+                    description: ClientSecretRef is a secret reference which lets
+                      you safely pass the client secret to Authentication Spec. It
+                      has to contain the "clientSecret" key with value of the client
+                      secret from GitHub for your OAuth App.
+                    properties:
+                      name:
+                        description: Name is unique within a namespace to reference
+                          a secret resource.
+                        type: string
+                      namespace:
+                        description: Namespace defines the space within which the
+                          secret name must be unique.
+                        type: string
+                    type: object
+                  scopes:
+                    description: Scopes let you specify exactly what your app is requesting
+                      access to. Scopes limit access for OAuth tokens. They do not
+                      grant any additional permission beyond that which the user already
+                      has. By default these are set to "read:org,user:email"
+                    items:
+                      type: string
+                    type: array
+                  webUri:
+                    description: WebURI used if you are using GitHub Enterprise. The
+                      URL to the web UI root of your GitHub installation. The 'https://'
+                      or 'http://' part needs to be specified. There should not be
+                      any trailing slash (/). By default set to 'https://github.com'.
+                    type: string
+                required:
+                - clientID
+                - clientSecretRef
+                type: object
+              googleOAuth:
+                description: GoogleOAuth is configuration for Google OAuth provider
+                properties:
+                  clientID:
+                    description: ClientID is the client ID you from Google OAuth credentials.
+                    type: string
+                  clientSecretRef:
+                    description: ClientSecretRef is a secret reference which lets
+                      you safely pass the client secret to Authentication Spec. It
+                      has to contain the "clientSecret" key with value of the client
+                      secret from Google OAuth credentials.
+                    properties:
+                      name:
+                        description: Name is unique within a namespace to reference
+                          a secret resource.
+                        type: string
+                      namespace:
+                        description: Namespace defines the space within which the
+                          secret name must be unique.
+                        type: string
+                    type: object
+                  domain:
+                    description: Domain is the public domain of your Jenkins instance.
+                      Leave empty for localhost.
+                    type: string
+                required:
+                - clientID
+                - clientSecretRef
+                type: object
+              openIDConnectAuth:
+                description: OpenIDConnectAuth is configuration for OpenIDConnect
+                  protocol
+                properties:
+                  authorizationServerURL:
+                    description: Required when AutoManualConfigure is set to "manual".
+                    type: string
+                  autoManualConfigure:
+                    description: AutoManualConfigure specifies configuration mode.
+                      This can be either auto or manual. If set to auto, WellKnownOpenIDConfigurationURL
+                      will be required and configuration will be fetched from the
+                      well-known configuration endpoint. If set to false, TokenServerURL,
+                      AuthorizationServerURL will be required.
+                    enum:
+                    - auto
+                    - manual
+                    type: string
+                  clientID:
+                    description: ClientID is the client ID you received from your
+                      identity provider.
+                    type: string
+                  clientSecretRef:
+                    description: ClientSecretRef is a secret reference which lets
+                      you safely pass the client secret to Authentication Spec. It
+                      has to contain the "clientSecret" key with value of the client
+                      secret from OpenID Connect credentials.
+                    properties:
+                      name:
+                        description: Name is unique within a namespace to reference
+                          a secret resource.
+                        type: string
+                      namespace:
+                        description: Namespace defines the space within which the
+                          secret name must be unique.
+                        type: string
+                    type: object
+                  disableSSLVerification:
+                    type: boolean
+                  emailFieldName:
+                    type: string
+                  endSessionEndpoint:
+                    description: Required when LogoutFromOpenIDProvider is set to
+                      true.
+                    type: string
+                  escapeHatchEnabled:
+                    type: boolean
+                  escapeHatchGroup:
+                    type: string
+                  escapeHatchSecretRef:
+                    description: EscapeHatchSecretRef is a secret reference which
+                      lets you safely pass the escape hatch secret to Authentication
+                      Spec. It is required when EscapeHatchEnabled is set to true.
+                      It has to contain the "escapeHatchSecret" key with value of
+                      the escape hatch secret from OpenID Connect credentials.
+                    properties:
+                      name:
+                        description: Name is unique within a namespace to reference
+                          a secret resource.
+                        type: string
+                      namespace:
+                        description: Namespace defines the space within which the
+                          secret name must be unique.
+                        type: string
+                    type: object
+                  escapeHatchUsername:
+                    description: Required when EscapeHatchEnabled is set to true.
+                    type: string
+                  fullNameFieldName:
+                    type: string
+                  groupsFieldName:
+                    type: string
+                  logoutFromOpenIDProvider:
+                    type: boolean
+                  postLogoutRedirectURL:
+                    type: string
+                  scopes:
+                    type: string
+                  tokenFieldToCheckKey:
+                    type: string
+                  tokenFieldToCheckValue:
+                    type: string
+                  tokenServerURL:
+                    description: Required when AutoManualConfigure is set to "manual".
+                    type: string
+                  userInfoServerURL:
+                    type: string
+                  userNameField:
+                    type: string
+                  wellKnownOpenIDConfigurationURL:
+                    description: WellKnownOpenIDConfigurationURL is an endpoint with
+                      well-known configuration endpoint, where your OpenID server
+                      publishes its metadata. Required when AutoManualConfigure is
+                      set to auto.
+                    type: string
+                required:
+                - autoManualConfigure
+                - clientID
+                - clientSecretRef
+                type: object
+              type:
+                description: Type indicates which authentication provider is set
+                type: string
+            required:
+            - type
+            type: object
+          status:
+            description: JenkinsAuthenticationStatus defines the observed state of
+              JenkinsAuthentication
+            properties:
+              conditions:
+                description: Conditions contains JenkinsAuthentication statuses
+                items:
+                  properties:
+                    lastProbeTime:
+                      description: Last time we probed the condition.
+                      format: date-time
+                      type: string
+                    lastTransitionTime:
+                      description: Last time the condition transitioned from one status
+                        to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: Human-readable message indicating details about
+                        last transition.
+                      type: string
+                    reason:
+                      description: Unique, one-word, CamelCase reason for the condition's
+                        last transition.
+                      type: string
+                    status:
+                      description: 'Status is the status of the condition. Can be
+                        True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions'
+                      type: string
+                    type:
+                      description: 'Type is the type of the condition. More info:
+                        https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions'
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              hash:
+                description: Hash contains hash computed when running this script
+                type: string
+              operatorVersion:
+                description: OperatorVersion is the operator version which manages
+                  this CR
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

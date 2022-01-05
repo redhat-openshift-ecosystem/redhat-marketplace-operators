@@ -1,0 +1,526 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "Jenkins",
+          "metadata": {
+            "name": "example"
+          },
+          "spec": {
+            "authorizationStrategy": "serviceAccount",
+            "disableCSRFProtection": true,
+            "podSpec": {
+              "containers": [
+                {
+                  "command": [
+                    "bash",
+                    "-c",
+                    "/var/jenkins/scripts/init.sh \u0026\u0026 /usr/bin/go-init -main /usr/libexec/s2i/run"
+                  ],
+                  "env": [
+                    {
+                      "name": "OPENSHIFT_ENABLE_OAUTH",
+                      "value": "true"
+                    },
+                    {
+                      "name": "OPENSHIFT_ENABLE_REDIRECT_PROMPT",
+                      "value": "true"
+                    },
+                    {
+                      "name": "DISABLE_ADMINISTRATIVE_MONITORS",
+                      "value": "false"
+                    },
+                    {
+                      "name": "KUBERNETES_MASTER",
+                      "value": "https://kubernetes.default:443"
+                    },
+                    {
+                      "name": "KUBERNETES_TRUST_CERTIFICATES",
+                      "value": "true"
+                    },
+                    {
+                      "name": "JENKINS_SERVICE_NAME",
+                      "value": "example-http"
+                    },
+                    {
+                      "name": "JNLP_SERVICE_NAME",
+                      "value": "example-agent"
+                    },
+                    {
+                      "name": "JENKINS_UC_INSECURE",
+                      "value": "false"
+                    },
+                    {
+                      "name": "JENKINS_HOME",
+                      "value": "/var/lib/jenkins"
+                    },
+                    {
+                      "name": "JAVA_OPTS",
+                      "value": "-XX:+UnlockExperimentalVMOptions -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1 -Djenkins.install.runSetupWizard=false -Djava.awt.headless=true"
+                    }
+                  ],
+                  "image": "quay.io/openshift/origin-jenkins:4.9.0",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "jenkins-controller"
+                }
+              ]
+            },
+            "roles": [
+              {
+                "apiGroup": "rbac.authorization.k8s.io",
+                "kind": "ClusterRole",
+                "name": "admin"
+              }
+            ]
+          }
+        },
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "JenkinsAuthentication",
+          "metadata": {
+            "labels": {
+              "operator-service.com/jenkins": "example"
+            },
+            "name": "oauth",
+            "namespace": "default"
+          },
+          "spec": {
+            "githubOAuth": {
+              "clientID": "myClientId",
+              "clientSecretRef": {
+                "name": "authn-secret",
+                "namespace": "default"
+              }
+            },
+            "type": "githubOAuth"
+          }
+        },
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "JenkinsAuthorization",
+          "metadata": {
+            "labels": {
+              "operator-service.com/jenkins": "example"
+            },
+            "name": "matrix-example",
+            "namespace": "default"
+          },
+          "spec": {
+            "matrix": {
+              "users": [
+                {
+                  "name": "user-example",
+                  "permissions": [
+                    "Overall/Read"
+                  ]
+                }
+              ]
+            },
+            "type": "matrix"
+          }
+        },
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "JenkinsConfigurationAsCode",
+          "metadata": {
+            "labels": {
+              "operator-service.com/jenkins": "example"
+            },
+            "name": "example-casc",
+            "namespace": "default"
+          },
+          "spec": {
+            "data": "jenkins:\n  systemMessage: |\n    Welcome to our build server.\n\n    This Jenkins is 100% configured and managed 'as code'.\n    Config is now mostly handled by the 'Jenkins Configuration as Code' (JCasC) plugin.\n    JCasC config can be found in the jenkins.yaml file in the ${JENKINS_HOME}/casc/ folder.\n\n    Some settings are still injected from init.groovy.d scripts,\n    but these settings will be ported over to JCasC as support becomes available.\n    This is test of secret in casc --\u003e ${testKey}\n  numExecutors: 1 # This is just a random example entry to show that there is no \"end token\" for the multiline string apart from un-indent to the next YAML property.\n"
+          }
+        },
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "JenkinsGroovyScript",
+          "metadata": {
+            "labels": {
+              "operator-service.com/jenkins": "example"
+            },
+            "name": "example-groovy-script",
+            "namespace": "default"
+          },
+          "spec": {
+            "data": "import jenkins.model.Jenkins\n\ndef systemMessage = \"Hello from v1beta1.JenkinsGroovyScript! Secrets: \" + secrets\n\nJenkins jenkins = Jenkins.getInstance()\njenkins.setSystemMessage(systemMessage)\njenkins.save()\n\nprintln \"Hello world!\"\n"
+          }
+        },
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "JenkinsKubernetesAgent",
+          "metadata": {
+            "labels": {
+              "operator-service.com/jenkins": "example"
+            },
+            "name": "operator-agent",
+            "namespace": "default"
+          },
+          "spec": {
+            "podSpec": {
+              "containers": [
+                {
+                  "image": "quay.io/openshift/origin-jenkins-agent-base:4.9.0",
+                  "imagePullPolicy": "IfNotPresent",
+                  "name": "jnlp"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "apiVersion": "operator-service.com/v1beta1",
+          "kind": "JenkinsSeedJob",
+          "metadata": {
+            "labels": {
+              "operator-service.com/jenkins": "example"
+            },
+            "name": "example-jenkins-seedjob",
+            "namespace": "default"
+          },
+          "spec": {
+            "repository": {
+              "branch": "master",
+              "targets": "cicd/jobs/*.jenkins",
+              "url": "https://github.com/jenkinsci/kubernetes-operator.git"
+            }
+          }
+        }
+      ]
+    capabilities: Basic Install
+    categories: Developer Tools
+    containerImage: registry.connect.redhat.com/virtuslab/operator-service-for-jenkins@sha256:sha256:6fc05ce7378d1cc55d51c7170110a75d5532eecfde983fa2f1ddbe4f4907f9fe
+    createdAt: "2021-06-22T10:00:00Z"
+    description: Operator Service for Jenkins
+    operators.operatorframework.io/builder: operator-sdk-v1.8.0+git
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+    support: VirtusLab
+  name: op-svc-jenkins.v0.11.1
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: Jenkins is the Schema for the jenkins API
+      displayName: Jenkins
+      kind: Jenkins
+      name: jenkins.operator-service.com
+      version: v1beta1
+    - description: JenkinsAuthentication is the Schema for the JenkinsAuthentications
+        API
+      displayName: Jenkins Authentication
+      kind: JenkinsAuthentication
+      name: jenkinsauthentications.operator-service.com
+      version: v1beta1
+    - description: JenkinsAuthorization is the Schema for the JenkinsAuthorization
+        API
+      displayName: Jenkins Authorization
+      kind: JenkinsAuthorization
+      name: jenkinsauthorizations.operator-service.com
+      version: v1beta1
+    - description: JenkinsConfigurationAsCode is the Schema for the jenkinsconfigurationascodes
+        API
+      displayName: Jenkins Configuration As Code
+      kind: JenkinsConfigurationAsCode
+      name: jenkinsconfigurationascodes.operator-service.com
+      version: v1beta1
+    - description: JenkinsGroovyScript is the Schema for the jenkinsgroovyscripts
+        API
+      displayName: Jenkins Groovy Script
+      kind: JenkinsGroovyScript
+      name: jenkinsgroovyscripts.operator-service.com
+      version: v1beta1
+    - description: JenkinsKubernetesAgent is the Schema for the JenkinsKubernetesAgents
+        API
+      displayName: Jenkins Kubernetes Agent
+      kind: JenkinsKubernetesAgent
+      name: jenkinskubernetesagents.operator-service.com
+      version: v1beta1
+    - description: JenkinsSeedJob is the Schema for the jenkinsseedjobs API
+      displayName: Jenkins Seed Job
+      kind: JenkinsSeedJob
+      name: jenkinsseedjobs.operator-service.com
+      version: v1beta1
+  description: Operator Service for Jenkins® on Red Hat Marketplace is a cloud-native
+    Jenkins® platform for scalable and cost-effective continuous integration in the
+    public cloud. Built on top of Kubernetes, our Operator Service for Jenkins® enables
+    you to fully automate Jenkins® pipelines, plugins, and any additional configuration
+    needed.
+  displayName: Operator Service for Jenkins
+  icon:
+  - base64data: iVBORw0KGgoAAAANSUhEUgAAASwAAACACAYAAACx1FRUAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDAyIDExNi4xNjQ3NjYsIDIwMjEvMDIvMTktMjM6MTA6MDcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCAyMS4yIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2QTM3MzU4NEYwNkYxMUVCQTJBQUUxQUY5RUQ2N0Q5OCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2QTM3MzU4NUYwNkYxMUVCQTJBQUUxQUY5RUQ2N0Q5OCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjZBMzczNTgyRjA2RjExRUJBMkFBRTFBRjlFRDY3RDk4IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjZBMzczNTgzRjA2RjExRUJBMkFBRTFBRjlFRDY3RDk4Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+1pVNXAAAEmVJREFUeNrsnQmY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
+    mediatype: image/png
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: op-svc-jenkins-service-account
+      deployments:
+      - name: op-svc-jenkins-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=10
+                image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:e10d1d982dd653db74ca87a1d1ad017bc5ef1aeb651bdea089debf16485b080b
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                resources: {}
+              - args:
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                command:
+                - /manager
+                env:
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.annotations['olm.targetNamespaces']
+                image: registry.connect.redhat.com/virtuslab/operator-service-for-jenkins@sha256:sha256:6fc05ce7378d1cc55d51c7170110a75d5532eecfde983fa2f1ddbe4f4907f9fe
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 8081
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 8081
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 100m
+                    memory: 150Mi
+                  requests:
+                    cpu: 100m
+                    memory: 150Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: op-svc-jenkins-service-account
+              terminationGracePeriodSeconds: 10
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        - apiGroups:
+          - apps
+          resources:
+          - daemonsets
+          - deployments
+          - replicasets
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          - jenkins-operator
+          resources:
+          - deployments/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - build.openshift.io
+          resources:
+          - builds
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          - secrets
+          - services
+          verbs:
+          - create
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - get
+          - list
+          - patch
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - persistentvolumeclaims
+          verbs:
+          - create
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - persistentvolumes
+          verbs:
+          - create
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - pods
+          - pods/exec
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - pods/log
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - pods/portforward
+          verbs:
+          - create
+        - apiGroups:
+          - ""
+          resources:
+          - serviceaccounts
+          verbs:
+          - create
+          - get
+          - list
+          - update
+          - watch
+        - apiGroups:
+          - image.openshift.io
+          resources:
+          - imagestreams
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - operator-service.com
+          resources:
+          - '*'
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - routes
+          verbs:
+          - create
+          - get
+          - list
+          - update
+          - watch
+        serviceAccountName: op-svc-jenkins-service-account
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
+  keywords:
+  - jenkins
+  - virtuslab
+  - cicd
+  links:
+  - name: Operator Service for Jenkins
+    url: https://operator-service.com
+  maturity: alpha
+  provider:
+    name: VirtusLab
+    url: https://virtuslab.com/
+  version: 0.11.1

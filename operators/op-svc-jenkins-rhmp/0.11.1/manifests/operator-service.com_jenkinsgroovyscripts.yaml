@@ -1,0 +1,124 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: jenkinsgroovyscripts.operator-service.com
+spec:
+  group: operator-service.com
+  names:
+    kind: JenkinsGroovyScript
+    listKind: JenkinsGroovyScriptList
+    plural: jenkinsgroovyscripts
+    singular: jenkinsgroovyscript
+  scope: Namespaced
+  versions:
+  - name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: JenkinsGroovyScript is the Schema for the jenkinsgroovyscripts
+          API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: JenkinsGroovyScriptSpec defines the desired state of JenkinsGroovyScript.
+              It allows to write Groovy Scripts to modify the Jenkins.
+            properties:
+              data:
+                description: Data is inline Groovy script
+                type: string
+              dependsOn:
+                description: DependsOn is JenkinsGroovyScript reference which determines
+                  the order of the Groovy scripts
+                properties:
+                  name:
+                    description: Name of the script being referenced
+                    type: string
+                  namespace:
+                    description: Namespace of referenced JenkinsGroovyScript
+                    type: string
+                type: object
+              secretRef:
+                description: SecretRef is secret reference which allows to inject
+                  the secrets into Groovy script code
+                properties:
+                  name:
+                    description: Name is unique within a namespace to reference a
+                      secret resource.
+                    type: string
+                  namespace:
+                    description: Namespace defines the space within which the secret
+                      name must be unique.
+                    type: string
+                type: object
+            required:
+            - data
+            type: object
+          status:
+            description: JenkinsGroovyScriptStatus defines the observed state of JenkinsGroovyScript
+            properties:
+              conditions:
+                description: Conditions contains JenkinsAuthentication statuses
+                items:
+                  properties:
+                    lastProbeTime:
+                      description: Last time we probed the condition.
+                      format: date-time
+                      type: string
+                    lastTransitionTime:
+                      description: Last time the condition transitioned from one status
+                        to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: Human-readable message indicating details about
+                        last transition.
+                      type: string
+                    reason:
+                      description: Unique, one-word, CamelCase reason for the condition's
+                        last transition.
+                      type: string
+                    status:
+                      description: 'Status is the status of the condition. Can be
+                        True, False, Unknown. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions'
+                      type: string
+                    type:
+                      description: 'Type is the type of the condition. More info:
+                        https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions'
+                      type: string
+                  required:
+                  - status
+                  - type
+                  type: object
+                type: array
+              hash:
+                description: Hash contains hash computed when running this script
+                type: string
+              operatorVersion:
+                description: OperatorVersion is the operator version which manages
+                  this CR
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

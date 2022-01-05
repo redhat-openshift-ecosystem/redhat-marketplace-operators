@@ -199,8 +199,8 @@ metadata:
     description: Operator Service for Jenkins
     operators.operatorframework.io/builder: operator-sdk-v1.8.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/products/operator-service-for-jenkins/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/products/operator-service-for-jenkins/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/products/op-svc-jenkins-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/products/op-svc-jenkins-rhmp/support?utm_source=openshift_console
     support: VirtusLab
   name: op-svc-jenkins.v0.11.1
   namespace: placeholder

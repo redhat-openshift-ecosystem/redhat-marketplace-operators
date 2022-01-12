@@ -6,5 +6,3 @@ annotations:
   operators.operatorframework.io.bundle.metadata.v1: metadata/
   operators.operatorframework.io.bundle.package.v1: redis-enterprise-operator-cert-rhmp
   com.redhat.openshift.versions: v4.6-v4.9
-  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/redis-enterprise-operator-cert-rhmp/pricing?utm_source=openshift_console
-  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/redis-enterprise-operator-cert-rhmp/support?utm_source=openshift_console

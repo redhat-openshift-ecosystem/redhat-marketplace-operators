@@ -119,14 +119,14 @@ metadata:
             "image": {
               "pullPolicy": "IfNotPresent",
               "repository": "registry.connect.redhat.com/starburst/starburst-enterprise",
-              "tag": "sha256:662f69317a5c6c3bfbb083d2869f069a993a76cc9d4ec8caa94040d81aed88fb"
+              "tag": "360-e.6-ubi"
             },
             "imagePullSecrets": null,
             "initFile": "",
             "initImage": {
               "pullPolicy": "IfNotPresent",
               "repository": "registry.connect.redhat.com/starburst/starburst-enterprise-init",
-              "tag": "sha256:662f69317a5c6c3bfbb083d2869f069a993a76cc9d4ec8caa94040d81aed88fb"
+              "tag": "360.6.1-ubi"
             },
             "internal": {
               "ports": {
@@ -192,7 +192,7 @@ metadata:
                 "image": {
                   "pullPolicy": "IfNotPresent",
                   "repository": "harbor.starburstdata.net/testing/usage-metrics-reporter",
-                  "tag": "sha256:662f69317a5c6c3bfbb083d2869f069a993a76cc9d4ec8caa94040d81aed88fb"
+                  "tag": "0.1.3-alpha"
                 }
               },
               "usageClient": {
@@ -278,8 +278,7 @@ metadata:
                 "image": {
                   "pullPolicy": "IfNotPresent",
                   "repository": "registry.redhat.io/rhel8/postgresql-10",
-                  "tag": "sha256:662f69317a5c6c3bfbb083d2869f069a993a76cc9d4ec8caa94040d81aed88fb"
-
+                  "tag": "1"
                 },
                 "port": 5432,
                 "resources": {
@@ -342,7 +341,7 @@ metadata:
             "image": {
               "pullPolicy": "IfNotPresent",
               "repository": "registry.connect.redhat.com/starburst/hive",
-              "tag": "sha256:662f69317a5c6c3bfbb083d2869f069a993a76cc9d4ec8caa94040d81aed88fb"
+              "tag": "360.6.1-ubi"
             },
             "imagePullSecrets": null,
             "initFile": "",
@@ -412,7 +411,7 @@ metadata:
     capabilities: Auto Pilot
     categories: Big Data
     certified: "true"
-    containerImage: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator:360.6.1
+    containerImage: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:8697b98389fa93afa9eafaecae931afaa365d607c1087f2dfd5d514d465f6662
     support: Starburst Data
     description: Deploys StarburstEnterprise Helm Operator
     operators.operatorframework.io/builder: operator-sdk-v1.13.1

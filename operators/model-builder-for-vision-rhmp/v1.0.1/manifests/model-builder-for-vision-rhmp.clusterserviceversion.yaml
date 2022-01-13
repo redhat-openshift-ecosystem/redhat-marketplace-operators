@@ -583,7 +583,7 @@ spec:
                 - name: RELATED_IMAGE_MB_AUTH_COREML
                   value: registry.connect.redhat.com/ibm/modelbuilder-auth-service@sha256:bc3ea793e5bf473f7702e3a1cd0f9f37a38a0a9f401390d658c3cf546015499c
                 - name: RELATED_IMAGE_MB_SERVICE_COREML
-                  value: registry.connect.redhat.com/ibm/modelbuilder-cv-training-service@sha256:4f42e8a4410c06a8a81eabd61c09dbec68d06adb541d12c1801f72410a25fb8a
+                  value: registry.connect.redhat.com/ibm/modelbuilder-cv-training-service@sha256:060fdba6c79f8fcdb8195d89962f1e917e4263a52cd50e3c6742d25318d23879
                 - name: RELATED_IMAGE_REDIS
                   value: registry.redhat.io/rhel8/redis-6@sha256:e43443f9b8a5c0c4f228c23f302b37444f74b55539b6fd5f7ca4d6ebc9d5e0f1
                 - name: RELATED_IMAGE_UTIL

@@ -419,6 +419,9 @@ metadata:
   name: starburst-enterprise-helm-operator.v360.6.1
   namespace: placeholder
 spec:
+  relatedImages:
+    - name: starburst-enterprise-helm-operator
+      image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:8697b98389fa93afa9eafaecae931afaa365d607c1087f2dfd5d514d465f6662
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
@@ -540,7 +543,7 @@ spec:
               - args:
                 - --leader-elect
                 - --leader-election-id=starburst-enterprise-helm-operator
-                image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator:360.6.1
+                image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:8697b98389fa93afa9eafaecae931afaa365d607c1087f2dfd5d514d465f6662
                 livenessProbe:
                   httpGet:
                     path: /healthz

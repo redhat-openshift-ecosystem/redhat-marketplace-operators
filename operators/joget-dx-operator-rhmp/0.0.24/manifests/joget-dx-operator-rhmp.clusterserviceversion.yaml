@@ -10,7 +10,6 @@ metadata:
     createdAt: '2019-07-23 12:59:59'
     description: No-code/low-code application platform to visually build, run and
       maintain apps
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/support
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/joget-dx-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/joget-dx-operator-rhmp/support?utm_source=openshift_console
     support: Joget, Inc

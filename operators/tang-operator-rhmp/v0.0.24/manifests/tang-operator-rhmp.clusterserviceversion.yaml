@@ -55,14 +55,12 @@ spec:
         displayName: Health Script to execute
         path: healthScript
       - description: HiddenKeys
-        displayName: Hidden Keys contains a list with the keys (with sha1 or sha256)
-          to hide
+        displayName: Hidden Keys contains a list with the keys (with sha1 or sha256) to hide
         path: hiddenKeys
       - description: Image is the base container image of the TangServer to use
         displayName: Image of Container to deploy
         path: image
-      - description: KeyPath is field of TangServer. It allows to specify the path
-          where keys will be generated
+      - description: KeyPath is field of TangServer. It allows to specify the path where keys will be generated
         displayName: Key Path
         path: keyPath
       - description: KeyRefreshInterval
@@ -96,14 +94,12 @@ spec:
         displayName: Image Version of Container to deploy
         path: version
       statusDescriptors:
-      - description: ActiveKeys provides information about the Active Keys in the
-          Tang Server CR
+      - description: ActiveKeys provides information about the Active Keys in the Tang Server CR
         displayName: Tang Server Active Keys
         path: activeKeys
         x-descriptors:
         - urn:alm:descriptor:text
-      - description: FileName provides information about the file name corresponding
-          to the key
+      - description: FileName provides information about the file name corresponding to the key
         displayName: Active Key file name
         path: activeKeys[0].fileName
         x-descriptors:
@@ -123,14 +119,12 @@ spec:
         path: activeKeys[0].sha256
         x-descriptors:
         - urn:alm:descriptor:text
-      - description: HiddenKeys provides information about the Hidden Keys in the
-          Tang Server CR
+      - description: HiddenKeys provides information about the Hidden Keys in the Tang Server CR
         displayName: Tang Server Hidden Keys
         path: hiddenKeys
         x-descriptors:
         - urn:alm:descriptor:text
-      - description: FileName provides information about the file name corresponding
-          to the key
+      - description: FileName provides information about the file name corresponding to the key
         displayName: Hidden Key file name
         path: hiddenKeys[0].fileName
         x-descriptors:
@@ -165,8 +159,7 @@ spec:
         path: running
         x-descriptors:
         - urn:alm:descriptor:text
-      - description: Tang Server Service External Url provides information about the
-          External Service Url
+      - description: Tang Server Service External Url provides information about the External Service Url
         displayName: Tang Server External Url
         path: serviceExternalUrl
         x-descriptors:
@@ -276,7 +269,7 @@ spec:
                 - --upstream=http://127.0.0.1:8080/
                 - --logtostderr=true
                 - --v=10
-                image: gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+                image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:db06cc4c084dd0253134f156dddaaf53ef1c3fb3cc809e5d81711baa4029ea4c
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443
@@ -288,7 +281,7 @@ spec:
                 - --leader-elect
                 command:
                 - /manager
-                image: quay.io/sec-eng-special/tang-operator:v0.0.24
+                image: quay.io/sec-eng-special/tang-operator@sha256:a1ca0b99b0784534f40a56b42fe693f6a8628dc3720d0ed9d3085855dac72913
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -372,3 +365,8 @@ spec:
   provider:
     name: Red Hat
   version: 0.0.24
+  relatedImages:
+  - name: kube-rbac-proxy
+    image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:db06cc4c084dd0253134f156dddaaf53ef1c3fb3cc809e5d81711baa4029ea4c
+  - name: manager
+    image: quay.io/sec-eng-special/tang-operator@sha256:a1ca0b99b0784534f40a56b42fe693f6a8628dc3720d0ed9d3085855dac72913

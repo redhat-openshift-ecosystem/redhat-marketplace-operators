@@ -1,0 +1,374 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/tang-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/tang-operator-rhmp/support?utm_source=openshift_console
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "daemons.redhat.com/v1alpha1",
+          "kind": "TangServer",
+          "metadata": {
+            "finalizers": [
+              "finalizer.daemons.tangserver.redhat.com"
+            ],
+            "name": "tangserver",
+            "namespace": "nbde"
+          },
+          "spec": {
+            "healthScript": "/usr/bin/tangd-health-check",
+            "image": "registry.redhat.io/rhel8/tang",
+            "keyPath": "/var/db/tang",
+            "persistentVolumeClaim": "tangserver-pvc",
+            "replicas": 1,
+            "version": "latest"
+          }
+        }
+      ]
+    capabilities: Basic Install
+    operators.operatorframework.io/builder: operator-sdk-v1.14.0+git
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+  name: tang-operator.v0.0.24
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: TangServer is the Schema for the tangservers API
+      displayName: Tang Server
+      kind: TangServer
+      name: tangservers.daemons.redhat.com
+      resources:
+      - kind: Deployment
+        version: v1
+      - kind: ReplicaSet
+        version: v1
+      - kind: Pod
+        version: v1
+      - kind: Secret
+        version: v1
+      - kind: Service
+        version: v1
+      specDescriptors:
+      - description: HealthScript is the script to run for healthiness/readiness
+        displayName: Health Script to execute
+        path: healthScript
+      - description: HiddenKeys
+        displayName: Hidden Keys contains a list with the keys (with sha1 or sha256)
+          to hide
+        path: hiddenKeys
+      - description: Image is the base container image of the TangServer to use
+        displayName: Image of Container to deploy
+        path: image
+      - description: KeyPath is field of TangServer. It allows to specify the path
+          where keys will be generated
+        displayName: Key Path
+        path: keyPath
+      - description: KeyRefreshInterval
+        displayName: Refresh Interval to update key status
+        path: keyRefreshInterval
+      - description: Persistent Volume Claim to store the keys
+        displayName: Persistent Volume Claim to attach to (default:tangserver-pvc)
+        path: persistentVolumeClaim
+      - description: PodListenPort is the port where pods will listen for traffic
+        displayName: 'Port where Pod will listen '
+        path: podListenPort
+      - description: Replicas is the Tang Server amount to bringup
+        displayName: Amount of replicas to launch
+        path: replicas
+      - description: RequiredActiveKeyPairs
+        displayName: Required Active Key Pairs (1 by default)
+        path: requiredActiveKeyPairs
+      - description: ResourceLimit is the resource limit to perform for each pod
+        displayName: Resources Limit for Tang Server
+        path: resourcesLimit
+      - description: ResourceRequest is the resource request to perform for each pod
+        displayName: Resources Request for Tang Server
+        path: resourcesRequest
+      - description: Secret is the secret name to use to download image appropriately
+        displayName: Secret name to use for container download
+        path: secret
+      - description: ServiceListenPort is the port where service will listen for traffic
+        displayName: Port where service will listen
+        path: serviceListenPort
+      - description: Version is the version of the TangServer container to use (empty=>latest)
+        displayName: Image Version of Container to deploy
+        path: version
+      statusDescriptors:
+      - description: ActiveKeys provides information about the Active Keys in the
+          Tang Server CR
+        displayName: Tang Server Active Keys
+        path: activeKeys
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: FileName provides information about the file name corresponding
+          to the key
+        displayName: Active Key file name
+        path: activeKeys[0].fileName
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Active Key Generation Time
+        displayName: Active Key Generation Time
+        path: activeKeys[0].generated
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Active Key sha1
+        displayName: Active Key SHA1
+        path: activeKeys[0].sha1
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Active Key sha256
+        displayName: Active Key SHA256
+        path: activeKeys[0].sha256
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: HiddenKeys provides information about the Hidden Keys in the
+          Tang Server CR
+        displayName: Tang Server Hidden Keys
+        path: hiddenKeys
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: FileName provides information about the file name corresponding
+          to the key
+        displayName: Hidden Key file name
+        path: hiddenKeys[0].fileName
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Hidden Key Hiding Time
+        displayName: Hidden Key Generation Time
+        path: hiddenKeys[0].generated
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Hidden Key Generation Time
+        displayName: Hidden Key Hidden Time
+        path: hiddenKeys[0].hidden
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Hidden Key sha1
+        displayName: Hidden Key SHA1
+        path: hiddenKeys[0].sha1
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Hidden Key sha256
+        displayName: Hidden Key SHA256
+        path: hiddenKeys[0].sha256
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Tang Server Ready provides information about the Ready Replicas
+        displayName: Tang Server Ready Replicas
+        path: ready
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Tang Server Running provides information about the Running Replicas
+        displayName: Tang Server Running Replicas
+        path: running
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: Tang Server Service External Url provides information about the
+          External Service Url
+        displayName: Tang Server External Url
+        path: serviceExternalUrl
+        x-descriptors:
+        - urn:alm:descriptor:text
+      - description: TangServerError collects error on Tang Operator creation
+        displayName: Tang Server Error
+        path: tangServerError
+        x-descriptors:
+        - urn:alm:descriptor:text
+      version: v1alpha1
+  description: Tang Operator for NBDE
+  displayName: Tang
+  icon:
+  - base64data: iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAYAAAH4h1yzAAAABGdBTUEAALGPC/xhBQAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+UHDQ04D0XvFmUAAAShSURBVHja7Zy/bxtlHIc/753j2nEbV2kSHFqgqcqAEFQtUqUKWJAQSLCx8B+AxMAAaiXWLjDARiUWJkZGkMoIgiKBIkWlC1IpJch1Eye4udSxE5/vZUio3MY2/nX2+fI8UqXoWuf1836+9957d29f4/u+VR8kHj3w3Xs3//dDr31++sHPjvqk719g+u2D0SvEIIVEu7988ZPcg59/unR3SN/ANBzZuLXT9HjHhdSYSGPPR6uUzUDHg06q8OwHM5o7dZTxILRSHs8UWo4HL382r6C2G9CPlwoyMkP4Bg+NBX/sKNgrEWfCSLbLQrr67k0Zt/1YEJPxINTLQieV3QmPVv9AMwi1B9K5ROitjLwGoh3BgSjCaEfQyaWikXaXjcj2wMi/QE/jQOOlrtXNBxGMzeV4pF9gpN3fcgBa+iqvlZ8rfTdgrfT6ldPRM6fxaBVccsoZzLzPcp7TOMMrmdN41O9mUsdcvXBxdt/xaqmuxY+LdDuN91Zwjtv8fUYQ2IfeefzH9ma9+fuPQU4m8tfXdeOL0r7jfsXqjS+fJnMa5y41mg8IxuqqKkk3vr6j1cVqdCys9Nw705pdOBq+vF+1qnlBdNzt7p+xOudGDfLIH0AO9KWOskceeeSZ27djUM+OBzm9Pfdh62UeJI888sj3POB13chho4U3p2Trnc2kd7YCLX+zKRkTA/lDjnLnJ5uuEGtGtVTXX99uylD2yCOP/AAZysOM/PV1/Xal1HQ9ZjN6ed1G8sgjjzzyox7tkafkER+ve/iNoqfFT9cU+j1mF6Rzri68/1S44oGv3YUIERJPHjGUOuKII4444ogjzpR1/wdSjtLziUhJHJp2u/4Mt6WII4444ogjjjjiiMdtrl4qePrl8mqknrJmjrt66aMFEkccccQRRxxxxBFnytoLNpAeu5DS1JPJjv69caQ717ZU/tsfb3FZq+xCUnNnJzsTd43++X1b5WU/1PsBznHEEUccccQRR/wATFnN3paKnc6qHKOtot90u8VWU1a/EnTXRqL7Kd5QVkR8f/mWqnc734HsxCsZPfvWPKWOOOKII4444ogjjrhYxIs4pQ5UO8SIof3fmuLyPdXuB/R4uzNwwmjm5BElJhLjH3qp4Cn/Q1kr1yqRWhMaJayVDp9w5bxtut63leEdCB0IHQid0IHQgdCB0IHQgdAhygztLdtG0ZO/zbP3tmE4RtOPZ+MTOjC8A6EDoQOhA6EDoQOhA6EDoYOGtBq2Uq6qsOTJW67R462wUjLrKncuren57PiHXvV25P1ZYwl0u8z3lkDPPJNieAdCB0IHQgdCB0IHQid0IHQgdIgViThI2LpVei6hJ17NKHc+o6A22AW+xjWqrPm6fdXT2lJVxpqxfpzMmc7wDoQOhA6EDoQOhA6EDoQOhA7DZGibEqzevid/MwitdO8Xalr5taJ62YbyiLRWCTR7JqXZ51MyrpFC6DUnaTRzKia7QEvS3MlwdzbO19cV+IGqa4GMO/jf71esJiYdHT9zjOEdCB0IHQgdCB0IHQgdCB0IHXonERcR4xolM67qWcmEUMpu0spNxWNHBTYEZniHg8C/TaaTP8oei14AAAAASUVORK5CYII=
+    mediatype: image/png
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - pods
+          verbs:
+          - get
+          - list
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - services
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - daemons.redhat.com
+          resources:
+          - tangservers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - daemons.redhat.com
+          resources:
+          - tangservers/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - daemons.redhat.com
+          resources:
+          - tangservers/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: tang-operator-controller-manager
+      deployments:
+      - name: tang-operator-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=10
+                image: gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                resources: {}
+              - args:
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                command:
+                - /manager
+                image: quay.io/sec-eng-special/tang-operator:v0.0.24
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 8081
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 8081
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 100m
+                    memory: 400Mi
+                  requests:
+                    cpu: 100m
+                    memory: 200Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: tang-operator-controller-manager
+              terminationGracePeriodSeconds: 10
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        serviceAccountName: tang-operator-controller-manager
+    strategy: deployment
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - nbde
+  - tang
+  links:
+  - name: Tang Operator
+    url: https://github.com/latchset/tang-operator
+  maintainers:
+  - email: sarroutb@redhat.com
+    name: Sergio Arroutbi
+  maturity: alpha
+  provider:
+    name: Red Hat
+  version: 0.0.24

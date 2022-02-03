@@ -114,7 +114,9 @@ metadata:
   namespace: placeholder
 spec:
   relatedImages:
-    - name: operator
+    - name: aerospike-kubernetes-operator-075427a59424ab96e3cba0a245779c5a65924242a9c5b4bde1b188e93322886f-annotation
+    - image: registry.connect.redhat.com/aerospike/aerospike-kubernetes-operator@sha256:075427a59424ab96e3cba0a245779c5a65924242a9c5b4bde1b188e93322886f
+    - name: manager
     - image: registry.connect.redhat.com/aerospike/aerospike-kubernetes-operator@sha256:075427a59424ab96e3cba0a245779c5a65924242a9c5b4bde1b188e93322886f
     - name: kube-rbac-proxy
     - image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:e10d1d982dd653db74ca87a1d1ad017bc5ef1aeb651bdea089debf16485b080b

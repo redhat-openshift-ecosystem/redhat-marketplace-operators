@@ -649,3 +649,28 @@ spec:
   provider:
     name: IBM
   version: 1.0.1
+  relatedImages:
+  - name: operator-img
+    image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:5f97c53dfb96d9cdd9118ebca5dbb3ab9efaaab763107b98588e3385c336bf16
+  - name: RELATED_IMAGE_POSTGRES_CLI
+    image: registry.redhat.io/rhel8/postgresql-12@sha256:1de895df0c9bce080e0a45efce78e70c99de43484de0fb6e4e5ba824d9566434
+  - name: RELATED_IMAGE_PGO_DEPLOY
+    image: registry.connect.redhat.com/crunchydata/pgo-deployer@sha256:4c5f605669edc2125a6aea31c66c89cef524b57284eac302f35bbfa4680d1467
+  - name: RELATED_IMAGE_PGO_CLIENT
+    image: registry.connect.redhat.com/ibm/modelbuilder-pgo-util@sha256:7d7ac1726d07e5c0cce79fa2b7d6ea7dfac3b94a1873ceeac84a90b2f5a0273d
+  - name: RELATED_IMAGE_COREML_AUGMENTOR
+    image: registry.connect.redhat.com/ibm/modelbuilder-augmentor@sha256:7bcd7a92907ad0939554a437fbb0e80ff12c3aeaf6ad210bba0c89433bea16af
+  - name: RELATED_IMAGE_NGINX
+    image: registry.connect.redhat.com/ibm/modelbuilder-image-server@sha256:212862b00a90d2196a5afe0d8af5cc07185c006d62dd6128f382fb3fc2f0968a
+  - name: RELATED_IMAGE_MB_AUTH_COREML
+    image: registry.connect.redhat.com/ibm/modelbuilder-auth-service@sha256:b323308be2254a0d3e6e4aa83df32392443d3c1673fa5e63a64fb54500bad71b
+  - name: RELATED_IMAGE_MB_SERVICE_COREML
+    image: registry.connect.redhat.com/ibm/modelbuilder-cv-training-service@sha256:72d078265a40f4dd92f488f0445fb112e9fe8ea05b729dd7af282d3c9c710f6c
+  - name: RELATED_IMAGE_REDIS
+    image: registry.redhat.io/rhel8/redis-6@sha256:e43443f9b8a5c0c4f228c23f302b37444f74b55539b6fd5f7ca4d6ebc9d5e0f1
+  - name: RELATED_IMAGE_UTIL
+    image: registry.connect.redhat.com/ibm/modelbuilder-util@sha256:22408e0392919e45280975044c5b3ea494e661e1db9f656df37c23ffdfbe8b96
+  - name: modelbuilder
+    image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:5f97c53dfb96d9cdd9118ebca5dbb3ab9efaaab763107b98588e3385c336bf16
+  - name: kube-rbac-proxy
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:609c19d1718947ee814b829334c37e1d720acf5fb642b0712b8ab1b14d57f53f

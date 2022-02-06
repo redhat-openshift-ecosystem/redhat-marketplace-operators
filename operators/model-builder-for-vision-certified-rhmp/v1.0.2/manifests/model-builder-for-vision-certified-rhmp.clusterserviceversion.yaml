@@ -50,7 +50,7 @@ metadata:
     support: Refer Readme - https://github.com/rhm-samples/ibm-modelbuilder-for-vision/issues
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/model-builder-for-vision-certified-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/model-builder-for-vision-certified-rhmp/support?utm_source=openshift_console
-  name: ibm-modelbuilder-for-vision-rhmp.v1.0.s
+  name: ibm-modelbuilder-for-vision-rhmp.v1.0.2
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -648,7 +648,7 @@ spec:
   provider:
     name: IBM
   version: 1.0.2
-  replaces: model-builder-for-vision-rhmp.v1.0.1
+  replaces: ibm-modelbuilder-for-vision-rhmp.v1.0.1
   relatedImages:
   - name: operator-img
     image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:c122932689b76cd802bcbd5f662f246487b7843bd404a9bdbfdbd186b02a87c4

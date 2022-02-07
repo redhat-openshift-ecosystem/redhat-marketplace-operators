@@ -369,7 +369,7 @@ spec:
                   valueFrom:
                     fieldRef:
                       fieldPath: metadata.annotations['olm.targetNamespaces']
-                image: registry.connect.redhat.com/aerospike/aerospike-kubernetes-operator@sha256:075427a59424ab96e3cba0a245779c5a65924242a9c5b4bde1b188e93322886f
+                image: registry.connect.redhat.com/aerospike/aerospike-kubernetes-operator@sha256:94eca317446929aebcbcb34816cb63c0bfe037761314ea5d0252f16d6ee0302e
                 imagePullPolicy: IfNotPresent
                 livenessProbe:
                   httpGet:

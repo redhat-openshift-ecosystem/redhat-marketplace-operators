@@ -109,7 +109,7 @@ metadata:
     operatorframework.io/suggested-namespace: aerospike
     operators.operatorframework.io/builder: operator-sdk-v1.16.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-    repository: https://github.com/aerospike/aerospike-kubernetes-operator/F
+    repository: https://github.com/aerospike/aerospike-kubernetes-operator/
   name: aerospike-kubernetes-operator.v2.0.0
   namespace: placeholder
 spec:

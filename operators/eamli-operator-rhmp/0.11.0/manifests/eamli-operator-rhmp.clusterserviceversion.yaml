@@ -69,7 +69,7 @@ metadata:
       }
     capabilities: Seamless Upgrades
     categories: AI/Machine Learning
-    containerImage: registry.gitlab.com/whitedotspace/eamli/eamli-operator/operator:0.11.0
+    containerImage: registry.gitlab.com/whitedotspace/eamli/eamli-operator/eamli-operator:0.11.0
     createdAt: 2022-02-14T09:58:44Z
     description: Installs and manages the Eamli product
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/pricing?utm_source=openshift_console

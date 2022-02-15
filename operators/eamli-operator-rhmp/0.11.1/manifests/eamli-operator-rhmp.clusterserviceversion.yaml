@@ -69,7 +69,7 @@ metadata:
       }
     capabilities: Seamless Upgrades
     categories: AI/Machine Learning
-    containerImage: registry.connect.redhat.com/eamli/eamli-operator:0.11.1
+    containerImage: registry.connect.redhat.com/eamli/eamli-operator@sha256:d4e72011f33c31dda0bb5b0f628efdb3e3496712fd216f4f3bfc27ee6fb87873
     createdAt: 2022-02-15T15:49:15Z
     description: Installs and manages the Eamli product
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/pricing?utm_source=openshift_console
@@ -88,410 +88,410 @@ spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
-      - description: APIServer is the Schema for the apiservers API
+    - description: APIServer is the Schema for the apiservers API
+      displayName: API Server
+      kind: APIServer
+      name: apiservers.eamli.white.space
+      resources:
+      - kind: Deployment
+        name: apiserver
+        version: v1
+      - kind: Ingress
+        name: apiserver
+        version: v1
+      - kind: NetworkPolicy
+        name: apiserver
+        version: v1
+      - kind: Pod
+        name: apiserver
+        version: v1
+      - kind: ReplicaSet
+        name: apiserver
+        version: v1
+      - kind: Role
+        name: apiserver
+        version: v1
+      - kind: RoleBinding
+        name: apiserver
+        version: v1
+      - kind: Service
+        name: apiserver
+        version: v1
+      - kind: ServiceAccount
+        name: apiserver
+        version: v1
+      - kind: Servicemonitor
+        name: apiserver
+        version: v1
+      - kind: ConfigMap
+        name: apiserver-metrics
+        version: v1
+      - kind: Job
+        name: apiserver-seeder
+        version: v1
+      - kind: Secret
+        name: postgresql-api
+        version: v1
+      specDescriptors:
+      - displayName: Image Pull Secrets
+        path: imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      - description: Release contains the Helm chart manifest used to install the service
+        displayName: Release
+        path: release
+      version: v1alpha1
+    - description: ProductServer is the Schema for the productservers API
+      displayName: Product Server
+      kind: ProductServer
+      name: productservers.eamli.white.space
+      resources:
+      - kind: Secret
+        name: postgresql-productserver
+        version: v1
+      - kind: Deployment
+        name: productserver
+        version: v1
+      - kind: Ingress
+        name: productserver
+        version: v1
+      - kind: NetworkPolicy
+        name: productserver
+        version: v1
+      - kind: Pod
+        name: productserver
+        version: v1
+      - kind: ReplicaSet
+        name: productserver
+        version: v1
+      - kind: Role
+        name: productserver
+        version: v1
+      - kind: RoleBinding
+        name: productserver
+        version: v1
+      - kind: Service
+        name: productserver
+        version: v1
+      - kind: ServiceAccount
+        name: productserver
+        version: v1
+      - kind: Servicemonitor
+        name: productserver
+        version: v1
+      - kind: ConfigMap
+        name: productserver-metrics
+        version: v1
+      - kind: Job
+        name: productserver-seeder
+        version: v1
+      specDescriptors:
+      - displayName: Image Pull Secrets
+        path: imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      - description: Release contains the Helm chart manifest used to install the service
+        displayName: Release
+        path: release
+      version: v1alpha1
+    - description: SourceData is the Schema for the sourcedata API
+      displayName: Source Data
+      kind: SourceData
+      name: sourcedata.eamli.white.space
+      resources:
+      - kind: Secret
+        name: postgresql-sourcedata
+        version: v1
+      - kind: Deployment
+        name: sourcedata
+        version: v1
+      - kind: Ingress
+        name: sourcedata
+        version: v1
+      - kind: NetworkPolicy
+        name: sourcedata
+        version: v1
+      - kind: Pod
+        name: sourcedata
+        version: v1
+      - kind: ReplicaSet
+        name: sourcedata
+        version: v1
+      - kind: Role
+        name: sourcedata
+        version: v1
+      - kind: RoleBinding
+        name: sourcedata
+        version: v1
+      - kind: Service
+        name: sourcedata
+        version: v1
+      - kind: ServiceAccount
+        name: sourcedata
+        version: v1
+      - kind: Servicemonitor
+        name: sourcedata
+        version: v1
+      - kind: ConfigMap
+        name: sourcedata-metrics
+        version: v1
+      - kind: Job
+        name: sourcedata-seeder
+        version: v1
+      specDescriptors:
+      - displayName: Image Pull Secrets
+        path: imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      - description: Release contains the Helm chart manifest used to install the service
+        displayName: Release
+        path: release
+      version: v1alpha1
+    - description: Stack is the Schema for the stacks API
+      displayName: Stack
+      kind: Stack
+      name: stacks.eamli.white.space
+      resources:
+      - kind: APIServer
+        name: apiserver
+        version: eamli.white.space/v1alpha1
+      - kind: ProductServer
+        name: productserver
+        version: eamli.white.space/v1alpha1
+      - kind: SourceData
+        name: sourcedata
+        version: eamli.white.space/v1alpha1
+      - kind: WebApp
+        name: webapp
+        version: eamli.white.space/v1alpha1
+      specDescriptors:
+      - description: APIServerSpec defines the desired state of the APIServer
         displayName: API Server
-        kind: APIServer
-        name: apiservers.eamli.white.space
-        resources:
-          - kind: Deployment
-            name: apiserver
-            version: v1
-          - kind: Ingress
-            name: apiserver
-            version: v1
-          - kind: NetworkPolicy
-            name: apiserver
-            version: v1
-          - kind: Pod
-            name: apiserver
-            version: v1
-          - kind: ReplicaSet
-            name: apiserver
-            version: v1
-          - kind: Role
-            name: apiserver
-            version: v1
-          - kind: RoleBinding
-            name: apiserver
-            version: v1
-          - kind: Service
-            name: apiserver
-            version: v1
-          - kind: ServiceAccount
-            name: apiserver
-            version: v1
-          - kind: Servicemonitor
-            name: apiserver
-            version: v1
-          - kind: ConfigMap
-            name: apiserver-metrics
-            version: v1
-          - kind: Job
-            name: apiserver-seeder
-            version: v1
-          - kind: Secret
-            name: postgresql-api
-            version: v1
-        specDescriptors:
-          - displayName: Image Pull Secrets
-            path: imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-        statusDescriptors:
-          - description: Conditions contains a list of status updates
-            displayName: Conditions
-            path: conditions
-          - description: ManagedResources is a list of string represented resources created and maintained by this operator.
-            displayName: Managed Resources
-            path: managedResources
-          - description: Release contains the Helm chart manifest used to install the service
-            displayName: Release
-            path: release
-        version: v1alpha1
-      - description: ProductServer is the Schema for the productservers API
+        path: apiserver
+      - displayName: Image Pull Secrets
+        path: apiserver.imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: apiserver.ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: apiserver.route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - description: Ingress defines default configuration for all service ingresses
+        displayName: Ingress
+        path: ingress
+      - description: IsOpenshift defines if the operator is being installed onto an Openshift cluster
+        displayName: Is Openshift
+        path: isOpenshift
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - description: Keycloak defines acess properties for connecting with the Keycloak instance
+        displayName: Keycloak
+        path: keycloak
+      - description: Master Realm defines the name of the primary (admin) realm
+        displayName: Master Realm
+        path: keycloak.masterRealm
+      - description: User defines the admin user name for the primary (admin) realm
+        displayName: User
+        path: keycloak.user
+      - description: License defines the users required check, agreeing to the products licenses
+        displayName: License
+        path: license
+      - displayName: Accept
+        path: license.accept
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+      - description: Postgresql defines the desired state of the Postgresql configmap used to instruct service how to interact with the database
+        displayName: Postgresql Config
+        path: postgresql
+      - description: AdminDB defines the default database to use, when connecting to the Postgresql instance
+        displayName: Admin DB
+        path: postgresql.adminDB
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: AdminUsername defines admin username for the Postgresql instance, to all creating new databases for Eamli
+        displayName: Admin Username
+        path: postgresql.adminUsername
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Host defines the endpoint where the Postgresql instance lives
+        displayName: Host
+        path: postgresql.host
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Port defines the port number used to communicate with the Postgresql instance
+        displayName: Port
+        path: postgresql.port
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: ProductServerSpec defines the desired state of the ProductServer
         displayName: Product Server
-        kind: ProductServer
-        name: productservers.eamli.white.space
-        resources:
-          - kind: Secret
-            name: postgresql-productserver
-            version: v1
-          - kind: Deployment
-            name: productserver
-            version: v1
-          - kind: Ingress
-            name: productserver
-            version: v1
-          - kind: NetworkPolicy
-            name: productserver
-            version: v1
-          - kind: Pod
-            name: productserver
-            version: v1
-          - kind: ReplicaSet
-            name: productserver
-            version: v1
-          - kind: Role
-            name: productserver
-            version: v1
-          - kind: RoleBinding
-            name: productserver
-            version: v1
-          - kind: Service
-            name: productserver
-            version: v1
-          - kind: ServiceAccount
-            name: productserver
-            version: v1
-          - kind: Servicemonitor
-            name: productserver
-            version: v1
-          - kind: ConfigMap
-            name: productserver-metrics
-            version: v1
-          - kind: Job
-            name: productserver-seeder
-            version: v1
-        specDescriptors:
-          - displayName: Image Pull Secrets
-            path: imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-        statusDescriptors:
-          - description: Conditions contains a list of status updates
-            displayName: Conditions
-            path: conditions
-          - description: ManagedResources is a list of string represented resources created and maintained by this operator.
-            displayName: Managed Resources
-            path: managedResources
-          - description: Release contains the Helm chart manifest used to install the service
-            displayName: Release
-            path: release
-        version: v1alpha1
-      - description: SourceData is the Schema for the sourcedata API
+        path: productserver
+      - displayName: Image Pull Secrets
+        path: productserver.imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: productserver.ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: productserver.route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - description: Route defines default configuration for all service routes
+        displayName: Route
+        path: route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - description: SourceDataSpec defines the desired state of the SourceData
         displayName: Source Data
-        kind: SourceData
-        name: sourcedata.eamli.white.space
-        resources:
-          - kind: Secret
-            name: postgresql-sourcedata
-            version: v1
-          - kind: Deployment
-            name: sourcedata
-            version: v1
-          - kind: Ingress
-            name: sourcedata
-            version: v1
-          - kind: NetworkPolicy
-            name: sourcedata
-            version: v1
-          - kind: Pod
-            name: sourcedata
-            version: v1
-          - kind: ReplicaSet
-            name: sourcedata
-            version: v1
-          - kind: Role
-            name: sourcedata
-            version: v1
-          - kind: RoleBinding
-            name: sourcedata
-            version: v1
-          - kind: Service
-            name: sourcedata
-            version: v1
-          - kind: ServiceAccount
-            name: sourcedata
-            version: v1
-          - kind: Servicemonitor
-            name: sourcedata
-            version: v1
-          - kind: ConfigMap
-            name: sourcedata-metrics
-            version: v1
-          - kind: Job
-            name: sourcedata-seeder
-            version: v1
-        specDescriptors:
-          - displayName: Image Pull Secrets
-            path: imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-        statusDescriptors:
-          - description: Conditions contains a list of status updates
-            displayName: Conditions
-            path: conditions
-          - description: ManagedResources is a list of string represented resources created and maintained by this operator.
-            displayName: Managed Resources
-            path: managedResources
-          - description: Release contains the Helm chart manifest used to install the service
-            displayName: Release
-            path: release
-        version: v1alpha1
-      - description: Stack is the Schema for the stacks API
-        displayName: Stack
-        kind: Stack
-        name: stacks.eamli.white.space
-        resources:
-          - kind: APIServer
-            name: apiserver
-            version: eamli.white.space/v1alpha1
-          - kind: ProductServer
-            name: productserver
-            version: eamli.white.space/v1alpha1
-          - kind: SourceData
-            name: sourcedata
-            version: eamli.white.space/v1alpha1
-          - kind: WebApp
-            name: webapp
-            version: eamli.white.space/v1alpha1
-        specDescriptors:
-          - description: APIServerSpec defines the desired state of the APIServer
-            displayName: API Server
-            path: apiserver
-          - displayName: Image Pull Secrets
-            path: apiserver.imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: apiserver.ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: apiserver.route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - description: Ingress defines default configuration for all service ingresses
-            displayName: Ingress
-            path: ingress
-          - description: IsOpenshift defines if the operator is being installed onto an Openshift cluster
-            displayName: Is Openshift
-            path: isOpenshift
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - description: Keycloak defines acess properties for connecting with the Keycloak instance
-            displayName: Keycloak
-            path: keycloak
-          - description: Master Realm defines the name of the primary (admin) realm
-            displayName: Master Realm
-            path: keycloak.masterRealm
-          - description: User defines the admin user name for the primary (admin) realm
-            displayName: User
-            path: keycloak.user
-          - description: License defines the users required check, agreeing to the products licenses
-            displayName: License
-            path: license
-          - displayName: Accept
-            path: license.accept
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-          - description: Postgresql defines the desired state of the Postgresql configmap used to instruct service how to interact with the database
-            displayName: Postgresql Config
-            path: postgresql
-          - description: AdminDB defines the default database to use, when connecting to the Postgresql instance
-            displayName: Admin DB
-            path: postgresql.adminDB
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: AdminUsername defines admin username for the Postgresql instance, to all creating new databases for Eamli
-            displayName: Admin Username
-            path: postgresql.adminUsername
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Host defines the endpoint where the Postgresql instance lives
-            displayName: Host
-            path: postgresql.host
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Port defines the port number used to communicate with the Postgresql instance
-            displayName: Port
-            path: postgresql.port
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: ProductServerSpec defines the desired state of the ProductServer
-            displayName: Product Server
-            path: productserver
-          - displayName: Image Pull Secrets
-            path: productserver.imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: productserver.ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: productserver.route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - description: Route defines default configuration for all service routes
-            displayName: Route
-            path: route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - description: SourceDataSpec defines the desired state of the SourceData
-            displayName: Source Data
-            path: sourcedata
-          - displayName: Image Pull Secrets
-            path: sourcedata.imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: sourcedata.ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: sourcedata.route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - description: WebAppSpec defines the desired state of the WebApp
-            displayName: Web App
-            path: webapp
-          - displayName: Image Pull Secrets
-            path: webapp.imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: webapp.ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: webapp.route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-        statusDescriptors:
-          - description: Conditions contains a list of status updates
-            displayName: Conditions
-            path: conditions
-          - description: ManagedResources is a list of string represented resources created and maintained by this operator.
-            displayName: Managed Resources
-            path: managedResources
-        version: v1alpha1
-      - description: WebApp is the Schema for the webapps API
+        path: sourcedata
+      - displayName: Image Pull Secrets
+        path: sourcedata.imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: sourcedata.ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: sourcedata.route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - description: WebAppSpec defines the desired state of the WebApp
         displayName: Web App
-        kind: WebApp
-        name: webapps.eamli.white.space
-        resources:
-          - kind: Deployment
-            name: webapp
-            version: v1
-          - kind: Ingress
-            name: webapp
-            version: v1
-          - kind: NetworkPolicy
-            name: webapp
-            version: v1
-          - kind: Pod
-            name: webapp
-            version: v1
-          - kind: ReplicaSet
-            name: webapp
-            version: v1
-          - kind: Role
-            name: webapp
-            version: v1
-          - kind: RoleBinding
-            name: webapp
-            version: v1
-          - kind: Service
-            name: webapp
-            version: v1
-          - kind: ServiceAccount
-            name: webapp
-            version: v1
-          - kind: Servicemonitor
-            name: webapp
-            version: v1
-          - kind: ConfigMap
-            name: webapp-metrics
-            version: v1
-        specDescriptors:
-          - displayName: Image Pull Secrets
-            path: imagePullSecrets
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Ingress
-            path: ingress
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-          - displayName: Route
-            path: route
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:hidden
-        statusDescriptors:
-          - description: Conditions contains a list of status updates
-            displayName: Conditions
-            path: conditions
-          - description: ManagedResources is a list of string represented resources created and maintained by this operator.
-            displayName: Managed Resources
-            path: managedResources
-          - description: Release contains the Helm chart manifest used to install the service
-            displayName: Release
-            path: release
-        version: v1alpha1
+        path: webapp
+      - displayName: Image Pull Secrets
+        path: webapp.imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: webapp.ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: webapp.route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: WebApp is the Schema for the webapps API
+      displayName: Web App
+      kind: WebApp
+      name: webapps.eamli.white.space
+      resources:
+      - kind: Deployment
+        name: webapp
+        version: v1
+      - kind: Ingress
+        name: webapp
+        version: v1
+      - kind: NetworkPolicy
+        name: webapp
+        version: v1
+      - kind: Pod
+        name: webapp
+        version: v1
+      - kind: ReplicaSet
+        name: webapp
+        version: v1
+      - kind: Role
+        name: webapp
+        version: v1
+      - kind: RoleBinding
+        name: webapp
+        version: v1
+      - kind: Service
+        name: webapp
+        version: v1
+      - kind: ServiceAccount
+        name: webapp
+        version: v1
+      - kind: Servicemonitor
+        name: webapp
+        version: v1
+      - kind: ConfigMap
+        name: webapp-metrics
+        version: v1
+      specDescriptors:
+      - displayName: Image Pull Secrets
+        path: imagePullSecrets
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Ingress
+        path: ingress
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      - displayName: Route
+        path: route
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:hidden
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      - description: Release contains the Helm chart manifest used to install the service
+        displayName: Release
+        path: release
+      version: v1alpha1
   description: |-
     eamli is a decision-intelligence service that eamli analyses millions of possibilities in ways humans can’t. Within seconds, eamli models the future so that you can see the impact of decisions before you make them.
     # Introduction
@@ -521,360 +521,360 @@ spec:
     * [Privacy policy](https://eamli.com/privacy-policy)
   displayName: Eamli
   icon:
-    - base64data: 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
-      mediatype: image/png
+  - base64data: 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
+    mediatype: image/png
   install:
     spec:
       clusterPermissions:
-        - rules:
-            - apiGroups:
-                - authentication.k8s.io
-              resources:
-                - tokenreviews
-              verbs:
-                - create
-            - apiGroups:
-                - authorization.k8s.io
-              resources:
-                - subjectaccessreviews
-              verbs:
-                - create
-          serviceAccountName: eamli-operator-controller-manager
+      - rules:
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: eamli-operator-controller-manager
       deployments:
-        - name: eamli-operator-controller-manager
-          spec:
-            replicas: 1
-            selector:
-              matchLabels:
+      - name: eamli-operator-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              labels:
                 control-plane: controller-manager
-            strategy: {}
-            template:
-              metadata:
-                labels:
-                  control-plane: controller-manager
-              spec:
-                containers:
-                  - args:
-                      - --secure-listen-address=0.0.0.0:8443
-                      - --upstream=http://127.0.0.1:8080/
-                      - --logtostderr=true
-                      - --v=10
-                    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:latest
-                    name: kube-rbac-proxy
-                    ports:
-                      - containerPort: 8443
-                        name: https
-                        protocol: TCP
-                    resources: {}
-                  - args:
-                      - --health-probe-bind-address=:8081
-                      - --metrics-bind-address=127.0.0.1:8080
-                      - --leader-elect
-                    command:
-                      - /manager
-                    env:
-                      - name: WATCH_NAMESPACE
-                        valueFrom:
-                          fieldRef:
-                            fieldPath: metadata.annotations['olm.targetNamespaces']
-                      - name: RELATED_IMAGE_API_SERVER
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/apiserver:0.5.7-redhat
-                      - name: RELATED_IMAGE_PRODUCT_SERVER
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/productserver:0.5.7-redhat
-                      - name: RELATED_IMAGE_SOURCE_DATA
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/sourcedata:0.4.5-redhat
-                      - name: RELATED_IMAGE_WEB_APP
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/webapp:0.2.5-redhat
-                    image: registry.connect.redhat.com/eamli/eamli-operator:0.11.1
-                    livenessProbe:
-                      httpGet:
-                        path: /healthz
-                        port: 8081
-                      initialDelaySeconds: 15
-                      periodSeconds: 20
-                    name: manager
-                    ports:
-                      - containerPort: 9443
-                        name: webhook-server
-                        protocol: TCP
-                    readinessProbe:
-                      httpGet:
-                        path: /readyz
-                        port: 8081
-                      initialDelaySeconds: 5
-                      periodSeconds: 10
-                    resources:
-                      limits:
-                        cpu: 200m
-                        memory: 200Mi
-                      requests:
-                        cpu: 100m
-                        memory: 20Mi
-                    securityContext:
-                      allowPrivilegeEscalation: false
-                    volumeMounts:
-                      - mountPath: /tmp/k8s-webhook-server/serving-certs
-                        name: cert
-                        readOnly: true
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=10
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:904cfd885748b23643555412deed553c3d7cda4c17e8469cfdde94dd02987550
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                  protocol: TCP
+                resources: {}
+              - args:
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                command:
+                - /manager
+                env:
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.annotations['olm.targetNamespaces']
+                - name: RELATED_IMAGE_API_SERVER
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/apiserver@sha256:af865291874da45669eb1fbfd877b19bc4d35d7b175f20a618fa5000f1dc47b9
+                - name: RELATED_IMAGE_PRODUCT_SERVER
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/productserver@sha256:8591a7c8bab60de8d624a6c636cdc7aff57a1a2b2c43b395c92b837fc9b2c083
+                - name: RELATED_IMAGE_SOURCE_DATA
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/sourcedata@sha256:11cf82088cbe6b40ea9952f4bb63ff7b6a142d8ec383d19d4cdcd1e3d296b5fe
+                - name: RELATED_IMAGE_WEB_APP
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/webapp@sha256:503f7ab2c7d968458030ae8e50d5ff69ba00cae08da118ff20a68c5d3d2b18bb
+                image: registry.connect.redhat.com/eamli/eamli-operator@sha256:d4e72011f33c31dda0bb5b0f628efdb3e3496712fd216f4f3bfc27ee6fb87873
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 8081
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                ports:
+                - containerPort: 9443
+                  name: webhook-server
+                  protocol: TCP
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 8081
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 200m
+                    memory: 200Mi
+                  requests:
+                    cpu: 100m
+                    memory: 20Mi
                 securityContext:
-                  runAsNonRoot: true
-                serviceAccountName: eamli-operator-controller-manager
-                terminationGracePeriodSeconds: 10
-                volumes:
-                  - name: cert
-                    secret:
-                      defaultMode: 420
-                      secretName: webhook-server-cert
+                  allowPrivilegeEscalation: false
+                volumeMounts:
+                - mountPath: /tmp/k8s-webhook-server/serving-certs
+                  name: cert
+                  readOnly: true
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: eamli-operator-controller-manager
+              terminationGracePeriodSeconds: 10
+              volumes:
+              - name: cert
+                secret:
+                  defaultMode: 420
+                  secretName: webhook-server-cert
       permissions:
-        - rules:
-            - apiGroups:
-                - ""
-              resources:
-                - configmaps
-              verbs:
-                - get
-                - list
-                - watch
-                - create
-                - update
-                - patch
-                - delete
-            - apiGroups:
-                - coordination.k8s.io
-              resources:
-                - leases
-              verbs:
-                - get
-                - list
-                - watch
-                - create
-                - update
-                - patch
-                - delete
-            - apiGroups:
-                - ""
-              resources:
-                - events
-              verbs:
-                - create
-                - patch
-            - apiGroups:
-                - ""
-              resources:
-                - configmaps
-                - secrets
-                - serviceaccounts
-                - services
-              verbs:
-                - '*'
-            - apiGroups:
-                - apps
-              resources:
-                - deployments
-                - statefulsets
-              verbs:
-                - '*'
-            - apiGroups:
-                - batch
-              resources:
-                - cronjobs
-                - jobs
-              verbs:
-                - '*'
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - apiservers
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - apiservers/finalizers
-              verbs:
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - apiservers/status
-              verbs:
-                - get
-                - patch
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - productservers
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - productservers/finalizers
-              verbs:
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - productservers/status
-              verbs:
-                - get
-                - patch
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - sourcedata
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - sourcedata/finalizers
-              verbs:
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - sourcedata/status
-              verbs:
-                - get
-                - patch
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - stacks
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - stacks/finalizers
-              verbs:
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - stacks/status
-              verbs:
-                - get
-                - patch
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - webapps
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - webapps/finalizers
-              verbs:
-                - update
-            - apiGroups:
-                - eamli.white.space
-              resources:
-                - webapps/status
-              verbs:
-                - get
-                - patch
-                - update
-            - apiGroups:
-                - monitoring.coreos.com
-              resources:
-                - servicemonitors
-              verbs:
-                - '*'
-            - apiGroups:
-                - networking.k8s.io
-              resources:
-                - ingresses
-                - networkpolicies
-              verbs:
-                - '*'
-            - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - rolebindings
-                - roles
-              verbs:
-                - '*'
-            - apiGroups:
-                - route.openshift.io
-              resources:
-                - routes
-                - routes/custom-host
-              verbs:
-                - '*'
-            - apiGroups:
-                - security.openshift.io
-              resourceNames:
-                - restricted
-              resources:
-                - securitycontextconstraints
-              verbs:
-                - get
-          serviceAccountName: eamli-operator-controller-manager
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          - secrets
+          - serviceaccounts
+          - services
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - batch
+          resources:
+          - cronjobs
+          - jobs
+          verbs:
+          - '*'
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - apiservers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - apiservers/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - apiservers/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - productservers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - productservers/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - productservers/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - sourcedata
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - sourcedata/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - sourcedata/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - stacks
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - stacks/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - stacks/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - webapps
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - webapps/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.white.space
+          resources:
+          - webapps/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - servicemonitors
+          verbs:
+          - '*'
+        - apiGroups:
+          - networking.k8s.io
+          resources:
+          - ingresses
+          - networkpolicies
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - routes
+          - routes/custom-host
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resourceNames:
+          - restricted
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - get
+        serviceAccountName: eamli-operator-controller-manager
     strategy: deployment
   installModes:
-    - supported: true
-      type: OwnNamespace
-    - supported: false
-      type: SingleNamespace
-    - supported: false
-      type: MultiNamespace
-    - supported: false
-      type: AllNamespaces
+  - supported: true
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
   keywords:
-    - eamli
-    - bi
-    - business
-    - intelligence
+  - eamli
+  - bi
+  - business
+  - intelligence
   labels:
     operatorframework.io/arch.amd64: supported
     operatorframework.io/arch.ppc64le: supported
     operatorframework.io/arch.s390x: supported
     operatorframework.io/os.linux: supported
   links:
-    - name: Eamli
-      url: https://ibm.eamli.com
-    - name: Eamli operator documentation
-      url: https://whitespaceventures.github.io/eamli-operator-docs/
+  - name: Eamli
+    url: https://ibm.eamli.com
+  - name: Eamli operator documentation
+    url: https://whitespaceventures.github.io/eamli-operator-docs/
   maintainers:
-    - email: support@eamli.com
-      name: Eamli Support
+  - email: support@eamli.com
+    name: Eamli Support
   maturity: alpha
   minKubeVersion: 1.19.0
   provider:
@@ -882,43 +882,58 @@ spec:
     url: eamli.com
   version: 0.11.1
   webhookdefinitions:
-    - admissionReviewVersions:
-        - v1
-      containerPort: 443
-      deploymentName: eamli-operator-controller-manager
-      failurePolicy: Fail
-      generateName: mapstack.kb.io
-      rules:
-        - apiGroups:
-            - eamli.white.space
-          apiVersions:
-            - v1alpha1
-          operations:
-            - CREATE
-            - UPDATE
-          resources:
-            - stacks
-      sideEffects: None
-      targetPort: 9443
-      type: MutatingAdmissionWebhook
-      webhookPath: /mutate-eamli-white-space-v1alpha1-stack
-    - admissionReviewVersions:
-        - v1
-      containerPort: 443
-      deploymentName: eamli-operator-controller-manager
-      failurePolicy: Fail
-      generateName: vstack.kb.io
-      rules:
-        - apiGroups:
-            - eamli.white.space
-          apiVersions:
-            - v1alpha1
-          operations:
-            - CREATE
-            - UPDATE
-          resources:
-            - stacks
-      sideEffects: None
-      targetPort: 9443
-      type: ValidatingAdmissionWebhook
-      webhookPath: /validate-eamli-white-space-v1alpha1-stack
+  - admissionReviewVersions:
+    - v1
+    containerPort: 443
+    deploymentName: eamli-operator-controller-manager
+    failurePolicy: Fail
+    generateName: mapstack.kb.io
+    rules:
+    - apiGroups:
+      - eamli.white.space
+      apiVersions:
+      - v1alpha1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - stacks
+    sideEffects: None
+    targetPort: 9443
+    type: MutatingAdmissionWebhook
+    webhookPath: /mutate-eamli-white-space-v1alpha1-stack
+  - admissionReviewVersions:
+    - v1
+    containerPort: 443
+    deploymentName: eamli-operator-controller-manager
+    failurePolicy: Fail
+    generateName: vstack.kb.io
+    rules:
+    - apiGroups:
+      - eamli.white.space
+      apiVersions:
+      - v1alpha1
+      operations:
+      - CREATE
+      - UPDATE
+      resources:
+      - stacks
+    sideEffects: None
+    targetPort: 9443
+    type: ValidatingAdmissionWebhook
+    webhookPath: /validate-eamli-white-space-v1alpha1-stack
+  relatedImages:
+  - name: eamli-operator-d4e72011f33c31dda0bb5b0f628efdb3e3496712fd216f4f3bfc27ee6fb87873-annotation
+    image: registry.connect.redhat.com/eamli/eamli-operator@sha256:d4e72011f33c31dda0bb5b0f628efdb3e3496712fd216f4f3bfc27ee6fb87873
+  - name: kube-rbac-proxy
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:904cfd885748b23643555412deed553c3d7cda4c17e8469cfdde94dd02987550
+  - name: manager
+    image: registry.connect.redhat.com/eamli/eamli-operator@sha256:d4e72011f33c31dda0bb5b0f628efdb3e3496712fd216f4f3bfc27ee6fb87873
+  - name: api_server
+    image: registry.gitlab.com/whitedotspace/eamli/registry/apiserver@sha256:af865291874da45669eb1fbfd877b19bc4d35d7b175f20a618fa5000f1dc47b9
+  - name: product_server
+    image: registry.gitlab.com/whitedotspace/eamli/registry/productserver@sha256:8591a7c8bab60de8d624a6c636cdc7aff57a1a2b2c43b395c92b837fc9b2c083
+  - name: source_data
+    image: registry.gitlab.com/whitedotspace/eamli/registry/sourcedata@sha256:11cf82088cbe6b40ea9952f4bb63ff7b6a142d8ec383d19d4cdcd1e3d296b5fe
+  - name: web_app
+    image: registry.gitlab.com/whitedotspace/eamli/registry/webapp@sha256:503f7ab2c7d968458030ae8e50d5ff69ba00cae08da118ff20a68c5d3d2b18bb

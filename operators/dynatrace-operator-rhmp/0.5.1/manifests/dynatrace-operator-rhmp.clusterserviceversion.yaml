@@ -20,7 +20,7 @@ metadata:
     repository: https://github.com/Dynatrace/dynatrace-operator
     support: Dynatrace
     createdAt: '2022-04-07T09:36:12.189999'
-  name: dynatrace-operator.v0.5.1
+  name: dynatrace-operator-rhmp.v0.5.1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

@@ -18,9 +18,11 @@ metadata:
     operators.operatorframework.io/builder: operator-sdk-v1.16.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/Dynatrace/dynatrace-operator
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/dynatrace-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/dynatrace-operator-rhmp/support?utm_source=openshift_console
     support: Dynatrace
     createdAt: '2022-04-07T09:36:12.189999'
-  name: dynatrace-operator-rhmp.v0.5.1
+  name: dynatrace-operator.v0.5.1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

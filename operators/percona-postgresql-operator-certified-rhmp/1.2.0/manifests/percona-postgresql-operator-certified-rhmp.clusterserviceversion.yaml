@@ -77,7 +77,7 @@ metadata:
             },
             "backup": {
               "image": "registry.connect.redhat.com/percona/percona-postgresql-operator-containers@sha256:fa84a0efe020ecc3d86466b30557a8313873d915934f89ce9d711fded98b99b5",
-              "backrestRepoImage": "registry.connect.redhat.com/percona/percona-postgresql-operator-containers@sha256:78bc70772c66697d5572bff929c259b2289572c5b22e2ce938c97f27ed575654",
+          "backrestRepoImage": "registry.connect.redhat.com/percona/percona-postgresql-operator-containers@sha256:78bc70772c66697d5572bff929c259b2289572c5b22e2ce938c97f27ed575654",
               "resources": {
                 "requests": {
                   "cpu": "200m",
@@ -238,7 +238,7 @@ spec:
     - sql
     - operator
     - percona
-  displayName: Percona Distribution for PostgreSQL Operator
+  displayName: Percona Operator for PostgreSQL
   provider:
     name: Percona
   maturity: stable

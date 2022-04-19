@@ -1,0 +1,320 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "openlegacy.com/v1alpha1",
+          "kind": "HubEnt",
+          "metadata": {
+            "name": "hubent-sample"
+          },
+          "spec": {
+            "dbmigration": {
+              "image": "registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration:1.49.2"
+            },
+            "hubent": {
+              "image": "registry.connect.redhat.com/openlegacy-corp/hub-enterprise:1.49.2"
+            },
+            "keycloak": {
+              "image": "registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak:16.1.1"
+            },
+            "postgres": {
+              "db_host": "hub-enterprise-postgres",
+              "db_port": 5432,
+              "db_name": "postgres",
+              "db_user": "postgres",
+              "db_password": "postgres"
+            }
+          }
+        }
+      ]
+    capabilities: Basic Install
+    categories: Developer Tools
+    description: "This operator deploy a Hub Enterprise Application"
+    containerImage: 'registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator:v0.0.2'
+    createdAt: "2022-04-19T21:55:00Z"
+    support: 'Openlegacy Ltd.'
+    operators.operatorframework.io/builder: operator-sdk-v1.19+git
+    operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
+  name: hub-ent-operator.v0.0.2
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - kind: HubEnt
+      name: hubents.openlegacy.com
+      displayName: HubEnt
+      description: "This operator deploy a Hub Enterprise Application"
+      version: v1alpha1
+      specDescriptors:
+      - description: Postgress Database host
+        displayName: db_host
+        path: db_host
+      - description: Postgress Database port
+        displayName: db_port
+        path: db_port
+      - description: Postgress Database name
+        displayName: db_name
+        path: db_name
+      - description: Postgress Database username
+        displayName: db_user
+        path: db_user
+      - description: Postgress Database password
+        displayName: db_password
+        path: db_password
+      statusDescriptors:
+        - description: Deployed is true if the Operator has finished the deployment of the HubEnt application.
+          displayName: Deployed
+          path: deployed
+  description: This operator will deploy a Hub-Enterprise solution.
+  displayName: HUB-ENTERPRISE Operator
+  icon:
+  - base64data: "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNjYuMyAyNTQuNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjY2LjMgMjU0Ljc7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNFQzFDMjQ7fQ0KCS5zdDF7ZmlsbDojRjk5NDAzO30NCgkuc3Qye2ZpbGw6I0Y5NTAxMTt9DQo8L3N0eWxlPg0KPHJlY3QgeD0iMTQyLjUiIHk9Ijg5LjkiIGNsYXNzPSJzdDAiIHdpZHRoPSIzMC4yIiBoZWlnaHQ9IjMwLjIiLz4NCjxyZWN0IHg9IjE3Mi40IiB5PSI4OS45IiBjbGFzcz0ic3QxIiB3aWR0aD0iMzAuMiIgaGVpZ2h0PSIzMC4yIi8+DQo8cmVjdCB4PSIxNDIuNSIgeT0iNTkuOCIgY2xhc3M9InN0MiIgd2lkdGg9IjMwLjIiIGhlaWdodD0iMzAuMiIvPg0KPHJlY3QgeD0iMjAyLjMiIHk9IjU5LjgiIGNsYXNzPSJzdDAiIHdpZHRoPSIzMC4yIiBoZWlnaHQ9IjMwLjIiLz4NCjxyZWN0IHg9IjE3Mi40IiB5PSIyOS45IiBjbGFzcz0ic3QyIiB3aWR0aD0iMzAuMiIgaGVpZ2h0PSIzMC4yIi8+DQo8cmVjdCB4PSIyMDIuMyIgY2xhc3M9InN0MiIgd2lkdGg9IjMwLjIiIGhlaWdodD0iMzAuMiIvPg0KPHJlY3QgeD0iMjUwLjMiIHk9Ijc0IiBjbGFzcz0ic3QyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4NCjxyZWN0IHg9IjExMS4zIiB5PSI1OS44IiBjbGFzcz0ic3QxIiB3aWR0aD0iMTQuNiIgaGVpZ2h0PSIxNC42Ii8+DQo8cGF0aCBjbGFzcz0ic3QyIiBkPSJNMTguNSw5NS4xaDEwMC42djI1SDM3LjdjLTcsMC0xMi43LDUuNy0xMi43LDEyLjdWMjE3YzAsNyw1LjcsMTIuNywxMi43LDEyLjdoODQuMmM3LDAsMTIuNy01LjcsMTIuNy0xMi43di03Ng0KCWgyNXY5NS4yYzAsMTAuMi04LjMsMTguNS0xOC41LDE4LjVIMTguNUM4LjMsMjU0LjcsMCwyNDYuNCwwLDIzNi4yVjExMy42QzAsMTAzLjQsOC4zLDk1LjEsMTguNSw5NS4xIi8+DQo8L3N2Zz4NCg=="
+    mediatype: "image/svg+xml"
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - namespaces
+          verbs:
+          - get
+        - apiGroups:
+          - ""
+          resources:
+          - secrets
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+        - apiGroups:
+          - batch
+          - extensions
+          resources:
+          - jobs
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - openlegacy.com
+          resources:
+          - hubents
+          - hubents/status
+          - hubents/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - routes
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - persistentvolumeclaims
+          - persistentvolumes
+          - nodes
+          - events
+          - secrets
+          - secrets/finalizers
+          - pods
+          - pods/finalizers
+          - serviceaccounts
+          - services
+          - configmaps
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - daemonsets
+          - replicasets
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - networking.k8s.io
+          resources:
+          - ingresses
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resourceNames:
+          - anyuid
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - use
+        - apiGroups:
+          - apiextensions.k8s.io
+          resources:
+          - customresourcedefinitions
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - ""
+          resources:
+          - secrets
+          - secrets/finalizers
+          - pods
+          - pods/finalizers
+          - pods/exec
+          - pods/log
+          - services
+          - services/finalizers
+          - endpoints
+          - persistentvolumeclaims
+          - persistentvolumes
+          - persistentvolumeclaims/finalizers
+          - persistentvolumes/finalizers
+          - nodes
+          - events
+          - configmaps
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        serviceAccountName: hub-ent-operator
+      deployments:
+      - name: hub-ent-operator
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: hub-ent-operator
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                control-plane: hub-ent-operator
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=10
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.9.0
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                  protocol: TCP
+                resources: {}
+              - args:
+                - --health-probe-bind-address=:6789
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                - --leader-election-id=hub-ent-operator
+                env:
+                - name: ANSIBLE_GATHERING
+                  value: explicit
+                - name: ANSIBLE_DEBUG_LOGS
+                  value: "TRUE"
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.annotations['olm.targetNamespaces']
+                - name: POD_NAME
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.name
+                - name: OPERATOR_NAME
+                  value: hub-ent-operator
+                - name: RELATED_IMAGE_HUBENT
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise:1.49.2
+                - name: RELATED_IMAGE_DB_MIGRATION
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration:1.49.2
+                - name: RELATED_IMAGE_KEYCLOAK
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak:16.1.1
+                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator:v0.0.2
+                imagePullPolicy: Always
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 6789
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 6789
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources: {}
+                securityContext:
+                  allowPrivilegeEscalation: false
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: hub-ent-operator
+              terminationGracePeriodSeconds: 10
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: true
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - hub-enterprise
+  - keycloak
+  - postgres
+  links:
+  - name: Hub Ent Operator
+    url: https://hub-ent-operator.domain
+  maintainers:
+  - email: support@openlegacy.com
+    name: Openlegacy-Ltd
+  maturity: alpha
+  provider:
+    name: Openlegacy Ltd.
+  version: 0.0.2

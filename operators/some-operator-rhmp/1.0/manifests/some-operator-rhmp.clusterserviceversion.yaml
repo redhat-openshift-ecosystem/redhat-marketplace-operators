@@ -1,0 +1,21 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  name: 'postgresoperator.v4.7.5'
+  annotations:
+    operatorhub.io/ui-metadata-max-k8s-version: "1.21"
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/crunchy-postgres-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/crunchy-postgres-operator-rhmp/support?utm_source=openshift_console
+    olm.properties: '[{"type": "olm.maxOpenShiftVersion", "value": "4.8"}]'
+    certified: 'false'
+    support: crunchydata.com
+    categories: Database
+    capabilities: Auto Pilot
+    description: Enterprise open source PostgreSQL-as-a-Service
+    createdAt: 2019-12-31 19:40Z
+    containerImage: 'registry.connect.redhat.com/crunchydata/postgres-operator@sha256:d9f91cb300615bcf39e610abd4741ff6be3d13418db4260f9409395a2a5c1ecb'
+    repository: https://github.com/CrunchyData/postgres-operator
+spec:
+  relatedImages:
+    - name: PGBACKREST
+      image: registry.connect.redhat.com/crunchydata/crunchy-pgbackrest@sha256:0016bf993af9ed5fdfdbbd56b1e743d1991ed390a4800cf1a04cdf55cafe119a

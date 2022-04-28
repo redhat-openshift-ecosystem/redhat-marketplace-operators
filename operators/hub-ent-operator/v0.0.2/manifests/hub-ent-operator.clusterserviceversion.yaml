@@ -33,7 +33,7 @@ metadata:
     capabilities: Basic Install
     categories: Developer Tools
     description: "This operator deploy a Hub Enterprise Application"
-    containerImage: 'registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator:v0.0.2'
+    containerImage: 'registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:b1ee1a6b3bb5e2fc46b4a27a4fcdee413f23f5adcebcaaa2ae933f7c4277c107'
     createdAt: "2022-04-19T21:55:00Z"
     support: 'Openlegacy Ltd.'
     operators.operatorframework.io/builder: operator-sdk-v1.19+git
@@ -269,12 +269,12 @@ spec:
                 - name: OPERATOR_NAME
                   value: hub-ent-operator
                 - name: RELATED_IMAGE_HUBENT
-                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise:1.49.2
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise@sha256:7758d7731fca898099e0197def38f2299e49a7751284a513a62998861e38b548
                 - name: RELATED_IMAGE_DB_MIGRATION
-                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration:1.49.2
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-db-migration@sha256:948ee11e2d1d0c8aa514e493f4115975cc73522f55b2736acdaab1792f42c640
                 - name: RELATED_IMAGE_KEYCLOAK
-                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak:16.1.1
-                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator:v0.0.2
+                  value: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-keycloak@sha256:815054d25cea7102818ceed3542115846e3fb37d072eaa51d4db66a024197388
+                image: registry.connect.redhat.com/openlegacy-corp/hub-enterprise-ansible-operator@sha256:b1ee1a6b3bb5e2fc46b4a27a4fcdee413f23f5adcebcaaa2ae933f7c4277c107
                 imagePullPolicy: Always
                 livenessProbe:
                   httpGet:

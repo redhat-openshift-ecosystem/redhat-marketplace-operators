@@ -1,5 +1,7 @@
 annotations:
   # Core bundle annotations.
+  marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/hub-ent-operator/pricing?utm_source=openshift_console"
+  marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/hub-ent-operator/support?utm_source=openshift_console"
   operators.operatorframework.io.bundle.mediatype.v1: registry+v1
   operators.operatorframework.io.bundle.manifests.v1: manifests/
   operators.operatorframework.io.bundle.metadata.v1: metadata/
@@ -16,5 +18,3 @@ annotations:
   operators.operatorframework.io.test.config.v1: tests/scorecard/
 
   # marketplace
-  marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/hub-ent-operator/pricing?utm_source=openshift_console"
-  marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/hub-ent-operator/support?utm_source=openshift_console"

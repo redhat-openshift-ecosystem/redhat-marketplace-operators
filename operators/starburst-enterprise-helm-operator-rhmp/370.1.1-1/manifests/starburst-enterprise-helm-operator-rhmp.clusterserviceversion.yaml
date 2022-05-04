@@ -395,7 +395,7 @@ metadata:
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/starburst-enterprise-helm-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/starburst-enterprise-helm-operator-rhmp/support?utm_source=openshift_console
-  name: starburst-enterprise-helm-operator.v370.1.1
+  name: starburst-enterprise-helm-operator.v370.1.1-1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

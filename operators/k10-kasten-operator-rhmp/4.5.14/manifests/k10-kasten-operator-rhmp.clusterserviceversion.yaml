@@ -1748,7 +1748,7 @@ metadata:
       ]
     capabilities: Full Lifecycle
     categories: Storage
-    containerImage: registry.connect.redhat.com/kasten/k10-operator:4.5.14
+    containerImage: registry.connect.redhat.com/kasten/k10-operator@sha256:3a34d61378b3085c2f68fb710677c3a022f3a66bce095f618e57ddfd5bdc1098
     createdAt: Tue May 10 22:47:40 UTC 2022
     description: K10 data management platform for OpenShift, The Market Leader for Kubernetes Backup and DR
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/k10-kasten-operator-rhmp/pricing?utm_source=openshift_console
@@ -2010,7 +2010,7 @@ spec:
                 - --upstream=http://127.0.0.1:8080/
                 - --logtostderr=true
                 - --v=10
-                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:latest
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:20954f1fd9c2bac5cabaedbeec25d60b31546ffc05f3e4c38ffcf45e2ed41be9
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443
@@ -2024,58 +2024,58 @@ spec:
                 - --leader-election-id=k10-kasten-operator-rhmp
                 env:
                 - name: RELATED_IMAGE_ADMIN
-                  value: registry.connect.redhat.com/kasten/admin:4.5.14
+                  value: registry.connect.redhat.com/kasten/admin@sha256:bfb35766d3780882ec14ffd405d95045f7e57cec1bac8ba723bf48a37091ae91
                 - name: RELATED_IMAGE_AGGREGATEDAPIS
-                  value: registry.connect.redhat.com/kasten/aggregatedapis:4.5.14
+                  value: registry.connect.redhat.com/kasten/aggregatedapis@sha256:45817b13cc631fa66e8e46398fa65acb456b4309fe7046b45a7e9706b101f000
                 - name: RELATED_IMAGE_AUTH
-                  value: registry.connect.redhat.com/kasten/auth:4.5.14
+                  value: registry.connect.redhat.com/kasten/auth@sha256:cab365df912d316103373559202a261d0c45f02f778227ab8aa37fb10d29854a
                 - name: RELATED_IMAGE_CATALOG
-                  value: registry.connect.redhat.com/kasten/catalog:4.5.14
+                  value: registry.connect.redhat.com/kasten/catalog@sha256:422abd119d631bd661cb956db494a1d8f3cb81b8d165affadf5b54a378057332
                 - name: RELATED_IMAGE_CONFIG
-                  value: registry.connect.redhat.com/kasten/config:4.5.14
+                  value: registry.connect.redhat.com/kasten/config@sha256:dbe97448e2b7fc279524e1c6470c7145000ca1f2568323b6b242acf17b181cd5
                 - name: RELATED_IMAGE_CRYPTO
-                  value: registry.connect.redhat.com/kasten/crypto:4.5.14
+                  value: registry.connect.redhat.com/kasten/crypto@sha256:09ee4bb07d6aa610dc20b5bfd2d32f8cc6957c92476ee7faf732e25f016a05a8
                 - name: RELATED_IMAGE_DASHBOARDBFF
-                  value: registry.connect.redhat.com/kasten/dashboardbff:4.5.14
+                  value: registry.connect.redhat.com/kasten/dashboardbff@sha256:a08e6232f36ca23fdd5f4241b9242f78a17d856bb6bd5a581618b51a3e7b08fc
                 - name: RELATED_IMAGE_EVENTS
-                  value: registry.connect.redhat.com/kasten/events:4.5.14
+                  value: registry.connect.redhat.com/kasten/events@sha256:40038ab582e9b06a7441e8a3c58f58ccdf543a0b95575aecf2e9e5f25773bd1d
                 - name: RELATED_IMAGE_EXECUTOR
-                  value: registry.connect.redhat.com/kasten/executor:4.5.14
+                  value: registry.connect.redhat.com/kasten/executor@sha256:34556cbe3a81d4bc032662be12770daaadccd9cfb1a4b06d474d79b947d1dceb
                 - name: RELATED_IMAGE_FRONTEND
-                  value: registry.connect.redhat.com/kasten/frontend:4.5.14
+                  value: registry.connect.redhat.com/kasten/frontend@sha256:d34b910755de9e27e672d7cd5d650b4f9c2b398f105b5a814f610cc4bec20593
                 - name: RELATED_IMAGE_JOBS
-                  value: registry.connect.redhat.com/kasten/jobs:4.5.14
+                  value: registry.connect.redhat.com/kasten/jobs@sha256:5b360df7749e5fb39d2f6b4e60337d67991803ba05d822a11620671b5592b979
                 - name: RELATED_IMAGE_KANISTER
-                  value: registry.connect.redhat.com/kasten/kanister:4.5.14
+                  value: registry.connect.redhat.com/kasten/kanister@sha256:bd315e61efcf320c01c73f36c6687a91338b1badde787bda2fed550783a2d5ab
                 - name: RELATED_IMAGE_LOGGING
-                  value: registry.connect.redhat.com/kasten/logging:4.5.14
+                  value: registry.connect.redhat.com/kasten/logging@sha256:f2e00c3d1a4ebd4b7a76559b537c35fa31c9c10f16e1e6a84ae5d78ce281e374
                 - name: RELATED_IMAGE_METERING
-                  value: registry.connect.redhat.com/kasten/metering:4.5.14
+                  value: registry.connect.redhat.com/kasten/metering@sha256:5be44d7d430e479a3f0ba1c1fffd5c20e55875c8bd3a83b085941277f2a4ff4a
                 - name: RELATED_IMAGE_STATE
-                  value: registry.connect.redhat.com/kasten/state:4.5.14
+                  value: registry.connect.redhat.com/kasten/state@sha256:102376ae8e2d43838cd05cef70ba82502bf356e5bf6fae1b7204d6c9e4c1c566
                 - name: RELATED_IMAGE_UPGRADE
-                  value: registry.connect.redhat.com/kasten/upgrade:4.5.14
+                  value: registry.connect.redhat.com/kasten/upgrade@sha256:f94431b10e82d75d16fcbf063c9ad8178f98530d0db2ff4313966587236875ab
                 - name: RELATED_IMAGE_CEPHTOOL
-                  value: registry.connect.redhat.com/kasten/cephtool:4.5.14
+                  value: registry.connect.redhat.com/kasten/cephtool@sha256:ccbcd21a892216c7e941d98a01af4ee02b50b7a98ea7832c50d1e491414cb86e
                 - name: RELATED_IMAGE_DATAMOVER
-                  value: registry.connect.redhat.com/kasten/datamover:4.5.14
+                  value: registry.connect.redhat.com/kasten/datamover@sha256:85c29b0fe234731e0ad2b8cca4d7c5f7c63e6e3a5bc4a75ffe24f529ff755585
                 - name: RELATED_IMAGE_BLM
-                  value: registry.connect.redhat.com/kasten/bloblifecyclemanager:4.5.14
+                  value: registry.connect.redhat.com/kasten/bloblifecyclemanager@sha256:97dc6c3b960ef7feaeaa6cf2b7a04ecaff3e627410b96f202b53c0929239907f
                 - name: RELATED_IMAGE_KANISTERTOOLS
-                  value: registry.connect.redhat.com/kasten/kanister-tools:k10-0.78.0
+                  value: registry.connect.redhat.com/kasten/kanister-tools@sha256:9c39101e4c3d118df07f22fb7eab4f0544280332d7c360b9ef502cbb2605cdfc
                 - name: RELATED_IMAGE_EMISSARY
-                  value: registry.connect.redhat.com/kasten/emissary:2.1.2-rh-ubi
+                  value: registry.connect.redhat.com/kasten/emissary@sha256:97132b2258ed6d1dee07fee9040fe2c6c62025d3cccbcfe1966ac28f08a78901
                 - name: RELATED_IMAGE_PROMETHEUS
-                  value: registry.connect.redhat.com/kasten/prometheus:v2.26.0-rh-ubi
+                  value: registry.connect.redhat.com/kasten/prometheus@sha256:72546dde6d69358ba01260361abb8474958fe63c4b717a4504ecc74b306fc670
                 - name: RELATED_IMAGE_CONFIGMAPRELOAD
-                  value: registry.connect.redhat.com/kasten/configmap-reload:v0.5.0-rh-ubi
+                  value: registry.connect.redhat.com/kasten/configmap-reload@sha256:a320d6893b7b7ef006d0c4ee51bc223ecd07d845e8ec633e3485c7d1cc700395
                 - name: RELATED_IMAGE_DEX
-                  value: registry.connect.redhat.com/kasten/dex:v2.24.0-rh-ubi
+                  value: registry.connect.redhat.com/kasten/dex@sha256:6c1e284cdc03f4e0888653a90edef7d541a9e7eae87ce181b81e2b69edebfda1
                 - name: RELATED_IMAGE_GRAFANA
-                  value: registry.connect.redhat.com/kasten/grafana:8.1.8-rh-ubi
+                  value: registry.connect.redhat.com/kasten/grafana@sha256:3d026950251d357b04421e96a1beebf38ef37dccf4c969863c3ae1eccfefb260
                 - name: RELATED_IMAGE_RESTORECTL
-                  value: registry.connect.redhat.com/kasten/restorectl:4.5.14
-                image: registry.connect.redhat.com/kasten/k10-operator:4.5.14
+                  value: registry.connect.redhat.com/kasten/restorectl@sha256:54ba8807c415ff8a6c2002bac50b4ea9b1909881fb28ff5a84d0db98a699c615
+                image: registry.connect.redhat.com/kasten/k10-operator@sha256:3a34d61378b3085c2f68fb710677c3a022f3a66bce095f618e57ddfd5bdc1098
                 imagePullPolicy: Always
                 livenessProbe:
                   httpGet:
@@ -2164,3 +2164,62 @@ spec:
     name: Kasten by Veeam, kasten.io
     url: https://kasten.io
   version: 4.5.14
+  relatedImages:
+  - name: k10-operator-3a34d61378b3085c2f68fb710677c3a022f3a66bce095f618e57ddfd5bdc1098-annotation
+    image: registry.connect.redhat.com/kasten/k10-operator@sha256:3a34d61378b3085c2f68fb710677c3a022f3a66bce095f618e57ddfd5bdc1098
+  - name: kube-rbac-proxy
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:20954f1fd9c2bac5cabaedbeec25d60b31546ffc05f3e4c38ffcf45e2ed41be9
+  - name: manager
+    image: registry.connect.redhat.com/kasten/k10-operator@sha256:3a34d61378b3085c2f68fb710677c3a022f3a66bce095f618e57ddfd5bdc1098
+  - name: admin
+    image: registry.connect.redhat.com/kasten/admin@sha256:bfb35766d3780882ec14ffd405d95045f7e57cec1bac8ba723bf48a37091ae91
+  - name: aggregatedapis
+    image: registry.connect.redhat.com/kasten/aggregatedapis@sha256:45817b13cc631fa66e8e46398fa65acb456b4309fe7046b45a7e9706b101f000
+  - name: auth
+    image: registry.connect.redhat.com/kasten/auth@sha256:cab365df912d316103373559202a261d0c45f02f778227ab8aa37fb10d29854a
+  - name: catalog
+    image: registry.connect.redhat.com/kasten/catalog@sha256:422abd119d631bd661cb956db494a1d8f3cb81b8d165affadf5b54a378057332
+  - name: config
+    image: registry.connect.redhat.com/kasten/config@sha256:dbe97448e2b7fc279524e1c6470c7145000ca1f2568323b6b242acf17b181cd5
+  - name: crypto
+    image: registry.connect.redhat.com/kasten/crypto@sha256:09ee4bb07d6aa610dc20b5bfd2d32f8cc6957c92476ee7faf732e25f016a05a8
+  - name: dashboardbff
+    image: registry.connect.redhat.com/kasten/dashboardbff@sha256:a08e6232f36ca23fdd5f4241b9242f78a17d856bb6bd5a581618b51a3e7b08fc
+  - name: events
+    image: registry.connect.redhat.com/kasten/events@sha256:40038ab582e9b06a7441e8a3c58f58ccdf543a0b95575aecf2e9e5f25773bd1d
+  - name: executor
+    image: registry.connect.redhat.com/kasten/executor@sha256:34556cbe3a81d4bc032662be12770daaadccd9cfb1a4b06d474d79b947d1dceb
+  - name: frontend
+    image: registry.connect.redhat.com/kasten/frontend@sha256:d34b910755de9e27e672d7cd5d650b4f9c2b398f105b5a814f610cc4bec20593
+  - name: jobs
+    image: registry.connect.redhat.com/kasten/jobs@sha256:5b360df7749e5fb39d2f6b4e60337d67991803ba05d822a11620671b5592b979
+  - name: kanister
+    image: registry.connect.redhat.com/kasten/kanister@sha256:bd315e61efcf320c01c73f36c6687a91338b1badde787bda2fed550783a2d5ab
+  - name: logging
+    image: registry.connect.redhat.com/kasten/logging@sha256:f2e00c3d1a4ebd4b7a76559b537c35fa31c9c10f16e1e6a84ae5d78ce281e374
+  - name: metering
+    image: registry.connect.redhat.com/kasten/metering@sha256:5be44d7d430e479a3f0ba1c1fffd5c20e55875c8bd3a83b085941277f2a4ff4a
+  - name: state
+    image: registry.connect.redhat.com/kasten/state@sha256:102376ae8e2d43838cd05cef70ba82502bf356e5bf6fae1b7204d6c9e4c1c566
+  - name: upgrade
+    image: registry.connect.redhat.com/kasten/upgrade@sha256:f94431b10e82d75d16fcbf063c9ad8178f98530d0db2ff4313966587236875ab
+  - name: cephtool
+    image: registry.connect.redhat.com/kasten/cephtool@sha256:ccbcd21a892216c7e941d98a01af4ee02b50b7a98ea7832c50d1e491414cb86e
+  - name: datamover
+    image: registry.connect.redhat.com/kasten/datamover@sha256:85c29b0fe234731e0ad2b8cca4d7c5f7c63e6e3a5bc4a75ffe24f529ff755585
+  - name: blm
+    image: registry.connect.redhat.com/kasten/bloblifecyclemanager@sha256:97dc6c3b960ef7feaeaa6cf2b7a04ecaff3e627410b96f202b53c0929239907f
+  - name: kanistertools
+    image: registry.connect.redhat.com/kasten/kanister-tools@sha256:9c39101e4c3d118df07f22fb7eab4f0544280332d7c360b9ef502cbb2605cdfc
+  - name: emissary
+    image: registry.connect.redhat.com/kasten/emissary@sha256:97132b2258ed6d1dee07fee9040fe2c6c62025d3cccbcfe1966ac28f08a78901
+  - name: prometheus
+    image: registry.connect.redhat.com/kasten/prometheus@sha256:72546dde6d69358ba01260361abb8474958fe63c4b717a4504ecc74b306fc670
+  - name: configmapreload
+    image: registry.connect.redhat.com/kasten/configmap-reload@sha256:a320d6893b7b7ef006d0c4ee51bc223ecd07d845e8ec633e3485c7d1cc700395
+  - name: dex
+    image: registry.connect.redhat.com/kasten/dex@sha256:6c1e284cdc03f4e0888653a90edef7d541a9e7eae87ce181b81e2b69edebfda1
+  - name: grafana
+    image: registry.connect.redhat.com/kasten/grafana@sha256:3d026950251d357b04421e96a1beebf38ef37dccf4c969863c3ae1eccfefb260
+  - name: restorectl
+    image: registry.connect.redhat.com/kasten/restorectl@sha256:54ba8807c415ff8a6c2002bac50b4ea9b1909881fb28ff5a84d0db98a699c615

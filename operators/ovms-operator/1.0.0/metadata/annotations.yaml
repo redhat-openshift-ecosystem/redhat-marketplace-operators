@@ -15,3 +15,7 @@ annotations:
   operators.operatorframework.io.test.config.v1: tests/scorecard/
 
   com.redhat.openshift.versions: "v4.9"
+
+  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/ovms-operator/pricing?utm_source=openshift_console
+  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/ovms-operator/support?utm_source=openshift_console
+

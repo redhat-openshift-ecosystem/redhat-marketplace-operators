@@ -80,8 +80,8 @@ metadata:
     categories: "AI/Machine Learning"
     operators.operatorframework.io/builder: operator-sdk-v1.19.1+git
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/<package-name>/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/<package-name>/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/ovms-operator/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/ovms-operator/support?utm_source=openshift_console
   name: openvino-operator.v1.0.0
   namespace: placeholder
 spec:

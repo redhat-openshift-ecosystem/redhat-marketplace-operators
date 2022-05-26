@@ -262,6 +262,8 @@ metadata:
     support: The Flux community
     operatorframework.io/suggested-namespace: flux-system
     containerImage: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/source-controller:v0.22.4-ubi
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console
 spec:
   version: 0.28.5
   maturity: stable

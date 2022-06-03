@@ -604,7 +604,7 @@ spec:
                         according to the CRD upgrade policy provided here. Valid
                         values are `Skip`, `Create` or `CreateReplace`. Default
                         is `Skip` and if omitted CRDs are neither installed nor
-                        upgraded. 
+                        upgraded.
                          Skip: do neither install nor replace (update) any CRDs.
                          Create: new CRDs are created, existing CRDs are neither updated nor deleted.
                          CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.

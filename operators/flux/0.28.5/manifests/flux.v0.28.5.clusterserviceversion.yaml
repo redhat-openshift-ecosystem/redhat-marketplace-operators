@@ -105,7 +105,7 @@ metadata:
           "spec": {
               "interval": "5m",
               "path": "./deploy/overlays/dev",
-              "prune": true,
+              "prune": "true",
               "sourceRef": {
                 "kind": "GitRepository",
                 "name": "podinfo"

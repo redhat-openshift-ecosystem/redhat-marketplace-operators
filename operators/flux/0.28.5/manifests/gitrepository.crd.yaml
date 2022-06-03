@@ -497,7 +497,8 @@ spec:
                       description: >-
                         Commit SHA to check out, takes precedence over all
                         reference fields.
-                        When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
+                        When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with
+                        Branch to shallow clone the branch, in which the commit is expected to exist.
                       type: string
                     semver:
                       description: SemVer tag expression to check out, takes precedence over Tag.

@@ -172,7 +172,8 @@ spec:
                          Create: new CRDs are created, existing CRDs are neither updated nor deleted.
                          CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted.
                          By default, CRDs are applied (installed) during Helm install action. With this option users can opt-in
-                         to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.
+                         to CRD replace existing CRDs on Helm install actions, which is not (yet) natively supported by
+                         Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.
                       enum:
                         - Skip
                         - Create

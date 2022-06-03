@@ -1544,7 +1544,7 @@ spec:
     - type: AllNamespaces
       supported: true
   minKubeVersion: 1.19.0
-  relatedImages: 
+  relatedImages:
     - name: source-controller
       image: registry.connect.redhat.com/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
     - name: helm-controller
@@ -1557,3 +1557,4 @@ spec:
       image: registry.connect.redhat.com/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
     - name: notification-controller
       image: registry.connect.redhat.com/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3
+  

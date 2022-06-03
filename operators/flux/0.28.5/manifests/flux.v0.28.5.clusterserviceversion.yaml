@@ -262,7 +262,7 @@ metadata:
     description: Flux is a Continuous Delivery solution for Kubernetes.
     support: The Flux community
     operatorframework.io/suggested-namespace: flux-system
-    #containerImage: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/source-controller:v0.22.4-ubi
+# containerImage: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/source-controller:v0.22.4-ubi
     containerImage: registry.connect.redhat.com/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console
@@ -1082,7 +1082,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
- ### Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/helm-controller:v0.18.1-ubi
+ # Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/helm-controller:v0.18.1-ubi
                     image: registry.connect.redhat.com/flux/helm-controller@sha256:81531e8cf15d2f858ff07614e14c38fcd552ebad6281a72edda7899421727a9d
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
@@ -1159,7 +1159,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-### Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/image-automation-controller:v0.21.2-ubi
+# Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/image-automation-controller:v0.21.2-ubi
                     image: registry.connect.redhat.com/flux/image-automation-controller@sha256:fef967f123b942f484bcdfcf6b2241b8f978cd885524164b96a70070e1e265e7
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
@@ -1236,7 +1236,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-### Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/image-reflector-controller:v0.17.1-ubi
+# Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/image-reflector-controller:v0.17.1-ubi
                     image: registry.connect.redhat.com/flux/image-reflector-controller@sha256:840cbf1661ec865304d1b34345265ebf89a6b63afe5504bb0d11fe812904b01b
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
@@ -1317,7 +1317,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-### Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/kustomize-controller:v0.22.2-ubi
+# Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/kustomize-controller:v0.22.2-ubi
                     image: registry.connect.redhat.com/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
@@ -1393,7 +1393,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-### Old Image name image:scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/notification-controller:v0.23.1-ubi
+# Old Image name image:scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/notification-controller:v0.23.1-ubi
                     image: registry.connect.redhat.com/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
@@ -1480,7 +1480,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-### Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/source-controller:v0.22.4-ubi
+# Old Image name image: scan.connect.redhat.com/ospid-6231ff66ebebafff0821ce0c/source-controller:v0.22.4-ubi
                     image: registry.connect.redhat.com/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
                     imagePullPolicy: IfNotPresent
                     livenessProbe:

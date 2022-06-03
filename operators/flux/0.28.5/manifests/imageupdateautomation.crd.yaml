@@ -592,14 +592,15 @@ spec:
                             branch:
                               description: >-
                                 Branch to check out, defaults to 'master' if no
-                                other field is defined. 
+                                other field is defined.
                                 When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.
                               type: string
                             commit:
                               description: >-
                                 Commit SHA to check out, takes precedence over
-                                all reference fields. 
-                                When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
+                                all reference fields.
+                                When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the
+                                branch, in which the commit is expected to exist.
                               type: string
                             semver:
                               description: SemVer tag expression to check out, takes precedence over Tag.

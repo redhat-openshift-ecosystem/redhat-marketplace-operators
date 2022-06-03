@@ -153,8 +153,7 @@ spec:
                       +listType=map     // +listMapKey=type     Conditions
                       []metav1.Condition `json:"conditions,omitempty"
                       patchStrategy:"merge" patchMergeKey:"type"
-                      protobuf:"bytes,1,rep,name=conditions"` 
-                           // other fields }
+                      protobuf:"bytes,1,rep,name=conditions"` // other fields }
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from

@@ -1557,4 +1557,3 @@ spec:
       image: registry.connect.redhat.com/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
     - name: notification-controller
       image: registry.connect.redhat.com/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3
-  

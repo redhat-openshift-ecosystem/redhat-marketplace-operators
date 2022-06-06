@@ -1087,7 +1087,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: manager
+                    name: helm-controller-manager
                     ports:
                       - containerPort: 8080
                         name: http-prom
@@ -1163,7 +1163,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: manager
+                    name: image-automation-controller-manager
                     ports:
                       - containerPort: 8080
                         name: http-prom
@@ -1239,7 +1239,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: manager
+                    name: image-reflector-controller-manager
                     ports:
                       - containerPort: 8080
                         name: http-prom
@@ -1319,7 +1319,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: manager
+                    name: kustomize-controller-manager
                     ports:
                       - containerPort: 8080
                         name: http-prom
@@ -1394,7 +1394,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: manager
+                    name: notification-controller-manager
                     ports:
                       - containerPort: 9090
                         name: http
@@ -1480,7 +1480,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: manager
+                    name: source-controller-manager
                     ports:
                       - containerPort: 9090
                         name: http

@@ -262,7 +262,7 @@ metadata:
     description: Flux is a Continuous Delivery solution for Kubernetes.
     support: The Flux community
     operatorframework.io/suggested-namespace: flux-system
-    containerImage: 'registry.connect.redhat.com/rhm/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994'
+    containerImage: 'registry.marketplace.redhat.com/rhm/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994'
     marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console"
     marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console"
 spec:
@@ -1081,7 +1081,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: registry.connect.redhat.com/rhm/flux/helm-controller@sha256:81531e8cf15d2f858ff07614e14c38fcd552ebad6281a72edda7899421727a9d
+                    image: registry.marketplace.redhat.com/rhm/flux/helm-controller@sha256:81531e8cf15d2f858ff07614e14c38fcd552ebad6281a72edda7899421727a9d
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1157,7 +1157,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: registry.connect.redhat.com/rhm/flux/image-automation-controller@sha256:fef967f123b942f484bcdfcf6b2241b8f978cd885524164b96a70070e1e265e7
+                    image: registry.marketplace.redhat.com/rhm/flux/image-automation-controller@sha256:fef967f123b942f484bcdfcf6b2241b8f978cd885524164b96a70070e1e265e7
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1233,7 +1233,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: registry.connect.redhat.com/rhm/flux/image-reflector-controller@sha256:840cbf1661ec865304d1b34345265ebf89a6b63afe5504bb0d11fe812904b01b
+                    image: registry.marketplace.redhat.com/rhm/flux/image-reflector-controller@sha256:840cbf1661ec865304d1b34345265ebf89a6b63afe5504bb0d11fe812904b01b
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1313,7 +1313,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: registry.connect.redhat.com/rhm/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
+                    image: registry.marketplace.redhat.com/rhm/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1388,7 +1388,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: registry.connect.redhat.com/rhm/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3
+                    image: registry.marketplace.redhat.com/rhm/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1474,7 +1474,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: registry.connect.redhat.com/rhm/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
+                    image: registry.marketplace.redhat.com/rhm/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1539,14 +1539,14 @@ spec:
   minKubeVersion: 1.19.0
   relatedImages:
     - name: source-controller
-      image: registry.connect.redhat.com/rhm/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
+      image: registry.marketplace.redhat.com/rhm/flux/source-controller@sha256:1add11c3db3e9a38bcb7ddecf94f7eff682c98c6f3aaf3fb238fb846dc8d8994
     - name: helm-controller
-      image: registry.connect.redhat.com/rhm/flux/helm-controller@sha256:81531e8cf15d2f858ff07614e14c38fcd552ebad6281a72edda7899421727a9d
+      image: registry.marketplace.redhat.com/rhm/flux/helm-controller@sha256:81531e8cf15d2f858ff07614e14c38fcd552ebad6281a72edda7899421727a9d
     - name: image-automation-controller
-      image: registry.connect.redhat.com/rhm/flux/image-automation-controller@sha256:fef967f123b942f484bcdfcf6b2241b8f978cd885524164b96a70070e1e265e7
+      image: registry.marketplace.redhat.com/rhm/flux/image-automation-controller@sha256:fef967f123b942f484bcdfcf6b2241b8f978cd885524164b96a70070e1e265e7
     - name: image-reflector-controller
-      image: registry.connect.redhat.com/rhm/flux/image-reflector-controller@sha256:840cbf1661ec865304d1b34345265ebf89a6b63afe5504bb0d11fe812904b01b
+      image: registry.marketplace.redhat.com/rhm/flux/image-reflector-controller@sha256:840cbf1661ec865304d1b34345265ebf89a6b63afe5504bb0d11fe812904b01b
     - name: kustomize-controller
-      image: registry.connect.redhat.com/rhm/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
+      image: registry.marketplace.redhat.com/rhm/flux/kustomize-controller@sha256:56dbddd6b93cbe57140f6892cfce0ac81a0342fff5d4ae2335a1e1ca9712a774
     - name: notification-controller
-      image: registry.connect.redhat.com/rhm/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3
+      image: registry.marketplace.redhat.com/rhm/flux/notification-controller@sha256:b3e42c3b5a75f0ed79949cba3dc42a5340324bdc4a227f34018df205bba35bd3

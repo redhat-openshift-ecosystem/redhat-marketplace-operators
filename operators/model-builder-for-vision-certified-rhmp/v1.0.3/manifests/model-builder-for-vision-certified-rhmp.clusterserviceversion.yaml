@@ -86,7 +86,7 @@ spec:
       name: modelbuildersaws.modelbuilder.com
       version: v1alpha1
       specDescriptors:
-        - description: 'License agreement https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-STSO-C4QQQ2 must be accepted during install of this product.'
+        - description: 'License agreement https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-ABER-CD9LHW must be accepted during install of this product.'
           displayName: License Agreement
           path: license.accept
           x-descriptors:
@@ -173,7 +173,7 @@ spec:
       name: modelbuilders.modelbuilder.com
       version: v1alpha1
       specDescriptors:
-        - description: 'License agreement https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-STSO-C4QQQ2 must be accepted during install of this product.'
+        - description: 'License agreement https://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-ABER-CD9LHW must be accepted during install of this product.'
           displayName: License Agreement
           path: license.accept
           x-descriptors:
@@ -764,7 +764,7 @@ spec:
                 - --upstream=http://127.0.0.1:8080/
                 - --logtostderr=true
                 - --v=10
-                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:609c19d1718947ee814b829334c37e1d720acf5fb642b0712b8ab1b14d57f53f
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:d4c60531f59953f399c6a2b0f8239128cdc2640f72f2d1e9ac4d6add618f9f01
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443
@@ -823,4 +823,4 @@ spec:
   - name: modelbuilder
     image: registry.connect.redhat.com/ibm/modelbuilder-operator@sha256:96f4c45f82152ebbdd2b067a6dd8749c5572e00106142725a16ae30a3e09d2d0
   - name: kube-rbac-proxy
-    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:609c19d1718947ee814b829334c37e1d720acf5fb642b0712b8ab1b14d57f53f
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:d4c60531f59953f399c6a2b0f8239128cdc2640f72f2d1e9ac4d6add618f9f01

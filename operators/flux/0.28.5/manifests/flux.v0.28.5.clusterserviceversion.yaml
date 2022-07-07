@@ -262,7 +262,7 @@ metadata:
     description: Flux is a Continuous Delivery solution for Kubernetes.
     support: The Flux community
     operatorframework.io/suggested-namespace: flux-system
-    containerImage: 'registry.redhat.com/flux/source-controller@sha256:1b25350d316addb7c0ad7bc795c666b9c5f7e5fcd75f62ab30d5c648bb3d3812'
+    containerImage: registry.redhat.com/flux/source-controller@sha256:1b25350d316addb7c0ad7bc795c666b9c5f7e5fcd75f62ab30d5c648bb3d3812
     marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console"
     marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console"
 spec:

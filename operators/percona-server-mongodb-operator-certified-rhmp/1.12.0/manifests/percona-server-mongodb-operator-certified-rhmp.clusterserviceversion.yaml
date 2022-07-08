@@ -217,16 +217,16 @@ metadata:
     repository: 'https://github.com/percona/percona-server-mongodb-operator'
 spec:
   relatedImages:
-    - name: mongod4.2
-      image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:8789c2c89ece6482530341c36dd69523673b38178ab5b597970d77bf8860a9df
-    - name: mongod4.4
-      image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:f1b88d6e69092692682a742ef3a70b032761c8b21a42c7e7ba175f06b203208a
-    - name: mongod5.0
-      image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:e157eca8038ed2db3f9baafba1267e7654ae03e2a8d8e6c0b675c24aaeef2ca1
-    - name: backup
-      image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:f9c18daf3996548d3905eae9ab843e800e9279033439802026d5a27e72b33165
-    - name: operator
-      image: registry.connect.redhat.com/percona/percona-server-mongodb-operator@sha256:e9ed11994cef3f7ab33e126484d5d5991cccc00b54d066183d1c7abe8e29b802
+  - name: mongod4.2
+    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:8789c2c89ece6482530341c36dd69523673b38178ab5b597970d77bf8860a9df
+  - name: mongod4.4
+    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:f1b88d6e69092692682a742ef3a70b032761c8b21a42c7e7ba175f06b203208a
+  - name: mongod5.0
+    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:e157eca8038ed2db3f9baafba1267e7654ae03e2a8d8e6c0b675c24aaeef2ca1
+  - name: backup
+    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:f9c18daf3996548d3905eae9ab843e800e9279033439802026d5a27e72b33165
+  - name: operator
+    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator@sha256:e9ed11994cef3f7ab33e126484d5d5991cccc00b54d066183d1c7abe8e29b802
   displayName: Percona Distribution for MongoDB Operator
   description: >+
 

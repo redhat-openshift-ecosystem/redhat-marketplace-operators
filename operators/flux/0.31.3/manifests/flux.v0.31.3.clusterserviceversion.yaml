@@ -435,7 +435,7 @@ spec:
     Features:
 
 
-    - Source configuration from Git and Helm repositories, and S3-compatible buckets (e.g., Minio)
+    - Source configuration from Git and Helm repositories, and S3-compatible buckets (ie., Minio)
 
     - Kustomize and Helm support
 

@@ -1545,7 +1545,7 @@ spec:
     - name: image-automation-controller
       image: registry.connect.redhat.com/flux/image-automation-controller@sha256:bda790bdd6d7e16ef76bc129bf553a013518e8e99334c22c65619a8cfa255059
     - name: image-reflector-controller
-      image: registry.connect.redhat.com/flux/image-reflector-controllersha256:fffc96f09180536ecc0a2e4855544e4f7dd0be5a04bb29c30249b1075c4cd8fd
+      image: registry.connect.redhat.com/flux/image-reflector-controller@sha256:fffc96f09180536ecc0a2e4855544e4f7dd0be5a04bb29c30249b1075c4cd8fd
     - name: kustomize-controller
       image: registry.connect.redhat.com/flux/kustomize-controller@sha256:ee8e336b002fc382441881bf35826a69e6a5d4c5e7f0b92de898b6f715713c23
     - name: notification-controller

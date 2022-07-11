@@ -266,7 +266,7 @@ metadata:
     marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console"
     marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console"
 spec:
-  version: 0.28.5
+  version: 0.31.3
   maturity: stable
   keywords:
     - flux
@@ -1054,7 +1054,7 @@ spec:
           label:
             app.kubernetes.io/instance: flux-system
             app.kubernetes.io/part-of: flux
-            app.kubernetes.io/version: 0.28.5
+            app.kubernetes.io/version: 0.31.3
             control-plane: controller
           spec:
             replicas: 1
@@ -1130,7 +1130,7 @@ spec:
           label:
             app.kubernetes.io/instance: flux-system
             app.kubernetes.io/part-of: flux
-            app.kubernetes.io/version: 0.28.5
+            app.kubernetes.io/version: 0.31.3
             control-plane: controller
           spec:
             replicas: 1
@@ -1206,7 +1206,7 @@ spec:
           label:
             app.kubernetes.io/instance: flux-system
             app.kubernetes.io/part-of: flux
-            app.kubernetes.io/version: 0.28.5
+            app.kubernetes.io/version: 0.31.3
             control-plane: controller
           spec:
             replicas: 1
@@ -1286,7 +1286,7 @@ spec:
           label:
             app.kubernetes.io/instance: flux-system
             app.kubernetes.io/part-of: flux
-            app.kubernetes.io/version: 0.28.5
+            app.kubernetes.io/version: 0.31.3
             control-plane: controller
           spec:
             replicas: 1
@@ -1362,7 +1362,7 @@ spec:
           label:
             app.kubernetes.io/instance: flux-system
             app.kubernetes.io/part-of: flux
-            app.kubernetes.io/version: 0.28.5
+            app.kubernetes.io/version: 0.31.3
             control-plane: controller
           spec:
             replicas: 1
@@ -1443,7 +1443,7 @@ spec:
           label:
             app.kubernetes.io/instance: flux-system
             app.kubernetes.io/part-of: flux
-            app.kubernetes.io/version: 0.28.5
+            app.kubernetes.io/version: 0.31.3
             control-plane: controller
           spec:
             replicas: 1

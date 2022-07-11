@@ -415,7 +415,7 @@ spec:
         version: v1beta1
         description: Receiver
   description: >-
-    [Flux](https://fluxcd.io/) is a Continuous Delivery solution for Kubernetes.
+    [Flux](https://fluxcd.io/) is a Continuous Delivery solution for Kubernetes. 
 
     Flux is constructed with the [GitOps Toolkit](https://toolkit.fluxcd.io/components/), a set of composable
     APIs and specialized tools for keeping Kubernetes clusters in sync with sources of configuration

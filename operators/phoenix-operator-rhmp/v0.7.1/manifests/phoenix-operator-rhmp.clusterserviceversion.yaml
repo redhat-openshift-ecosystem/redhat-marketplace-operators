@@ -18,8 +18,8 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.4.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/phoenix-operator/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/\phoenix-operator/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/phoenix-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/phoenix-operator-rhmp/support?utm_source=openshift_console
   name: phoenix-operator.v0.0.1
   namespace: placeholder
 spec:

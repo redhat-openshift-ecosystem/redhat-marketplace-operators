@@ -12,6 +12,8 @@ metadata:
     description: The world’s most popular open source API gateway. Built for multi-cloud and hybrid, optimized for microservices and distributed architectures.
     repository: https://github.com/kong/kong-operator
     support: Kong Kubernetes Team
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/kong-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/kong-operator-rhmp/support?utm_source=openshift_console    
   name: kong.v0.10.1
   namespace: placeholder
 spec:

@@ -14,7 +14,7 @@ annotations:
   # Annotations for testing.
   operators.operatorframework.io.test.mediatype.v1: scorecard+v1
   operators.operatorframework.io.test.config.v1: tests/scorecard/
-  
+
   # Annotations for RH Marketplace
   marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/kong-operator-rhmp/pricing?utm_source=openshift_console
   marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/kong-operator-rhmp/support?utm_source=openshift_console

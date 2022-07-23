@@ -1,0 +1,236 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.4.1
+  creationTimestamp: null
+  name: tangservers.daemons.redhat.com
+spec:
+  group: daemons.redhat.com
+  names:
+    kind: TangServer
+    listKind: TangServerList
+    plural: tangservers
+    singular: tangserver
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - description: Directory to use for key generation
+      jsonPath: .spec.keypath
+      name: KeyPath
+      type: string
+    - description: Replicas to launch for a particular deployment
+      jsonPath: .spec.replicas
+      name: Replicas
+      type: integer
+    - description: Container Image to use
+      jsonPath: .spec.replicas
+      name: Image
+      type: string
+    - description: Version of the Container Image to use
+      jsonPath: .spec.version
+      name: Version
+      type: string
+    - description: Health Script to execute
+      jsonPath: .spec.healthscript
+      name: HealthScript
+      type: string
+    - description: Port where each Pod will listen
+      jsonPath: .spec.podlistenport
+      name: PodListenPort
+      type: integer
+    - description: Secret name to use in case it is necessary
+      jsonPath: .spec.secret
+      name: Secret
+      type: string
+    - description: Port where each Service will listen
+      jsonPath: .spec.podlistenport
+      name: ServiceListenPort
+      type: integer
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: TangServer is the Schema for the tangservers API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: TangServerSpec defines the desired state of TangServer
+            properties:
+              healthScript:
+                description: HealthScript is the script to run for healthiness/readiness
+                type: string
+              hiddenKeys:
+                description: HiddenKeys
+                items:
+                  description: TangServerHiddenKeys defines the hidden keys in a Tang
+                    Server
+                  properties:
+                    fileName:
+                      description: FileName provides information about the file name
+                        corresponding to the key
+                      type: string
+                    generated:
+                      description: Hidden Key Hiding Time
+                      type: string
+                    hidden:
+                      description: Hidden Key Generation Time
+                      type: string
+                    sha1:
+                      description: Hidden Key sha1
+                      type: string
+                    sha256:
+                      description: Hidden Key sha256
+                      type: string
+                  type: object
+                type: array
+              image:
+                description: Image is the base container image of the TangServer to
+                  use
+                type: string
+              keyPath:
+                description: KeyPath is field of TangServer. It allows to specify
+                  the path where keys will be generated
+                type: string
+              keyRefreshInterval:
+                description: KeyRefreshInterval
+                format: int32
+                type: integer
+              persistentVolumeClaim:
+                description: Persistent Volume Claim to store the keys
+                type: string
+              podListenPort:
+                description: PodListenPort is the port where pods will listen for
+                  traffic
+                format: int32
+                type: integer
+              replicas:
+                description: Replicas is the Tang Server amount to bringup
+                format: int32
+                type: integer
+              requiredActiveKeyPairs:
+                description: RequiredActiveKeyPairs
+                format: int32
+                type: integer
+              resourcesLimit:
+                description: ResourceLimit is the resource limit to perform for each
+                  pod
+                properties:
+                  cpu:
+                    type: string
+                  memory:
+                    type: string
+                type: object
+              resourcesRequest:
+                description: ResourceRequest is the resource request to perform for
+                  each pod
+                properties:
+                  cpu:
+                    type: string
+                  memory:
+                    type: string
+                type: object
+              secret:
+                description: Secret is the secret name to use to download image appropriately
+                type: string
+              serviceListenPort:
+                description: ServiceListenPort is the port where service will listen
+                  for traffic
+                format: int32
+                type: integer
+              version:
+                description: Version is the version of the TangServer container to
+                  use (empty=>latest)
+                type: string
+            required:
+            - replicas
+            type: object
+          status:
+            description: TangServerStatus defines the observed state of TangServer
+            properties:
+              activeKeys:
+                description: ActiveKeys provides information about the Active Keys
+                  in the Tang Server CR
+                items:
+                  description: TangServerActiveKeys defines the active keys in a Tang
+                    Server
+                  properties:
+                    fileName:
+                      description: FileName provides information about the file name
+                        corresponding to the key
+                      type: string
+                    generated:
+                      description: Active Key Generation Time
+                      type: string
+                    sha1:
+                      description: Active Key sha1
+                      type: string
+                    sha256:
+                      description: Active Key sha256
+                      type: string
+                  type: object
+                type: array
+              hiddenKeys:
+                description: HiddenKeys provides information about the Hidden Keys
+                  in the Tang Server CR
+                items:
+                  description: TangServerHiddenKeys defines the hidden keys in a Tang
+                    Server
+                  properties:
+                    fileName:
+                      description: FileName provides information about the file name
+                        corresponding to the key
+                      type: string
+                    generated:
+                      description: Hidden Key Hiding Time
+                      type: string
+                    hidden:
+                      description: Hidden Key Generation Time
+                      type: string
+                    sha1:
+                      description: Hidden Key sha1
+                      type: string
+                    sha256:
+                      description: Hidden Key sha256
+                      type: string
+                  type: object
+                type: array
+              ready:
+                description: Tang Server Ready provides information about the Ready
+                  Replicas
+                format: int32
+                type: integer
+              running:
+                description: Tang Server Running provides information about the Running
+                  Replicas
+                format: int32
+                type: integer
+              serviceExternalUrl:
+                description: Tang Server Service External Url provides information
+                  about the External Service Url
+                type: string
+              tangServerError:
+                description: TangServerError collects error on Tang Operator creation
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

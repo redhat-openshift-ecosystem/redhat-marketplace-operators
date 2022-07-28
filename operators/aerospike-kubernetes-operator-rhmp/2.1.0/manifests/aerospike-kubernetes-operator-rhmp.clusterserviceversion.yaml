@@ -458,6 +458,7 @@ spec:
   provider:
     name: Aerospike
   version: 2.1.0
+  replaces: aerospike-kubernetes-operator.v2.0.0
   webhookdefinitions:
   - admissionReviewVersions:
     - v1

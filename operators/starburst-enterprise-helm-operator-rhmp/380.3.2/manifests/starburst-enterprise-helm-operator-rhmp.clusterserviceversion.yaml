@@ -115,14 +115,14 @@ metadata:
             },
             "image": {
               "pullPolicy": "IfNotPresent",
-              "repository": "harbor.starburstdata.net/starburstdata/starburst-enterprise",
+              "repository": "registry.connect.redhat.com/starburst/starburst-enterprise",
               "tag": "380-e.3"
             },
             "imagePullSecrets": null,
             "initFile": "",
             "initImage": {
               "pullPolicy": "IfNotPresent",
-              "repository": "harbor.starburstdata.net/starburstdata/starburst-enterprise-init",
+              "repository": "registry.connect.redhat.com/starburst/starburst-enterprise-init",
               "tag": "380.3.2"
             },
             "internal": {
@@ -146,7 +146,7 @@ metadata:
               },
               "image": {
                 "pullPolicy": "IfNotPresent",
-                "repository": "harbor.starburstdata.net/starburstdata/license-manager",
+                "repository": "registry.connect.redhat.com/starburst/license-manager",
                 "tag": "0.0.2"
               },
               "url": "https://license-api.dogfood.eng.starburstdata.net/test/license/checkout"
@@ -239,7 +239,7 @@ metadata:
                 "enabled": false,
                 "image": {
                   "pullPolicy": "IfNotPresent",
-                  "repository": "harbor.starburstdata.net/starburstdata/keda-trino-scaler",
+                  "repository": "registry.connect.redhat.com/starburst/keda-trino-scaler",
                   "tag": "0.1.5"
                 },
                 "port": 8021,
@@ -371,7 +371,7 @@ metadata:
             "hiveMetastoreWarehouseDir": null,
             "image": {
               "pullPolicy": "IfNotPresent",
-              "repository": "harbor.starburstdata.net/starburstdata/hive",
+              "repository": "registry.connect.redhat.com/starburst/hive",
               "tag": "3.1.2-e.15"
             },
             "imagePullSecrets": null,
@@ -439,7 +439,7 @@ metadata:
     capabilities: Basic Install
     categories: Big Data
     certified: "true"
-    containerImage: harbor.starburstdata.net/starburstdata/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
+    containerImage: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
     description: Deploys StarburstEnterprise Helm Operator
     operators.operatorframework.io/builder: operator-sdk-v1.13.0+git
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
@@ -611,7 +611,7 @@ spec:
               - args:
                 - --leader-elect
                 - --leader-election-id=starburst-enterprise-helm-operator
-                image: harbor.starburstdata.net/starburstdata/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
+                image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -701,8 +701,8 @@ spec:
   version: 380.3.2
   relatedImages:
   - name: starburst-enterprise-helm-operator
-    image: harbor.starburstdata.net/starburstdata/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
+    image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
   - name: starburst-enterprise-helm-operator-20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0-annotation
-    image: harbor.starburstdata.net/starburstdata/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
+    image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
   - name: manager
-    image: harbor.starburstdata.net/starburstdata/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0
+    image: registry.connect.redhat.com/starburst/starburst-enterprise-helm-operator@sha256:20d84ffb9e6dcc5fd1b964e12f4a62a6613842a79949202be7f3abb399f9fed0

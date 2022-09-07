@@ -8,4 +8,6 @@ annotations:
   operators.operatorframework.io.metrics.builder: operator-sdk-v1.22.1
   operators.operatorframework.io.metrics.mediatype.v1: metrics+v1
   operators.operatorframework.io.metrics.project_layout: go.kubebuilder.io/v2
+  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/cnvrg-rhmp/pricing?utm_source=openshift_console
+  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/cnvrg-rhmp/support?utm_source=openshift_consol
   com.redhat.openshift.versions: "v4.6-v4.11"

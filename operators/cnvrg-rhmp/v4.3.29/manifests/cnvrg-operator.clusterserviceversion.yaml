@@ -108,6 +108,8 @@ metadata:
     repository: https://github.com/AccessibleAI/cnvrg-operator
     operatorframework.io/suggested-namespace: cnvrg
     createdAt: 2022-08-18T11:23:00Z
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/cnvrg-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/cnvrg-rhmp/support?utm_source=openshift_consol
   name: cnvrg.v4.3.29
   namespace: placeholder
 spec:

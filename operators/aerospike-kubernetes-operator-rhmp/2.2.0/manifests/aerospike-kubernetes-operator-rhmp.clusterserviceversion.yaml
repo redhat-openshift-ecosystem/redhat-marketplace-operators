@@ -40,7 +40,7 @@ metadata:
                 "feature-key-file": "/etc/aerospike/secret/features.conf"
               }
             },
-            "image": "registry.connect.redhat.com/aerospike/aerospike-server-enterprise-ubi8:6.1.0.1",
+            "image": "aerospike/aerospike-server-enterprise:6.1.0.1",
             "podSpec": {
               "multiPodPerHost": true
             },

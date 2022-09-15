@@ -1,0 +1,416 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "yugabyte.com/v1alpha1",
+          "kind": "YBPlatform",
+          "metadata": {
+            "name": "ybplatform-sample"
+          },
+          "spec": {
+            "image": {
+              "commonRegistry": "",
+              "repository": "registry.connect.redhat.com/yugabytedb/yugabyte-platform",
+              "tag": "2.14.2.0-b25",
+              "pullPolicy": "IfNotPresent",
+              "pullSecret": "yugabyte-k8s-pull-secret",
+              "thirdparty-deps": {
+                "registry": "quay.io",
+                "tag": "latest",
+                "name": "yugabyte/thirdparty-deps"
+              },
+              "postgres": {
+                "registry": "",
+                "tag": 11.5,
+                "name": "postgres"
+              },
+              "prometheus": {
+                "registry": "",
+                "tag": "v2.27.1",
+                "name": "prom/prometheus"
+              },
+              "nginx": {
+                "registry": "",
+                "tag": "1.17.4-amd64",
+                "name": "nginxinc/nginx-unprivileged"
+              }
+            },
+            "yugaware": {
+              "replicas": 1,
+              "storage": "100Gi",
+              "storageClass": "",
+              "storageAnnotations": {},
+              "multiTenant": false,
+              "serviceAccount": "yugaware",
+              "serviceMonitor": {
+                "enabled": false,
+                "annotations": {}
+              },
+              "serviceAccountAnnotations": {},
+              "service": {
+                "annotations": {},
+                "enabled": true,
+                "ip": "",
+                "type": "LoadBalancer"
+              },
+              "pod": {
+                "annotations": {}
+              },
+              "health": {
+                "username": "",
+                "password": "",
+                "email": ""
+              },
+              "resources": {
+                "requests": {
+                  "cpu": 2,
+                  "memory": "4Gi"
+                }
+              },
+              "enableProxyMetricsAuth": true,
+              "additionAllowedCorsOrigins": [],
+              "proxyEndpointTimeoutMs": "1 minute",
+              "cloud": {
+                "enabled": false,
+                "requestIdHeader": "X-REQUEST-ID"
+              },
+              "podDisruptionBudget": {
+                "maxUnavailable": 0
+              }
+            },
+            "postgres": {
+              "service": {
+                "enabled": false,
+                "annotations": {},
+                "type": "ClusterIP",
+                "ip": ""
+              },
+              "resources": {
+                "requests": {
+                  "cpu": 0.5,
+                  "memory": "1Gi"
+                }
+              },
+              "external": {
+                "host": "",
+                "port": 5432,
+                "pass": "",
+                "dbname": "postgres",
+                "user": "postgres",
+                "jdbcParams": ""
+              }
+            },
+            "tls": {
+              "enabled": false,
+              "hostname": "localhost",
+              "certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZDVENDQXZHZ0F3SUJBZ0lVTlhvN2N6T2dyUWQrU09wOWdNdE00b1Vva3hFd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0ZERVNNQkFHQTFVRUF3d0piRzlqWVd4b2IzTjBNQjRYRFRJeE1EUXdOakExTXpnMU4xb1hEVE14TURRdwpOREExTXpnMU4xb3dGREVTTUJBR0ExVUVBd3dKYkc5allXeG9iM04wTUlJQ0lqQU5CZ2txaGtpRzl3MEJBUUVGCkFBT0NBZzhBTUlJQ0NnS0NBZ0VBMUxsSTFBLzRPOVIzSkNlN1N2MUxYVXhDSmxoTWpIWUoxV1FNVmcvai82RHkKazRTTmY0MkFLQjI0dFJFK2lEWTBNaTJrRWhJcVZ4TFdPN0hkWHVSN0tYNGxSZWFVVkRFTUtYUWNQUC9QWDZkbwpwZVZTUFpSVjVHNHNxTElXUFFkTVdIam9IQWx1aml5dGJsSVJUUWdLU3QrMmpuREFDN0dxRURMREdhNXRUWEM2CktRWkNtOERlaklOUTMzaGU2TDN0Q2hBRnhJM1pwY21sR0twbzdKVXJSUG14Mk9zTHFRcTB5dEVVK0lGZGppWHEKaHJLeFR0NUhHM3M3ZUNWaTRXdlZPelVGUitJbWRlQzBRZTBXeG5iZlZUMnJkVitQL1FaVXhWSEVtWnBPc0k2LwpmczhlK1dsMlduWXY1TTg5MWkxZER3Zi9lMDdiN20xQVRKdDRtTGRldzBtd1V4UGFGT2pDMDh6cU94NmF0cGhLClU1eHNWQmhGNVhyME9DeTQyMzN0MU5URXdWUEFDOFcwQmhHdldTRXBQTXNTKzM1b2lueEFrcFQzL01ibFpjNisKcXhSYUh6MHJhSksvVGIzelVKVWxWZFkxbGl5MVYyVjNxWEU2NWlsOUFHZ2pIaHhBNFBwSktCbzZ0WVRUT3pnTworL25mc0toMk95aE8zUWxBZ0JFUHlYUm5wL0xGSTVuQ2gzdjNiOXlabFNrSk05NkVoWEJ1bHhWUWN3L2p3N2NxCkRLSlBEeHFUQy9rWUs1V0FVZGhkWG1KQkRNMFBLcngzUGVOYjRsYnQzSTFIZW1QRDBoZktiWFd6alhiVTJQdWQKdjZmT0dXTDRLSFpaem9KZ1ljMFovRXRUMEpCR09GM09mMW42N2c5dDRlUnAzbEVSL09NM0FPY1dRbWFvOHlVQwpBd0VBQWFOVE1GRXdIUVlEVlIwT0JCWUVGTU00SjA4WG8wUGY1cTlOSWZiMGYyRzZqc1FoTUI4R0ExVWRJd1FZCk1CYUFGTU00SjA4WG8wUGY1cTlOSWZiMGYyRzZqc1FoTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3RFFZSktvWkkKaHZjTkFRRUxCUUFEZ2dJQkFBRmxrWVJkdzA0Zm9vT29BelUyaU5ORGV1aiszemhIeFQ5eU9iSkdwREZIRitoZQpuY1ZRWGZpMitHNjBWY0xuZERsWFhmbDZLOSs4ME55aEg4QjR1UEJNTWhoWG01MjJmYnJac1dFcnR3WE1rM2prClZ5UVA3MGk2NHE1ZGVrZzhoYzI0SXhFUlVsam9XM2lDTTdrb0VxaG15VkpGeDNxMVdobFEwdzNkWVpMQVNRclYKU0RpL2JGWjlqOXVtWVdoc0Y4QjFPSThPVjNlL0YyakU1UCtoTlJJazAzbW9zWE1Rdy9iZ3ZzV0hvSkZ5blB4UApHNGUzUjBob2NnbzI0Q2xOQ21YMWFBUms5c1pyN2h0NlVsM1F1d0dMdzZkK2I5emxrUW56TzFXQzc5ekVNU1R0ClRRRzFNT2ZlL2dTVkR3dThTSnpBOHV1Z0pYTktWWkxCZlpaNW41Tk9sOHdpOVVLa1BVUW4wOHo3VWNYVDR5ZnQKZHdrbnZnWDRvMFloUnNQNHpPWDF6eWxObzhqRDhRNlV1SkdQSksrN1JnUm8zVERPV3k4MEZpUzBxRmxrSFdMKwptT0pUWGxzaEpwdHE5b1c1eGx6N1lxTnFwZFVnRmNyTjJLQWNmaGVlNnV3SUFnOFJteTQvRlhRZjhKdXluSG5oClFhVlFnTEpEeHByZTZVNk5EdWg1Y1VsMUZTcWNCUGFPY0x0Q0ViVWg5ckQxajBIdkRnTUUvTTU2TGp1UGdGZlEKMS9xeXlDUkFjc2NCSnVMYjRxcXRUb25tZVZ3T1BBbzBsNXBjcC9JcjRTcTdwM0NML0kwT0o1SEhjcmY3d3JWSgpQVWgzdU1LbWVHVDRyeDdrWlQzQzBXenhUU0loc0lZOU12MVRtelF4MEprQm93c2NYaUYrcXkvUkl5UVgKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
+              "key": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUpRd0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQ1Mwd2dna3BBZ0VBQW9JQ0FRRFV1VWpVRC9nNzFIY2sKSjd0Sy9VdGRURUltV0V5TWRnblZaQXhXRCtQL29QS1RoSTEvallBb0hiaTFFVDZJTmpReUxhUVNFaXBYRXRZNwpzZDFlNUhzcGZpVkY1cFJVTVF3cGRCdzgvODlmcDJpbDVWSTlsRlhrYml5b3NoWTlCMHhZZU9nY0NXNk9MSzF1ClVoRk5DQXBLMzdhT2NNQUxzYW9RTXNNWnJtMU5jTG9wQmtLYndONk1nMURmZUY3b3ZlMEtFQVhFamRtbHlhVVkKcW1qc2xTdEUrYkhZNnd1cENyVEswUlQ0Z1YyT0plcUdzckZPM2tjYmV6dDRKV0xoYTlVN05RVkg0aVoxNExSQgo3UmJHZHQ5VlBhdDFYNC85QmxURlVjU1ptazZ3anI5K3p4NzVhWFphZGkva3p6M1dMVjBQQi85N1R0dnViVUJNCm0zaVl0MTdEU2JCVEU5b1U2TUxUek9vN0hwcTJtRXBUbkd4VUdFWGxldlE0TExqYmZlM1UxTVRCVThBTHhiUUcKRWE5WklTazh5eEw3Zm1pS2ZFQ1NsUGY4eHVWbHpyNnJGRm9mUFN0b2tyOU52Zk5RbFNWVjFqV1dMTFZYWlhlcApjVHJtS1gwQWFDTWVIRURnK2trb0dqcTFoTk03T0E3NytkK3dxSFk3S0U3ZENVQ0FFUS9KZEdlbjhzVWptY0tICmUvZHYzSm1WS1FrejNvU0ZjRzZYRlZCekQrUER0eW9Nb2s4UEdwTUwrUmdybFlCUjJGMWVZa0VNelE4cXZIYzkKNDF2aVZ1M2NqVWQ2WThQU0Y4cHRkYk9OZHRUWSs1Mi9wODRaWXZnb2Rsbk9nbUJoelJuOFMxUFFrRVk0WGM1LwpXZnJ1RDIzaDVHbmVVUkg4NHpjQTV4WkNacWp6SlFJREFRQUJBb0lDQUFmY2lScDlOSmxSY3MyOVFpaTFUN0cwCi9jVFpBb3MyV1lxdlZkMWdYUGEzaGY5NXFKa01LNjVQMnVHbUwzOXRNV1NoVnl6cnl2REkyMjM5VnNjSS9wdzcKOHppd0dzODV1TTlYWVN2SDhHd0NqZFdEc2hSZ2hRUWFKa0JkeElDZzRtdHFuSGxjeDk4dE80T1dPTmwxOEp0dgp4UmxpaFZacFRIV295cGtLWHpPN2RNWExXMjdTSStkaGV2Mm5QeXF1eWpIVEFjT1AwbmxVQ0d2dThFMjkvWWxoCkNQZVJTQzhKSEVGYWxNSFNWaGpJd2ZBVWJvVVJwZU1ZSE15RjVTK2JncGZiajhSbVVUR09DbHRkWGJnYjhJai8KN0hROEFlQkIrYVFKTDVEVnFRN1JWN1ppQlMwR2ZyODlHdXdEMUs4em9mcktPdURkdXpjR2hwZk9MeGpGdmhTOApSQ2Y1Z3BFMzg0aWlHc2tWZC9mZDJLK3NhSmk0L09HbHo0aHhhc1hDcTN1TXB5OTZPNFRrMXZzM3BXdWZNVmJXCnR2d1Mrcjhvbk9uOXZqa3lqOU11eUpId1BpSlNGMUt0ZzhPUU5WMlVST0xXcHlYMWk4Z2xoMXdSelRTQ2diQnMKZ3ZxWkFvaU1pWFh3SlVXN3Zpb0RLZjI0TnZvcjViaVNzeUh0MHVKUVZJaW1iK1prTFJwTWdwRlkyTlcrTnd6LwoxOW9DS2ZUVVpWNkJia09IK0NoOUowLy9hTTRGNnUvMTI4V0UxalJQU05mdWQ0b0dpdGVPNXRsRDNWSXRsb1hlCjNyWVMrcTNuYXU1RStWc2FRZGFVNzhrSnpXYmUrWURmQ1JwWGd6TkloSkMyQ1k5d0RSK3hIaVFwbzdLSHV6dngKUkpuRjhIcGwzdWhIdWxEam44dEpBb0lCQVFEeGxhVVIwN1l6TGF2OVZtamZCenpZMjcwOU9tWnhpa3NtRnlhWApKTkJMQVB3SGdXOEVCUHdKOEprSDhXR1NTekp1OXZGd1JDVEVqZ1J5dWUvS05DWnNmUWF2UDg3dzhablJHaEhjCklHUUV1MFN3bmJzZXFJK1VWa0M5amZjaFE4dlowM0dQTGZ6bWpsSW9PNkNLTVM3TlV2Ynk5MksvOHRVVWRtWWgKMmJJa2N4V0J1RDJoenh3K1ZId3ArWktMQ0FPZi9sOG8vQ20xQ1dZSFNGdVYzTkl3T016Z2FKaExJODJNR08zQwpuODZTMXcweGc2MHB5dUV6L0hXZS9JMFZkRGNsWlgyNC9jalVBb01kQlkvSGY4Tkh2ZUNhZExQeXI3eGpRY2NLClAzN0RhdFRyK2RTZ2RoVkxzUDRRRzVVZEZxNUlMSHoxTXBkb2xXZ2pDSlZqcTZMekFvSUJBUURoYXNYdVRzMDIKNEkvYkRlSGRZSmw2Q1NzVUh2NmJXL3dpYlRhd2dpbDh5RUNWS2x6eFY4eENwWnoxWVhRQlY1YnVvQlArbjZCWApnVHgzTTJHc2R5UU1xdGRCWG9qdGp1czB6ekFNQVQzOWNmdWlHMGR0YXF3eWJMVlEwYThDZnFmMDVyUmZ0ekVmCmtTUDk2d01kVUEyTGdCbnU4akwzOU41UkxtK2RpZUdxeDAwYmJTa3l5UE9HNHIvcDl6KzN6TmVmeUhmbm94bTkKUnQza1RpeGhVNkd4UGhOSnZpWEUrWUpwT0dKVXMvK2dUWWpjUE1zRW9ONHIyR215cUs3S21NZExFa3Y1SHliWgprbmNsV2FMVFlhNEpjMjJUaWZJd01NTWMwaCtBMkJVckdjZFZ6MTA0UXluUFZQZDdXcEszenhqcjRPUHh1YnQ2CjZvTWk2REdRSVNlSEFvSUJBUURTK1YyVHFQRDMxczNaU3VvQXc2Qld2ZWVRbmZ5eThSUFpxdVFQb0oycXNxeG0KblpsbXlEZVhNcDloK1dHOVVhQTBtY0dWeWx6VnJqU2lRRkR4cEFOZVFQMWlkSFh6b3ZveVN2TUg2dDJONkVELwpnRy9XUVZ4S0xkMFI3UFhCL2lQN0VaV2RkWXJqaWF5ajZCYTJPR2RuOWlrbFcvZklLM2Y4QzczN2w5TGoxQUVYCkxOL2QvREh0R1BqcDYwTVgyYUxZeVZzdlBxL3BvdENRVVpkeDA4dFhRM05nRXRmVTN1cDFpNXV2bU1IZEtLTWoKOTV0MDRQRTA1aWVOOVgzOEcyYkJhTldYaFVJcUxCdDJiOUgxWmxVU3hQWnR6TGNObkgwSHJYejJMU2MxMzRrYwpueXdhQ2FWbFdhYzJSL0E3Mi8vTmxkUjJpWDBDWDEvM0lGcmVGUmtUQW9JQkFBbGt0S2pRbWRhZWx3QU8zUW1uCm05MnRBaUdOaFJpZVJheDlscGpXWTdveWNoYUZOR2hPTzFIUHF2SEN4TjNGYzZHd0JBVkpTNW81NVhZbUt2elAKM2kyMDlORmhpaDAwSm5NRjZ6K2swWnQ5STNwRzNyd2RoTjE1RURrMDg3RUw3QjNWZTFDOXhvdEZOaFcvdEZxRgpXbnNrdEcvem9kSVpYeVpNNUJQUmloamV3MFRRVUxZd0Q0M2daeFR0MjdiaUQxNDJNV0R5dUFEZU1pTHdhd01IClJDYXBxbzRaSVdQSzdmZEtoVFo0WmIrZFc0V3A5dC9UZ0U2ZGJ4SWwyMXJQOFFZYzFoT2tpNjduWHBXczNZOG4KYytRcTdqY0d1WlB1aEVMd01xWGcyMGozZ3duOVlTb1dDbWo4Wm0rNmY0Q3ZYWjkrdUtEN0YyZncyOVFaanU4dApvb01DZ2dFQkFPbVVHZ1VoT0tUVys1eEpkZlFKRUVXUncyVFF6Z2l6dSt3aVkzaDYrYXNTejRNY0srVGx6bWxVCmFHT013dFhTUzc0RXIxVmlCVXMrZnJKekFPR21IV0ExZWdtaGVlY1BvaE9ybTh5WkVueVJOSkRhWC9UUXBSUnEKaVdoWENBbjJTWFQxcFlsYVBzMjdkbXpFWnQ3UlVUSkJZZ1hHZXQ4dXFjUXZaVDJZK3N6cHFNV3UzaEpWdmIxdgpZNGRJWE12RG1aV1BPVjFwbHJEaTVoc214VW05TDVtWk1IblllNzFOYkhsaEIxK0VUNXZmWFZjOERzU1RRZWRRCitDRHJKNGQ0em85dFNCa2pwYTM5M2RDRjhCSURESUQyWkVJNCtBVW52NWhTNm82NitOLzBONlp3cXkwc2pKY0cKQ21LeS9tNUpqVzFJWDMxSmZ1UU5Ldm9YNkRFN0Zkaz0KLS0tLS1FTkQgUFJJVkFURSBLRVktLS0tLQo=",
+              "sslProtocols": ""
+            },
+            "securityContext": {
+              "enabled": false,
+              "fsGroup": 10001,
+              "fsGroupChangePolicy": "OnRootMismatch",
+              "runAsUser": 10001,
+              "runAsGroup": 10001,
+              "runAsNonRoot": true
+            },
+            "helm": {
+              "timeout": 900,
+              "packagePath": "/opt/yugabyte/helm"
+            },
+            "domainName": "cluster.local",
+            "helm2Legacy": false,
+            "ip_version_support": "v4_only",
+            "nginx": {
+              "workerConnections": 1024,
+              "db_node_proxy_enabled": false,
+              "upload_size": "10G",
+              "resources": {
+                "requests": {
+                  "cpu": 0.25,
+                  "memory": "300Mi"
+                }
+              }
+            },
+            "rbac": {
+              "create": false
+            },
+            "ocpCompatibility": {
+              "enabled": true
+            },
+            "sidecars": [],
+            "prometheus": {
+              "scrapeNodes": true,
+              "evaluateAlertRules": true,
+              "retentionTime": "15d",
+              "resources": {
+                "requests": {
+                  "cpu": 2,
+                  "memory": "4Gi"
+                }
+              }
+            },
+            "additionalAppConf": {
+              "stringConf": {},
+              "nonStringConf": {}
+            }
+          }
+        }
+      ]
+    capabilities: Seamless Upgrades
+    categories: Database
+    certified: "true"
+    containerImage: registry.connect.redhat.com/yugabytedb/yugabyte-platform-operator@sha256:ff1f525207d76bfaa0b2a3b970164aa51a5389774f9a78760188157bcbee933a
+    description: Operator for Yugabyte Platform makes it easy to deploy and upgrade Yugabyte Platform on OpenShift environments.
+    operators.operatorframework.io/builder: operator-sdk-v1.22.2
+    operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
+    repository: https://github.com/yugabyte/yugabyte-platform-operator
+    support: YugabyteDB
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/yugabyte-platform-operator-bundle-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/yugabyte-platform-operator-bundle-rhmp/support?utm_source=openshift_console
+  name: yugabyte-platform-operator.v2.14.2
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+      - kind: YBPlatform
+        name: ybplatforms.yugabyte.com
+        version: v1alpha1
+        # manually added block start
+        description: Deploy and manage Yugabyte Platform as a Kubernetes native custom resource.
+        displayName: Yugabyte Platform
+        resources:
+          - kind: ServiceAccount
+            name: ""
+            version: v1
+          - kind: StatefulSet
+            name: ""
+            version: v1
+          - kind: PodDisruptionBudget
+            name: ""
+            version: v1beta1
+          - kind: PersistentVolumeClaim
+            name: ""
+            version: v1
+          - kind: Secret
+            name: ""
+            version: v1
+          - kind: Service
+            name: ""
+            version: v1
+          - kind: ConfigMap
+            name: ""
+            version: v1
+            # manually added block end
+  description: |
+    Operator for Yugabyte Platform makes it easy to deploy and upgrade Yugabyte Platform on OpenShift environments.
+    Use Yugabyte Platform's orchestration and monitoring to manage YugabyteDB universes. Yugabyte Platform can create a YugabyteDB universe with many instances (VMs, pods, machines, etc., provided by IaaS), logically grouped together to form one logical distributed database. Each universe includes one or more clusters. A universe is comprised of one primary cluster and, optionally, one or more read replica clusters. All instances belonging to a cluster run on the same type of cloud provider instance type.
+
+    ### Yugabyte Platform Features
+    * **YugabyteDB-as-a-Service on Kubernetes** - Deploy your own YugabyteDB-as-a-Service running on any Kubernetes infrastructure, Yugabyte Platform provides central management for multiple database clusters and Includes 24/7 production support.
+    * **Monitoring & Alerting** - Comprehensive monitoring & alerting without any configuration.
+    * **Scheduled Backups** - Use Yugabyte Platform to perform a regular scheduled backup of a full YugabyteDB universe or selected tables.
+
+    ### Getting Started
+    Here are a few resources for getting started with Yugabyte platform
+    * [Quick start guide for Yugabyte Platform](https://docs.yugabyte.com/preview/yugabyte-platform/install-yugabyte-platform/install-software/openshift/) - Install Yugabyte platform on OpenShift.
+    * [Quick Start for YugabyteDB](http://docs.yugabyte.com/latest/quick-start/) - install, create a local cluster and read/write from YugabyteDB.
+    * [Explore core features](https://docs.yugabyte.com/latest/explore/) - automatic sharding & re-balancing, linear scalability, fault tolerance, tunable reads etc.
+    * [Ecosystem integrations](https://docs.yugabyte.com/latest/develop/ecosystem-integrations/) - integrations with Apache Kafka/KSQL, Apache Spark, JanusGraph, KairosDB, Presto and more.
+    * [Real world apps](https://docs.yugabyte.com/latest/develop/realworld-apps/) - sample real-world, end-to-end applications built using YugabyteDB.
+
+    ### Help
+    Cannot find what you are looking for? Have a question? We love to hear from you - [please file a GitHub issue](https://github.com/YugaByte/yugabyte-db/issues) or talk to us live at [Slack](https://www.yugabyte.com/slack).
+  displayName: Yugabyte Platform Operator
+  icon:
+    - base64data: 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
+      mediatype: image/png
+  install:
+    spec:
+      clusterPermissions:
+        - rules:
+            - apiGroups:
+                - ""
+              resources:
+                - namespaces
+              verbs:
+                - get
+                - patch
+            - apiGroups:
+                - ""
+              resources:
+                - secrets
+              verbs:
+                - '*'
+            - apiGroups:
+                - ""
+              resources:
+                - events
+              verbs:
+                - create
+            - apiGroups:
+                - yugabyte.com
+              resources:
+                - ybplatforms
+                - ybplatforms/status
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - policy
+              resources:
+                - poddisruptionbudgets
+              verbs:
+                - '*'
+            - apiGroups:
+                - ""
+              resources:
+                - configmaps
+                - persistentvolumeclaims
+                - serviceaccounts
+                - services
+              verbs:
+                - '*'
+            - apiGroups:
+                - apps
+              resources:
+                - statefulsets
+              verbs:
+                - '*'
+            - apiGroups:
+                - yugabyte.com
+              resources:
+                - ybplatforms/finalizers
+              verbs:
+                - update
+            - apiGroups:
+                - rbac.authorization.k8s.io
+              resources:
+                - clusterrolebindings
+              verbs:
+                - create
+                - get
+                - delete
+                - patch
+                - list
+            - apiGroups:
+                - authentication.k8s.io
+              resources:
+                - tokenreviews
+              verbs:
+                - create
+            - apiGroups:
+                - authorization.k8s.io
+              resources:
+                - subjectaccessreviews
+              verbs:
+                - create
+            - apiGroups:
+                - coordination.k8s.io
+              resources:
+                - leases
+              verbs:
+                - create
+                - get
+                - update
+                - watch
+                - list
+          serviceAccountName: default
+      deployments:
+        - label:
+            control-plane: controller-manager
+          name: yugabyte-platform-operator-controller-manager
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: yugabyte-platform-operator
+                control-plane: controller-manager
+            strategy: {}
+            template:
+              metadata:
+                labels:
+                  app: yugabyte-platform-operator
+                  control-plane: controller-manager
+              spec:
+                containers:
+                  - args:
+                      - --secure-listen-address=0.0.0.0:8443
+                      - --upstream=http://127.0.0.1:8080/
+                      - --logtostderr=true
+                      - --v=10
+                    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:7abede2caee5a935f87219f51732cff5a8c3bfca1eab1f0e9725ca93fd347b89
+                    name: kube-rbac-proxy
+                    ports:
+                      - containerPort: 8443
+                        name: https
+                    resources: {}
+                  - args:
+                      - --metrics-addr=127.0.0.1:8080
+                      - --enable-leader-election
+                      - --leader-election-id=yugabyte-platform-operator
+                    image: registry.connect.redhat.com/yugabytedb/yugabyte-platform-operator@sha256:ff1f525207d76bfaa0b2a3b970164aa51a5389774f9a78760188157bcbee933a
+                    name: manager
+                    resources: {}
+                terminationGracePeriodSeconds: 10
+      permissions:
+        - rules:
+            - apiGroups:
+                - ""
+              resources:
+                - configmaps
+              verbs:
+                - get
+                - list
+                - watch
+                - create
+                - update
+                - patch
+                - delete
+            - apiGroups:
+                - ""
+              resources:
+                - events
+              verbs:
+                - create
+                - patch
+          serviceAccountName: default
+    strategy: deployment
+  installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: true
+      type: SingleNamespace
+    - supported: true
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
+  keywords:
+    - database
+    - distributed sql
+  links:
+    - name: Yugabyte Platform Operator
+      url: https://www.yugabyte.com/
+  maintainers:
+    - email: oss-maintainers@yugabyte.com
+      name: Yugabyte
+  maturity: alpha
+  provider:
+    name: Yugabyte Inc
+  version: 2.14.2
+  # Future use
+  # replaces: yugabyte-platform-operator.v0.0.6
+  # manually added line
+  # https://v0-18-z.olm.operatorframework.io/docs/concepts/olm-architecture/operator-catalog/creating-an-update-graph/
+  # skips:

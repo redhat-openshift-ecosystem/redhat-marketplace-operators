@@ -5,7 +5,7 @@ metadata:
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/redis-enterprise-operator-cert-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/redis-enterprise-operator-cert-rhmp/support?utm_source=openshift_console
     categories: Database
-    containerImage: registry.connect.redhat.com/redislabs/redis-enterprise-operator:6.2.12-1
+    containerImage: registry.connect.redhat.com/redislabs/redis-enterprise-operator@sha256:2a033d4a4ccabb4963116add69fc8e91770ee627f6b974879d8dd7ddddebce47
     alm-examples: |-
       [
         {
@@ -600,3 +600,7 @@ spec:
     image: registry.connect.redhat.com/redislabs/services-manager@sha256:14fed0c1843b44a1fb4f3c2f29cc0b51fc02f03a001f9abde9dbe6feaa4bef70
   - name: rs-image
     image: registry.connect.redhat.com/redislabs/redis-enterprise@sha256:bfc13e387a0c941bf29ea2eea8ad889be019dcecba7b56994ec1542621211c1c
+  - name: redis-enterprise-operator-2a033d4a4ccabb4963116add69fc8e91770ee627f6b974879d8dd7ddddebce47-annotation
+    image: registry.connect.redhat.com/redislabs/redis-enterprise-operator@sha256:2a033d4a4ccabb4963116add69fc8e91770ee627f6b974879d8dd7ddddebce47
+  - name: admission
+    image: registry.connect.redhat.com/redislabs/redis-enterprise-operator@sha256:2a033d4a4ccabb4963116add69fc8e91770ee627f6b974879d8dd7ddddebce47

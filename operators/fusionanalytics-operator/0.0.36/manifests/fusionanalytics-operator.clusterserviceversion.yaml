@@ -8,7 +8,7 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.23.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-  name: operator.v0.0.37
+  name: fusionanalytics-operator.v0.0.37
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

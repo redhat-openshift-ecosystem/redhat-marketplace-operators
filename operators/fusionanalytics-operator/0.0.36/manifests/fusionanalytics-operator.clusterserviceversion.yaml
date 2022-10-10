@@ -8,7 +8,7 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.23.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
-  name: fusionanalytics-operator.v0.0.37
+  name: fusionanalytics-operator.v0.0.36
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -231,7 +231,7 @@ spec:
                 - --leader-elect
                 command:
                 - /manager
-                image: quay.io/novisystems/novianalytics-operator-x86_64:v0.0.37
+                image: quay.io/novisystems/novianalytics-operator-x86_64:v0.0.36
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -319,4 +319,4 @@ spec:
   provider:
     name: NoviSystems Inc.
     url: https://novi.systems
-  version: 0.0.37
+  version: 0.0.36

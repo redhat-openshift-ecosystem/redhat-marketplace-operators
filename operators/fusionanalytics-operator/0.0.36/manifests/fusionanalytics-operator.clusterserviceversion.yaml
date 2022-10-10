@@ -210,7 +210,7 @@ spec:
                 - --upstream=http://127.0.0.1:8890/
                 - --logtostderr=true
                 - --v=0
-                image: gcr.io/kubebuilder/kube-rbac-proxy:v0.11.0
+                image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:0df4ae70e3bd0feffcec8f5cdb428f4abe666b667af991269ec5cb0bbda65869
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443
@@ -231,7 +231,7 @@ spec:
                 - --leader-elect
                 command:
                 - /manager
-                image: quay.io/novisystems/novianalytics-operator-x86_64:v0.0.36
+                image: quay.io/novisystems/novianalytics-operator-x86_64@sha256:290a9de0107cf1339d612e3d209bf2641610d5cf406b141f876e6b3d07e41419
                 livenessProbe:
                   httpGet:
                     path: /healthz

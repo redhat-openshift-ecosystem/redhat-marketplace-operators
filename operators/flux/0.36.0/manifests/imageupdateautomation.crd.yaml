@@ -164,10 +164,12 @@ spec:
                     description: >-
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
-                      for direct use as an array at the field path
-                      .status.conditions.  For example, 
-                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
-                       // other fields }
+                      for direct use as an array at the field path .status.conditions.  For example, 
+                      type FooStatus struct{ // Represents the observations of a foo's current state. 
+                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 
+                      // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions 
+                      []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" 
+                      protobuf:"bytes,1,rep,name=conditions"` // other fields }
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from
@@ -439,10 +441,11 @@ spec:
                     description: >-
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
-                      for direct use as an array at the field path
-                      .status.conditions.  For example, 
-                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
-                       // other fields }
+                      for direct use as an array at the field path .status.conditions.  
+                      For example, type FooStatus struct{ // Represents the observations of a foo's current state. 
+                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type 
+                      // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" 
+                      patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` // other fields }
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from
@@ -586,9 +589,9 @@ spec:
                               type: string
                             commit:
                               description: >-
-                                Commit SHA to check out, takes precedence over
-                                all reference fields. 
-                                 When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
+                                Commit SHA to check out, takes precedence over all reference fields. When 
+                                GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined 
+                                with Branch to shallow clone the branch, in which the commit is expected to exist.
                               type: string
                             semver:
                               description: SemVer tag expression to check out, takes precedence over Tag.
@@ -726,10 +729,12 @@ spec:
                     description: >-
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
-                      for direct use as an array at the field path
-                      .status.conditions.  For example, 
-                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
-                       // other fields }
+                      for direct use as an array at the field path .status.conditions.  For example, 
+                      type FooStatus struct{ // Represents the observations of a foo's current state. 
+                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 
+                      // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions 
+                      []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" 
+                      protobuf:"bytes,1,rep,name=conditions"` // other fields }
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from

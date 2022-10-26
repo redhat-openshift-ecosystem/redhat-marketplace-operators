@@ -195,13 +195,7 @@ spec:
                         CRDs upgrade CRDs from the Helm Chart's crds directory
                         according to the CRD upgrade policy provided here. Valid
                         values are `Skip`, `Create` or `CreateReplace`. Default
-                        is `Create` and if omitted CRDs are installed but not updated. 
-                        Skip: do neither install nor replace (update) any CRDs. 
-                        Create: new CRDs are created, existing CRDs are neither updated nor deleted. 
-                        CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. 
-                        By default, CRDs are applied (installed) during Helm install action. With this option users 
-                        can opt-in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively 
-                        supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.
+                        is `Create` and if omitted CRDs are installed but not updated.
                       enum:
                       - Skip
                       - Create
@@ -639,11 +633,7 @@ spec:
                         according to the CRD upgrade policy provided here. Valid
                         values are `Skip`, `Create` or `CreateReplace`. Default
                         is `Skip` and if omitted CRDs are neither installed nor
-                        upgraded. Skip: do neither install nor replace (update) any CRDs. 
-                        Create: new CRDs are created, existing CRDs are neither updated nor deleted. 
-                        CreateReplace: new CRDs are created, existing CRDs are updated (replaced) but not deleted. 
-                        By default, CRDs are not applied during Helm upgrade action. With this option users can opt-in to CRD upgrade, 
-                        which is not (yet) natively supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.
+                        upgraded. Skip: do neither install nor replace (update) any CRDs.
                       enum:
                         - Skip
                         - Create
@@ -776,12 +766,8 @@ spec:
                     description: >-
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
-                      for direct use as an array at the field path .status.conditions.  For example, 
-                      type FooStatus struct{ // Represents the observations of a foo's current state. 
-                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 
-                      // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions 
-                      []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" 
-                      protobuf:"bytes,1,rep,name=conditions"` // other fields }
+                      for direct use as an array at the field path .status.conditions. For example, 
+                      type FooStatus struct{ // Represents the observations of a foo's current state.
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from

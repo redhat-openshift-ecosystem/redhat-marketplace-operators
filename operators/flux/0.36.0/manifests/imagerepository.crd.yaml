@@ -55,8 +55,8 @@ spec:
               properties:
                 certSecretRef:
                   description: >-
-                    CertSecretRef can be given the name of a secret containing
-                    either or both of  a PEM-encoded client certificate (`certFile`) and private key (`keyFile`);
+                    CertSecretRef can be given the name of a secret containing 
+                    either or both of  a PEM-encoded client certificate (`certFile`) and private key (`keyFile`)
                     a PEM-encoded CA certificate (`caFile`) and whichever are supplied, will be used for connecting to the registry.
                     The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you 
                     are using a self-signed server certificate.
@@ -232,10 +232,8 @@ spec:
                 certSecretRef:
                   description: >-
                     CertSecretRef can be given the name of a secret containing
-                    either or both of  a PEM-encoded client certificate (`certFile`) and private key (`keyFile`);
+                    either or both of  a PEM-encoded client certificate (`certFile`) and private key (`keyFile`)
                     a PEM-encoded CA certificate (`caFile`) and whichever are supplied, will be used for connecting to the registry.
-                    The client cert and key are useful if you are authenticating with a certificate; the CA cert is useful if you
-                    are using a self-signed server certificate.
                   properties:
                     name:
                       description: Name of the referent.
@@ -287,11 +285,11 @@ spec:
                       for direct use as an array at the field path .status.conditions.
                     properties:
                       lastTransitionTime:
-                        description: lastTransitionTime is the last time the condition transitioned from
+                        description: >-
+                          lastTransitionTime is the last time the condition transitioned from
                           one status to another. This should be when the
-                          underlying condition changed.  If that is not known,
-                          then using the time when the API field changed is
-                          acceptable.
+                          underlying condition changed. If that is not known,
+                          then using the time when the API field changed is acceptable.
                         format: date-time
                         type: string
                       message:
@@ -508,10 +506,7 @@ spec:
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from
-                          one status to another. This should be when the
-                          underlying condition changed.  If that is not known,
-                          then using the time when the API field changed is
-                          acceptable.
+                          one status to another.
                         format: date-time
                         type: string
                       message:

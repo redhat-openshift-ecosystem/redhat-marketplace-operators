@@ -1313,7 +1313,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: quay.io/redhat-isv-containers/62b4ee1f48f5d5e8c613149d@sha256:aacb618e412bbd1c5e591ab0c9ee2906a046e0140f6e1bb7eb14ba312dac9aef
+                    image: quay.io/redhat-isv-containers/62b4ee1f48f5d5e8c613149d@sha256:a5f541f66aef6e5a7cab7cdaf05afdddf48abd0d5dc11d843623c1fad7ec5177
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1547,7 +1547,7 @@ spec:
     - name: notification-controller
       image: quay.io/redhat-isv-containers/62b4f43f461203ae504afc61@sha256:4da53ec5247caec281a6424f9e955bf0065e2c79bdb4ed2e76f97815d8d0bb86
     - name: kustomize-controller
-      image: quay.io/redhat-isv-containers/62b4ee1f48f5d5e8c613149d@sha256:aacb618e412bbd1c5e591ab0c9ee2906a046e0140f6e1bb7eb14ba312dac9aef
+      image: quay.io/redhat-isv-containers/62b4ee1f48f5d5e8c613149d@sha256:a5f541f66aef6e5a7cab7cdaf05afdddf48abd0d5dc11d843623c1fad7ec5177
     - name: image-reflector-controller
       image: quay.io/redhat-isv-containers/62b4e8b624794e195d568600@sha256:25bcaf46afefc19ae8513b11b1fecdb6e31302737871dfda36fe71d426b2ef99
     - name: image-automation-controller

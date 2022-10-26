@@ -247,11 +247,7 @@ spec:
                       for direct use as an array at the field path .status.conditions.
                     properties:
                       lastTransitionTime:
-                        description: lastTransitionTime is the last time the condition transitioned from
-                          one status to another. This should be when the
-                          underlying condition changed.  If that is not known,
-                          then using the time when the API field changed is
-                          acceptable.
+                        description: lastTransitionTime is the last time the condition transitioned fromone status to another.
                         format: date-time
                         type: string
                       message:
@@ -325,8 +321,7 @@ spec:
                   format: int64
                   type: integer
                 observedIgnore:
-                  description: ObservedIgnore is the observed exclusion patterns used for
-                    constructing the source artifact.
+                  description: ObservedIgnore is the observed exclusion patterns used for constructing the source artifact.
                   type: string
                 observedLayerSelector:
                   description: ObservedLayerSelector is the observed layer selector used for

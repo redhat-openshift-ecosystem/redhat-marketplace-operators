@@ -1554,3 +1554,4 @@ spec:
       image: registry.connect.redhat.com/flux/image-automation-controller@sha256:d57b0570dd95ecf48d7b11b85bb5d6fbbe1b2dedfda2950eeb38daa1aeb8957e
     - name: helm-controller
       image: registry.connect.redhat.com/flux/helm-controller@sha256:cbbabb3d5f92f33fcea6604b86beab329aa3fdacdf932545b19ab99d0f13def5
+      

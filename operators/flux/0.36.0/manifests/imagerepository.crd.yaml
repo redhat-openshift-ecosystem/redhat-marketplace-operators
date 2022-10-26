@@ -55,10 +55,10 @@ spec:
               properties:
                 certSecretRef:
                   description: >-
-                    CertSecretRef can be given the name of a secret containing either or both of  a PEM-encoded client certificate (`certFile`) and private key (`keyFile`);
+                    CertSecretRef can be given the name of a secret containing either or both of a PEM-encoded client certificate (`certFile`) and private key (`keyFile`);
                   properties:
                     name:
-                      description: Name of the referent.
+                      description: Name of the referent
                       type: string
                   required:
                     - name

@@ -61,8 +61,7 @@ spec:
               description: OCIRepositorySpec defines the desired state of OCIRepository
               properties:
                 certSecretRef:
-                  description: >-
-                    CertSecretRef can be given the name of a secret containing.
+                  description: CertSecretRef can be given the name of a secret.
                   properties:
                     name:
                       description: Name of the referent.

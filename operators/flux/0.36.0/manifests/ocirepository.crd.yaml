@@ -62,7 +62,7 @@ spec:
               properties:
                 certSecretRef:
                   description: >-
-                    CertSecretRef can be given the name of a secret containing            
+                    CertSecretRef can be given the name of a secret containing.
                   properties:
                     name:
                       description: Name of the referent.

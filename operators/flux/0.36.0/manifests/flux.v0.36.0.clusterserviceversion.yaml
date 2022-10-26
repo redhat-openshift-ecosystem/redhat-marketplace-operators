@@ -423,7 +423,6 @@ spec:
     [Flux](https://fluxcd.io/) is a Continuous Delivery solution for Kubernetes.
 
     Flux is constructed with the [GitOps Toolkit](https://toolkit.fluxcd.io/components/), a set of composable APIs and specialized tools for keeping Kubernetes clusters in sync with sources of configuration (like Git & Helm repositories), and automating updates to configuration when there is new code to deploy.
- 
 
     Flux is a CNCF incubation project made for:
 

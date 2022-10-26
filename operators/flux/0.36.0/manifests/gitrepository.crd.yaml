@@ -241,12 +241,10 @@ spec:
                     description: >-
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
-                      for direct use as an array at the field path .status.conditions.  For example, 
-                      type FooStatus struct{ // Represents the observations of a foo's current state. 
-                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 
-                      // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions 
-                      []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" 
-                      protobuf:"bytes,1,rep,name=conditions"` // other fields }
+                      for direct use as an array at the field path
+                      .status.conditions.  For example, 
+                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
+                       // other fields }
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from
@@ -488,13 +486,14 @@ spec:
                     branch:
                       description: >-
                         Branch to check out, defaults to 'master' if no other
-                        field is defined.
-                        When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.
+                        field is defined. 
+                         When GitRepositorySpec.GitImplementation is set to 'go-git', a shallow clone of the specified branch is performed.
                       type: string
                     commit:
                       description: >-
-                        Commit SHA to check out, takes precedence over all reference fields. When GitRepositorySpec.GitImplementation 
-                        is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
+                        Commit SHA to check out, takes precedence over all
+                        reference fields. 
+                         When GitRepositorySpec.GitImplementation is set to 'go-git', this can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
                       type: string
                     semver:
                       description: SemVer tag expression to check out, takes precedence over Tag.
@@ -610,12 +609,10 @@ spec:
                     description: >-
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
-                      for direct use as an array at the field path .status.conditions.  For example, 
-                      type FooStatus struct{ // Represents the observations of a foo's current state. 
-                      // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" 
-                      // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions 
-                      []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" 
-                      protobuf:"bytes,1,rep,name=conditions"` // other fields }
+                      for direct use as an array at the field path
+                      .status.conditions.  For example, 
+                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
+                       // other fields }
                     properties:
                       lastTransitionTime:
                         description: lastTransitionTime is the last time the condition transitioned from
@@ -685,9 +682,9 @@ spec:
                     .spec.included and the checksum of the included artifacts
                     observed in .status.observedGeneration version of the
                     object. This can be used to determine if the content of the
-                    included repository has changed. It has the format of `<algo>:<checksum>`, 
-                    for example: `sha256:<checksum>`. Deprecated: Replaced with explicit fields 
-                    for observed artifact content config in the status.
+                    included repository has changed. It has the format of
+                    `<algo>:<checksum>`, for example: `sha256:<checksum>`. 
+                     Deprecated: Replaced with explicit fields for observed artifact content config in the status.
                   type: string
                 includedArtifacts:
                   description: IncludedArtifacts contains a list of the last successfully included
@@ -744,8 +741,9 @@ spec:
                     GitRepository object.
                   format: int64
                   type: integer
-                  observedIgnore:
-                  description: ObservedIgnore is the observed exclusion patterns used for constructing the source artifact.
+                observedIgnore:
+                  description: ObservedIgnore is the observed exclusion patterns used for
+                    constructing the source artifact.
                   type: string
                 observedInclude:
                   description: ObservedInclude is the observed list of GitRepository resources

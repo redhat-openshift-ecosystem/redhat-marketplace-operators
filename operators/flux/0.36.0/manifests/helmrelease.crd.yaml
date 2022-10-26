@@ -203,9 +203,9 @@ spec:
                         can opt-in to CRD replace existing CRDs on Helm install actions, which is not (yet) natively 
                         supported by Helm. https://helm.sh/docs/chart_best_practices/custom_resource_definitions.
                       enum:
-                        - Skip
-                        - Create
-                        - CreateReplace
+                      - Skip
+                      - Create
+                      - CreateReplace
                       type: string
                     createNamespace:
                       description: CreateNamespace tells the Helm install action to create the
@@ -512,7 +512,6 @@ spec:
                             items:
                               x-kubernetes-preserve-unknown-fields: true
                             type: array
-                        type: object
                     type: object
                   type: array
                 releaseName:

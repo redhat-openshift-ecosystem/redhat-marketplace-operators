@@ -422,10 +422,8 @@ spec:
   description: >-
     [Flux](https://fluxcd.io/) is a Continuous Delivery solution for Kubernetes.
 
-    Flux is constructed with the [GitOps Toolkit](https://toolkit.fluxcd.io/components/), a set of composable APIs and specialized 
-    tools for keeping Kubernetes clusters in sync with sources of configuration (like Git & Helm repositories), and 
-    automating updates to configuration when there is new code to deploy.
-
+    Flux is constructed with the [GitOps Toolkit](https://toolkit.fluxcd.io/components/), a set of composable APIs and specialized tools for keeping Kubernetes clusters in sync with sources of configuration (like Git & Helm repositories), and automating updates to configuration when there is new code to deploy.
+ 
 
     Flux is a CNCF incubation project made for:
 
@@ -510,8 +508,7 @@ spec:
     ```
 
 
-    Then before installing Flux, please also perform the following steps to bind Flux to the `nonroot` SecurityContextConstraint (SCC). 
-    This applies to installation via OC's OLM or via Flux CLI.
+    Then before installing Flux, please also perform the following steps to bind Flux to the `nonroot` SecurityContextConstraint (SCC). This applies to installation via OC's OLM or via Flux CLI.
 
 
     ```sh
@@ -1248,7 +1245,7 @@ spec:
                       httpGet:
                         path: /healthz
                         port: healthz
-                    name: image-reflector-controller-manager
+                    name: manager
                     ports:
                       - containerPort: 8080
                         name: http-prom

@@ -263,8 +263,8 @@ metadata:
     support: The Flux community
     operatorframework.io/suggested-namespace: flux-system
     containerImage: quay.io/redhat-isv-containers/62b4cc4ce987873deb78d87d@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
-    marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console"
-    marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console"
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console
 spec:
   version: 0.36.0
   maturity: stable

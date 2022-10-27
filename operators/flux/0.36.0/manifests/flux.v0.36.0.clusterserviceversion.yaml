@@ -1,5 +1,5 @@
 ---
-apiVersion: operators.coreos.com/v1alpha1
+apiVersion: operators.coreos.com/v1
 kind: ClusterServiceVersion
 metadata:
   name: flux.v0.36.0

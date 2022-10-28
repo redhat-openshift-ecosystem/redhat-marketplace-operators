@@ -5,7 +5,7 @@ metadata:
   name: flux.v0.36.0
   namespace: flux-system
   annotations:
-    alm-examples: >-
+    alm-examples: |-
       [
         {
           "apiVersion": "helm.toolkit.fluxcd.io/v2beta1",

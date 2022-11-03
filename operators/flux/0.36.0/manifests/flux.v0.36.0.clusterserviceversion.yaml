@@ -4,7 +4,7 @@ metadata:
   name: flux.v0.36.0
   namespace: flux-system
   annotations:
-    alm-examples: |-
+    alm-examples: >-
       [
         {
           "apiVersion": "helm.toolkit.fluxcd.io/v2beta1",
@@ -104,7 +104,7 @@ metadata:
           "spec": {
               "interval": "5m",
               "path": "./deploy/overlays/dev",
-              "prune": true,
+              "prune": "true",
               "sourceRef": {
                 "kind": "GitRepository",
                 "name": "podinfo"
@@ -261,9 +261,9 @@ metadata:
     description: Flux is a Continuous Delivery solution for Kubernetes.
     support: The Flux community
     operatorframework.io/suggested-namespace: flux-system
-    containerImage: quay.io/redhat-isv-containers/62b4cc4ce987873deb78d87d@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console
+    containerImage: registry.redhat.com/flux/source-controller@sha256@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
+    marketplace.openshift.io/remote-workflow: "https://marketplace.redhat.com/en-us/operators/flux/pricing?utm_source=openshift_console"
+    marketplace.openshift.io/support-workflow: "https://marketplace.redhat.com/en-us/operators/flux/support?utm_source=openshift_console"
 spec:
   version: 0.36.0
   maturity: stable
@@ -1077,7 +1077,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: quay.io/redhat-isv-containers/62b4e017e987873deb78d881@sha256:cbbabb3d5f92f33fcea6604b86beab329aa3fdacdf932545b19ab99d0f13def5
+                    image: registry.connect.redhat.com/flux/helm-controller@sha256:cbbabb3d5f92f33fcea6604b86beab329aa3fdacdf932545b19ab99d0f13def5
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1154,7 +1154,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: quay.io/redhat-isv-containers/62b4e53ff252c05b9cafc320@sha256:d57b0570dd95ecf48d7b11b85bb5d6fbbe1b2dedfda2950eeb38daa1aeb8957e
+                    image: registry.connect.redhat.com/flux/image-automation-controller@sha256:d57b0570dd95ecf48d7b11b85bb5d6fbbe1b2dedfda2950eeb38daa1aeb8957e
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1231,7 +1231,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: quay.io/redhat-isv-containers/62b4e8b624794e195d568600@sha256:25bcaf46afefc19ae8513b11b1fecdb6e31302737871dfda36fe71d426b2ef99
+                    image: registry.connect.redhat.com/flux/image-reflector-controller@sha256:25bcaf46afefc19ae8513b11b1fecdb6e31302737871dfda36fe71d426b2ef99
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1312,7 +1312,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: quay.io/redhat-isv-containers/62b4ee1f48f5d5e8c613149d@sha256:a5f541f66aef6e5a7cab7cdaf05afdddf48abd0d5dc11d843623c1fad7ec5177
+                    image: registry.connect.redhat.com/flux/kustomize-controller@sha256:a5f541f66aef6e5a7cab7cdaf05afdddf48abd0d5dc11d843623c1fad7ec5177
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1388,7 +1388,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.namespace
-                    image: quay.io/redhat-isv-containers/62b4f43f461203ae504afc61@sha256:4da53ec5247caec281a6424f9e955bf0065e2c79bdb4ed2e76f97815d8d0bb86
+                    image: registry.connect.redhat.com/flux/notification-controller@sha256:4da53ec5247caec281a6424f9e955bf0065e2c79bdb4ed2e76f97815d8d0bb86
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1477,7 +1477,7 @@ spec:
                             fieldPath: metadata.namespace
                       - name: TUF_ROOT
                         value: /tmp/.sigstore
-                    image: quay.io/redhat-isv-containers/62b4cc4ce987873deb78d87d@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
+                    image: registry.connect.redhat.com/flux/source-controller@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1543,14 +1543,14 @@ spec:
   spec:
     relatedImages:
     - name: source-controller
-      image: quay.io/redhat-isv-containers/62b4cc4ce987873deb78d87d@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
+      image: registry.connect.redhat.com/flux/source-controller@sha256:fb607923a6dc9a19bdcf6327f1bedbc9016e4c46fcd5511aa30eb714d9b3e9fc
     - name: notification-controller
-      image: quay.io/redhat-isv-containers/62b4f43f461203ae504afc61@sha256:4da53ec5247caec281a6424f9e955bf0065e2c79bdb4ed2e76f97815d8d0bb86
+      image: registry.connect.redhat.com/flux/notification-controller@sha256:4da53ec5247caec281a6424f9e955bf0065e2c79bdb4ed2e76f97815d8d0bb86
     - name: kustomize-controller
-      image: quay.io/redhat-isv-containers/62b4ee1f48f5d5e8c613149d@sha256:a5f541f66aef6e5a7cab7cdaf05afdddf48abd0d5dc11d843623c1fad7ec5177
+      image: registry.connect.redhat.com/flux/kustomize-controller@sha256:a5f541f66aef6e5a7cab7cdaf05afdddf48abd0d5dc11d843623c1fad7ec5177
     - name: image-reflector-controller
-      image: quay.io/redhat-isv-containers/62b4e8b624794e195d568600@sha256:25bcaf46afefc19ae8513b11b1fecdb6e31302737871dfda36fe71d426b2ef99
+      image: registry.connect.redhat.com/flux/image-reflector-controller@sha256:25bcaf46afefc19ae8513b11b1fecdb6e31302737871dfda36fe71d426b2ef99
     - name: image-automation-controller
-      image: quay.io/redhat-isv-containers/62b4e53ff252c05b9cafc320@sha256:d57b0570dd95ecf48d7b11b85bb5d6fbbe1b2dedfda2950eeb38daa1aeb8957e
+      image: registry.connect.redhat.com/flux/image-automation-controller@sha256:d57b0570dd95ecf48d7b11b85bb5d6fbbe1b2dedfda2950eeb38daa1aeb8957e
     - name: helm-controller
-      image: quay.io/redhat-isv-containers/62b4e017e987873deb78d881@sha256:cbbabb3d5f92f33fcea6604b86beab329aa3fdacdf932545b19ab99d0f13def5
+      image: registry.connect.redhat.com/flux/helm-controller@sha256:cbbabb3d5f92f33fcea6604b86beab329aa3fdacdf932545b19ab99d0f13def5

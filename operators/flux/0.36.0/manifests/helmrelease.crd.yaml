@@ -506,6 +506,7 @@ spec:
                             items:
                               x-kubernetes-preserve-unknown-fields: true
                             type: array
+                        type: object
                     type: object
                   type: array
                 releaseName:

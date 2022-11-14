@@ -19,4 +19,4 @@ annotations:
   # NOTE: must match with
   # - helm/operator/generate/jsonpatch/csv_annotations_patch.yaml
   # - helm/operator/generate/append/bundle.Dockerfile
-  com.redhat.openshift.versions: v4.6-v4.10
+  com.redhat.openshift.versions: v4.8-v4.10

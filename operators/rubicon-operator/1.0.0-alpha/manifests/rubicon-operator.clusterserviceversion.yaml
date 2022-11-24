@@ -19,7 +19,7 @@ metadata:
             "stagGitSSHSecret": "stag-git-ssh-secret",
             "stagGitUrl": "git@gitlab.com:steamngin/petstag.git",
             "stagSecret": "stagsecret",
-            "stepImage": "registry.connect.redhat.com/steamngin/rubicon-rhc:1.0.0-alpha"
+            "stepImage": "registry.connect.redhat.com/steamngin/rubicon-rhc@sha256:7bf98c861710ccaa01a2c157bb989c4f9cc5248b6517f163b5314a0ec3a5f1f4"
           }
         }
       ]
@@ -185,7 +185,7 @@ spec:
                 - --upstream=http://127.0.0.1:8080/
                 - --logtostderr=true
                 - --v=0
-                image: gcr.io/kubebuilder/kube-rbac-proxy:v0.13.0
+                image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443
@@ -208,7 +208,7 @@ spec:
                 - --metrics-bind-address=127.0.0.1:8080
                 - --leader-elect
                 - --leader-election-id=rubicon-operator
-                image: registry.connect.redhat.com/steamngin/rubicon-operator-rhc:1.0.0-alpha
+                image: registry.connect.redhat.com/steamngin/rubicon-operator-rhc@sha256:4c025cfed7aeac5c1a822c5a1eb206188b32521a32c8193f4e3843057f54e1b8
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -301,3 +301,10 @@ spec:
     name: Steam Ngin
     url: https://www.steamngin.com
   version: 1.0.0-alpha
+  relatedImages:
+  - name: kube-rbac-proxy
+    image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
+  - name: manager
+    image: registry.connect.redhat.com/steamngin/rubicon-operator-rhc@sha256:4c025cfed7aeac5c1a822c5a1eb206188b32521a32c8193f4e3843057f54e1b8
+  - name: rubicon-rhc-7bf98c861710ccaa01a2c157bb989c4f9cc5248b6517f163b5314a0ec3a5f1f4-annotation
+    image: registry.connect.redhat.com/steamngin/rubicon-rhc@sha256:7bf98c861710ccaa01a2c157bb989c4f9cc5248b6517f163b5314a0ec3a5f1f4

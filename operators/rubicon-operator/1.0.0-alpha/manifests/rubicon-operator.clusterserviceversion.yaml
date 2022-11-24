@@ -19,7 +19,7 @@ metadata:
             "stagGitSSHSecret": "stag-git-ssh-secret",
             "stagGitUrl": "git@gitlab.com:steamngin/petstag.git",
             "stagSecret": "stagsecret",
-            "stepImage": "registry.connect.redhat.com/steamngin/rubicon:1.0.0-alpha"
+            "stepImage": "registry.connect.redhat.com/steamngin/rubicon-rhc:1.0.0-alpha"
           }
         }
       ]
@@ -208,7 +208,7 @@ spec:
                 - --metrics-bind-address=127.0.0.1:8080
                 - --leader-elect
                 - --leader-election-id=rubicon-operator
-                image: registry.connect.redhat.com/steamngin/rubicon-operator:1.0.0-alpha
+                image: registry.connect.redhat.com/steamngin/rubicon-operator-rhc:1.0.0-alpha
                 livenessProbe:
                   httpGet:
                     path: /healthz

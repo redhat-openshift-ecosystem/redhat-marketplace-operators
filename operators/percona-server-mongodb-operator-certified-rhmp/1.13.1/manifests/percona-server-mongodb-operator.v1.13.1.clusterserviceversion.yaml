@@ -333,7 +333,7 @@ spec:
     * Starting from now, the Operator can be installed in multi-namespace (so-called “cluster-wide”) mode, when a single Operator can be given a list of namespaces in which to manage Percona Server for MongoDB clusters
 
   maturity: stable
-  version: 1.13.0
+  version: 1.13.1
   minKubeVersion: ''
   keywords:
     - mongodb

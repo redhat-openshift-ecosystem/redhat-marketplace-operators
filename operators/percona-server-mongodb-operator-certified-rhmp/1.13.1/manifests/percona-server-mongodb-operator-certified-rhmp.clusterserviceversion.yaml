@@ -5,6 +5,8 @@ metadata:
   name: percona-server-mongodb-operator-certified-rhmp.v1.13.1
   namespace: default
   annotations:
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/percona-server-mongodb-operator-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/percona-server-mongodb-operator-certified-rhmp/support?utm_source=openshift_console
     alm-examples: >-
       [
         {

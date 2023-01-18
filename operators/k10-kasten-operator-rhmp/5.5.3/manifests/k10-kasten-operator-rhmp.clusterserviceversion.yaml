@@ -2458,4 +2458,4 @@ spec:
     name: Kasten by Veeam, kasten.io
     url: https://kasten.io
   version: 5.5.3
-  replaces: k10-kasten-operator-term-rhmp.v5.5.2
+  replaces: k10-kasten-operator-rhmp.v5.5.2

@@ -1934,7 +1934,7 @@ metadata:
     capabilities: Full Lifecycle
     categories: Storage
     containerImage: registry.connect.redhat.com/kasten/k10-operator:5.5.3
-    createdAt: Wed Jan 18 20:40:06 UTC 2023
+    createdAt: Wed Jan 18 21:49:21 UTC 2023
     description: K10 data management platform for OpenShift, The Market Leader for Kubernetes Backup and DR
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/k10-kasten-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/k10-kasten-operator-rhmp/support?utm_source=openshift_console
@@ -2116,13 +2116,6 @@ spec:
                 - update
                 - watch
             - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - clusterrolebindings
-                - clusterroles
-              verbs:
-                - '*'
-            - apiGroups:
                 - apiregistration.k8s.io
               resources:
                 - apiservices
@@ -2132,6 +2125,19 @@ spec:
                 - security.openshift.io
               resources:
                 - securitycontextconstraints
+              verbs:
+                - '*'
+            - apiGroups:
+                - rbac.authorization.k8s.io
+              resources:
+                - clusterrolebindings
+                - clusterroles
+              verbs:
+                - '*'
+            - apiGroups:
+                - apps
+              resources:
+                - deployments
               verbs:
                 - '*'
             - apiGroups:
@@ -2155,12 +2161,6 @@ spec:
               resources:
                 - rolebindings
                 - roles
-              verbs:
-                - '*'
-            - apiGroups:
-                - apps
-              resources:
-                - deployments
               verbs:
                 - '*'
             - apiGroups:
@@ -2458,4 +2458,4 @@ spec:
     name: Kasten by Veeam, kasten.io
     url: https://kasten.io
   version: 5.5.3
-  replaces: 5.5.2
+  replaces: k10-kasten-operator-term-rhmp.v5.5.2

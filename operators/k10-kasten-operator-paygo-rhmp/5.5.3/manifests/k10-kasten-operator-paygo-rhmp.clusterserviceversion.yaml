@@ -1934,7 +1934,7 @@ metadata:
     capabilities: Full Lifecycle
     categories: Storage
     containerImage: registry.connect.redhat.com/kasten/k10-operator-paygo:5.5.3
-    createdAt: Wed Jan 18 20:46:24 UTC 2023
+    createdAt: Wed Jan 18 22:03:26 UTC 2023
     description: |-
       K10 data management platform for OpenShift, The Market Leader for Kubernetes Backup and DR
 
@@ -2160,12 +2160,6 @@ spec:
                 - update
                 - watch
             - apiGroups:
-                - security.openshift.io
-              resources:
-                - securitycontextconstraints
-              verbs:
-                - '*'
-            - apiGroups:
                 - rbac.authorization.k8s.io
               resources:
                 - clusterrolebindings
@@ -2176,6 +2170,12 @@ spec:
                 - apiregistration.k8s.io
               resources:
                 - apiservices
+              verbs:
+                - '*'
+            - apiGroups:
+                - security.openshift.io
+              resources:
+                - securitycontextconstraints
               verbs:
                 - '*'
             - apiGroups:
@@ -2236,12 +2236,6 @@ spec:
               verbs:
                 - '*'
             - apiGroups:
-                - ""
-              resources:
-                - serviceaccounts
-              verbs:
-                - '*'
-            - apiGroups:
                 - rbac.authorization.k8s.io
               resources:
                 - rolebindings
@@ -2252,6 +2246,12 @@ spec:
                 - batch
               resources:
                 - jobs
+              verbs:
+                - '*'
+            - apiGroups:
+                - ""
+              resources:
+                - serviceaccounts
               verbs:
                 - '*'
             - apiGroups:
@@ -2503,4 +2503,4 @@ spec:
     name: Kasten by Veeam, kasten.io
     url: https://kasten.io
   version: 5.5.3
-  replaces: 5.5.2
+  replaces: k10-kasten-operator-paygo-rhmp.v5.5.2

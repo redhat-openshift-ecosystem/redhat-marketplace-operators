@@ -574,8 +574,8 @@ metadata:
   labels:
     app.kubernetes.io/component: operator
     app.kubernetes.io/managed-by: kustomize
-    app.kubernetes.io/name: zabbix-operator-certified-rhmp
-    app.kubernetes.io/part-of: zabbix-operator-certified-rhmp
+    app.kubernetes.io/name: zabbix-operator-certified
+    app.kubernetes.io/part-of: zabbix-operator-certified
   name: zabbix-operator-certified-rhmp.v6.0.12
   namespace: placeholder
 spec:
@@ -4237,11 +4237,11 @@ spec:
       deployments:
       - label:
           app.kubernetes.io/component: manager
-          app.kubernetes.io/created-by: zabbix-operator-certified-rhmp
+          app.kubernetes.io/created-by: zabbix-operator-certified
           app.kubernetes.io/instance: zabbix-controller-manager
           app.kubernetes.io/managed-by: kustomize
           app.kubernetes.io/name: deployment
-          app.kubernetes.io/part-of: zabbix-operator-certified-rhmp
+          app.kubernetes.io/part-of: zabbix-operator-certified
           control-plane: zabbix-controller-manager
         name: zabbix-operator-manager
         spec:

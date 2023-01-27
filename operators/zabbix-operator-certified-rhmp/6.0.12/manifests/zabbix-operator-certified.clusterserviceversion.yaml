@@ -560,13 +560,15 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Monitoring, Networking
     certified: "true"
-    containerImage: quay.io/zabbix/zabbix-operator:latest
-    createdAt: "2023-01-26T07:38:53Z"
+    containerImage: registry.connect.redhat.com/zabbix/zabbixoperator-certified:v6.0.12
+    createdAt: "2023-01-27T12:08:27Z"
     description: Zabbix operator with multiple deployment variants and different components
     olm.skipRange: <0.0.7
     operatorframework.io/suggested-namespace: zabbix
     operators.operatorframework.io/builder: operator-sdk-v1.26.0
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/zabbix-operator-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/zabbix-operator-certified-rhmp/support?utm_source=openshift_console
     repository: ""
     support: Zabbix
   labels:
@@ -574,7 +576,7 @@ metadata:
     app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: zabbix-operator-certified
     app.kubernetes.io/part-of: zabbix-operator-certified
-  name: zabbix-operator-certified.v6.0.12
+  name: zabbix-operator-certified-rhmp.v6.0.12
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -4282,26 +4284,26 @@ spec:
                 - name: ANSIBLE_DEBUG_LOGS
                   value: "false"
                 - name: RELATED_IMAGE_ZBX_SERVER_MYSQL
-                  value: registry.connect.redhat.com/zabbix/zabbix-server-mysql-60@sha256:50621939a014828df7a4c0afc798f4096316413e54607f2f1975d602101f7acb
+                  value: registry.connect.redhat.com/zabbix/zabbix-server-mysql-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_WEB_MYSQL
-                  value: registry.connect.redhat.com/zabbix/zabbix-web-mysql-60@sha256:9295c524f7851d32bc37cf1f2e2d195cf9d92fd7a7a49f2945fae08d6f139f23
+                  value: registry.connect.redhat.com/zabbix/zabbix-web-mysql-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_JAVA_GATEWAY
-                  value: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60@sha256:d6d0bc02fc8fd8ec1f334e37a6f4353a0d14b9b8219f68c7a3f2c121f649cd17
+                  value: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_PROXY_MYSQL
-                  value: registry.connect.redhat.com/zabbix/zabbix-proxy-mysql-60@sha256:a626988cb7204941558a2872e62a7555bb5360bcaaa514132fa3722842fc8810
+                  value: registry.connect.redhat.com/zabbix/zabbix-proxy-mysql-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_PROXY_SQLITE
-                  value: registry.connect.redhat.com/zabbix/zabbix-proxy-sqlite-60@sha256:53866f4bd918d946b09355f6079e39ef4b8697e4c061b3e7088a72cacbc74757
+                  value: registry.connect.redhat.com/zabbix/zabbix-proxy-sqlite-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_AGENT
-                  value: registry.connect.redhat.com/zabbix/zabbix-agent-60@sha256:6b5fface0df2de62417607987690f70e95f40725db49067e613b8715f302c8fc
+                  value: registry.connect.redhat.com/zabbix/zabbix-agent-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_AGENT2
-                  value: registry.connect.redhat.com/zabbix/zabbix-agent2-60@sha256:fe1bf1b907504aac2c28f066a761497553c9a1dec8413fd4dc396fc2aa8900af
+                  value: registry.connect.redhat.com/zabbix/zabbix-agent2-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_SNMPTRAPS
-                  value: registry.connect.redhat.com/zabbix/zabbix-snmptraps-60@sha256:93efc697128e2fc4bef5d47283dcfae113db6ffa61a2a6a2a2162d5c60655425
+                  value: registry.connect.redhat.com/zabbix/zabbix-snmptraps-60:6.0.12
                 - name: RELATED_IMAGE_ZBX_WEB_SERVICE
-                  value: registry.connect.redhat.com/zabbix/zabbix-web-service-60@sha256:97ffd3456ff245d2e07cda99ffa39a4ebe290ba4a6d290d9025ab83923a81a51
+                  value: registry.connect.redhat.com/zabbix/zabbix-web-service-60:6.0.12
                 - name: RELATED_IMAGE_DB_MYSQL
-                  value: registry.redhat.io/rhel9/mysql-80@sha256:9859aee4eb7e5f38ffbf69c397ae6deb1b0789ebbbd93b33749610a8df827aa4
-                image: registry.connect.redhat.com/zabbix/zabbixoperator-certified@sha256:b1bbeb32bc8c5067195b8f4e64144caeb368e9ee0bd2d9821d3d6dc962e46c25
+                  value: registry.redhat.io/rhel9/mysql-80:latest
+                image: registry.connect.redhat.com/zabbix/zabbixoperator-certified:v6.0.12
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -4545,29 +4547,29 @@ spec:
   - email: alexey.pustovalov@zabbix.com
     name: Alexey Pustovalov
   maturity: stable
-  minKubeVersion: 1.22.15
+  minKubeVersion: 1.19.0
   provider:
     name: Zabbix LLC
   relatedImages:
-  - image: registry.connect.redhat.com/zabbix/zabbix-server-mysql-60@sha256:50621939a014828df7a4c0afc798f4096316413e54607f2f1975d602101f7acb
+  - image: registry.connect.redhat.com/zabbix/zabbix-server-mysql-60:6.0.12
     name: zbx-server-mysql
-  - image: registry.connect.redhat.com/zabbix/zabbix-web-mysql-60@sha256:9295c524f7851d32bc37cf1f2e2d195cf9d92fd7a7a49f2945fae08d6f139f23
+  - image: registry.connect.redhat.com/zabbix/zabbix-web-mysql-60:6.0.12
     name: zbx-web-mysql
-  - image: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60@sha256:d6d0bc02fc8fd8ec1f334e37a6f4353a0d14b9b8219f68c7a3f2c121f649cd17
+  - image: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60:6.0.12
     name: zbx-java-gateway
-  - image: registry.connect.redhat.com/zabbix/zabbix-proxy-mysql-60@sha256:a626988cb7204941558a2872e62a7555bb5360bcaaa514132fa3722842fc8810
+  - image: registry.connect.redhat.com/zabbix/zabbix-proxy-mysql-60:6.0.12
     name: zbx-proxy-mysql
-  - image: registry.connect.redhat.com/zabbix/zabbix-proxy-sqlite-60@sha256:53866f4bd918d946b09355f6079e39ef4b8697e4c061b3e7088a72cacbc74757
+  - image: registry.connect.redhat.com/zabbix/zabbix-proxy-sqlite-60:6.0.12
     name: zbx-proxy-sqlite
-  - image: registry.connect.redhat.com/zabbix/zabbix-agent-60@sha256:6b5fface0df2de62417607987690f70e95f40725db49067e613b8715f302c8fc
+  - image: registry.connect.redhat.com/zabbix/zabbix-agent-60:6.0.12
     name: zbx-agent
-  - image: registry.connect.redhat.com/zabbix/zabbix-agent2-60@sha256:fe1bf1b907504aac2c28f066a761497553c9a1dec8413fd4dc396fc2aa8900af
+  - image: registry.connect.redhat.com/zabbix/zabbix-agent2-60:6.0.12
     name: zbx-agent2
-  - image: registry.connect.redhat.com/zabbix/zabbix-snmptraps-60@sha256:93efc697128e2fc4bef5d47283dcfae113db6ffa61a2a6a2a2162d5c60655425
+  - image: registry.connect.redhat.com/zabbix/zabbix-snmptraps-60:6.0.12
     name: zbx-snmptraps
-  - image: registry.connect.redhat.com/zabbix/zabbix-web-service-60@sha256:97ffd3456ff245d2e07cda99ffa39a4ebe290ba4a6d290d9025ab83923a81a51
+  - image: registry.connect.redhat.com/zabbix/zabbix-web-service-60:6.0.12
     name: zbx-web-service
-  - image: registry.redhat.io/rhel9/mysql-80@sha256:9859aee4eb7e5f38ffbf69c397ae6deb1b0789ebbbd93b33749610a8df827aa4
+  - image: registry.redhat.io/rhel9/mysql-80:latest
     name: db-mysql
   replaces: zabbix-operator-certified.v0.0.3
   selector:

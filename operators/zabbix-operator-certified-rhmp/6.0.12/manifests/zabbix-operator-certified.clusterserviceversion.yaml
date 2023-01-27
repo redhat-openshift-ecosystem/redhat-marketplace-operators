@@ -574,8 +574,8 @@ metadata:
   labels:
     app.kubernetes.io/component: operator
     app.kubernetes.io/managed-by: kustomize
-    app.kubernetes.io/name: zabbix-operator-certified
-    app.kubernetes.io/part-of: zabbix-operator-certified
+    app.kubernetes.io/name: zabbix-operator-certified-rhmp
+    app.kubernetes.io/part-of: zabbix-operator-certified-rhmp
   name: zabbix-operator-certified-rhmp.v6.0.12
   namespace: placeholder
 spec:
@@ -4237,11 +4237,11 @@ spec:
       deployments:
       - label:
           app.kubernetes.io/component: manager
-          app.kubernetes.io/created-by: zabbix-operator-certified
+          app.kubernetes.io/created-by: zabbix-operator-certified-rhmp
           app.kubernetes.io/instance: zabbix-controller-manager
           app.kubernetes.io/managed-by: kustomize
           app.kubernetes.io/name: deployment
-          app.kubernetes.io/part-of: zabbix-operator-certified
+          app.kubernetes.io/part-of: zabbix-operator-certified-rhmp
           control-plane: zabbix-controller-manager
         name: zabbix-operator-manager
         spec:
@@ -4273,7 +4273,7 @@ spec:
               containers:
               - args:
                 - --leader-elect
-                - --leader-election-id=zabbix-operator-certified
+                - --leader-election-id=zabbix-operator-certified-rhmp
                 env:
                 - name: WATCH_NAMESPACE
                   valueFrom:
@@ -4571,7 +4571,7 @@ spec:
     name: zbx-web-service
   - image: registry.redhat.io/rhel9/mysql-80:latest
     name: db-mysql
-  replaces: zabbix-operator-certified.v0.0.3
+  replaces: zabbix-operator-certified-rhmp.v0.0.3
   selector:
     matchLabels:
       alm-owner-zabbix: zabbixoperator

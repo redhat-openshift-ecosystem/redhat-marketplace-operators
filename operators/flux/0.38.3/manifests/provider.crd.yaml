@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/component: notification-controller
     app.kubernetes.io/instance: flux-system
     app.kubernetes.io/part-of: flux
-    app.kubernetes.io/version: v0.36.0
+    app.kubernetes.io/version: v0.38.3
   name: providers.notification.toolkit.fluxcd.io
 spec:
   group: notification.toolkit.fluxcd.io

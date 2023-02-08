@@ -12,100 +12,172 @@ metadata:
           },
           "spec": {
             "abotanalytics": {
+              "image": "registry.connect.redhat.com/rebaca/abot-analytics@sha256:584a1271bbfc562eec3340c79cea8465067b186471b1dc25db4eac9e5eead1a4",
               "resources": {
                 "limits": {
-                  "cpu": "6000m",
+                  "cpu": 6,
                   "memory": "4Gi"
                 },
                 "requests": {
-                  "cpu": "6000m",
+                  "cpu": 6,
                   "memory": "4Gi"
                 }
               }
             },
             "abotbdd": {
+              "image": "registry.connect.redhat.com/rebaca/abot-bdd@sha256:00f3935496b4c241e082a15ae250ebf21f6364871baa4d2af6f0a600df7ed75b",
               "resources": {
                 "limits": {
-                  "cpu": "3000m",
-                  "memory": "4Gi"
+                  "cpu": 6,
+                  "memory": "6Gi"
                 },
                 "requests": {
-                  "cpu": "3000m",
-                  "memory": "4Gi"
+                  "cpu": 6,
+                  "memory": "6Gi"
                 }
               }
             },
-            "abotgrafana": {
-              "image": "registry.redhat.io/rhel8/grafana@sha256:dc160179f39dbf440ebcf7707c70c55483edf2c07e70edc41d7a42ee9cd98eda"
-            },
-            "abotgui": {
-              "resources": {
-                "limits": {
-                  "cpu": "2000m",
-                  "memory": "2Gi"
-                },
-                "requests": {
-                  "cpu": "2000m",
-                  "memory": "2Gi"
-                }
-              }
-            },
-            "abotkibana": {
-              "image": "registry.connect.redhat.com/elastic/kibana@sha256:7ccb0a8b021309346d8ee2c72f14121060601addd91657567c41140f9941749f"
-            },
-            "abotlogstash": {
-              "image": "registry.connect.redhat.com/elastic/logstash@sha256:c3ee6786eb818fead7aa4b672e3b5fbbc98dd92b6b0de87d934e3db13de49268"
-            },
-            "abotrabbitmq": {
-              "resources": {
-                "limits": {
-                  "cpu": "3000m",
-                  "memory": "2Gi"
-                },
-                "requests": {
-                  "cpu": "3000m",
-                  "memory": "2Gi"
-                }
-              }
-            },
-            "abotsidecar": {
-              "image": "registry.redhat.io/rhacm2/prometheus-rhel8@sha256:66e94011bfeb917240eadba94b67fe6b2997e9aeeca6dd5cf28d65a7886999f9"
-            },
-            "abotweb": {
-              "image": "registry.access.redhat.com/ubi8/httpd-24@sha256:7ce2261f9ff3d73ab1c9389bc052d08e9fe06a8665528249b331efd1e6db3a4e"
-            },
-            "elasticsearch": {
+            "abotelasticsearch": {
               "image": "registry.connect.redhat.com/elastic/elasticsearch@sha256:1ba5484e246033755d2006a75f6b91d67a67d3548544debdec2d3cfbff9fd359",
               "replicas": 3,
               "resources": {
                 "limits": {
-                  "cpu": "2000m",
+                  "cpu": 3,
                   "memory": "3Gi"
                 },
                 "requests": {
-                  "cpu": "2000m",
+                  "cpu": 3,
                   "memory": "3Gi"
                 }
               },
               "volumeClaim": {
-                "storage": "50Gi"
+                "storage": "10Gi"
               }
             },
-            "image": {
-              "registry": "registry.connect.redhat.com",
-              "repository": "rebaca",
-              "tag": 9.31
+            "abotgrafana": {
+              "image": "registry.redhat.io/rhel8/grafana@sha256:dc160179f39dbf440ebcf7707c70c55483edf2c07e70edc41d7a42ee9cd98eda",
+              "resources": {
+                "limits": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                }
+              }
+            },
+            "abotgui": {
+              "image": "registry.connect.redhat.com/rebaca/abot-gui@sha256:f696e78b0a96d45299237b4a4473ba59df8e6554c50585706e057b74e51d8fe5",
+              "resources": {
+                "limits": {
+                  "cpu": 4,
+                  "memory": "4Gi"
+                },
+                "requests": {
+                  "cpu": 4,
+                  "memory": "4Gi"
+                }
+              }
+            },
+            "abotkibana": {
+              "image": "registry.connect.redhat.com/elastic/kibana@sha256:7ccb0a8b021309346d8ee2c72f14121060601addd91657567c41140f9941749f",
+              "resources": {
+                "limits": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                }
+              }
+            },
+            "abotlogstash": {
+              "image": "registry.connect.redhat.com/elastic/logstash@sha256:c3ee6786eb818fead7aa4b672e3b5fbbc98dd92b6b0de87d934e3db13de49268",
+              "resources": {
+                "limits": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                }
+              }
+            },
+            "abotmongo": {
+              "image": "registry.connect.redhat.com/rebaca/abot-mongodb@sha256:96eb027ae597d6f635d11bdb136b00ad0d9766111fbc0f868dd89496b33a1bad",
+              "resources": {
+                "limits": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                }
+              }
+            },
+            "abotrabbitmq": {
+              "image": "registry.connect.redhat.com/rebaca/abot-rabbitmq@sha256:80719bcb91281990f8e2d5200909cc4781b82fc35929c54de945e4eabea612f3",
+              "resources": {
+                "limits": {
+                  "cpu": 6,
+                  "memory": "4Gi"
+                },
+                "requests": {
+                  "cpu": 6,
+                  "memory": "4Gi"
+                }
+              }
+            },
+            "abotsidecar": {
+              "image": "registry.redhat.io/rhacm2/prometheus-rhel8@sha256:66e94011bfeb917240eadba94b67fe6b2997e9aeeca6dd5cf28d65a7886999f9",
+              "resources": {
+                "limits": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": 2,
+                  "memory": "2Gi"
+                }
+              }
+            },
+            "abotweb": {
+              "image": "registry.access.redhat.com/ubi8/httpd-24@sha256:7ce2261f9ff3d73ab1c9389bc052d08e9fe06a8665528249b331efd1e6db3a4e",
+              "resources": {
+                "limits": {
+                  "cpu": 1,
+                  "memory": "1Gi"
+                },
+                "requests": {
+                  "cpu": 1,
+                  "memory": "1Gi"
+                }
+              }
             },
             "imagePullPolicy": "IfNotPresent",
             "initContainers": {
-              "image": "registry.access.redhat.com/ubi8/ubi@sha256:d55ca0e986d4cc42765ee938c911b66f08abafb3bab7b8ac96fc7b0cc5706565"
+              "image": "registry.access.redhat.com/ubi8/ubi@sha256:323bb3abab06523d595d133fe82c40c13aea0242445c30c9842d34c81c221dea",
+              "resources": {
+                "limits": {
+                  "cpu": 1,
+                  "memory": "1Gi"
+                },
+                "requests": {
+                  "cpu": 1,
+                  "memory": "1Gi"
+                }
+              }
             },
             "pvc": {
               "abotvol": "100Gi",
               "analyticsvol": "100Gi",
               "databak": "10Gi",
-              "mongovol": "50Gi",
-              "prometheusvol": "50Gi"
+              "mongovol": "10Gi",
+              "prometheusvol": "10Gi"
             },
             "replicas": 1,
             "service": {
@@ -188,6 +260,8 @@ spec:
           resources:
           - clusterrolebindings
           - clusterroles
+          - rolebindings
+          - roles
           verbs:
           - '*'
         - apiGroups:
@@ -195,6 +269,7 @@ spec:
           resources:
           - configmaps
           - persistentvolumeclaims
+          - resourcequotas
           - serviceaccounts
           - services
           verbs:
@@ -203,12 +278,7 @@ spec:
           - apps
           resources:
           - statefulsets
-          verbs:
-          - '*'
-        - apiGroups:
-          - apps.openshift.io
-          resources:
-          - deploymentconfigs
+          - deployments
           verbs:
           - '*'
         - apiGroups:
@@ -273,7 +343,7 @@ spec:
                 - --metrics-bind-address=127.0.0.1:8080
                 - --leader-elect
                 - --leader-election-id=abot-operator
-                image: registry.connect.redhat.com/rebaca/abot-operator@sha256:9bd22e5035321fd34f2252c6d448498749947c7638ce5b678cfdc2b965b4f86b
+                image: registry.connect.redhat.com/rebaca/abot-operator@sha256:ef317dfe5e31bd4aa8e685bcb9bd52eca0f20a5efc4519176a246bdfff16941c
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -366,4 +436,3 @@ spec:
     name: Rebaca Technologies Pvt Ltd
     url: https://www.rebaca.com/telecom/solutions
   version: 1.0.0
-

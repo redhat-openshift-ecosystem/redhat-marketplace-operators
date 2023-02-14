@@ -68,4 +68,3 @@ stages:
 storage:
   spec:
     mountPath: {}
-

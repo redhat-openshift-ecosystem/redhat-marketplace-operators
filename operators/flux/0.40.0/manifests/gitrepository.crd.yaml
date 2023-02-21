@@ -242,8 +242,8 @@ spec:
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
                       for direct use as an array at the field path
-                      .status.conditions.  For example, 
-                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
+                      .status.conditions.  For example,
+                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`
                        // other fields }
                     properties:
                       lastTransitionTime:
@@ -491,13 +491,13 @@ spec:
                     commit:
                       description: >-
                         Commit SHA to check out, takes precedence over all
-                        reference fields. 
+                        reference fields.
                          This can be combined with Branch to shallow clone the branch, in which the commit is expected to exist.
                       type: string
                     name:
                       description: >-
                         Name of the reference to check out; takes precedence
-                        over Branch, Tag and SemVer. 
+                        over Branch, Tag and SemVer.
                          It must be a valid Git reference: https://git-scm.com/docs/git-check-ref-format#_description Examples: "refs/heads/main", "refs/tags/v0.1.0", "refs/pull/420/head", "refs/merge-requests/1/head"
                       type: string
                     semver:
@@ -622,8 +622,8 @@ spec:
                       Condition contains details for one aspect of the current
                       state of this API Resource. --- This struct is intended
                       for direct use as an array at the field path
-                      .status.conditions.  For example, 
-                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"` 
+                      .status.conditions.  For example,
+                       type FooStatus struct{ // Represents the observations of a foo's current state. // Known .status.conditions.type are: "Available", "Progressing", and "Degraded" // +patchMergeKey=type // +patchStrategy=merge // +listType=map // +listMapKey=type Conditions []metav1.Condition `json:"conditions,omitempty" patchStrategy:"merge" patchMergeKey:"type" protobuf:"bytes,1,rep,name=conditions"`
                        // other fields }
                     properties:
                       lastTransitionTime:
@@ -695,7 +695,7 @@ spec:
                     observed in .status.observedGeneration version of the
                     object. This can be used to determine if the content of the
                     included repository has changed. It has the format of
-                    `<algo>:<checksum>`, for example: `sha256:<checksum>`. 
+                    `<algo>:<checksum>`, for example: `sha256:<checksum>`.
                      Deprecated: Replaced with explicit fields for observed artifact content config in the status.
                   type: string
                 includedArtifacts:

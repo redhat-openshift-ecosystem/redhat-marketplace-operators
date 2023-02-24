@@ -7,4 +7,4 @@ annotations:
   operators.operatorframework.io.bundle.package.v1: joget-dx-operator-rhmp
   marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/joget-dx-operator-rhmp/pricing?utm_source=openshift_console
   marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/joget-dx-operator-rhmp/support?utm_source=openshift_console
-  com.redhat.openshift.versions: v4.8
+  com.redhat.openshift.versions: v4.9

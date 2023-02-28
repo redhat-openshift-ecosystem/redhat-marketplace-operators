@@ -191,7 +191,6 @@ spec:
   maturity: alpha
   provider:
     name: Joget, Inc
-  replaces: joget-dx-openshift-operator.v0.0.32
   version: 0.0.33
 status:
   certsLastUpdated: null

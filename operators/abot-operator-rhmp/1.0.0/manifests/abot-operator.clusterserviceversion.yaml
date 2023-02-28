@@ -327,7 +327,7 @@ spec:
                 - --upstream=http://127.0.0.1:8080/
                 - --logtostderr=true
                 - --v=0
-                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.11
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:ac5eed5e9d92775abc730c79d45d52ff3cd8eddb6a6464976dba505e479c7e1f
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443

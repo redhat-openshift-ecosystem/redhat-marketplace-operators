@@ -229,7 +229,7 @@ spec:
   - name: pmm
     image: registry.connect.redhat.com/percona/percona-server-mongodb-operator-containers@sha256:9cd013d14dd35a6173d1301fb1631c5a7afabc5cffb162361b0cd4639efb35ef
   - name: operator
-    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator@6e6b3803f909320bb642ef5a1a343589e58a7ed69682031bba7f1f70b6406d4b
+    image: registry.connect.redhat.com/percona/percona-server-mongodb-operator@sha256:6e6b3803f909320bb642ef5a1a343589e58a7ed69682031bba7f1f70b6406d4b
   displayName: Percona Distribution for MongoDB Operator
   description: >+
 

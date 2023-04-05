@@ -103,7 +103,7 @@ metadata:
       }
     capabilities: Seamless Upgrades
     categories: AI/Machine Learning
-    containerImage: registry.connect.redhat.com/eamli/eamli-operator:3.1.0
+    containerImage: registry.connect.redhat.com/eamli/eamli-operator@sha256:9a4e0f756d928d802e02ad35c7d77d440ed074a3f78a48bf5b8a0b44a3cbbc66
     createdAt: 2023-04-05T09:23:14Z
     description: installs and manages the eamli product
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/pricing?utm_source=openshift_console
@@ -595,23 +595,21 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.annotations['olm.targetNamespaces']
-                      - name: RELATED_IMAGE_EAMLI_CORE
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-core:3.1.0
                       - name: RELATED_IMAGE_EAMLI_UI
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui@sha256:6e991ed83b5a3b255bbe84f3d9d72991fe24e5fb7c0049fe5f10ab5b0ba06d70
                       - name: RELATED_IMAGE_EAMLI_WEB
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web@sha256:37d173d2191bed84ae79b6ce0d40b96c71463d3b914b4abc6de0875c7c5d9292
                       - name: RELATED_IMAGE_KEYCLOAK_REALM
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm@sha256:63861ea1407256ab8960637a119837e3b491f878c4965808cb2cc5a13c1a1332
                       - name: RELATED_IMAGE_MODEL_STORE
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/model-store:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/model-store@sha256:ce303a4582f95b38c67bcec83a014e5808ba5438db09db603346089fb957121f
                       - name: RELATED_IMAGE_PRODUCT_SERVER
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/product-server:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/product-server@sha256:29e0756d121d835cca80d9a8d93efc97b740d12870eaf360b7acfd389e6bc486
                       - name: RELATED_IMAGE_SOURCE_DATA
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/source-data:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/source-data@sha256:a146aa5d84be426dd3593944bb2b7e9cd39a97ee53ecc6e6b701202ae101f182
                       - name: RELATED_IMAGE_USER_SERVICE
-                        value: registry.gitlab.com/whitedotspace/eamli/registry/user-service:3.1.0
-                    image: registry.connect.redhat.com/eamli/eamli-operator:3.1.0
+                        value: registry.gitlab.com/whitedotspace/eamli/registry/user-service@sha256:aa48d2b2972a43b1ac114c57ecf46cc07bc708c017e99cf67e1d3a7784dd4bc2
+                    image: registry.connect.redhat.com/eamli/eamli-operator@sha256:9a4e0f756d928d802e02ad35c7d77d440ed074a3f78a48bf5b8a0b44a3cbbc66
                     livenessProbe:
                       httpGet:
                         path: /healthz
@@ -1014,20 +1012,18 @@ spec:
     name: eamli
     url: eamli.com
   relatedImages:
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-core:3.1.0
-      name: eamli-core
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui@sha256:6e991ed83b5a3b255bbe84f3d9d72991fe24e5fb7c0049fe5f10ab5b0ba06d70
       name: eamli-ui
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web@sha256:37d173d2191bed84ae79b6ce0d40b96c71463d3b914b4abc6de0875c7c5d9292
       name: eamli-web
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm@sha256:63861ea1407256ab8960637a119837e3b491f878c4965808cb2cc5a13c1a1332
       name: keycloak-realm
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/model-store:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/model-store@sha256:ce303a4582f95b38c67bcec83a014e5808ba5438db09db603346089fb957121f
       name: model-store
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/product-server:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/product-server@sha256:29e0756d121d835cca80d9a8d93efc97b740d12870eaf360b7acfd389e6bc486
       name: product-server
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/source-data:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/source-data@sha256:a146aa5d84be426dd3593944bb2b7e9cd39a97ee53ecc6e6b701202ae101f182
       name: source-data
-    - image: registry.gitlab.com/whitedotspace/eamli/registry/user-service:3.1.0
+    - image: registry.gitlab.com/whitedotspace/eamli/registry/user-service@sha256:aa48d2b2972a43b1ac114c57ecf46cc07bc708c017e99cf67e1d3a7784dd4bc2
       name: user-service
   version: 3.1.0

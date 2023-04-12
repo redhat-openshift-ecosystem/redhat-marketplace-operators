@@ -116,7 +116,7 @@ metadata:
     repository: https://gitlab.com/whitedotspace/eamli/eamli-operator
     support: Eamli
     olm.skipRange: <3.2.0
-    olm.properties: '[{"type": "olm.maxOpenShiftVersion", "value": "4.11"}]'
+    olm.properties: '[{"type": "olm.maxOpenShiftVersion", "value": "4.12"}]'
   name: eamli-operator.v3.2.0
   namespace: placeholder
 spec:
@@ -688,12 +688,6 @@ spec:
           resources:
           - deployments
           - statefulsets
-          verbs:
-          - '*'
-        - apiGroups:
-          - autoscaling
-          resources:
-          - horizontalpodautoscalers
           verbs:
           - '*'
         - apiGroups:

@@ -13,7 +13,7 @@ annotations:
   # Annotations for testing.
   operators.operatorframework.io.test.mediatype.v1: scorecard+v1
   operators.operatorframework.io.test.config.v1: tests/scorecard/
-  com.redhat.openshift.versions: "v4.7-v4.9"
+  com.redhat.openshift.versions: "v4.10-v4.12"
 
   # OpenShift annotations.
   marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/aikit-operator-rhmp/pricing?utm_source=openshift_console

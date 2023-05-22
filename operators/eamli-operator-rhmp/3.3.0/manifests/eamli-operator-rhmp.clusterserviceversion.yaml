@@ -1,0 +1,1046 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "Eamli",
+          "metadata": {
+            "name": "example-eamli"
+          },
+          "spec": {
+            "eamlicore": {
+              "database": {
+                "address": "psql-postgresql.psql.svc.cluster.local"
+              },
+              "ingress": {
+                "enabled": true,
+                "host": "eamli.local"
+              },
+              "keycloak": {
+                "address": "keycloak.keycloak.svc.cluster.local",
+                "port": 80,
+                "service": {
+                  "enabled": true
+                }
+              }
+            },
+            "license": {
+              "accept": true
+            }
+          }
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "EamliCore",
+          "metadata": {
+            "name": "eamlicore-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "EamliUI",
+          "metadata": {
+            "name": "eamliui-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "EamliWeb",
+          "metadata": {
+            "name": "eamliui-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "KeycloakRealm",
+          "metadata": {
+            "name": "keyclaokrealm-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "ModelStore",
+          "metadata": {
+            "name": "modelstore-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "ProductServer",
+          "metadata": {
+            "name": "productserver-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "SourceData",
+          "metadata": {
+            "name": "sourcedata-sample"
+          },
+          "spec": {}
+        },
+        {
+          "apiVersion": "eamli.com/v1alpha1",
+          "kind": "UserService",
+          "metadata": {
+            "name": "userservice-sample"
+          },
+          "spec": {}
+        }
+      ]
+    alm-examples-metadata: |-
+      {
+        "eamli-sample":{"name":"Quick start","description":"Example definition for running eamli with third-party resources installed within the same cluster (see eamli.com/quickstart for more details)"}
+      }
+    capabilities: Seamless Upgrades
+    categories: AI/Machine Learning
+    containerImage: registry.connect.redhat.com/eamli/eamli-operator@sha256:d124d5a1c0b2b9a1d25e43de144780132076a9decaa6c1992cc062b95934b1b3
+    createdAt: 2023-05-22T11:38:28Z
+    description: installs and manages the eamli product
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/eamli-operator-rhmp/support?utm_source=openshift_console
+    operatorframework.io/suggested-namespace: eamli
+    operators.openshift.io/infrastructure-features: '["disconnected"]'
+    operators.operatorframework.io/builder: operator-sdk-v1.25.2
+    operators.operatorframework.io/internal-objects: '["eamlicores.eamli.com",,"eamliuis.eamli.com","eamliwebs.eamli.com""keycloakrealms.eamli.com","productservers.eamli.com","sourcedatas.eamli.com","userservices.eamli.com"]'
+    operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
+    repository: https://gitlab.com/whitedotspace/eamli/eamli-operator
+    support: Eamli
+    olm.skipRange: <3.3.0
+  name: eamli-operator.v3.3.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: EamliCore is the Schema for the eamlicore
+      displayName: Eamli Core
+      kind: EamliCore
+      name: eamlicores.eamli.com
+      resources:
+      - kind: EndpointSlice
+        name: eamli-database
+        version: v1
+      - kind: Service
+        name: eamli-database
+        version: v1
+      - kind: EndpointSlice
+        name: eamli-keycloak
+        version: v1
+      - kind: Service
+        name: eamli-keycloak
+        version: v1
+      - kind: ConfigMap
+        name: eamlicore
+        version: v1
+      - kind: Ingress
+        name: eamlicore
+        version: networking.k8s.io/v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: Eamli is the Schema for the eamlis API
+      displayName: Eamli
+      kind: Eamli
+      name: eamlis.eamli.com
+      resources:
+      - kind: EamliCore
+        name: eamlicore
+        version: eamli.com/v1alpha1
+      - kind: EamliUI
+        name: eamliui
+        version: eamli.com/v1alpha1
+      - kind: KeycloakRealm
+        name: keycloakrealm
+        version: eamli.com/v1alpha1
+      - kind: ProductServer
+        name: productserver
+        version: eamli.com/v1alpha1
+      - kind: SourceData
+        name: sourcedata
+        version: eamli.com/v1alpha1
+      - kind: UserService
+        name: userservice
+        version: eamli.com/v1alpha1
+      specDescriptors:
+      - description: UserServiceSpec defines the desired state of the UserService
+        displayName: Core
+        path: eamlicore
+      - description: EamliUISpec defines the desired state of the EamliUI
+        displayName: Web UI
+        path: eamliui
+      - description: EamliWebSpec defines the desired state of the EamliWeb
+        displayName: Web App
+        path: eamliweb
+      - description: UserServiceSpec defines the desired state of the UserService
+        displayName: API Server
+        path: keycloakrealm
+      - description: License defines the users required check, agreeing to the products licenses
+        displayName: License
+        path: license
+      - displayName: Accept
+        path: license.accept
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+      - description: ModelStoreSpec defines the desired state of the ModelStore
+        displayName: Model Store
+        path: modelstore
+      - description: ProductServerSpec defines the desired state of the ProductServer
+        displayName: Product Server
+        path: productserver
+      - description: SourceDataSpec defines the desired state of the SourceData
+        displayName: Source Data
+        path: sourcedata
+      - description: UserServiceSpec defines the desired state of the UserService
+        displayName: User Service
+        path: userservice
+      - displayName: WatsonEnabled
+        path: watsonEnabled
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: EamliUI is the Schema for the eamliuis API
+      displayName: Eamli UI
+      kind: EamliUI
+      name: eamliuis.eamli.com
+      resources:
+      - kind: Deployment
+        name: eamliui
+        version: v1
+      - kind: NetworkPolicy
+        name: eamliui
+        version: v1
+      - kind: Pod
+        name: eamliui
+        version: v1
+      - kind: Role
+        name: eamliui
+        version: v1
+      - kind: RoleBinding
+        name: eamliui
+        version: v1
+      - kind: Service
+        name: eamliui
+        version: v1
+      - kind: ServiceAccount
+        name: eamliui
+        version: v1
+      - kind: Servicemonitor
+        name: eamliui
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: EamliWeb is the Schema for the eamliwebs API
+      displayName: Eamli UI
+      kind: EamliWeb
+      name: eamliwebs.eamli.com
+      resources:
+      - kind: Deployment
+        name: eamliweb
+        version: v1
+      - kind: NetworkPolicy
+        name: eamliweb
+        version: v1
+      - kind: Pod
+        name: eamliweb
+        version: v1
+      - kind: Role
+        name: eamliweb
+        version: v1
+      - kind: RoleBinding
+        name: eamliweb
+        version: v1
+      - kind: Service
+        name: eamliweb
+        version: v1
+      - kind: ServiceAccount
+        name: eamliweb
+        version: v1
+      - kind: Servicemonitor
+        name: eamliweb
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: KeycloakRealm is the Schema for the eamliKeycloakRealms API
+      displayName: Eamli Keycloak Realm
+      kind: KeycloakRealm
+      name: keycloakrealms.eamli.com
+      resources:
+      - kind: Secret
+        name: eamli-keycloak
+        version: v1
+      - kind: Job
+        name: keycloakrealm
+        version: v1
+      - kind: NetworkPolicy
+        name: keycloakrealm
+        version: v1
+      - kind: Pod
+        name: keycloakrealm
+        version: v1
+      - kind: Role
+        name: keycloakrealm
+        version: v1
+      - kind: RoleBinding
+        name: keycloakrealm
+        version: v1
+      - kind: ServiceAccount
+        name: keycloakrealm
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: ModelStore is the Schema for the modelstores API
+      displayName: Model Store
+      kind: ModelStore
+      name: modelstores.eamli.com
+      resources:
+      - kind: Deployment
+        name: modelstore
+        version: v1
+      - kind: Job
+        name: modelstore
+        version: v1
+      - kind: NetworkPolicy
+        name: modelstore
+        version: v1
+      - kind: Pod
+        name: modelstore
+        version: v1
+      - kind: Role
+        name: modelstore
+        version: v1
+      - kind: RoleBinding
+        name: modelstore
+        version: v1
+      - kind: Service
+        name: modelstore
+        version: v1
+      - kind: ServiceAccount
+        name: modelstore
+        version: v1
+      - kind: Servicemonitor
+        name: modelstore
+        version: v1
+      - kind: Pod
+        name: modelstore-seeder
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: ProductServer is the Schema for the productservers API
+      displayName: Product Server
+      kind: ProductServer
+      name: productservers.eamli.com
+      resources:
+      - kind: Deployment
+        name: productserver
+        version: v1
+      - kind: Job
+        name: productserver
+        version: v1
+      - kind: NetworkPolicy
+        name: productserver
+        version: v1
+      - kind: Pod
+        name: productserver
+        version: v1
+      - kind: Role
+        name: productserver
+        version: v1
+      - kind: RoleBinding
+        name: productserver
+        version: v1
+      - kind: Service
+        name: productserver
+        version: v1
+      - kind: ServiceAccount
+        name: productserver
+        version: v1
+      - kind: Servicemonitor
+        name: productserver
+        version: v1
+      - kind: Pod
+        name: productserver-seeder
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: SourceData is the Schema for the sourcedatas API
+      displayName: Source Data
+      kind: SourceData
+      name: sourcedatas.eamli.com
+      resources:
+      - kind: Deployment
+        name: sourcedata
+        version: v1
+      - kind: Job
+        name: sourcedata
+        version: v1
+      - kind: NetworkPolicy
+        name: sourcedata
+        version: v1
+      - kind: Pod
+        name: sourcedata
+        version: v1
+      - kind: Role
+        name: sourcedata
+        version: v1
+      - kind: RoleBinding
+        name: sourcedata
+        version: v1
+      - kind: Service
+        name: sourcedata
+        version: v1
+      - kind: ServiceAccount
+        name: sourcedata
+        version: v1
+      - kind: Servicemonitor
+        name: sourcedata
+        version: v1
+      - kind: Pod
+        name: sourcedata-seeder
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+    - description: UserService is the Schema for the userservices API
+      displayName: User Service
+      kind: UserService
+      name: userservices.eamli.com
+      resources:
+      - kind: Deployment
+        name: userservice
+        version: v1
+      - kind: Job
+        name: userservice
+        version: v1
+      - kind: NetworkPolicy
+        name: userservice
+        version: v1
+      - kind: Pod
+        name: userservice
+        version: v1
+      - kind: Role
+        name: userservice
+        version: v1
+      - kind: RoleBinding
+        name: userservice
+        version: v1
+      - kind: Service
+        name: userservice
+        version: v1
+      - kind: ServiceAccount
+        name: userservice
+        version: v1
+      - kind: Servicemonitor
+        name: userservice
+        version: v1
+      - kind: Pod
+        name: userservice-seeder
+        version: v1
+      statusDescriptors:
+      - description: Conditions contains a list of status updates
+        displayName: Conditions
+        path: conditions
+      - description: ManagedResources is a list of string represented resources created and maintained by this operator.
+        displayName: Managed Resources
+        path: managedResources
+      version: v1alpha1
+  description: |-
+    eamli is a decision-intelligence service that eamli analyses millions of possibilities in ways humans can’t. Within seconds, eamli models the future so that you can see the impact of decisions before you make them.
+    # Introduction
+    The eamli operator provides a single interface for managing all the services that make up the eamli platform, and provides seamless upgrade process, to keep you always up to date.
+    # Details
+    ## Prerequisites
+    * Red Hat OpenShift Container Platform 4.6 or newer installed on x86_64
+    * A user with cluster administrator role
+    * No storage is required to install the operator
+    * A PostgreSQL instance, reachable from within the cluster. For details on setting up a basic PostgreSQL instance see [here](https://whitespaceventures.github.io/eamli-operator-docs/Postgresql.md)
+    * Keycloak Operator installed within the eamli target namespace, with a custom route defined. For details on setup see [here](https://whitespaceventures.github.io/eamli-operator-docs/Keycloak.html)
+    ## Resources Required
+    The operator requires 200m CPU and 256Mi memory.
+
+    For the minimum requirements for services, see the [service configuration](https://eamli.com/config) documentation
+    ## Installing
+    Check out the [quick start guide](https://eamli.com/quickstart), for getting the eamli operator up and running
+    ## Configuration
+    For full configuration options, see  https://eamli.com/config
+    ## Limitations
+    Only `x86-64` platforms are supported by this operator.
+    ## SecurityContextConstraints Requirements
+    The `restricted` security context constraint (SCC) is used for the operator.
+    ## Terms
+    * [License agreement](https://eamli.com/eula)
+    * [Privacy policy](https://eamli.com/privacy-policy)
+  displayName: eamli
+  icon:
+  - base64data: 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
+    mediatype: image/png
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: eamli-operator-controller-manager
+      deployments:
+      - label:
+          control-plane: controller-manager
+        name: eamli-operator-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              annotations:
+                kubectl.kubernetes.io/default-container: manager
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=0
+                image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                  protocol: TCP
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 128Mi
+                  requests:
+                    cpu: 5m
+                    memory: 64Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              - args:
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                command:
+                - /manager
+                env:
+                - name: WATCH_NAMESPACE
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: metadata.annotations['olm.targetNamespaces']
+                - name: RELATED_IMAGE_EAMLI_UI
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui@sha256:eecce9c8cb49abec7170bee9a288a98868a2cf38f4a5c4a98f9f6162c7eacdf5
+                - name: RELATED_IMAGE_EAMLI_WEB
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web@sha256:5fae0f79ad6df2709fc9c8260f791009cf1df26aacd3a89060a138aa78451a73
+                - name: RELATED_IMAGE_KEYCLOAK_REALM
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm@sha256:70ceb68eb6a5bea235d598e2bed07748a191278ff32328fd15cd481dcfd23dc3
+                - name: RELATED_IMAGE_MODEL_STORE
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/model-store@sha256:b49c54bc2633bda50c9be85302e7bd0fa93c920a9904a4924a4462071a6f514f
+                - name: RELATED_IMAGE_PRODUCT_SERVER
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/product-server@sha256:b9643933df70dc2fa1bf6e695c405a08ae8afcac1712dad77d6982b087ac9fd3
+                - name: RELATED_IMAGE_SOURCE_DATA
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/source-data@sha256:b8e2b6d7c4b685a926374e8788693453d94bc43a63847821a18dc5a7ee5b4b46
+                - name: RELATED_IMAGE_USER_SERVICE
+                  value: registry.gitlab.com/whitedotspace/eamli/registry/user-service@sha256:d99a6fde85e0cac2ed261669c11d1f0aa6284ab0100d048210d8d1803276de3f
+                image: registry.connect.redhat.com/eamli/eamli-operator@sha256:d124d5a1c0b2b9a1d25e43de144780132076a9decaa6c1992cc062b95934b1b3
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 8081
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 8081
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 256Mi
+                  requests:
+                    cpu: 50m
+                    memory: 256Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: eamli-operator-controller-manager
+              terminationGracePeriodSeconds: 10
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          - endpoints
+          - secrets
+          - serviceaccounts
+          - services
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - batch
+          resources:
+          - jobs
+          verbs:
+          - '*'
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamlicores
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamlicores/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamlicores/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamlis
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamlis/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamlis/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamliuis
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamliuis/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamliuis/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamliwebs
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamliwebs/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - eamliwebs/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - keycloakrealms
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - keycloakrealms/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - keycloakrealms/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - modelstores
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - modelstores/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - modelstores/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - productservers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - productservers/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - productservers/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - sourcedatas
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - sourcedatas/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - sourcedatas/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - userservices
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - eamli.com
+          resources:
+          - userservices/finalizers
+          verbs:
+          - update
+        - apiGroups:
+          - eamli.com
+          resources:
+          - userservices/status
+          verbs:
+          - get
+          - patch
+          - update
+        - apiGroups:
+          - monitoring.coreos.com
+          resources:
+          - prometheusrules
+          - servicemonitors
+          verbs:
+          - '*'
+        - apiGroups:
+          - monitoring.googleapis.com
+          resources:
+          - podmonitorings
+          verbs:
+          - '*'
+        - apiGroups:
+          - networking.k8s.io
+          resources:
+          - ingresses
+          - networkpolicies
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - routes
+          - routes/custom-host
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resourceNames:
+          - restricted
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - get
+        serviceAccountName: eamli-operator-controller-manager
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
+  keywords:
+  - eamli
+  - bi
+  - business
+  - intelligence
+  labels:
+    operatorframework.io/arch.amd64: supported
+    operatorframework.io/arch.ppc64le: supported
+    operatorframework.io/arch.s390x: supported
+    operatorframework.io/os.linux: supported
+  links:
+  - name: Eamli
+    url: https://ibm.eamli.com
+  - name: Eamli operator documentation
+    url: https://whitespaceventures.github.io/eamli-operator-docs/
+  maintainers:
+  - email: support@eamli.com
+    name: Eamli Support
+  maturity: alpha
+  provider:
+    name: eamli
+    url: eamli.com
+  relatedImages:
+  - name: eamli-ui
+    image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui@sha256:eecce9c8cb49abec7170bee9a288a98868a2cf38f4a5c4a98f9f6162c7eacdf5
+  - name: eamli-web
+    image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web@sha256:5fae0f79ad6df2709fc9c8260f791009cf1df26aacd3a89060a138aa78451a73
+  - name: keycloak-realm
+    image: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm@sha256:70ceb68eb6a5bea235d598e2bed07748a191278ff32328fd15cd481dcfd23dc3
+  - name: model-store
+    image: registry.gitlab.com/whitedotspace/eamli/registry/model-store@sha256:b49c54bc2633bda50c9be85302e7bd0fa93c920a9904a4924a4462071a6f514f
+  - name: product-server
+    image: registry.gitlab.com/whitedotspace/eamli/registry/product-server@sha256:b9643933df70dc2fa1bf6e695c405a08ae8afcac1712dad77d6982b087ac9fd3
+  - name: source-data
+    image: registry.gitlab.com/whitedotspace/eamli/registry/source-data@sha256:b8e2b6d7c4b685a926374e8788693453d94bc43a63847821a18dc5a7ee5b4b46
+  - name: user-service
+    image: registry.gitlab.com/whitedotspace/eamli/registry/user-service@sha256:d99a6fde85e0cac2ed261669c11d1f0aa6284ab0100d048210d8d1803276de3f
+  - name: eamli-operator-d124d5a1c0b2b9a1d25e43de144780132076a9decaa6c1992cc062b95934b1b3-annotation
+    image: registry.connect.redhat.com/eamli/eamli-operator@sha256:d124d5a1c0b2b9a1d25e43de144780132076a9decaa6c1992cc062b95934b1b3
+  - name: kube-rbac-proxy
+    image: gcr.io/kubebuilder/kube-rbac-proxy@sha256:d99a8d144816b951a67648c12c0b988936ccd25cf3754f3cd85ab8c01592248f
+  - name: manager
+    image: registry.connect.redhat.com/eamli/eamli-operator@sha256:d124d5a1c0b2b9a1d25e43de144780132076a9decaa6c1992cc062b95934b1b3
+  - name: eamli_ui
+    image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-ui@sha256:eecce9c8cb49abec7170bee9a288a98868a2cf38f4a5c4a98f9f6162c7eacdf5
+  - name: eamli_web
+    image: registry.gitlab.com/whitedotspace/eamli/registry/eamli-web@sha256:5fae0f79ad6df2709fc9c8260f791009cf1df26aacd3a89060a138aa78451a73
+  - name: keycloak_realm
+    image: registry.gitlab.com/whitedotspace/eamli/registry/keycloak-realm@sha256:70ceb68eb6a5bea235d598e2bed07748a191278ff32328fd15cd481dcfd23dc3
+  - name: model_store
+    image: registry.gitlab.com/whitedotspace/eamli/registry/model-store@sha256:b49c54bc2633bda50c9be85302e7bd0fa93c920a9904a4924a4462071a6f514f
+  - name: product_server
+    image: registry.gitlab.com/whitedotspace/eamli/registry/product-server@sha256:b9643933df70dc2fa1bf6e695c405a08ae8afcac1712dad77d6982b087ac9fd3
+  - name: source_data
+    image: registry.gitlab.com/whitedotspace/eamli/registry/source-data@sha256:b8e2b6d7c4b685a926374e8788693453d94bc43a63847821a18dc5a7ee5b4b46
+  - name: user_service
+    image: registry.gitlab.com/whitedotspace/eamli/registry/user-service@sha256:d99a6fde85e0cac2ed261669c11d1f0aa6284ab0100d048210d8d1803276de3f
+  version: 3.3.0

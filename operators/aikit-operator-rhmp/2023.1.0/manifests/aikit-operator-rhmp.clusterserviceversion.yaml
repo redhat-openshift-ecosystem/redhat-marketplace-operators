@@ -192,8 +192,6 @@ spec:
   maintainers:
   - email: abolfazl.shahbazi@intel.com
     name: Abolfazl Shahbazi
-  - email: kam.d.kasravi@intel.com
-    name: Kam Kasravi
   - email: sharvil.shah@intel.com
     name: Sharvil Shah
   maturity: alpha
@@ -202,7 +200,6 @@ spec:
     name: Intel
     url: https://software.intel.com/content/www/us/en/develop/tools/oneapi/application-catalog.html#gs.407z40
   version: 2023.1.50413 # {"$openapi":"VERSION"}
-  replaces: aikit-operator.v2022.1.30120 # This is in case we need to replace some version in the future
   relatedImages:
   - name: manager
     image: registry.connect.redhat.com/intel/aikit-operator@sha256:c5c1ab1de182aed5fe0de1516d3089da13761297d6a550c3b9181842c0f2bf8a

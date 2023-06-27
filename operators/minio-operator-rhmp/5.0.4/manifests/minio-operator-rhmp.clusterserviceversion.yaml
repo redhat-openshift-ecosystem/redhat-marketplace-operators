@@ -20,7 +20,7 @@ metadata:
   namespace: minio-operator
 spec:
   apiservicedefinitions: {}
-  replaces: minio-operator.v5.0.3
+  replaces: minio-operator-rhmp.v5.0.3
   customresourcedefinitions:
     owned:
       - kind: Tenant

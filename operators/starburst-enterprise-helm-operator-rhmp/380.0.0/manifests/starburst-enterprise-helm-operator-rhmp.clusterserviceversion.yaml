@@ -185,12 +185,7 @@ metadata:
             },
             "userDatabase": {
               "enabled": false,
-              "users": [
-                {
-                  "password": "46991b33f7a75ff79213c0dc0e610610",
-                  "username": "admin"
-                }
-              ]
+              "users": []
             },
             "worker": {
               "additionalProperties": "",

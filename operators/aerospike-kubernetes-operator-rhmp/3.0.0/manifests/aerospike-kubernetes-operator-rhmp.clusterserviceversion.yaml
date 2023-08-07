@@ -76,7 +76,6 @@ metadata:
     operators.operatorframework.io/builder: operator-sdk-v1.24.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/aerospike/aerospike-kubernetes-operator/
-    olm.replaces: aerospike-kubernetes-operator.v2.5.0
   labels:
     operatorframework.io/arch.amd64: supported
     operatorframework.io/arch.arm64: supported
@@ -84,6 +83,7 @@ metadata:
   name: aerospike-kubernetes-operator.v3.0.0
   namespace: placeholder
 spec:
+  replaces: aerospike-kubernetes-operator.v2.5.0
   relatedImages:
     - image: quay.io/aerospike/aerospike-kubernetes-operator@sha256:38c5a21f2453a2d65ede7c83d84763d20c300d648572e58ac862b2e7bf804f00
       name: manager

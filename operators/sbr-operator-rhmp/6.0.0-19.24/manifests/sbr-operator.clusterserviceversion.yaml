@@ -2,8 +2,6 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/sbr-operator-rhmp/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/sbr-operator-rhmp/support?utm_source=openshift_console
     alm-examples: |-
       [
         {
@@ -118,18 +116,20 @@ metadata:
         }
       ]
     capabilities: Basic Install
-    createdAt: "2023-08-11T13:24:08Z"
-    operators.operatorframework.io/builder: operator-sdk-v1.28.0-ocp
+    createdAt: "2023-08-29T10:56:23Z"
+    operators.operatorframework.io/builder: operator-sdk-v1.31.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
-  name: sbr-operator.v6.0.0-19-24
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/sbr-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/sbr-operator-rhmp/support?utm_source=openshift_console
+  name: sbr-operator.v6.0.0-19.24
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
-    - kind: SBR
-      name: sbrs.operator.storware.eu
-      version: v1
+      - kind: SBR
+        name: sbrs.operator.storware.eu
+        version: v1
   description: Operator for automatic deployment of Storware Backup & Recovery
   displayName: Storware Backup & Recovery
   icon:
@@ -138,260 +138,265 @@ spec:
   install:
     spec:
       clusterPermissions:
-      - rules:
-        - apiGroups:
-          - ""
-          resources:
-          - namespaces
-          verbs:
-          - get
-        - apiGroups:
-          - ""
-          resources:
-          - secrets
-          verbs:
-          - '*'
-        - apiGroups:
-          - ""
-          resources:
-          - events
-          verbs:
-          - create
-        - apiGroups:
-          - operator.storware.eu
-          resources:
-          - sbrs
-          - sbrs/status
-          - sbrs/finalizers
-          verbs:
-          - create
-          - delete
-          - get
-          - list
-          - patch
-          - update
-          - watch
-        - apiGroups:
-          - ""
-          resources:
-          - pods
-          - services
-          - services/finalizers
-          - endpoints
-          - persistentvolumeclaims
-          - events
-          - configmaps
-          - secrets
-          verbs:
-          - create
-          - delete
-          - get
-          - list
-          - patch
-          - update
-          - watch
-        - apiGroups:
-          - apps
-          resources:
-          - deployments
-          - daemonsets
-          - replicasets
-          - statefulsets
-          verbs:
-          - create
-          - delete
-          - get
-          - list
-          - patch
-          - update
-          - watch
-        - apiGroups:
-          - ""
-          resources:
-          - serviceaccounts
-          verbs:
-          - create
-          - get
-          - list
-          - watch
-          - update
-        - apiGroups:
-          - route.openshift.io
-          resources:
-          - routes
-          verbs:
-          - create
-          - get
-          - list
-          - watch
-          - update
-        - apiGroups:
-          - authentication.k8s.io
-          resources:
-          - tokenreviews
-          verbs:
-          - create
-        - apiGroups:
-          - authorization.k8s.io
-          resources:
-          - subjectaccessreviews
-          verbs:
-          - create
-        serviceAccountName: sbr-operator-controller-manager
+        - rules:
+            - apiGroups:
+                - ""
+              resources:
+                - namespaces
+              verbs:
+                - get
+            - apiGroups:
+                - ""
+              resources:
+                - secrets
+              verbs:
+                - '*'
+            - apiGroups:
+                - ""
+              resources:
+                - events
+              verbs:
+                - create
+            - apiGroups:
+                - operator.storware.eu
+              resources:
+                - sbrs
+                - sbrs/status
+                - sbrs/finalizers
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - ""
+              resources:
+                - pods
+                - services
+                - services/finalizers
+                - endpoints
+                - persistentvolumeclaims
+                - events
+                - configmaps
+                - secrets
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - apps
+              resources:
+                - deployments
+                - daemonsets
+                - replicasets
+                - statefulsets
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - ""
+              resources:
+                - serviceaccounts
+              verbs:
+                - create
+                - get
+                - list
+                - watch
+                - update
+            - apiGroups:
+                - route.openshift.io
+              resources:
+                - routes
+              verbs:
+                - create
+                - get
+                - list
+                - watch
+                - update
+            - apiGroups:
+                - authentication.k8s.io
+              resources:
+                - tokenreviews
+              verbs:
+                - create
+            - apiGroups:
+                - authorization.k8s.io
+              resources:
+                - subjectaccessreviews
+              verbs:
+                - create
+          serviceAccountName: sbr-operator-controller-manager
       deployments:
-      - label:
-          app.kubernetes.io/component: manager
-          app.kubernetes.io/created-by: sbr-operator
-          app.kubernetes.io/instance: controller-manager
-          app.kubernetes.io/managed-by: helm
-          app.kubernetes.io/name: deployment
-          app.kubernetes.io/part-of: sbr-operator
-          control-plane: controller-manager
-        name: sbr-operator-controller-manager
-        spec:
-          replicas: 1
-          selector:
-            matchLabels:
-              control-plane: controller-manager
-          strategy: {}
-          template:
-            metadata:
-              annotations:
-                kubectl.kubernetes.io/default-container: manager
-              labels:
+        - label:
+            app.kubernetes.io/component: manager
+            app.kubernetes.io/created-by: sbr-operator
+            app.kubernetes.io/instance: controller-manager
+            app.kubernetes.io/managed-by: helm
+            app.kubernetes.io/name: deployment
+            app.kubernetes.io/part-of: sbr-operator
+            control-plane: controller-manager
+          name: sbr-operator-controller-manager
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
                 control-plane: controller-manager
-            spec:
-              affinity:
-                nodeAffinity:
-                  requiredDuringSchedulingIgnoredDuringExecution:
-                    nodeSelectorTerms:
-                    - matchExpressions:
-                      - key: kubernetes.io/arch
-                        operator: In
-                        values:
-                        - amd64
-                        - arm64
-                        - ppc64le
-                        - s390x
-                      - key: kubernetes.io/os
-                        operator: In
-                        values:
-                        - linux
-              containers:
-              - args:
-                - --secure-listen-address=0.0.0.0:8443
-                - --upstream=http://127.0.0.1:8080/
-                - --logtostderr=true
-                - --v=0
-                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.13
-                name: kube-rbac-proxy
-                ports:
-                - containerPort: 8443
-                  name: https
-                  protocol: TCP
-                resources:
-                  limits:
-                    cpu: 500m
-                    memory: 128Mi
-                  requests:
-                    cpu: 5m
-                    memory: 64Mi
+            strategy: {}
+            template:
+              metadata:
+                annotations:
+                  kubectl.kubernetes.io/default-container: manager
+                labels:
+                  control-plane: controller-manager
+              spec:
+                affinity:
+                  nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                      nodeSelectorTerms:
+                        - matchExpressions:
+                            - key: kubernetes.io/arch
+                              operator: In
+                              values:
+                                - amd64
+                                - arm64
+                                - ppc64le
+                                - s390x
+                            - key: kubernetes.io/os
+                              operator: In
+                              values:
+                                - linux
+                containers:
+                  - args:
+                      - --secure-listen-address=0.0.0.0:8443
+                      - --upstream=http://127.0.0.1:8080/
+                      - --logtostderr=true
+                      - --v=0
+                    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:8307f2210206acdcb87f2a44952d5464f059fe6f763b6b11d24739d58c804057
+                    name: kube-rbac-proxy
+                    ports:
+                      - containerPort: 8443
+                        name: https
+                        protocol: TCP
+                    resources:
+                      limits:
+                        cpu: 500m
+                        memory: 128Mi
+                      requests:
+                        cpu: 5m
+                        memory: 64Mi
+                    securityContext:
+                      allowPrivilegeEscalation: false
+                      capabilities:
+                        drop:
+                          - ALL
+                  - args:
+                      - --health-probe-bind-address=:8081
+                      - --metrics-bind-address=127.0.0.1:8080
+                      - --leader-elect
+                      - --leader-election-id=sbr-operator
+                    image: quay.io/storware/sbr-operator@sha256:b37b0c3d3f22d2e5c722efd929f6b944eb6d6355b19b221d2ba99a38bc0bda3e
+                    imagePullPolicy: Always
+                    livenessProbe:
+                      httpGet:
+                        path: /healthz
+                        port: 8081
+                      initialDelaySeconds: 15
+                      periodSeconds: 20
+                    name: manager
+                    readinessProbe:
+                      httpGet:
+                        path: /readyz
+                        port: 8081
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                    resources:
+                      limits:
+                        cpu: "1"
+                        memory: 256Mi
+                      requests:
+                        cpu: 20m
+                        memory: 128Mi
+                    securityContext:
+                      allowPrivilegeEscalation: false
+                      capabilities:
+                        drop:
+                          - ALL
                 securityContext:
-                  allowPrivilegeEscalation: false
-                  capabilities:
-                    drop:
-                    - ALL
-              - args:
-                - --health-probe-bind-address=:8081
-                - --metrics-bind-address=127.0.0.1:8080
-                - --leader-elect
-                - --leader-election-id=sbr-operator
-                image: quay.io/storware/sbr-operator:6.0.0-19.24
-                imagePullPolicy: Always
-                livenessProbe:
-                  httpGet:
-                    path: /healthz
-                    port: 8081
-                  initialDelaySeconds: 15
-                  periodSeconds: 20
-                name: manager
-                readinessProbe:
-                  httpGet:
-                    path: /readyz
-                    port: 8081
-                  initialDelaySeconds: 5
-                  periodSeconds: 10
-                resources:
-                  limits:
-                    cpu: "1"
-                    memory: 256Mi
-                  requests:
-                    cpu: 20m
-                    memory: 128Mi
-                securityContext:
-                  allowPrivilegeEscalation: false
-                  capabilities:
-                    drop:
-                    - ALL
-              securityContext:
-                runAsNonRoot: true
-              serviceAccountName: sbr-operator-controller-manager
-              terminationGracePeriodSeconds: 10
+                  runAsNonRoot: true
+                serviceAccountName: sbr-operator-controller-manager
+                terminationGracePeriodSeconds: 10
       permissions:
-      - rules:
-        - apiGroups:
-          - ""
-          resources:
-          - configmaps
-          verbs:
-          - get
-          - list
-          - watch
-          - create
-          - update
-          - patch
-          - delete
-        - apiGroups:
-          - coordination.k8s.io
-          resources:
-          - leases
-          verbs:
-          - get
-          - list
-          - watch
-          - create
-          - update
-          - patch
-          - delete
-        - apiGroups:
-          - ""
-          resources:
-          - events
-          verbs:
-          - create
-          - patch
-        serviceAccountName: sbr-operator-controller-manager
+        - rules:
+            - apiGroups:
+                - ""
+              resources:
+                - configmaps
+              verbs:
+                - get
+                - list
+                - watch
+                - create
+                - update
+                - patch
+                - delete
+            - apiGroups:
+                - coordination.k8s.io
+              resources:
+                - leases
+              verbs:
+                - get
+                - list
+                - watch
+                - create
+                - update
+                - patch
+                - delete
+            - apiGroups:
+                - ""
+              resources:
+                - events
+              verbs:
+                - create
+                - patch
+          serviceAccountName: sbr-operator-controller-manager
     strategy: deployment
   installModes:
-  - supported: false
-    type: OwnNamespace
-  - supported: false
-    type: SingleNamespace
-  - supported: false
-    type: MultiNamespace
-  - supported: true
-    type: AllNamespaces
+    - supported: false
+      type: OwnNamespace
+    - supported: false
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: true
+      type: AllNamespaces
   keywords:
-  - backup
-  - recovery
-  - protection
-  - virtualization
-  - vprotect
+    - backup
+    - recovery
+    - protection
+    - virtualization
+    - vprotect
   links:
-  - name: Sbr Operator
-    url: https://sbr-operator.domain
+    - name: Sbr Operator
+      url: https://sbr-operator.domain
   maturity: alpha
   provider:
     name: Storware
     url: www.storware.eu
-  version: 6.0.0-19-24
+  relatedImages:
+    - image: quay.io/storware/sbr-operator@sha256:b37b0c3d3f22d2e5c722efd929f6b944eb6d6355b19b221d2ba99a38bc0bda3e
+      name: manager
+    - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:8307f2210206acdcb87f2a44952d5464f059fe6f763b6b11d24739d58c804057
+      name: kube-rbac-proxy
+  version: 6.0.0-19.24

@@ -53,8 +53,7 @@ metadata:
                 "port": 3306,
                 "type": "ClusterIP"
               },
-              "storageCapacity": "20Gi",
-              "storageClassName": "ocs-storagecluster-ceph-rbd"
+              "storagePvc": "pvc-mariadb"
             },
             "nameOverride": "",
             "node": {
@@ -75,8 +74,7 @@ metadata:
                 }
               },
               "securityContext": {},
-              "storageCapacity": "100Gi",
-              "storageClassName": "ocs-storagecluster-ceph-rbd"
+              "storagePvc": "pvc-node"
             },
             "nodeSelector": {},
             "podAnnotations": {},
@@ -116,7 +114,7 @@ metadata:
         }
       ]
     capabilities: Basic Install
-    createdAt: "2023-08-29T17:52:00Z"
+    createdAt: "2023-08-31T15:12:00Z"
     operators.operatorframework.io/builder: operator-sdk-v1.31.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/sbr-operator-rhmp/pricing?utm_source=openshift_console
@@ -283,7 +281,7 @@ spec:
                       - --upstream=http://127.0.0.1:8080/
                       - --logtostderr=true
                       - --v=0
-                    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:8307f2210206acdcb87f2a44952d5464f059fe6f763b6b11d24739d58c804057
+                    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e5091cc36ac7bb8c776c16891cbfc12e3b7810d9003ce034a6a8697267666a7b
                     name: kube-rbac-proxy
                     ports:
                       - containerPort: 8443
@@ -306,7 +304,7 @@ spec:
                       - --metrics-bind-address=127.0.0.1:8080
                       - --leader-elect
                       - --leader-election-id=sbr-operator
-                    image: quay.io/storware/sbr-operator@sha256:b37b0c3d3f22d2e5c722efd929f6b944eb6d6355b19b221d2ba99a38bc0bda3e
+                    image: quay.io/storware/sbr-operator@sha256:919a9928d76ed4f6cb1979af062630779af37633cd04e6f5cd8341cf1f21564f
                     imagePullPolicy: Always
                     livenessProbe:
                       httpGet:
@@ -395,8 +393,8 @@ spec:
     name: Storware
     url: www.storware.eu
   relatedImages:
-    - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:8307f2210206acdcb87f2a44952d5464f059fe6f763b6b11d24739d58c804057
+    - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e5091cc36ac7bb8c776c16891cbfc12e3b7810d9003ce034a6a8697267666a7b
       name: kube-rbac-proxy
-    - image: quay.io/storware/sbr-operator@sha256:b37b0c3d3f22d2e5c722efd929f6b944eb6d6355b19b221d2ba99a38bc0bda3e
+    - image: quay.io/storware/sbr-operator@sha256:919a9928d76ed4f6cb1979af062630779af37633cd04e6f5cd8341cf1f21564f
       name: manager
   version: 6.0.0-19.24

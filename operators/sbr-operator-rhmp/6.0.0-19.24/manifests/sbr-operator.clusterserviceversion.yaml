@@ -114,7 +114,7 @@ metadata:
         }
       ]
     capabilities: Basic Install
-    createdAt: "2023-08-31T15:12:00Z"
+    createdAt: "2023-08-31T16:08:13Z"
     operators.operatorframework.io/builder: operator-sdk-v1.31.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/sbr-operator-rhmp/pricing?utm_source=openshift_console
@@ -393,8 +393,8 @@ spec:
     name: Storware
     url: www.storware.eu
   relatedImages:
-    - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e5091cc36ac7bb8c776c16891cbfc12e3b7810d9003ce034a6a8697267666a7b
-      name: kube-rbac-proxy
     - image: quay.io/storware/sbr-operator@sha256:919a9928d76ed4f6cb1979af062630779af37633cd04e6f5cd8341cf1f21564f
       name: manager
+    - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e5091cc36ac7bb8c776c16891cbfc12e3b7810d9003ce034a6a8697267666a7b
+      name: kube-rbac-proxy
   version: 6.0.0-19.24

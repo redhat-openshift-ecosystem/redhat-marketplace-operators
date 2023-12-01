@@ -42,7 +42,7 @@ metadata:
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/aimodelfactory-operator-rhmp/support?utm_source=openshift_console
     operators.operatorframework.io/builder: operator-sdk-v1.25.1
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
-  name: aimodelfactory-operator-rhmp.v1.0.0
+  name: aimodelfactory-operator-rhmp.v1.0.4
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -456,9 +456,51 @@ spec:
                 imagePullSecrets:
                   - name: modelfactory-icr-io
                 securityContext:
-                  runAsNonRoot: true
-                serviceAccountName: aimodelfactory-operator-entitymgr-modelfactory
-                terminationGracePeriodSeconds: 10
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              - args:
+                - --health-probe-bind-address=:6789
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                - --leader-election-id=aimodelfactory-operator
+                env:
+                - name: ANSIBLE_GATHERING
+                  value: explicit
+                image: icr.io/mas-accelerators/aimodelfactory-operator:1.0.4
+                imagePullPolicy: Always
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 6789
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 6789
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 768Mi
+                  requests:
+                    cpu: 10m
+                    memory: 256Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              imagePullSecrets:
+              - name: modelfactory-icr-io
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: aimodelfactory-operator-entitymgr-modelfactory
+              terminationGracePeriodSeconds: 10
     strategy: deployment
   installModes:
     - supported: true
@@ -489,4 +531,4 @@ spec:
   selector:
     matchLabels:
       component: aimodelfactory-operator
-  version: 1.0.0
+  version: 1.0.4

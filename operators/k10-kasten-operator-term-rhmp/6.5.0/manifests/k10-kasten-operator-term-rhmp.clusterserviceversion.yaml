@@ -57,7 +57,7 @@ metadata:
       ]
     capabilities: Full Lifecycle
     categories: Storage
-    containerImage: registry.connect.redhat.com/kasten/k10-operator:6.5.0
+    containerImage: registry.connect.redhat.com/kasten/k10-operator@sha256:aebf352457bc7fddb2f4316e8113b6df9a47628b1a376782738a89713f0818f6
     createdAt: Wed Nov 29 19:49:59 UTC 2023
     description: K10 data management platform for OpenShift, The Market Leader for Kubernetes Backup and DR
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/k10-kasten-operator-term-rhmp/pricing?utm_source=openshift_console
@@ -74,523 +74,594 @@ spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
-      - description: |-
-          k10restore can recover the K10 platform in case of a variety of disasters such as
-          the accidental deletion of K10, failure of underlying storage that K10 uses for its catalog,
-          or even the accidental destruction of the Kubernetes cluster on which K10 is deployed.
+    - description: |-
+        k10restore can recover the K10 platform in case of a variety of disasters such as
+        the accidental deletion of K10, failure of underlying storage that K10 uses for its catalog,
+        or even the accidental destruction of the Kubernetes cluster on which K10 is deployed.
 
-          **Before creating k10restore**: [K10 Disaster Recovery documentation](https://docs.kasten.io/latest/operating/dr.html#recovering-with-the-operator)
-        kind: K10restore
-        name: k10restores.apik10.kasten.io
-        specDescriptors:
-          - description: Required - The cluster ID shown when enabling k10 backup
-            displayName: Cluster ID
-            path: sourceClusterID
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Required - Name of the location profile used for backup
-            displayName: Profile name
-            path: profileName
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Optional - Point in time (RFC3339) at which to evaluate restore data. Eg. "2022-01-02T15:04:05Z"
-            displayName: Point in time
-            path: pointInTime
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Optional - Specify if restore of policies, profiles or secrets need to be skipped. Eg. "profiles,policies"
-            displayName: Resources to skip
-            path: skipResource
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Enable reading the K10 Disaster Recovery passphrase from a HashiCorp Vault instance
-            displayName: Enable HashiCorp Vault
-            path: vault.enabled
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-          - description: Vault server address
-            displayName: Address
-            path: vault.address
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: |-
-              Required when Vault authentication uses a Kubernetes service account token.
-              Name of the Vault Kubernetes authentication role binding the K10 service account and namespace to the Vault policy.
-            displayName: Role name
-            path: vault.role
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: |-
-              Optional when Vault authentication uses a Kubernetes service account token.
-              Defaults to /var/run/secrets/kubernetes.io/serviceaccount/token.
-            displayName: Service account token path
-            path: vault.serviceAccountTokenPath
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Required when Vault authentication token is provided in a Kubernetes secret via "vault_token" key
-            displayName: Secret name
-            path: vault.secretName
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:text
-        version: v1alpha1
+        **Before creating k10restore**: [K10 Disaster Recovery documentation](https://docs.kasten.io/latest/operating/dr.html#recovering-with-the-operator)
+      kind: K10restore
+      name: k10restores.apik10.kasten.io
+      specDescriptors:
+      - description: Required - The cluster ID shown when enabling k10 backup
+        displayName: Cluster ID
+        path: sourceClusterID
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Required - Name of the location profile used for backup
+        displayName: Profile name
+        path: profileName
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Optional - Point in time (RFC3339) at which to evaluate restore data. Eg. "2022-01-02T15:04:05Z"
+        displayName: Point in time
+        path: pointInTime
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Optional - Specify if restore of policies, profiles or secrets need to be skipped. Eg. "profiles,policies"
+        displayName: Resources to skip
+        path: skipResource
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Enable reading the K10 Disaster Recovery passphrase from a HashiCorp Vault instance
+        displayName: Enable HashiCorp Vault
+        path: vault.enabled
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+      - description: Vault server address
+        displayName: Address
+        path: vault.address
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:text
       - description: |-
-          [Kasten's k10](https://docs.kasten.io/) is a data lifecycle management system for all your persistence enabled container-based applications.
+          Required when Vault authentication uses a Kubernetes service account token.
+          Name of the Vault Kubernetes authentication role binding the K10 service account and namespace to the Vault policy.
+        displayName: Role name
+        path: vault.role
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: |-
+          Optional when Vault authentication uses a Kubernetes service account token.
+          Defaults to /var/run/secrets/kubernetes.io/serviceaccount/token.
+        displayName: Service account token path
+        path: vault.serviceAccountTokenPath
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Required when Vault authentication token is provided in a Kubernetes secret via "vault_token" key
+        displayName: Secret name
+        path: vault.secretName
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:vault.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:text
+      version: v1alpha1
+    - description: |-
+        [Kasten's k10](https://docs.kasten.io/) is a data lifecycle management system for all your persistence enabled container-based applications.
 
-          **Note: The complete list of values supported by the K10 spec field in the "YAML View" are documented [here](https://docs.kasten.io/latest/install/advanced.html#complete-list-of-k10-helm-options).**
-        kind: K10
-        name: k10s.apik10.kasten.io
-        specDescriptors:
-          - description: Optional - Configures basic authentication for the K10 dashboard. Once enabled, you need to either provide Authentication Details (htpasswd) or Secret Name
-            displayName: Enable Basic Authentication
-            path: auth.basicAuth.enabled
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.tokenAuth.enabled:false
-          - description: Name of an existing Secret that contains a file generated with htpasswd
-            displayName: Secret Name
-            path: auth.basicAuth.secretName
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.basicAuth.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: A username and password pair separated by a colon character
-            displayName: Authentication Details (htpasswd)
-            path: auth.basicAuth.htpasswd
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.basicAuth.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:password
-          - description: Optional - Configure Token based authentication for the K10 dashboard
-            displayName: Enable Token Based Authentication
-            path: auth.tokenAuth.enabled
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.basicAuth.enabled:false
-          - description: Optional - Configure Route for the K10 dashboard
-            displayName: Enable K10 dashboard to be exposed via route
-            path: route.enabled
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-          - description: Specify FQDN (e.g., `.k10.example.com`), Defaults to empty string
-            displayName: FQDN for name-based virtual host
-            path: route.host
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:route.enabled:true
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Optional - Defaults to false
-            displayName: Create secured edge route for exposing k10
-            path: route.tls.enabled
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-              - urn:alm:descriptor:com.tectonic.ui:fieldDependency:route.enabled:true
-          - description: Optional - Defaults to the default StorageClass of the cloud provider. (gp2 on AWS, standard on GKE, AWS & OpenStack)
-            displayName: Specify StorageClassName to be used for PVCs
-            path: global.persistence.storageClass
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Optional - Defaults to global size of volumes for K10 persistent services. Controlled by `global.persistence.size`
-            displayName: Size of a volume for catalog service. For e.g. "20Gi"
-            path: global.persistence.catalog.size
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-          - description: Optional - Set to `airgap` for private-network installs.
-            displayName: Control metric and license reporting
-            path: metering.mode
-            x-descriptors:
-              - urn:alm:descriptor:com.tectonic.ui:text
-        version: v1alpha1
+        **Note: The complete list of values supported by the K10 spec field in the "YAML View" are documented [here](https://docs.kasten.io/latest/install/advanced.html#complete-list-of-k10-helm-options).**
+      kind: K10
+      name: k10s.apik10.kasten.io
+      specDescriptors:
+      - description: Optional - Configures basic authentication for the K10 dashboard. Once enabled, you need to either provide Authentication Details (htpasswd) or Secret Name
+        displayName: Enable Basic Authentication
+        path: auth.basicAuth.enabled
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.tokenAuth.enabled:false
+      - description: Name of an existing Secret that contains a file generated with htpasswd
+        displayName: Secret Name
+        path: auth.basicAuth.secretName
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.basicAuth.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: A username and password pair separated by a colon character
+        displayName: Authentication Details (htpasswd)
+        path: auth.basicAuth.htpasswd
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.basicAuth.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:password
+      - description: Optional - Configure Token based authentication for the K10 dashboard
+        displayName: Enable Token Based Authentication
+        path: auth.tokenAuth.enabled
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:auth.basicAuth.enabled:false
+      - description: Optional - Configure Route for the K10 dashboard
+        displayName: Enable K10 dashboard to be exposed via route
+        path: route.enabled
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+      - description: Specify FQDN (e.g., `.k10.example.com`), Defaults to empty string
+        displayName: FQDN for name-based virtual host
+        path: route.host
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:route.enabled:true
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Optional - Defaults to false
+        displayName: Create secured edge route for exposing k10
+        path: route.tls.enabled
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+        - urn:alm:descriptor:com.tectonic.ui:fieldDependency:route.enabled:true
+      - description: Optional - Defaults to the default StorageClass of the cloud provider. (gp2 on AWS, standard on GKE, AWS & OpenStack)
+        displayName: Specify StorageClassName to be used for PVCs
+        path: global.persistence.storageClass
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Optional - Defaults to global size of volumes for K10 persistent services. Controlled by `global.persistence.size`
+        displayName: Size of a volume for catalog service. For e.g. "20Gi"
+        path: global.persistence.catalog.size
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Optional - Set to `airgap` for private-network installs.
+        displayName: Control metric and license reporting
+        path: metering.mode
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      version: v1alpha1
   description: K10 data management platform for OpenShift, The Market Leader for Kubernetes Backup and DR
   displayName: Kasten K10 (Enterprise - Term)
   icon:
-    - base64data: iVBORw0KGgoAAAANSUhEUgAAA2EAAANSCAIAAABjgFFrAAAACXBIWXMAABcRAAAXEQHKJvM/AAAgAElEQVR4nO3dvW8dR6I36J7FpKQYSxcQb3SlSBxgwQlF23pjUcptUunYgjnRyHJgOrCsiYaGbKcm7Vyk4pU9VGjuAkNFUvZSwEjp8uMP8KKmvbRcosjz0d2nqvp5IAwG946tc/r0Of3r6qpf/eGXX36pAADgNf+HgwEAQERGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAg9sfRjsjLvern7WpnO/yXYxdmq8tz1fxC+E9OsbMdjt6z3epo/9f/0dRMOGh/XghHjxMd7lfPd8Nxe7n3u7Pu2KW5anomHMP6v9CI+rD/e+/Xw37ikc/Rpbnwjbu22MWpUv9aPtsNR5Jh1b+N1xa7u6w82w0/0c92yznbG5TUpar+mP69F3+zjl9kr64F9e/My71wWGr1cahT2cjH4Q+//PLLUP/Aznb1YLXaeXLa/+bSlWpppbq5POJrKtXhfrWxFv4cHbz1HU6dC7+Gt1dD4KY+7x9vVQ/Xq+dPhzgcl66Eb8XNZbcro6iPeR1rXr3I7/UP5cZSi1+3QX4tGdD5i+EbvbTS4lX/4Xr4vIo/5xsxda66sVwtr0zgUlVfEXa2T7uSHnvveriklp1GHq5Xm+tn/M7cWAoHYYRkP0RGfLlX3Vke4vfu/MXq7+sGxn61sRZ+fQY5p2sffRYuXX22s12tr1U/PhrrEJy/GH7FbiwbWTzby71wwB9v9fEa2fjX7dludW9FOmze1LnwSS2tNPwvfrxVfbEiHY6is0tVPcjycH2Uj2nqXDhnWr3BmIhnuyGVDT6A8t716v76cAdh0Iz4cD385A0ecY7d/Ufz3+e8HO5XHy6OcrW4dKX6dquPA4qNj77UPxA9z9yneLgefnyHGqktzwi/nm8z8q8lA5q/Wn2z1dj1/ouV6vuvHPrRXbpS/bDdbvxqJMS3dIMxKQ/Xq09ujXIQftge4gnbQBlxtJdy7MZS+PHtp5d71V8WR7/6Dvtx5u7lXvghGHPs8G0MbEfGuS8v0nvXw13ZmMb8tWRATeWSO8vV5oaDPq72LlWH++EzavCicOlKCCS5X1XHPG+//G7Q5+9nZ8THW9WHN0Z/KbV+Pjl9tlu9vzDucML5i9Wj3V48Ku1m9OWDj6tP19r9K7JgrOtEY/5SCYhdunQl/DaOQ0BsUBujicM+Sx3Q1Lnq7lrGkxQ31qp7fx33X7L1r4GC8hkZ8eVedX2umQvJD//s1xBOg9fg+avhu1e2Ln+sm31QlZ2WfnaLMeBP55sa/LVkQOPc8gn0jWtkJP5YI4Msp8j0CefOdvX+Ow38e6bOVT/tnX0dPCMjvr/Q2LSw8xerf/amSqCRmP+6wUeGs3O4H06zjiNLBxNo0vRgtfr6896966GMfEvW4K8lgxst0x/uV+/OCvTN+2YzrCMeX9sBsZbdheBwP9yINjU7aJCUfFqH9s52kz95r16E+7Y+uLPccECsL+1FmkhArKrwN76/EP72/qhHuQTEM+08GaUYr9lfSwY32m/j6R1kjOyLJlaEvNzrIiDmeCHYWGty+vjmxtm/dadlxPWmp22VGnSO1YmnjWemRSbsSQXE2vOnYb15T+xsh4Do+fKARviu9eQGOEE/Phol02+YlNyOVy9+63AezeF+WOjZWYLPKyY2ft6emcremhEP95tfXvrqRRhALlV969PeWMLj5uZ5JGKCAbG286T8+5Y6vrz/jlGTIYxwkSvv65mRYQ/+gPXLjOb/Gu+78GC16+tCLjHx8Vbz5+2Z3523ZsQxbwU6/tdO3LPd1sdpCjt0iSyb+PrzYs/Jmon5Ixj2Ti/sqylzTM7PQ36Fh/3fM5RxflF3tifTVfn8abgkJa6NG9GjgzM+r7dmxJYG/Ir8coZxmvYnTxwdlLN/aNg7KJnKiUYm0KRJQOzGUZ8mtiZo2ONf8OOsFIxz8z/BX+MfH6V+LWgpAJz+dXhrRmzp1ZT3Y7qxFi7D3YwilJERX+6FVqB0PH9a5mQyAXEcQ8UI41J5kenTNOy+/I37/qukrwUt3duc/pC964xYmDaWMPfhoKX2YK68WYmPtwTEsYgR0LEUfofvraQbfiZy3TxtXTOnaG8Jc9keb6VYEVLYsvG6JZtxDFX4/2cbPGZlqq/9+Sl7vJXEpqBHByXPPhqBjDiKOiCqQxtBsl+/YoYS6+1NLaHokswxWRdmh/vr+7MD/kRcujLK35rOXfqPj9QU/EZGHNqz3VDQP5FpE7lvZvhwPYk7xRMVM5TYfXNEeeavDveWLs+Fja2YlGF/GGXEVo227U3jXXvj+GKlXzssnEJGHM7jrY763990/uIE/tJmJT5WV8BQ4qSaIwpzafiLXCP7jzGaYZ/1536znbgRvgupFZC9etGL6txByIhDeLhefXhjYk/xcr8IpTyIWBt/h4CJ+5tpiE0YYW/0UrdTT9+NpaGfNU/PhH+KNkydG+VSlWAzwPdf6UiqZMQh3Fme8ELR3C9CWWx+lfW944PV1FN4Fi5dGeVh2fzC0E+oacTtkb6zo/1TnGlppBnnad6c937lXyUjDqTePnKyS5jnr+Y9h2ZnO49JcjtPch1KPNy3BW0zRk4P99fNSuzaR58NPYhYuzAb/lmadenKiF+fNK8Oz5964iwjnqVewjzx6bS53/Vm9E3L9EdhY81a5gbMXx19UseF2RAT6czIiaR2e3XEFbicaOrciOd/ytvebKz1vStaRjzNBJcwv+6Dj/OeZL2znVNPUI5DiQYRGzF1rvpmvM6La4vVl98l836KdulK9cPY39MftsXEZkydCwdztIddKffVHx30/YmzjPhWE1zC/LpLV6pPM7/8Zzcyt57bAX+8ZRBxXPVFbnrspsOby9U3mx46t+u96818WNMzYmIDxgmIZ+4FN3E7T3pdlygjnmyyS5iPNXKvPFl5DSLWfnyU2fMFk2bGdP7iWBe5yLXF6tGuJSytmDoXRmq/3WogINamZ8KHZW7iyOavhgM4zncn5WfNtTvL/a1LlBFPMPElzLU6IDb1UzgpmRZTZ5S6nu1azjyWDz4e9yL3pguz4cv7wz/DiBeNOH+xuvuP6qe9Vhoebq9WP/1vhTjDmb8azvAftkdcNpSRo4P+3of/MYHXkJB6H7MUCt9vLFV317IPiC/3ct3SenMjXDay+O0raafpLl26Eqb5Lq+0+CmHQpyF8Kuysx2i/LPdTqdetTR+f/5i9V8dfi8uzYW/bn6h9WKHesnR3bX/7Cn/n8/LfkVvqj/9a4vhT/HR8HXff1X9r8U+tq/LiL+plzCn8LtwY6mQBZK51w1m8Sl0Nldm/mq4YE/PDL2tRYK6/K2fnvn1mtqx//lDK3/fzeWSywWnZ8Ib1IjOm75YCQ8c+kZG/NWz3SRWqFRVmG1Txi9UvoOItSyGEjt40Dx/NfTi2msO6LO6LrFv7evmI1bpLGEO1Rub5dzCFjCBI/230GpNz/F8IwERoId1iTJiKkuY6/qAYi7GHQwinr/YesPI463Ul7O1t8/pR5+FE7KH828ATtTDusS+Z8R0ljD/tJf3bnuRDhZSfLvV+nzBo4PUu6lbqo348jsb2gLE+laX2N+MWC9hTmHCXFN9sOnoYNuPG0shUl9bbL2FbmMt3aHEw/1WJiPeWDJnH+BkvapL7GlGrJcwpxAQbyw12QebiA72Dj4e5Wp7uCvlocTnLQwihhY62/oBvEWv6hL7mBGf7VbX55LouPnyu0I6bl7XzSDi8XLjUEHX16HEf7cwe/r2aml3LADN+v6r/Lb1H03vMuLOdhhBnPi+FIUtYX5dB4OI0XHrYChxM8ko3/gKu6lznjIDnO2LlV4cpH5lxIfr1fvvWMLcrrYHEeevxottOxhKXO/H41cdN0ABLl1p/T3UdYnF61FG/GIllSXMjW8Om46H693NRDzz/9igVy9S3PKu8UXNpZ6WQK/cXm29Ga0ndYm9yIj1Eubvv5r8KwmlxEXvgN72fdWbg4i//t8XwmKLViV4y9j45r8yIlCA6Zku5vr3oS6x/IyY1BLmwjpuIg/XW5/oecp4YT+HEgF4UwfNaH2oSyw8I6azhPnuPwpcwhyZ1CBi7eZyH4cSATjR/fUunjiXXZdYckZMZwnzl99VS6WvgZrsIOKA/4MxvXrRr4Z9gHxdmO3iylt2XWKxGTGpJcx96BNpux3m9EHEWgdDiYlvzTemNgoXASbl9moXa5wLrkssMyNawtyxne0wLaNVA44RLrd817jzJKHfgjND87B60goL9Ec3s7xKrUssLSNawjwRk52J+Loby61PQCn4scLPMiJQlstz1Qcft/6OSq1LLCojWsI8ER0MIt4Y+GH99EzrE1DSGUps/AQz4RIoz+3V1qchlVqXWE5GTGcJ80eflb+E+XVt3zydvzjchM6llb4MJbYxjcHabaAw0zPVp+1PJS+yLrGQjJjIEuaqCkuY215dm5Rnu6nMRDzWzVBiCveLbcxk6MkGU0CvXFus3rve+hsury6xhIyYzhLmrX/1Ygnz69pe5zvsIGKtg76DFILUhdlWRky//lxbOFAadYkjyD4jPlhNZQnzD9u928rs5V7rsz9HG5SdnglTQlu1uZHEUGJLp9wnt8REoCjTM1085Ts6qO4VtMY574x4ZzmMeUxcPwNigjMRX9fBb0EKQ4mN198c++RW9ZfF8nesB/pjaaWLDfo2N8rpEcs1Ix7uhxUqiSxhfrTblyXMr0t2ELF2YbYXQ4nXFlv8l//4qHr3v8OdmN5EoAx3O9kH4W+lzDr7YwKvYWjPdsN1K5ElzL1aofK6lAcRa7dXW0+xD1YnvIb98lyYYdPqZNzNjfBn6lwYs7w8F/5M9o7owmxfakdJ2bPd6ug/086e7Za8XW/kwmz1X7MtPr7owOW5cOFu+wnkqxfh6lBAPMgvIz7bDUuYJ75CpV7C3LcVKscO95MeRKxdmA0L2X581NALOsnjrXAoJpuZri12MaB+dBCOZKsHc1iXroQjf5xcBUda9XIvfN8fb/0nHSZwAZqs966HX55Mr4BLK2G+ddtFKF9/Ho5P7r9LmT1rfrheLf7JEubJS3M585va3prv6GDyOzi3+rg5Zc+fhqaJrz+vPrwRnom/Mxu2w9IBTuMeb4W5ue/+d3Xvr+GUExDriSif3Apfuhy/cdMz1d87ef5TQF1iThkxkSXM5y/2dIXKscP91oNRU/l7fqH1GcobaxN+0nRtsYstBNL36kXYhPPDG9X/ORN+mp/t9v2AML6H6yEGfXgjrRH0dLx6EQ5Ojm0v8wutT1iv6xJzL4jIJiOms4T50W6vA2Kdilq9k54612TBYdszQlIYSuzzkPabjg7Cw/fFP4VJKVbbMJqd7ZAOP7mVxNYMidvcCN+17GLi3bUu6hLvreQ9XTWDjJjUEub+7ML8Nh0MIi6tNHmQ+zCU2EFneI52noR2fUmRoRzuh0kL778jHQ7h+dP8YuL0TBdrnHOvS0w9I9YrVFJYwvzBx2EFa88DYnaDiLW2I1QYuJroA4UOOsPzdZwUdT1ypsP9cKp8/5UjNbTnT/ObfndzWV3iGZLOiOkExC+/62JH8Cy0Pbui2UHEWgcz9tYnfXr0toNpQDtPwpoDW1Fzime71buzSVxxMvXjo/yWsHSzQV++dYnpZsR0ljD/8E/zvX7Vdl9AG4OItbYj1KsXE56bfGE2lH5xuq8/N6DIydJpVcvaF7k9V70w28VcnbouMUeJZsSkljBn3RfarLbP8jYGEWs3l1sfSpz4T8DSShc3xLnbeRLmN5uhyOvqR8wC4vhevchvKPH2aliN2ravP8/y7jTFjGgJc5ryHUSsFT+UOD0z4U1fcnF0EGYo5t5JQYMExAbl2JjYzVyyHOsSk8uId5YtYU5UvoOItT4MJV5bDPsfMIhPbpXQcMv4vlgxB7FJP2c4SD+/EJalti3HusS0MuLOdioB0RLmSAc7F3UwKaTteaUpPGe5v65Se1CbG2Ji3+1sW8XcsEw7g26vqks8QVoZMYWI/eV3HtidoO1ulxtLXYTyDmbsTbxPe3qm+tZ+dAMTE3su3wWnKctxvm83c3Wyq0tMKyNOdox66lz1zaYlzCfY2Q6D5K3qprpleqb10cqdJ5P/fbw8F251GNDmhrmJPdXB4xEy0s1cnbzqEtPKiJP9ut5dC6cIb2p7mt2NpVBA0I0OhhJT6Di4udzF9JpifHIry4n2jElfZks6+z1v3KedbNCX0eh1Whmxg/Xnp/jkluGEExQziFjryVBi/WNn85XB3VkODXn0h0HE9uSbES/MdnE9yqguMa2MOPGimU9uubOMlTSIWOtgOkEiZ9H9dTFxUEcHJib2i5Hjlkx2rGd8SyvqEn+TVkZMYT+xrz93qfjNy72iBhFrF2ZbT047T1IZlLq/bv+VQT1/mt8uEYzmcD9sHEcbCth1opt1q1kkjbQyYiL7iW1uhErVvBaot6S8QcRaB8F04gucj91etYRlUN9/ZQuWXjCI2J7l/G+0Ls91EUWyqEtMrkP79mp19x+Tfxk7T+zrGt5+23WVkxo57mAocXMjofPn5nK19S+9iQMxlNgH7gRaMqnb/sYtrXTxg5l+XeIfE3gNsbDydCYcu8lujvT8adjX9Yft/m7H1/Yg4tS5ZgbbL82Fz+ja4nANi7dXW0/AD1YT6tq8PBf2lry3kkRNfcqePw039zqwypbjXiDpmzqXxISxRkzPVH9fD5t2tqquS0y5kjnFjFgPe1yem/wemmFf14XQidPDC0YHg4hHB81Mdqz/JZ/cCrewt1cHvYu9MBuqsFqdk7S5McTr6UBdEntzOTQvWNF5insrQ99ykBfnfxvurhUyiFibX2j9GlFfJm4upzuJM7lnzcfqYY+Jr5A6OgjhI525ZZ3JcX335kYY+h38lXcwbybBwzi/EL5ZH33WRQ1Ypo4O+viV7w8Pmtvw5XcFDqbcX+97XWK6GbEe6flhO4mF9Pf+2q/Fzof7uc7pPjoIK9P/sjjQJI/5hWr+aruvZ3Mjxekm0zNhgPOnPUnxrWREGFyRAfH4p7JtKdclJp0R60/o0W4SHW+9Wuy8sTbhp/xj+vFR+LAG0asFzpHjpHj3H5azxI4ONOoXS2dFg85frH74Z8nTsZZWWh9KSLkuMfWMWEuk460ni50P90sYRHn+dKCh3w6GEjfWkr4m1RvP/HMv/NDfWDKs+BtDiaWyoU4jzl8M1+V/7pVQiHi6Ptcl5pER0+l4qxc7l/0Tk/sg4rHNjYGemN9o+ZuZy+S2+YXwU/j/7IeWnI8+C9G553nx+VNhAmLzV8Ne8N9shnRYzCrm03XT3JxmXWKi65pPlNRi5/vrYeVjecoYRDz2xUqIPqcvUL25HOaCtLrOcWMtjNXlsk728txvfU8v98Kfuijk9Zn+/97rxcrQh+th22sY0PmL4brwvxZDfVtvS9OKdHu1iw2+E2xUyCkj1levH7bDkOzzp5N8GUcH1Yc3ypylu7leyCBi7dWL8I6Wzlq/fHs1rF5vTz2UmOM994XZ8CepZ0nPdsOfx1td7KX2eEtGZFA3lkL5i8qkUvWzLjGbZ83H6piYwmLnT24VuNh5vbgr4iDv6OZy64s2LIBoyuW58Hl9u1X93/9v6+uyX73wuJmBnL8YLu0CYsHmF8JD9rZtbqTVzZRfRkxtsfOANStZ6GAsvXsDXubbHuR79UJMbNjxuuz3rrf4t+jSYxAFbFLMmW6v9q4uMcuMWEtksXNds1JGTMyxN3sQg1zmby63/uUv9fBO1vRMGFNsb0GbTdsYhNmHfVBvVdW2pOoSM86ISS12fnc2+2dSRQ4i1gb8aM6ctjgmQ4ntubnc1k+BcUTg2LXFftUl5p0R62vD1r8mX9JRL3bOdG+SWsGjXAN+2ZZWDCVm7OZyK7OFjg7Kr0QFBtfNBn2JrHbIPiMer2KZ+EYR9WLnTAeKHm/Z5P7XNulWGUps1e3VVn4HZETg2IXZ1q8U6dQllpAR65j4aNdi59HZUqLWwVDipozYmpY2VzUlEXjd7dUu8sa9lckvdSgkI9aXhx+2U1nsfGc5p1UsO9vhloX6LGp725WdJ6a4taiDtUcAHSxeqesSJ6ucjHi85qiDBqMzbW7ktNi5+ElyQ1VAd9BhYVZiqxrfAEmmByKX53pRl1hURqx9umZn5yH0YRDxwuxw/+O2R6MNJbYqqV1hgFK1NAE6Mtm6xAIzYv286Yd/Tv6R06sXYTQx8TRQ3sYqb/rzkKGhg03zDCW257+GuSUAGM30TBd7dU62LrHMjFiPJSSy2Pn9d9Jdyvpyr4tNbydr/upw44idDSXa5K0lxhGBblxbbHefp9oE6xKLzYipLXb+IsmdmvowmjXaoGAHQ4nWkgPkruy6xJIzYlKLnb//KrnFzi/3wnzYss1fHXFU6cJs62X6mxuK9wDy1lLlVmRSywYKz4jHi50T6cRJarFzHwYR744xVmdWYqYkb6BLSytdbNA3EeVnxNr9dYudf6cPg4hffjfWRvvzC4YSs+SQAh0bZzwiZX3JiPVi5282U1nsPPGYWPxy5rv/CJ/4mAwl5uj/ynnbdCBHl+eqjz4r8JPrUUaslyD9sD35mHh0UC3+aZKLnQ/3C98R7svvmtlPs5uhxIy25MnC46Yz4tRMoUcKaM7SyuSrVBrXr4xYh/2f9lJZ7DypMaSNtZBTi3TpSrX1rwZGEI+1vTWfBc7N2tkOQ/XNGmfGAtAT0zPV34sbfOldRjxe7NxBp9GZvv58AgvaD/fLDCXzV8Pw4aPdhq/oN5dbvzXcWDOU2Jg2SqamjSMCA5hfSGKBbIP+WMw7Gcr0TPXtVshnE1+3sbkR5ib+sN3ddaiDQcSOp2VcngvfzPYO4O3VMOjbnqOD8KF0MPexeA9Ww7KwxhlHBAZ0dy1MdynmSV1PM2Lt/nrIFq1e/gfx/GlYxXJ/vYtLUQeDiDeWSos7N5dD+Gj8CebrNtbCXBbjVeN4uB4G5ttwSUYEBjM9E2LixHNFU/r4rPl1iSx2rmNiB4udO7i/aWSxSGraTr31UCIje9DaWO/5i7I7Z/s57X356dLN5XLqEvueEfu22LntVTLzV8t8MHdtsfUzREYczc526BxtaQSxqqo/2/2ZAZhVzOu62aCvAzJi1Z/Fzg/X231g2k2h4ERMz7Q+Pnp0MMk6pOy83AuH6/pc9f47rcxBPDbaXo70zdFBeBakv53ahdlCHqn1ej7i6+rFzh8uTmxXxGNffx5+aO63EBfaHkQ8f7HkC+rSSuvLfR6sNtnaE3m2G86rFPb4GdPOdvXvvdbvdo4ZR2RA9TZaSyvhW3xh1lHru9urYXJXq3ewHZARf1PHxEQWO7/cq77ZanIilEHEMdVDie0906z34Hm43nBMfLkX9tR5vNVdqCrJpSsu9gzh6CD8RHz9eThzypvGemH21z9/XvC9GMina+FBR9ZkxFi9vvjeXyf8MnaehCcX32419lXsYBCxvTGwROQ1lHi4H/5t33/VzL+tn4o/pWlJ7qNHJ3vtIdv5i9XySthiwIquU8wvVB98nPePsPmIJ1haCW3MKSx2vj7XzMPBNjafiPSh3m96JixeaVU9lDi+l3vhHkNAHFPbHzdk6tWLMJLy7qwd589wezXvxSsy4sluLqey2Pkviw0sl2v7azx1ri8jLh1E4fEXOL/cC3cXZY5kdOi96x6olcnQV1PqZ+vX56zpfqvpmVZWF3RGRnyry3NhY7eJL3Z+9SKspBnHw/XWF+IU2Yl4oguzrW+19PxpGPcd2eF+uK8odT/uLi335qzuGxvnNOv50zCgWMB6uJZcW0xi79/RyIinuTAbRhMnXoa582Ss54+bLd/ETJ3rUUbsZihxnHHflvaj65v5q1pvimV4uHF19Y/RxLf5dC3dJ86nD6vLiGeoFztPfJfukUPDs90uBhF79eymg6HEnScjDiW+3DMHsRm2zy7YhdlC+o2TcnQw7iOvgl2YTfcn5fRhdRlxIPfXq7v/mOQLGHkpQwe7d/RqELHWwVse7eM2f7wRBhGL53FzG8Z85FW2pZUk9ul40+nD6jLioOrFzhP0eGuUv7vtXURvLPVxAvjludZnIIzwcR/uT77aswx37YtYOvcALXGbeoo0F6/IiI25uVxt/WtiDylGePj4bFflTVvafuNHB0N/4l5SjaoAACAASURBVOOsdOHYBx8bZCqfVqOWNNXeVaTLc9VHn6X1xs4c7JARh3N5LkxPnMiI8dHB0JuBtr3Q7MZSf2d/zy+0PpQ47MdnXeH4zl80E7EXLs+Fz5o2jPbIqyeWVtI68c4cUJcRhzbBmDhsRmx7g/meX03bfvvDLhI0jji+bxvdAJOU2USnJX6ITjE9U/09pXHWMwfUZcRRTM+E6sSJL3aerPmrfa+QmF9IdA4yo7n7D0+Ze0RGbIly1tPNL6TyxPn8xbN/8WTE0d1fT25uQaTVh48eyfVzTXepbiz5NPulgxKr3jKUeLrbq5PvXR7wNumtGfGS++kB3F6d8GLn07U3KKIcpHZz2aymEly6kvd+WV0q6elB7nvplqGN2R3pB5hvtiZ/7o2VEVualFPe08kuFzunc/QMIh5zKHJ36UqYYVyelgYq/qug3/ALswaPWzFURGtjLCP9WcXTM2H28wQNuOT0rRnxz+2MEhU53aebVSxT54bOiC0d7fMXDSL+pr2hxGG/gz6UEdQBsch1Ki3dUhb2iOn2qlnFzRvqC9X4iZrLs535hYntzTF1btDRjbdmxPmFVsbGSm2l6iAmjnDoWgoNRs4iLR2QYT8+6y2G9d71YgNiS1//S1cKPFz31z1xbtKwA9gXZhtOdS2NcLVhaWUyk2KXVgaN5qetWWk8z126UvJK2LYXO4/wcUzPNP96zl+0HjB2bbH5a8wIH5xxxKF88HHhTTdt3JAX+d2/PGdnnSaNcOI1m+ryGoq6v971SPalK0OMa5yWERsfHenDzI/76+Ha07jzF0c87xv/TTeI+KbpmeYPywgfXBu3BEWaOld9s1l9WnosaON8KPVB0M3lCe/IX5Ibw/92NZgNps7ld5Z22bg8dW64eZCnZcRmqwHmr/Zl/OnTteYXO498PZtfaPJDvHTFIOLJllaaXCLw3vURBwV9OmeavxrG+3uyFVuz63Y/+qzkB0FLK63c3vfNBx+PMjbf4A74OQ5FTc90FxO/3RruW/yHX3755ZT/9+F+9e5sA5WYU+fCIejVfKmd7eovi820ib53fawFUIf71fW5BjZu7uGHOJQGvyw/7Y3+DPTOcrW5Me5rKFI9Tbtv61gfrFZff97Av+f8xZCti9+E5uF69cmtBF5HnsY5SZ7tVot/GvddZ32WHu5X7y9Uz5+2+Fd8+d3Q4whndGjX8Xb8O9G7a73LFvML4dCNPxV3/Oa2eo39+B/i/XUB8TSNfFnqID7Ob9zdNZWNJ/jg45C8e1h00khbb/18qg+7FN5crn74pyUsIxrnJLk818CeFH9fz/gsra8gLVVW1RNsRnjQdPY+K/V83nG+MyNE1zJcngv3NOMMIDdVzFEvux7zQ+zJ47lxjHmcGxmpbeqWoAxT58Jci5/+d5it0duNmL/ZGvcxVq9u8ucXwu3Ee9cTeClZ+fK7cU+S26tjzYz68rvs1+3VMbHxOQ91kBjtCn7Gs+Zjz3bDKOiwz9GmzoUfl57PkTrcr+6tjPL4b/5q+HFv8MJ2uF99uFjtPBnun6qHEKyZHdzLvTDNYNhHBvNXw0htU/O9RvvCluT8xWp5JUyf7200fN3hfpiE8OOjof/BPn/9H29VX6w0MEuneFPnwm9XU4MIo82WKWwoame7+ttyM+feBx+H8D3yz+CgGXGErNPsNS93Q33kU+fCQ7GWVhA/XA9TlAZ8JTeWQsp3lR3Bg9VqY22glHb+YvisG/+BGzkWZO3SlRBobi6bF3GCjbVwWg5+5+A3vP7B3Fwf+ta6P9o4SYaaRNtsQk3H4X74wg54ETnRjaVwZRnzoxkiI9Ze7oXP7/HWaa/7vevhDt7I05serodDd8plu24fXFppPZY9XA8n39vGuur6gKUVF9qxvNwLx/nh+lsT+aUr4SC3evu7s12trxWeFOevhs0/Ls+FljU3pacb5Ae8PqRLK6aX/ObZ7q+/3oYVj81f/c9s13Yu9M92w5jUmdG8+FGMOimechF5U92UtzxwS/bphs6Ix3a2q5+3wxt4vlvVGzRNz/xnBfuCYaczHO6Ho/fsP8dtZzt8kBdmw0GbX+g6k73cCx/iy73fXkZdZyrfN+vZbjjCh/u//Us7/qZEp1ymXj8tL8yGjYOPT1pGOB9+3g6/3v/e+/XyM3+1mpoJX/9ri47qW73cC3+e7YZjWP/3WrgUtrkiNQVT58IPV5cnSR3Nn+/+LizWL+PaYr9mkjzbDbco9c/4mzd481fDx1FfVppNEaNnRAAASnX2umYAAPpGRgQAICYjAgAQkxEBAIjJiAAAxGREAABiMiIAADEZEQCAmIwIAEBMRgQAICYjAgAQkxEBAIjJiAAAxGREAABiMiIAADEZEQCAmIwIAEBMRgQAICYjAgAQkxEBAIjJiAAAxGREAABiMiIAADEZEQCAmIwIAEDsj80ekZd74c/P244zAEDrLs9VF2bDfzaugYx4uF893gp/drarowMnAwBA1967Xv15obqxXE3PNPM3/+GXX34Z+R9+uVc9WA3pUDQEAEjBjaXq5nI1vzDuSxkxIx7uV/dWqs0N5wIAQHLmr1b318Nj6JGNsmbl4Xr17qyACACQqJ0n1bv/HZ73jmy4cUTDhwAAGbl0pfphe5RJikNkxMP96v2F6vlT5wUAQDamzoWYOOza50GfNQuIAAA5OjoIKe7Z7nAvfaCMKCACAORrhJg40LPm9xfCzEcAAPJ1/mL1aHfQuYlnjyM+WBUQAQCy9+pFdWd50Ddxxjjis91q8U9OCQCAQtz9R7W0cvZbOSMjesoMAFCSqXPVT3tnP3E+7Vnzw3UBEQCgKEcH1cba2W/otHHEd2bDc2sAAEoyyFDiW8cRd7YFRACAAh0dVJvrZ7ytt2bEh2f9kwAAZGr9rMfNb82Ij7d85gAAZXr14oxK7ZMz4s52GIQEAKBUO9vDZ8SfT/1nAADI3el57+SMOOyuzwAA5GWUZ80v93zIAAAlO73B5uSM+PypUwIAoHCnDCWets8KAAAFO9qXEQEAGJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEPujI9Kx+YXqzwvV5blqaqaav/q7v/vooHq2W73cC/+5sx3+E45Nz4ST5/Jc+M//mq3OX/zdoXn+tDrcD6fNz9vhP/usPkqX56oLs//5op1r61jsPKmO9sP31DEHivSHX3755c339T9/8Gk37NpidXM5XL0Gv2IdHVSPt6qH6y4/fXdzOZw/710f4jD8+CicOY+3enTkri3++qe9UHiKo4PwPe3bMW/Phdlf76UvzZ1wR0Q3Xr2o/r1XPd/99Ubo5Z7jXqYf/hnCyYlkxHZNz1RLK+EaP85v3KsX1YPVcPmhV+qTZ2ll9NDThzOnka9Yg169CAd8Yy0M6zLCp3ljOXyal644dsl59SLcAq2vCYulkREn4+ZydXetsVGNVy+qL1aMUvTFtcXq/nozJ8+rF9XflsscjV5aqW6vTmbg8HRHB9W9Ffd1Q7gwGz7KG0vZvOA++/FRSIoecBVDRuzahdlwgY+mGzbix0fVnWVDFCWbngknz1BPlgfx/VfhHqMYl+fCUUp8tGnnSfi2GnQ53fRMSIcffJzya+QEPz4KPylO7wKckhGta27etcXq0W4rAbGqQnT4aS9cICnS5blw8jQeEKsqXIMf7YbrcQGWVqqtf2XwOHL+ajjm1xYTeCmpurYYftAExBy9dz2c3ksF3XnyJhmxYUsr1Teb7T78mjoXLpA3lyfy/mjRtcXqh+0W59VdulLCDcb99eruPxJ4HYOZOhd+EFxHT/TpWuu/lrRq6lz4Mn67VcjNJ2+SEZvU5dXry+/ExKLcXO7iejl1LsTQTGPi9EwYt8hxytrdf4QfB45Nz4RgYfiwDO9dD78qYmKRZMTGdD/hWkwsxs3l8Gl2o46J2f2gT8+El53vctcbS2HYjOOPso0JFUzKpStiYplkxGbcXK4++mwCf++X3711qim5uL/eXUCs1TExL+mvUDnTBx+7qQu+2VJtUyAxsUgyYgMuz3V9jX/dt1thGTWZur8+mYenl67kNKz16Vohw05fftf3BWctFT6QgktXwg0AJZERx1U3lUzQ1DlTnbJUP3Gb4Oy6Dz7OYxD62mJRE9fur/d3rOXaogbEws1fDdOuKIaMOK6llck/N5m/auFkZuqAOPEBlfSHEid+D9a4S1d6+m0t76PkRB991vfB8pLIiGO5MDuZaYhvur1qIkg2Ls+lsvzi0pXUZ8iluY3KmD76rI/zQxrcdIrEuRkohow4lnQG1afOGUrMQzoBsZbyg6ELs8XWo/Ttedz8gqfMPZL+zScDkhFHd2E2rV+9pRVDiambXwgBManRlPMX090IpOAgdWOpX0OJ5qj1zd0116MSyIijW05s3G7qnF2/knZzOWyLmeDjtjTv+FO7B2tcaj8g7bm5bC1z73i0VQYZcXQJBjLfyWR12ZI9rPeup3jHX3yE6skd3fSMQcSe6ue828LIiCO6PNfivroju3TFdzJFn66lGxBrCeaV4iPU+Yu9KMBfWknxp5Ju2FsodzLiiJK9gP3ZtiuJub+ewcKL1MJKmvdgjftfpefgC7MebvTae9ftBJY3GXFEyZ73vpDpmJ4Ju+BkMakutT6znjyHvVR6jVyR1UUMxVBi1mTEESU7BVt5aSLqluxcdpBLbf/cntzqlL2SQ98NenByJyOOIuU5fzbLT8GF2bRKEAeR1Fndn2WwBU8gtlSFmh6cfMmIo0j8Z92ylcm6PFc92s0vrKdz2vTqBC71zeq74ZgenHzJiAWSESeo3kbFHKxxOIFzp++GiB6cTMmIo/gv5zonCS3ZAiLDKHICsb4b3mTxSo5kxFG4H+JNdUu2gDi+Xt2DlTdP68JsGDSCiB6cHMmI0IDbq6m3ZGfEPVjWDBfxNs6N7MiIMK776wZOmnS4X8576Zv5hWz6nuieHpzsyIgwuumZEBDLKIHb2U7gRfzHs90EXgQjMVDE6fTg5EVGhBHVLdllBMSjgwReBJm7uayflTPowcmLjAijqANiMVfEpIbuXu4l8CIY0vRMGCKCM+nByYiMCEO7PFf9tFfUkEk6D5plxEwtrVjUz6DMSciFjAjDKbIl+/FWAi/iNTtPknkpDEDfDUPRg5MLGRGGcG2xwID46kVyy0SeW7aSFcNCDMs5kwUZEQZ1c7n6ZrPAB2oP1xN4Eb/3c0rPvjmdvhtGoAcnCzIiDGRppdiW7AQz4uMtS62zYUCI0ejBSZ+MCGe7v17d/UeZx2lzI9E1IqlNkeRE+m4Y2dS5sEMVKZMR4QzFtGSf6EGqv9EbRqeSp++GMX3wsR6cpMmI8FbTM9Wj3ZID4vdfpVs082zX6ubU6bthfPfTm+vCMRkRTlZYS/abXr1IdxCxlvjL6zl9NzRi/qoenHTJiHCCy3NhBLHsiVZ/W64O9xN4HW+3s139+CjVF9d7lqrQlL8bSkyVjAixuiX7/MWSD8y9v6a1t8rbfLFigXOK9N3QoPMXbeKcKBkRfmd+ocCW7MjmRjYrQl7ueeKcIoOINOv2qh6cFMmI8Juby9UP/yw/IN7Jqrp2Yy28ZtKh74bG6cFJk4wIv7q5XGxL9rHsAmLt3kr1/GkKLwR9N7RFD06CZESo6v6F4gPiJ7eyDIhVFdbWvL8gJiZB3w3t0YOTGhkRCm/Jrn1yK8U99wYnJqZA3w2t0oOTGhmRXqtLEMsOiEcH1fvv5B0Qa2LixFmqQtv04CRFRqS/6oA4f7XkAxAC4kIeNTeDqGOiJSwToe+GDujBSYqMSE8Vv41KVYUht/cXwqZ2JTncD7MqP7yhN7FrBnjohh6cdMiI9FEftlEpMiAee7xVvTtrQLE7SyuFt8qTDj046ZAR6Z0+bKNSB8TEt9obUz2g+O5/S4qtm55xzaZTenAS8ce+HwB65tpiWMWsJbsYL/fCm723Ut1Y1u3cltur+X1lXr0oYZ1WU64t5vfVuL8ebnSZLBmRHtGSXarD/bAdy8ZaGHv480JYXXFhtvDVSJ25MBsGdbLzxUqYkEDt4Xr10//O7FjUPTjFrLfLlGfN9MXSSvkB8d5f+xgQX/dyL1wO7yyHEYj/+UP488mtdF5dlnKsNd55IiD+zsu96vuvEno9A7JMauJkRHrh/np19x+Fv9FPboWBNCL/3nNERje/kOVw7D3lKW94sJpfFYAenImTESlf8duoHB2ELhizr2hcjgM5mxvFLucfx+F+iInZ0YMzWTIiJZueCR035W+jsuDJGs3Lse/m6MAg4lttrIWlPHnRgzNZMiLF6kNL9qsXJZcgMkGZ9t1srBVe+TSmv2U4X1kPzgTJiJSpJy3Z1+cERFqRad9Njo9Tu7SzHRb0ZCfHhVNlkBEpkJZsGEemfTc5DpJ1L8fqg/mroeKR7smIlObaYgiIxbdkC4i0J9O+G116g8i0B+dTpQ2TICNSlJvL1TebvdhGRUCkJZn23fS8GXQomfbgWLzSPRmRcvShJfvrz10LaVeOfTfffxWGxxhQpj04Syt6cLomI1KInrRkm5JPqzLtu/G9GFamPTh3PXHuloxICfrQkv3JLS3ZtCvTvpsHq6ZejCLHJT43lsKSRDojI5K3/rRkC4i0LdO+G1tQjibTHhxDiV2SEclYH1qy64CoBJG26bvpIT04nE5GJFd1CaKWbGiEvpseerkXlsFlRw9OZ2REstSTgPj+gtWadEHfTW9trOnB4a1kRPIzv1B+S/aPj7Rk0x19N711uF/dW8nvzevB6YaMSGZuLlc//LP8luy/LAqIdETfTc89XA9PLfKiB6cbMiI5ublcfkv29195gkZ39N1QVdUXGQ4l6sHpgIxINu6vlx8QP7mV5Y81+bq7pu+GsPTnx0f5HQZDiW2TEclD8S3ZdUBUgkiXLs9l+bXSd9OGHO9O9eC0TUYkdXUJYvEt2Yt/EhDpWo7DMPpuWqIHhzfJiCStDog5tnIMTks2E3FtUd8Nv6MHh4iMSLr6U4IoINK9HAdg9N20Sg8OERmRRAmI0J7bq/puOIEeHF4nI5KiPrRk7zzRks1kTM+EoZfs3FvxfemCHhyOyYgkpyct2QIik5Jj383zpxZ1dUQPDsdkRNLSh5bszQ3z7pmYTPtu9IZ2SQ8ONRmRhPSkJVtAZIJyHG758ZG+m07pwaEmI5IKLdnQtkz7bgwidk8PTu9VMiJJ6ElL9vvvCIhMWI4DLV9/ru9mAvLtwbkwm8DrKIWMyIT1pyXbwzImK9O+G1szT0qmPTiGEhskIzJJfShBfPVCCSKTp++GEWTagzO/kMDrKIKMyMT0pCX7+pyAyOTpu2EEO9uhhyE7hhKbIiMyGX1oyf7xkRJEkqDvhpE9WM1v8cr81VCjxvhkRCagDy3Z339V/WVRQCQJ+m4Y2cu9LKeE3l61iXMDZES61oeW7E9uGQIhFfpuGNPGWphXnZfzF7OcgJsaGZFOfbrWi4BoEhXp0HfDmA73wxPn7OjBGZ+MSHfur1cffFzy8T46qBb/JCCSEH03NOLherXzJLNDqQdnfDIiXZieqb7d6kFLto4bUqLvhgblOJSoB2dMMiKtq1uy37te8pHWcUOC9N3QID04PSQj0q4Ls70oQXx/wfQp0qLvhsbpwekbGZEWXZ6rHu0WHhCVIJImfTc0Tg9O38iItKXeRqXsEsTNDSWIpCjHvpujA4OIGdCD0ysyIq24uVxt/av8luw7HmGQnumZLPtuNtZM2MiAHpxekRFpnpZsmKCllfz6bl690HeTDT04/SEj0rDiW7KPDrRkk64Ls1k+Vnuwas5GTvTg9ISMSJP60JL9/oKASLpur+Y3x2Pnie9UZvTg9ISMSDO0ZMPEzS9k+R3McVAKPTh9ICPSgJ60ZL87KyCStByHSTY39N1kSQ9OH8iIjKs/LdnmS5Gym8tZ9t0YRMyXHpziyYiMpQ8t2ZsbAiKpm57JchBR303WDvezrHfQgzM4GZHR9aQl+86ygEjq9N0wEY+39OCUTEZkRH1oyf76cy3ZZEDfDRN0L8NzTw/OgGRERtGTlmwzpciCvhsm6Nlulj04Oe5F1D0ZkaFpyYZ06Lth4u6t5NeDc+mKHpyzyYgMR0s2JEXfDRN3uJ/l1NK7a3pwziAjMigt2ZAafTck4sFqfj04U+f04JxBRmQgWrIhNfpuSEqOPTgffaYH5zQyImfTkg0J0ndDUnLswbF45XQyImfQkg0J0ndDgnLswXnvuh6ct5IROY2WbEiTvhsSpAenMDIib3VzufyAqCWbHGXad5PjIBPD0oNTEhmRk9Ut2WUHRC3ZZCrTvhsLwvpAD05JZEROcHtVSzYkKtO+G4OI/aEHpxgyIrH766EOoGBasslXvn03pvz2ih6cMsiI/GZ6JgRELdmQrEz7bkzq6Bs9OGWQEflV3ZJddkDUkk3WMu27yXFIifHpwSmAjEh1HBC1ZEPKMu27ebyVwOugc5n24OQ4l6M9MiKhBPGnPS3ZkLTpmeraYn4fkaUqfZZjD878VbMSfyMj9p2WbMjCtcX8vqf6bnrucD/LqajLbmz+fzJir/UhIGrJpgzZDSLqu6Fe0p5dD06OA/YtkRH7q17FrCUbsvDe9cw+J3031P6W2136+YthAKX3Khmx126vljwH8eig+vCGEkQKkd1aS303HNvZzq8HR0asyYg9dWG2+uDjYt96XYJoNSXF+K/cJtHru+F12U34sWylJiP2VMFzcl+90JJNafK6Yum7IfJyr/r+q5wOipbEmozYU6V+AZ4/ra7PCYgwSZaq8KYHq/n14CAj9lSRMxHrR8ymycME/fjITRonONyvNk0Qz42MSDmmzoWV2tMzPlKYmPkF30FOplMmOzJiTz1/Wub7fu96aHx0iYJJmTpX3V1z9IndXg2dMuRFRuypl3vFvu9LV8RESpPXDIobS6pD+J3pmWopq1mqO9sJvIgEyIg9VfaqwzomukpRjOxm+BlK5HW3VzPbr8G89pqM2FOPtwpfYiYmUpLsRjXmr5p8xq9yrOM1jliTEXsq063WhzJ1TkykHNntVPGpoUT+435uy5mPDqzN/5WM2F8ba/lddYZVx0TjGRQgu/kh5y+GJ4z03PxCGFTOiwb4YzJir324GHYlKdvUueqbzepmbjtBQSTH69bSitVjfff3DDsRbfR/TEbstcP96i+Lvei+//I7MZG8vdyrNjcyewd6cHpuaSW/vptXL0xG/I2M2HfPdsPeJKXWJb7uy+88+SJvGxnmLT04vTU9k+VPbvEz9YciI9KjmPjRZ/nNnoZjz3bzG0rUg9Nb2fXd1LtLeND8OhmRqn7ofH0uy8vPsG4siYlk7MFqfpND9OD0UI59N1VVfZFV0XcHZER+c2e5+v6r8o/HjaXq2y1T6cnSy70snzjrwembHG/Ff3xkJmJMRuR3vlipPrlV/iGxrTP52ljLr45AD06v5Nh3YxDxRDIisYfr1fvvlL/Y2bbOZCrTAnw9OP2RY9/N15+HQXoiMiIn2NkOq1iKr060Xx+ZerieXwH+1DlDib2QY9/N0UGWUzg6ICNysme7YRVL8YudxUQyleNQ4gcfh6UMFCzTvpt7K2F4njfJiLzV4X4YTSx+sbNtncnRznaW302tAmXTd1MYGZHTHO73YrGzbZ3JUaY9OPMLCbwOWqDvpjwyImfrw2Jn2zqTnUx7cHJc0MAgchwk3tzQd3MaGZGB9GSxs22dyUumPThLRm6Kk2PfzdGBnffOICMyqJ4sdratMxnJtAfn9qoenNLkODy8sabv5gwyIkPoyWJn2zqTET04TFyOfTevXui7OZuMyHB6stjZts5kRA8OE5Rp382DVX03Z5MRGVpPFjvb1plc6MFhgnLsu9l5ou9mIDIiI+rDYmfbOpMLPThMRKZ9N5aqDEhGZHR9WOxsW2eyoAeHifg0w7NO383gZETG0ofFzvbrIwt6cOjY/EJ42JIXfTdDkREZVx8WO4uJpO9wP8sdI/Tg5CvHQUR9N0OREWlAHxY729aZ9D3e0oNDR24uh5vnvOi7GZaMSDP6sNjZts6k716GQ4l6cLIzPVPdzTBs6bsZloxIk4pf7GxbZxL3bFcPDq1bWtF30wsyIg3rw2Jn2zqTsnsrenBo0YXZsBlVdixVGYGMSPP6sNjZts4k63BfDw4t0nfTHzIirejDYmfbOpOsB6t6cGiFvptekRFpSx8WO9vWmWTpwaEN+m56RUakRX1Y7GxbZ9KkB4fG6bvpGxmR1hW/2Nm2zqRJDw4N0nfTQzIiXSh+sbNtnUmQHhwapO+mh2REOlL8Ymf79ZEgPTg0Qt9NP8mIdKf4xc5iIqnJtAcnx4URZdN3008yIp0qfrGzbZ1JTY49OJeuqKlPiL6b3pIR6Vq92Ln4mGhbZ9KRYw/O3TUTfFOh76a3ZEQm485yyYudbetMUjLtwVGpnYJM+24MIjZCRmRiHq5XH94oebGzbZ1JR449OB99pgdnwjLtu8lx4DxNMiKT9HgrTE8sOybqBCYFmfbgWLwyWZn23TzeSuB1FEFGZMKe7Vbvzpa82Nm2ziQixx6c967rwZmYTPtuchwyT5aMyOTVi51/fFTsR2FbZ1KgB4fij/zmRhh3oCkyIkk43K/+sljyYmfbOpMCPTgMKNO+G4OIzZIRSUjZi51t60wK9OAwiBwnUm+s2Zq5YTIiaSl7sbNtnZk4PTic6eZy2BExbzxckAAAD15JREFUL/pu2iAjkpyyFzvbr4+J04PDKaZnshxE1HfTBhmRFJW92FlMZLKe7Vbff5XfZ2DxSjeWVqrzFzN7zfpuWiIjkqiyFzvb1pnJerCqB4cTXJjN8rG+pSotkRFJV9mLnW3rzAQd7mc5ectQYttur+ZXmq3vpj0yIqkreLGzbZ2ZoI01PTj8zvxCaOnKi76bVsmIZKDsxc62dWZS/pbhiacHpz36bojIiOSh7MXOtnVmIna29eDwK303vElGJBtlL3a2rTMTcSfDoUQ9OI3Td8OJZERyUvZiZ9s6072Xe3pw0HfDyWREMlP2YmfbOtM9PTg9p++Gt5ERyVLBi51t60zH9OD0nL4b3kZGJFcFL3a2rTMd04PTW/puOIWMSMYKXuxsvz46lmMPzu1Vt1Lj0nfDKWRE8vZsV0yEBuTYg3P+oh6csei74XQyItkrOCba1pku5diDs7SiB2dE+m44k4xICYqPibZ1pgM59uBMndM/PyJ9N5xJRqQQBTds29aZzuTYg3NjSQ/O0DLtu8lxqDtrMiLlqBu2S92IxbbOdCDTHhxDicPKse/m+6/CUDddkhEpSvEx0bWQtuXYgzN/1R3UEDLtu7FUpXsyIqUpOyba1pkO6MEpW463mg9W9d1MgIxIgWzrDOPQg1OwTPtuNmyrMwkyImWyrTOMQw9OkTLtu8lxYLsMMiIlu7NcbEy0rTOt0oNTpEz7bna2E3gdvSQjUriCY6JtnWmVHpzCTM/ou2E4MiLlKz4m2oiFNujBKczdNX03DEdGpBfuLFef3CrzjYqJtGdjLb+KAD04J7o8p++GocmI9MXD9WJjom2daU+O2+PqwXnT3QzXBeu7mTgZkR4pPiba1pnG7WznVyOlBydybVHfDaP4o6NGrzz8T7Pgl98V+J7rbZ0/ufXre4SmfLES1tHn5aPPwh/ype8mBcYR6Z2H69WHN/JbsDkg2zrTuJd71defO6x0R99NImRE+ujxVtiIpeCYaGknzdpYK/b7QoL03SRCRqSnnu2WHBNt60yzDvere2b40Ql9N+mQEemvsmOibZ1p1sP1/HpwyI6+m6TIiPRa8THRts40KMceHPKi7yYpMiJ992y3ene22AES2zrToBx7cMiIvpvUyIgQblvfXyg2JtrWmQYZSqQ9+m5SIyNC1ZOYaCMWxqcHh5bou0mQjAi/EhNhEHpwaIO+mwTJiPCbOiaWOuPKts40Qg8OjdN3kyYZEX7ncL/6y2K1uVHmURETaYQeHBqk7yZZMiKc4M5y4THREhbGZPEKTbm3ou8mUTIinKzsmPjNVgKvg5zpwaERz5+GYWnSJCPCWxUcE+ev2tOZcRlKZHzOopTJiHCaO8vVJ7fKPEIffVZdmE3gdZAtPTiM6cdH+m6SJiPCGR6uFxsTP7WlAePRg8M4DCImTkaEs5UaE9+7Xs0vJPA6yJYeHEb29ef6blInI8JASo2JN/XWMh49OIzg6MDWzBmQEWFQD9erD2+U9mTtxpIeHMbliSHD0neTBRkRhvB4K2zEUlpMNJTIePTgMBR9N7mQEWE4z3ZLi4nXFhN4EWTuixWLVxiUgedcyIgwtMJi4vxVj5sZ18s908sYiL6bjMiIMIrCYuIlOzgzto216tULh5EzGETMiIwII3q2W707W8iKzj9rwGFsh/vVA5v3cCp9N3mREWF0h/thNLGAmGjDFRrxcL3aeeJQcjJ9N9mREWEsZcREGZGmGErkbfTdZEdGhHEVM5oI49vZrjY3HEdi+m5yJCNCA+qY6Ckb1EOJenCIWKqSIxlxFKbc8qY6JhpBYShFPnrTg0NE302mZMRR/FtG5C3uLIuJDOHZbplHSw8OrzOImCkZsUCGOSdLTEyKr8NE6MHhmL6bfMmIo0j8dPdtnDgxMR2+rZOiBwd9N7mTEUeR8s+61bWJuLNc3ftrNq+27KlCKX8pyr6jM5SIvpusyYgjSvb+uNTpTTnaWKs+uZXH6y47qST7pSh+mE0PTs/pu8mdjDiiZMddrB1LysP1PGJi2bcWvq0TpAenzyxVyZ2MOKLHW4m+sJ9lxMSkHxNfvSg8Iyb7pUj2Z6RBenB6a3PDmEX2ZMQRPdtNsdnh+VMLVlJUx8RkR1OKv694uZfilMTio/kxPTg9dHRgNmoJZMTRJTgG4H49WQ/XQ8N2mjGxDxOGEvxq9GEQsaYHp4c21gxYlEBGHN16Yledo4MeXXVy9Gw3xZj46kUvngc93kruyKf2A9IqPTi98uqFAYtCyIije7mX1pK9jTUVA6lLMCb2ZIDncD+ti9bmRu9GWe5ZvtAbX+i7KYWMOJZ0rq96SnORVEx89aJHY88bawml8x4+e322G/bboHibG55olUNGHMvLvVR+9fSUZuTZbnV9LolVFA9We3TaHO6nMpTV263JHqx64ly4508NGBdFRhzXg9XJX+x3nugpzczLvTCaONkzp4enTQqz4p4/7fWQ/4eL9oIq1tFB2F/KaEVJZMQG3Fme5DOs+mtJdg73JxkTe3vafLg44SfOPb+ITva0pz1HB+GTtdFXYWTEBjzbneTo+l8WVQzkaoLXy3srPT1tDvfDV2ZSPrnlIiomFkhALJWM2IyH65OZmPjJLUX2eauvlx0/AP3+q15PTtjZnszON19/bk7IryZy2tOS50/DBGsBsUgyYmMerHZdhfPJLZecEtTXy85Ons0Nm6hOYIPEzQ090r9Tn/ZWOufu+6/C5+hZVqlkxCbdWe7uwiMgFubOchcxcXPD7NVfdRkT7/3VYT/Zg9Vq8U8GFLP06kX1/juqEAsnIzbs4Xr14Y12J8UfHYRfVQGxPHeWw015eySVyMP18FVqdSvho4Pwg6C79BR1Y+gnt+zpnI1XL8Ln9c6smU7lkxGb93grTM5o6c74x0fVu7NmfhTri5VW7jHqO35J5U11V+WPj1r5l+88Cf9yfcKDeLgeMsf777T1WdCIHx/9mg4NUvTEH3755Zc33+n//KHvx6URN5er26vV+YvN/Ntevaj+tuy+rRemZ6q7a9WNpWbe6/df9asrezTzC9Xf15v8tj5YdR0d0fRM+Dj+vFBdmqvmr2b5Fkry/Gm4ldrZDnc7fkaK9MM/wzfuRDJiu6ZnqhvL1fLKWNce15t+ml8I9xjjXCPrdRKmkw9u/Pu6Vy+q9bVqc93VtDHTMyEs0r2Xe349ekFGnLxri7/+mTo36Gs5Ogj3bWFnCGOHPXZhNtxjXFscIri8ehFOm4frft9HNL8QwuII39b6D0BGZMSE1M9QLs9VUzPxENHRQRjSf7n368C+SYe87vJcOHkuz4XUGM6f1+LLqxfVv/eq57vhnPl5WzRszCnHvJ5ueLT/6zF3IwdkSkYEACB2Ska0rhkAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQCIyYgAAMRkRAAAYjIiAAAxGREAgJiMCABATEYEACAmIwIAEJMRAQB6amrmre/75Ix46YpTBQCgcJfn3vr+Ts6IF2adEgAAJTt/8bQ3d3JGPCVUAgBQgNPz3skZ8c8LPnkAgJKdnvdOzojzC9XUOWcFAECx5kfIiFVVXVt0SgAAlOn8xZGeNVdVdXPZKQEAUKbllTPe1h9++eWXt/3/3pmtXr1wYgAAFGXqXPXTXjX99nLEMzq0b686HwAASrO0ckZAPGMcsaqq9xeqnSdODACAQgwyiHj2Xnx315wPAADluLt2dkA8OyNenqs++sxZAQBQgveuD7ou+YxnzTVPnAEAcnf+YvVod6BBxLPHEWvfbFWXrjgvAAByNXWu+nZr0IA4aEacnql+2BYTAQCyNHUuZLnTS7MjA2VEMREAIFMjBMQhMuJxTLyx5AQBAMjDpSuh6WbYgDhcRqxj4v316pvNEEgBAEjZR58NsUglMtC65jcd7lf3VqrNDecFAEBy5q+Gcb0Ls6O/rhEzYu3lXvVgtXq8VR0dODcAACbvxlJoQJxfGPeFjJURa4f7ISbubAuLAACT8d716tpi+DPak+U3NZARX/dyL/z5edvpAQDQustz4YHyCEtSztRwRgQAoADDrWsGAKAPZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEA+J2qqv4/skTusiS5HVcAAAAASUVORK5CYII=
-      mediatype: image/png
+  - base64data: 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JiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEAiMmIAADEZEQAAGIyIgAAMRkRAICYjAgAQExGBAAgJiMCABCTEQEA+J2qqv4/skTusiS5HVcAAAAASUVORK5CYII=
+    mediatype: image/png
   install:
     spec:
       clusterPermissions:
-        - rules:
-            - apiGroups:
-                - ""
-              resources:
-                - namespaces
-              verbs:
-                - get
-            - apiGroups:
-                - ""
-              resources:
-                - secrets
-              verbs:
-                - '*'
-            - apiGroups:
-                - ""
-              resources:
-                - events
-              verbs:
-                - create
-            - apiGroups:
-                - apik10.kasten.io
-              resources:
-                - k10s
-                - k10s/status
-                - k10s/finalizers
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - security.openshift.io
-              resources:
-                - securitycontextconstraints
-              verbs:
-                - '*'
-            - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - clusterrolebindings
-                - clusterroles
-              verbs:
-                - '*'
-            - apiGroups:
-                - apiregistration.k8s.io
-              resources:
-                - apiservices
-              verbs:
-                - '*'
-            - apiGroups:
-                - apps
-              resources:
-                - daemonsets
-                - deployments
-                - statefulsets
-              verbs:
-                - '*'
-            - apiGroups:
-                - networking.k8s.io
-              resources:
-                - networkpolicies
-              verbs:
-                - '*'
-            - apiGroups:
-                - ""
-              resources:
-                - configmaps
-                - persistentvolumeclaims
-                - secrets
-                - serviceaccounts
-                - services
-              verbs:
-                - '*'
-            - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - rolebindings
-                - roles
-              verbs:
-                - '*'
-            - apiGroups:
-                - apik10.kasten.io
-              resources:
-                - k10restores
-                - k10restores/status
-                - k10restores/finalizers
-              verbs:
-                - create
-                - delete
-                - get
-                - list
-                - patch
-                - update
-                - watch
-            - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - clusterrolebindings
-                - clusterroles
-              verbs:
-                - '*'
-            - apiGroups:
-                - security.openshift.io
-              resources:
-                - securitycontextconstraints
-              verbs:
-                - '*'
-            - apiGroups:
-                - batch
-              resources:
-                - jobs
-              verbs:
-                - '*'
-            - apiGroups:
-                - ""
-              resources:
-                - serviceaccounts
-              verbs:
-                - '*'
-            - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - rolebindings
-                - roles
-              verbs:
-                - '*'
-            - apiGroups:
-                - authentication.k8s.io
-              resources:
-                - tokenreviews
-              verbs:
-                - create
-            - apiGroups:
-                - authorization.k8s.io
-              resources:
-                - subjectaccessreviews
-              verbs:
-                - create
-            - apiGroups:
-                - policy
-              resources:
-                - podsecuritypolicies
-              verbs:
-                - '*'
-            - apiGroups:
-                - rbac.authorization.k8s.io
-              resources:
-                - clusterrolebindings
-                - clusterroles
-                - rolebindings
-                - roles
-              verbs:
-                - '*'
-            - apiGroups:
-                - apiregistration.k8s.io
-              resources:
-                - apiservices
-              verbs:
-                - '*'
-            - apiGroups:
-                - security.openshift.io
-              resources:
-                - securitycontextconstraints
-              verbs:
-                - '*'
-            - apiGroups:
-                - route.openshift.io
-              resources:
-                - routes
-              verbs:
-                - '*'
-            - apiGroups:
-                - admissionregistration.k8s.io
-              resources:
-                - mutatingwebhookconfigurations
-              verbs:
-                - '*'
-          serviceAccountName: k10-kasten-operator-term-rhmp-controller-manager
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - namespaces
+          verbs:
+          - get
+        - apiGroups:
+          - ""
+          resources:
+          - secrets
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+        - apiGroups:
+          - apik10.kasten.io
+          resources:
+          - k10s
+          - k10s/status
+          - k10s/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - security.openshift.io
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          - clusterroles
+          verbs:
+          - '*'
+        - apiGroups:
+          - apiregistration.k8s.io
+          resources:
+          - apiservices
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          resources:
+          - daemonsets
+          - deployments
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - networking.k8s.io
+          resources:
+          - networkpolicies
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          - persistentvolumeclaims
+          - secrets
+          - serviceaccounts
+          - services
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - apik10.kasten.io
+          resources:
+          - k10restores
+          - k10restores/status
+          - k10restores/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          - clusterroles
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - '*'
+        - apiGroups:
+          - batch
+          resources:
+          - jobs
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - serviceaccounts
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        - apiGroups:
+          - policy
+          resources:
+          - podsecuritypolicies
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          - clusterroles
+          - rolebindings
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - apiregistration.k8s.io
+          resources:
+          - apiservices
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - '*'
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - routes
+          verbs:
+          - '*'
+        - apiGroups:
+          - admissionregistration.k8s.io
+          resources:
+          - mutatingwebhookconfigurations
+          verbs:
+          - '*'
+        serviceAccountName: k10-kasten-operator-term-rhmp-controller-manager
       deployments:
-        - label:
-            control-plane: controller-manager
-          name: k10-kasten-operator-term-rhmp-controller-manager
-          spec:
-            replicas: 1
-            selector:
-              matchLabels:
+      - label:
+          control-plane: controller-manager
+        name: k10-kasten-operator-term-rhmp-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              annotations:
+                kubectl.kubernetes.io/default-container: manager
+              labels:
                 control-plane: controller-manager
-            strategy: {}
-            template:
-              metadata:
-                annotations:
-                  kubectl.kubernetes.io/default-container: manager
-                labels:
-                  control-plane: controller-manager
-              spec:
-                containers:
-                  - args:
-                      - --secure-listen-address=0.0.0.0:8443
-                      - --upstream=http://127.0.0.1:8080/
-                      - --logtostderr=true
-                      - --v=0
-                    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:latest
-                    name: kube-rbac-proxy
-                    ports:
-                      - containerPort: 8443
-                        name: https
-                        protocol: TCP
-                    resources:
-                      limits:
-                        cpu: 500m
-                        memory: 128Mi
-                      requests:
-                        cpu: 5m
-                        memory: 64Mi
-                    securityContext:
-                      allowPrivilegeEscalation: false
-                      capabilities:
-                        drop:
-                          - ALL
-                  - args:
-                      - --health-probe-bind-address=:8081
-                      - --metrics-bind-address=127.0.0.1:8080
-                      - --leader-elect
-                      - --leader-election-id=k10-kasten-operator-term-rhmp
-                    env:
-                      - name: RELATED_IMAGE_ADMIN
-                        value: registry.connect.redhat.com/kasten/admin:6.5.0
-                      - name: RELATED_IMAGE_AGGREGATEDAPIS
-                        value: registry.connect.redhat.com/kasten/aggregatedapis:6.5.0
-                      - name: RELATED_IMAGE_AUTH
-                        value: registry.connect.redhat.com/kasten/auth:6.5.0
-                      - name: RELATED_IMAGE_CATALOG
-                        value: registry.connect.redhat.com/kasten/catalog:6.5.0
-                      - name: RELATED_IMAGE_CONTROLLERMANAGER
-                        value: registry.connect.redhat.com/kasten/controllermanager:6.5.0
-                      - name: RELATED_IMAGE_CRYPTO
-                        value: registry.connect.redhat.com/kasten/crypto:6.5.0
-                      - name: RELATED_IMAGE_DASHBOARDBFF
-                        value: registry.connect.redhat.com/kasten/dashboardbff:6.5.0
-                      - name: RELATED_IMAGE_EVENTS
-                        value: registry.connect.redhat.com/kasten/events:6.5.0
-                      - name: RELATED_IMAGE_EXECUTOR
-                        value: registry.connect.redhat.com/kasten/executor:6.5.0
-                      - name: RELATED_IMAGE_FRONTEND
-                        value: registry.connect.redhat.com/kasten/frontend:6.5.0
-                      - name: RELATED_IMAGE_INIT
-                        value: registry.connect.redhat.com/kasten/init:6.5.0
-                      - name: RELATED_IMAGE_JOBS
-                        value: registry.connect.redhat.com/kasten/jobs:6.5.0
-                      - name: RELATED_IMAGE_KANISTER
-                        value: registry.connect.redhat.com/kasten/kanister:6.5.0
-                      - name: RELATED_IMAGE_LOGGING
-                        value: registry.connect.redhat.com/kasten/logging:6.5.0
-                      - name: RELATED_IMAGE_METERING
-                        value: registry.connect.redhat.com/kasten/metering:6.5.0
-                      - name: RELATED_IMAGE_STATE
-                        value: registry.connect.redhat.com/kasten/state:6.5.0
-                      - name: RELATED_IMAGE_UPGRADE
-                        value: registry.connect.redhat.com/kasten/upgrade:6.5.0
-                      - name: RELATED_IMAGE_DATAMOVER
-                        value: registry.connect.redhat.com/kasten/datamover:6.5.0
-                      - name: RELATED_IMAGE_BLM
-                        value: registry.connect.redhat.com/kasten/bloblifecyclemanager:6.5.0
-                      - name: RELATED_IMAGE_REPOSITORIES
-                        value: registry.connect.redhat.com/kasten/repositories:6.5.0
-                      - name: RELATED_IMAGE_PAYGO_DAEMONSET
-                        value: registry.connect.redhat.com/kasten/init:6.5.0
-                      - name: RELATED_IMAGE_GARBAGECOLLECTOR
-                        value: registry.connect.redhat.com/kasten/garbagecollector:6.5.0
-                      - name: RELATED_IMAGE_VBRINTEGRATIONAPI
-                        value: registry.connect.redhat.com/kasten/vbrintegrationapi:6.5.0
-                      - name: RELATED_IMAGE_METRIC_SIDECAR
-                        value: registry.connect.redhat.com/kasten/metric-sidecar:6.5.0
-                      - name: RELATED_IMAGE_CEPHTOOL
-                        value: registry.connect.redhat.com/kasten/cephtool:6.5.0
-                      - name: RELATED_IMAGE_CONFIGMAP_RELOAD
-                        value: registry.connect.redhat.com/kasten/configmap-reload:6.5.0
-                      - name: RELATED_IMAGE_DEX
-                        value: registry.connect.redhat.com/kasten/dex:6.5.0
-                      - name: RELATED_IMAGE_EMISSARY
-                        value: registry.connect.redhat.com/kasten/emissary:6.5.0
-                      - name: RELATED_IMAGE_GRAFANA
-                        value: registry.connect.redhat.com/kasten/grafana:6.5.0
-                      - name: RELATED_IMAGE_KANISTER_TOOLS
-                        value: registry.connect.redhat.com/kasten/kanister-tools:6.5.0
-                      - name: RELATED_IMAGE_PROMETHEUS
-                        value: registry.connect.redhat.com/kasten/prometheus:6.5.0
-                      - name: RELATED_IMAGE_RESTORECTL
-                        value: registry.connect.redhat.com/kasten/restorectl:6.5.0
-                    image: registry.connect.redhat.com/kasten/k10-operator:6.5.0
-                    imagePullPolicy: Always
-                    livenessProbe:
-                      httpGet:
-                        path: /healthz
-                        port: 8081
-                      initialDelaySeconds: 15
-                      periodSeconds: 20
-                    name: manager
-                    readinessProbe:
-                      httpGet:
-                        path: /readyz
-                        port: 8081
-                      initialDelaySeconds: 5
-                      periodSeconds: 10
-                    resources:
-                      limits:
-                        cpu: 1600m
-                        memory: 1800Mi
-                      requests:
-                        cpu: 800m
-                        memory: 600Mi
-                    securityContext:
-                      allowPrivilegeEscalation: false
-                      capabilities:
-                        drop:
-                          - ALL
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=0
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:f11f71448986aa17abec9caadb568a6cc34ef1a7898e6dc20bc6a512830ba476
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                  protocol: TCP
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 128Mi
+                  requests:
+                    cpu: 5m
+                    memory: 64Mi
                 securityContext:
-                  runAsNonRoot: true
-                serviceAccountName: k10-kasten-operator-term-rhmp-controller-manager
-                terminationGracePeriodSeconds: 10
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              - args:
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                - --leader-election-id=k10-kasten-operator-term-rhmp
+                env:
+                - name: RELATED_IMAGE_ADMIN
+                  value: registry.connect.redhat.com/kasten/admin@sha256:9e6be5962a1ad4997b0a7e885b0837661633c7a6007509f98d7adce2e92860b1
+                - name: RELATED_IMAGE_AGGREGATEDAPIS
+                  value: registry.connect.redhat.com/kasten/aggregatedapis@sha256:8aa731dd711d73e41f24c6c07e03c28db58de2ddb0a45d018fef8cbb693738de
+                - name: RELATED_IMAGE_AUTH
+                  value: registry.connect.redhat.com/kasten/auth@sha256:816b5bd15caed46d5e1a6e21699e9b3974e16e66ff86f8a398c85906fdc9317d
+                - name: RELATED_IMAGE_CATALOG
+                  value: registry.connect.redhat.com/kasten/catalog@sha256:f0c3f8a5d63b24c57efc964d0d4f228f453ad62c31a5be11ae3b0ff038f59f38
+                - name: RELATED_IMAGE_CONTROLLERMANAGER
+                  value: registry.connect.redhat.com/kasten/controllermanager@sha256:699c4fe16b9935680a7d1e15a76c50fa156b9f18de4a2a5212d15139f113b0de
+                - name: RELATED_IMAGE_CRYPTO
+                  value: registry.connect.redhat.com/kasten/crypto@sha256:766592df90a92d5403d73ed55e75de58aa3a4af4a41c01c552576c5c0ccda911
+                - name: RELATED_IMAGE_DASHBOARDBFF
+                  value: registry.connect.redhat.com/kasten/dashboardbff@sha256:451da073831480414c8ab74ead796574d00513c1f9f7cab9fc90ed9cf4848501
+                - name: RELATED_IMAGE_EVENTS
+                  value: registry.connect.redhat.com/kasten/events@sha256:f8c73f2e0f95ac5fa2a7075ca466035c6d1c2e602f06574cc6a5c4851c61f322
+                - name: RELATED_IMAGE_EXECUTOR
+                  value: registry.connect.redhat.com/kasten/executor@sha256:1b0db722eedf67724c3f90b132e5bdd11ee91c566b91cce5a520ba8dc070fbee
+                - name: RELATED_IMAGE_FRONTEND
+                  value: registry.connect.redhat.com/kasten/frontend@sha256:241837c257c927e25ff85646c03b957bf74791b81bac49dca33fccf84e338b78
+                - name: RELATED_IMAGE_INIT
+                  value: registry.connect.redhat.com/kasten/init@sha256:8edcbea804632cc0e25c54eb174854cb4e39010982f9effeb6768a465abc0c16
+                - name: RELATED_IMAGE_JOBS
+                  value: registry.connect.redhat.com/kasten/jobs@sha256:d517f7e620b23fe1b9b93bfa066f8d2d2e68ae9845ad74010ab359c8bf2727a2
+                - name: RELATED_IMAGE_KANISTER
+                  value: registry.connect.redhat.com/kasten/kanister@sha256:605f1f3b6f89d1d8a64f3620bb40f78a4d5cd0009b18eccf233553045db8f965
+                - name: RELATED_IMAGE_LOGGING
+                  value: registry.connect.redhat.com/kasten/logging@sha256:e1c2d95f7bc9c3101ad0aa7ffa67425eaa07d1aca8a22b870bc0bbaab378a46c
+                - name: RELATED_IMAGE_METERING
+                  value: registry.connect.redhat.com/kasten/metering@sha256:9c1937460a728e01638942c01fbb8d26307d36795cb44d45233dfc4fac5ffd61
+                - name: RELATED_IMAGE_STATE
+                  value: registry.connect.redhat.com/kasten/state@sha256:fcf7c6161c07d9d7f1a7d63d01eced67fe972d06ba7f51e32bb5f13542666969
+                - name: RELATED_IMAGE_UPGRADE
+                  value: registry.connect.redhat.com/kasten/upgrade@sha256:85c48130a30ace80c70d3d707a73916803edff28ea515c68e30ab9a8ddf7ab39
+                - name: RELATED_IMAGE_DATAMOVER
+                  value: registry.connect.redhat.com/kasten/datamover@sha256:76e68c3471e097d7f581227cf9ad4a988fb616ac136725a734cfb93fcfa22150
+                - name: RELATED_IMAGE_BLM
+                  value: registry.connect.redhat.com/kasten/bloblifecyclemanager@sha256:8289de6d10c5328f4037e52f0a01b3ad4ad5f4a0b83bfc9a338c3802161592f2
+                - name: RELATED_IMAGE_REPOSITORIES
+                  value: registry.connect.redhat.com/kasten/repositories@sha256:143b0334057811e4ddc725201ca65dfcec0f60f7ee24b3e08c7d1a265bf7817e
+                - name: RELATED_IMAGE_PAYGO_DAEMONSET
+                  value: registry.connect.redhat.com/kasten/init@sha256:8edcbea804632cc0e25c54eb174854cb4e39010982f9effeb6768a465abc0c16
+                - name: RELATED_IMAGE_GARBAGECOLLECTOR
+                  value: registry.connect.redhat.com/kasten/garbagecollector@sha256:0c22f1719ad36584cacfe8e499d5e3d68477ed79e9a63ab3b53f7deb6ef03852
+                - name: RELATED_IMAGE_VBRINTEGRATIONAPI
+                  value: registry.connect.redhat.com/kasten/vbrintegrationapi@sha256:f0f773871317a6ef954ecc35b9272e183f05f8784dd390fe8ff3b72ede6b1c73
+                - name: RELATED_IMAGE_METRIC_SIDECAR
+                  value: registry.connect.redhat.com/kasten/metric-sidecar@sha256:c8e9c4d72281788fe72d8da0ca028c0ec645695978513dd252b3d0ac5b20e792
+                - name: RELATED_IMAGE_CEPHTOOL
+                  value: registry.connect.redhat.com/kasten/cephtool@sha256:39c7f1446b5bdad948cff003a86374f7db3db64e78e88626f91046757dec4d53
+                - name: RELATED_IMAGE_CONFIGMAP_RELOAD
+                  value: registry.connect.redhat.com/kasten/configmap-reload@sha256:cde912e849f48c5037186bb19bc8ca181400a619d4de4fa3ead0e5c5ee6ad3df
+                - name: RELATED_IMAGE_DEX
+                  value: registry.connect.redhat.com/kasten/dex@sha256:a624502f36ed95c5c03e45876de00714faf152a64a2546618d9ffd4d519239c1
+                - name: RELATED_IMAGE_EMISSARY
+                  value: registry.connect.redhat.com/kasten/emissary@sha256:bc09b7d11c3f662400506133423a99300682aab6c1009d80da6d278a9f84f8ab
+                - name: RELATED_IMAGE_GRAFANA
+                  value: registry.connect.redhat.com/kasten/grafana@sha256:1ddcbf82023de58d6f4c8f5640619741f0d2f9a6672cf2263d14555e198c9b64
+                - name: RELATED_IMAGE_KANISTER_TOOLS
+                  value: registry.connect.redhat.com/kasten/kanister-tools@sha256:90b14bb05fd32448bdc7c2a4ef914eca2639cdbc3a9e80909d1c5b6637949cc6
+                - name: RELATED_IMAGE_PROMETHEUS
+                  value: registry.connect.redhat.com/kasten/prometheus@sha256:4b25f2ef690361d97881b222150e2a9d34edb12b646eef49401571fb61d391fe
+                - name: RELATED_IMAGE_RESTORECTL
+                  value: registry.connect.redhat.com/kasten/restorectl@sha256:7232e5ddf3377c2b4216a7dddd6c56ed1a1ffc732875f8fb57631788a379d140
+                image: registry.connect.redhat.com/kasten/k10-operator@sha256:aebf352457bc7fddb2f4316e8113b6df9a47628b1a376782738a89713f0818f6
+                imagePullPolicy: Always
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 8081
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 8081
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: 1600m
+                    memory: 1800Mi
+                  requests:
+                    cpu: 800m
+                    memory: 600Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: k10-kasten-operator-term-rhmp-controller-manager
+              terminationGracePeriodSeconds: 10
       permissions:
-        - rules:
-            - apiGroups:
-                - ""
-              resources:
-                - configmaps
-              verbs:
-                - get
-                - list
-                - watch
-                - create
-                - update
-                - patch
-                - delete
-            - apiGroups:
-                - coordination.k8s.io
-              resources:
-                - leases
-              verbs:
-                - get
-                - list
-                - watch
-                - create
-                - update
-                - patch
-                - delete
-            - apiGroups:
-                - ""
-              resources:
-                - events
-              verbs:
-                - create
-                - patch
-          serviceAccountName: k10-kasten-operator-term-rhmp-controller-manager
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        serviceAccountName: k10-kasten-operator-term-rhmp-controller-manager
     strategy: deployment
   installModes:
-    - supported: true
-      type: OwnNamespace
-    - supported: true
-      type: SingleNamespace
-    - supported: false
-      type: MultiNamespace
-    - supported: false
-      type: AllNamespaces
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
   keywords:
-    - kubernetes
-    - storage
-    - data-management
+  - kubernetes
+  - storage
+  - data-management
   links:
-    - name: K10 Documentation
-      url: https://docs.kasten.io
-    - name: Kasten by Veaam
-      url: https://kasten.io
+  - name: K10 Documentation
+    url: https://docs.kasten.io
+  - name: Kasten by Veaam
+    url: https://kasten.io
   maintainers:
-    - email: contact@kasten.io
-      name: Kasten by Veeam
+  - email: contact@kasten.io
+    name: Kasten by Veeam
   maturity: stable
   provider:
     name: Kasten by Veeam, kasten.io
     url: https://kasten.io
   version: 6.5.0
   replaces: k10-kasten-operator-term-rhmp.v6.0.12
+  relatedImages:
+  - name: k10-operator-aebf352457bc7fddb2f4316e8113b6df9a47628b1a376782738a89713f0818f6-annotation
+    image: registry.connect.redhat.com/kasten/k10-operator@sha256:aebf352457bc7fddb2f4316e8113b6df9a47628b1a376782738a89713f0818f6
+  - name: kube-rbac-proxy
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:f11f71448986aa17abec9caadb568a6cc34ef1a7898e6dc20bc6a512830ba476
+  - name: manager
+    image: registry.connect.redhat.com/kasten/k10-operator@sha256:aebf352457bc7fddb2f4316e8113b6df9a47628b1a376782738a89713f0818f6
+  - name: admin
+    image: registry.connect.redhat.com/kasten/admin@sha256:9e6be5962a1ad4997b0a7e885b0837661633c7a6007509f98d7adce2e92860b1
+  - name: aggregatedapis
+    image: registry.connect.redhat.com/kasten/aggregatedapis@sha256:8aa731dd711d73e41f24c6c07e03c28db58de2ddb0a45d018fef8cbb693738de
+  - name: auth
+    image: registry.connect.redhat.com/kasten/auth@sha256:816b5bd15caed46d5e1a6e21699e9b3974e16e66ff86f8a398c85906fdc9317d
+  - name: catalog
+    image: registry.connect.redhat.com/kasten/catalog@sha256:f0c3f8a5d63b24c57efc964d0d4f228f453ad62c31a5be11ae3b0ff038f59f38
+  - name: controllermanager
+    image: registry.connect.redhat.com/kasten/controllermanager@sha256:699c4fe16b9935680a7d1e15a76c50fa156b9f18de4a2a5212d15139f113b0de
+  - name: crypto
+    image: registry.connect.redhat.com/kasten/crypto@sha256:766592df90a92d5403d73ed55e75de58aa3a4af4a41c01c552576c5c0ccda911
+  - name: dashboardbff
+    image: registry.connect.redhat.com/kasten/dashboardbff@sha256:451da073831480414c8ab74ead796574d00513c1f9f7cab9fc90ed9cf4848501
+  - name: events
+    image: registry.connect.redhat.com/kasten/events@sha256:f8c73f2e0f95ac5fa2a7075ca466035c6d1c2e602f06574cc6a5c4851c61f322
+  - name: executor
+    image: registry.connect.redhat.com/kasten/executor@sha256:1b0db722eedf67724c3f90b132e5bdd11ee91c566b91cce5a520ba8dc070fbee
+  - name: frontend
+    image: registry.connect.redhat.com/kasten/frontend@sha256:241837c257c927e25ff85646c03b957bf74791b81bac49dca33fccf84e338b78
+  - name: init
+    image: registry.connect.redhat.com/kasten/init@sha256:8edcbea804632cc0e25c54eb174854cb4e39010982f9effeb6768a465abc0c16
+  - name: jobs
+    image: registry.connect.redhat.com/kasten/jobs@sha256:d517f7e620b23fe1b9b93bfa066f8d2d2e68ae9845ad74010ab359c8bf2727a2
+  - name: kanister
+    image: registry.connect.redhat.com/kasten/kanister@sha256:605f1f3b6f89d1d8a64f3620bb40f78a4d5cd0009b18eccf233553045db8f965
+  - name: logging
+    image: registry.connect.redhat.com/kasten/logging@sha256:e1c2d95f7bc9c3101ad0aa7ffa67425eaa07d1aca8a22b870bc0bbaab378a46c
+  - name: metering
+    image: registry.connect.redhat.com/kasten/metering@sha256:9c1937460a728e01638942c01fbb8d26307d36795cb44d45233dfc4fac5ffd61
+  - name: state
+    image: registry.connect.redhat.com/kasten/state@sha256:fcf7c6161c07d9d7f1a7d63d01eced67fe972d06ba7f51e32bb5f13542666969
+  - name: upgrade
+    image: registry.connect.redhat.com/kasten/upgrade@sha256:85c48130a30ace80c70d3d707a73916803edff28ea515c68e30ab9a8ddf7ab39
+  - name: datamover
+    image: registry.connect.redhat.com/kasten/datamover@sha256:76e68c3471e097d7f581227cf9ad4a988fb616ac136725a734cfb93fcfa22150
+  - name: blm
+    image: registry.connect.redhat.com/kasten/bloblifecyclemanager@sha256:8289de6d10c5328f4037e52f0a01b3ad4ad5f4a0b83bfc9a338c3802161592f2
+  - name: repositories
+    image: registry.connect.redhat.com/kasten/repositories@sha256:143b0334057811e4ddc725201ca65dfcec0f60f7ee24b3e08c7d1a265bf7817e
+  - name: paygo_daemonset
+    image: registry.connect.redhat.com/kasten/init@sha256:8edcbea804632cc0e25c54eb174854cb4e39010982f9effeb6768a465abc0c16
+  - name: garbagecollector
+    image: registry.connect.redhat.com/kasten/garbagecollector@sha256:0c22f1719ad36584cacfe8e499d5e3d68477ed79e9a63ab3b53f7deb6ef03852
+  - name: vbrintegrationapi
+    image: registry.connect.redhat.com/kasten/vbrintegrationapi@sha256:f0f773871317a6ef954ecc35b9272e183f05f8784dd390fe8ff3b72ede6b1c73
+  - name: metric_sidecar
+    image: registry.connect.redhat.com/kasten/metric-sidecar@sha256:c8e9c4d72281788fe72d8da0ca028c0ec645695978513dd252b3d0ac5b20e792
+  - name: cephtool
+    image: registry.connect.redhat.com/kasten/cephtool@sha256:39c7f1446b5bdad948cff003a86374f7db3db64e78e88626f91046757dec4d53
+  - name: configmap_reload
+    image: registry.connect.redhat.com/kasten/configmap-reload@sha256:cde912e849f48c5037186bb19bc8ca181400a619d4de4fa3ead0e5c5ee6ad3df
+  - name: dex
+    image: registry.connect.redhat.com/kasten/dex@sha256:a624502f36ed95c5c03e45876de00714faf152a64a2546618d9ffd4d519239c1
+  - name: emissary
+    image: registry.connect.redhat.com/kasten/emissary@sha256:bc09b7d11c3f662400506133423a99300682aab6c1009d80da6d278a9f84f8ab
+  - name: grafana
+    image: registry.connect.redhat.com/kasten/grafana@sha256:1ddcbf82023de58d6f4c8f5640619741f0d2f9a6672cf2263d14555e198c9b64
+  - name: kanister_tools
+    image: registry.connect.redhat.com/kasten/kanister-tools@sha256:90b14bb05fd32448bdc7c2a4ef914eca2639cdbc3a9e80909d1c5b6637949cc6
+  - name: prometheus
+    image: registry.connect.redhat.com/kasten/prometheus@sha256:4b25f2ef690361d97881b222150e2a9d34edb12b646eef49401571fb61d391fe
+  - name: restorectl
+    image: registry.connect.redhat.com/kasten/restorectl@sha256:7232e5ddf3377c2b4216a7dddd6c56ed1a1ffc732875f8fb57631788a379d140

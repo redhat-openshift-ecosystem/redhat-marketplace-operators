@@ -1387,3 +1387,4 @@ spec:
   skips:
   - couchbase-operator.v2.5.0-1
   replaces: couchbase-operator.v2.5.0-1
+  

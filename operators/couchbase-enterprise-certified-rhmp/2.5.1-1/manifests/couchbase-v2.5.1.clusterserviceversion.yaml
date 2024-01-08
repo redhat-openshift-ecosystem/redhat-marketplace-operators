@@ -1386,7 +1386,4 @@ spec:
   version: 2.5.1-1
   skips:
   - couchbase-operator.v2.5.0-1
-<<<<<<< HEAD
   replaces: couchbase-operator.v2.5.0-1
-=======
->>>>>>> 4383203a0ac247630ee1ad700a35445955def7b6

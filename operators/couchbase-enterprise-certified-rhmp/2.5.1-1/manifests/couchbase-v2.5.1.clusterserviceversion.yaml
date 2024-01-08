@@ -1384,9 +1384,4 @@ spec:
       alm-owner-couchbase: couchbaseoperator
       operated-by: couchbaseoperator
   version: 2.5.1-1
-<<<<<<< HEAD
-  skips:
-  - couchbase-operator.v2.5.0-1
-=======
->>>>>>> 618ed55 (operator couchbase-enterprise-certified-rhmp (2.5.1-1))
   replaces: couchbase-operator.v2.5.0-1

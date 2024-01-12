@@ -71,7 +71,6 @@ metadata:
     categories: Database
     containerImage: quay.io/aerospike/aerospike-kubernetes-operator@sha256:1d83e22fc4b737995954a38f3b78538828c2f5afa6f4464545f74ad90710dd04
     createdAt: 2024-01-10T13:02:25UTC
-    olm.skipRange: '>=3.1.0 <3.2.1'
     description: The Aerospike Kubernetes Operator automates the deployment and management
       of Aerospike enterprise clusters on Kubernetes.
     operators.operatorframework.io/builder: operator-sdk-v1.24.0
@@ -84,6 +83,9 @@ metadata:
   name: aerospike-kubernetes-operator.v3.2.1
   namespace: placeholder
 spec:
+  replaces: aerospike-kubernetes-operator.v3.1.0
+  skips:
+    - aerospike-kubernetes-operator.v3.2.0
   relatedImages:
     - image: quay.io/aerospike/aerospike-kubernetes-operator@sha256:1d83e22fc4b737995954a38f3b78538828c2f5afa6f4464545f74ad90710dd04
       name: manager

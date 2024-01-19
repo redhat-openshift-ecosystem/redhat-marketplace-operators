@@ -80,7 +80,7 @@ metadata:
     operatorframework.io/arch.amd64: supported
     operatorframework.io/arch.arm64: supported
     operatorframework.io/os.linux: supported
-  name: aerospike-kubernetes-operator.v3.2.1
+  name: aerospike-kubernetes-operator-rhmp.v3.2.1
   namespace: placeholder
 spec:
   replaces: aerospike-kubernetes-operator.v3.1.0

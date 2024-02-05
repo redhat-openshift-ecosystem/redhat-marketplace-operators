@@ -33,7 +33,7 @@ metadata:
     capabilities: Basic Install
     categories: Developer Tools
     description: Time Machine Operator enables time travel of OpenShift pods, without the need to change the system clock on any of the cluster nodes
-    containerImage: registry.connect.redhat.com/rhel-timemachine-container/timemachine-operator@sha256:9a81cb77dde3b1fa67ca57aad7a0ab151640defc7f7c4a3dcdde5777088817ee
+    containerImage: registry.connect.redhat.com/rhel-timemachine-container/timemachine-operator@ha256:ba030e8c3463d352bc8f1d4ac8baa097c6ecebd22720406c5e87ac4d059cdc70
     createdAt: 2024-02-05T09:46:17Z
     support: SolutionSoft Systems, Inc. - support@solution-soft.com
     operators.operatorframework.io/builder: operator-sdk-v1.10.1-ocp

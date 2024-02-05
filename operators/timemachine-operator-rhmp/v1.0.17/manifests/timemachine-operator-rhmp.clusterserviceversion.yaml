@@ -39,7 +39,7 @@ metadata:
     operators.operatorframework.io/builder: operator-sdk-v1.10.1-ocp
     operators.operatorframework.io/project_layout: ansible.sdk.operatorframework.io/v1
     olm.skipRange: ">=0.0.4 <1.0.17"
-  name: timemachine-operator.v1.0.17
+  name: timemachine-operator-rhmp.v1.0.17
   namespace: placeholder
 spec:
   version: 1.0.17

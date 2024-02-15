@@ -452,3 +452,34 @@ spec:
     name: Rebaca Technologies Pvt Ltd
     url: https://www.rebaca.com/telecom/solutions
   version: 2.0.0
+  relatedImages:
+  - name: abot-analytics
+    image: registry.connect.redhat.com/rebaca/abot-analytics@sha256:e19acdd4ebbe981372b02eb4d675b1d77cc01362437d4195bf581b5970339807
+  - name: abot-bdd
+    image: registry.connect.redhat.com/rebaca/abot-bdd@sha256:30597d8b39d24fd243c12316212874d3cc9180d2eae92d976ddae78dd42239ed
+  - name: grafana
+    image: registry.redhat.io/rhel8/grafana@sha256:d894cd34f2d8cac30e0fab69bd869f4b0f258b5086a8fd7ead0c5886ce2c5f7a
+  - name: abot-gui
+    image: registry.connect.redhat.com/rebaca/abot-gui@sha256:25ec796b6d11b1e1f82632b0a3035205836bdd67f8c7ddc0ba9e98358e3476a3
+  - name: kibana
+    image: registry.connect.redhat.com/elastic/kibana@sha256:2be3542d50f51ad786ead958a399f26852339e9417279688aad194c6794336ce
+  - name: logstash
+    image: registry.connect.redhat.com/elastic/logstash@sha256:dbc25dc5c31dfee08e86221af9f549b50075b2ccf7f255779c5f022c54cd892e
+  - name: abot-mongodb
+    image: registry.connect.redhat.com/rebaca/abot-mongodb@sha256:1daca868a143bab74e04ce8dd949a031a1052ea8415af994a0d3ed0f59c25aba
+  - name: abot-nginx
+    image: registry.connect.redhat.com/rebaca/abot-nginx@sha256:7a93c8d9be7a46b5571537b70e52e2644d117825a41dfadeb6da3a88e54a2ed2
+  - name: abot-baseimage
+    image: registry.connect.redhat.com/rebaca/abot-baseimage@sha256:ca96dd8b4fea37a5314ff04c232f8238e1250f9bb2177dba4ccd27d30c9fcb3c
+  - name: abot-rabbitmq
+    image: registry.connect.redhat.com/rebaca/abot-rabbitmq@sha256:87d0d462e1408df781f17bd3feb169deddb6ba13602ab988f792f347acfe2e30
+  - name: prometheus-rhel
+    image: registry.redhat.io/rhacm2/prometheus-rhel8@sha256:df960b0960d576b9fc584507f40b6aeb5180b3c12188e161883c6988d8e74733
+  - name: elasticsearch
+    image: registry.connect.redhat.com/elastic/elasticsearch@sha256:f47fd7df80ab05635e31d733f6969d38205f9f81cf95da8594a047f3d07c59ae
+  - name: ubi
+    image: registry.access.redhat.com/ubi8/ubi@sha256:627867e53ad6846afba2dfbf5cef1d54c868a9025633ef0afd546278d4654eac
+  - name: ose-kube-rbac-proxy
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:50f1b4c65541b56b85f42bc9b3127bc7bc9faad1974067ce11481de7596e4c6e
+  - name: abot-operator
+    image: registry.connect.redhat.com/rebaca/abot-operator@sha256:e3b3c32d12223097a9d0eb466c3f49fbdab519a675123c7e69597b53ab4c79fe

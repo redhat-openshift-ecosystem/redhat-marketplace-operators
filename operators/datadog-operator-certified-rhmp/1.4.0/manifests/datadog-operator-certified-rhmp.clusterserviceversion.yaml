@@ -148,8 +148,8 @@ metadata:
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/DataDog/datadog-operator
     support: Datadog, Inc.
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator-certified/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator-certified/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator/support?utm_source=openshift_console
   name: datadog-operator.v1.4.0
   namespace: placeholder
 spec:

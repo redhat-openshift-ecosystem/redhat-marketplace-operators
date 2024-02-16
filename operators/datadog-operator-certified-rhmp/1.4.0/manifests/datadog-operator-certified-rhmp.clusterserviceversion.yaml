@@ -140,15 +140,17 @@ metadata:
       ]
     capabilities: Full Lifecycle
     categories: Monitoring, Logging & Tracing
-    containerImage: registry.connect.redhat.com/datadog/operator@sha256:84840ae4daf904c9620e93dff0e443d884259ffd35f200c864eadaabb18a28c0
+    containerImage: registry.connect.redhat.com/datadog/operator@sha256:80447019d757ac328a017f7d91e3a1bea94130fd509e88d4525b1c1d01dd1099
+    createdAt: "2024-02-15 18:34:15"
     description: Datadog provides a modern monitoring and analytics platform. Gather metrics, logs and traces for full observability of your Kubernetes cluster with Datadog Operator.
-    olm.skipRange: <1.3.0
+    olm.skipRange: <1.4.0
     operators.operatorframework.io/builder: operator-sdk-v1.23.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/DataDog/datadog-operator
+    support: Datadog, Inc.
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator-certified-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator-certified-rhmp/support?utm_source=openshift_console
-  name: datadog-operator.v1.3.0
+  name: datadog-operator.v1.4.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -919,7 +921,7 @@ spec:
                         valueFrom:
                           fieldRef:
                             fieldPath: metadata.annotations['olm.targetNamespaces']
-                    image: registry.connect.redhat.com/datadog/operator@sha256:84840ae4daf904c9620e93dff0e443d884259ffd35f200c864eadaabb18a28c0
+                    image: registry.connect.redhat.com/datadog/operator@sha256:80447019d757ac328a017f7d91e3a1bea94130fd509e88d4525b1c1d01dd1099
                     imagePullPolicy: IfNotPresent
                     livenessProbe:
                       httpGet:
@@ -1018,9 +1020,9 @@ spec:
   provider:
     name: Datadog
   relatedImages:
-    - image: registry.connect.redhat.com/datadog/operator@sha256:84840ae4daf904c9620e93dff0e443d884259ffd35f200c864eadaabb18a28c0
+    - image: registry.connect.redhat.com/datadog/operator@sha256:80447019d757ac328a017f7d91e3a1bea94130fd509e88d4525b1c1d01dd1099
       name: manager
-    - image: registry.connect.redhat.com/datadog/operator@sha256:84840ae4daf904c9620e93dff0e443d884259ffd35f200c864eadaabb18a28c0
-      name: operator-84840ae4daf904c9620e93dff0e443d884259ffd35f200c864eadaabb18a28c0-annotation
-  replaces: 1.2.1
-  version: 1.3.0
+    - image: registry.connect.redhat.com/datadog/operator@sha256:80447019d757ac328a017f7d91e3a1bea94130fd509e88d4525b1c1d01dd1099
+      name: operator-80447019d757ac328a017f7d91e3a1bea94130fd509e88d4525b1c1d01dd1099-annotation
+  replaces: datadog-operator.v1.3.0
+  version: 1.4.0

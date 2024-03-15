@@ -71,6 +71,7 @@ metadata:
     categories: Database
     containerImage: quay.io/aerospike/aerospike-kubernetes-operator@sha256:1d87f77d3795977e14f364188ed872093f87cb3155654a582138984a3ee4db01
     createdAt: 2024-03-14T11:41:42UTC
+    support: Aerospike
     description: The Aerospike Kubernetes Operator automates the deployment and management
       of Aerospike enterprise clusters on Kubernetes.
     operators.operatorframework.io/builder: operator-sdk-v1.29.0

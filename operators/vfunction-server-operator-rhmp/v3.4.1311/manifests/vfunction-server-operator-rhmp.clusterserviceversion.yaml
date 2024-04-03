@@ -25,7 +25,7 @@ metadata:
     certified: "Red Hat certified"
     containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:e226d311c9b2aded7870357b3017f539a8003a6d429f201c5904efb71f3a3bad
     support: vFunction
-    createdAt: 2024-04-03T18:20:37Z
+    createdAt: 2024-04-03T18:59:30Z
     alm-examples: |-
       [
         {
@@ -118,7 +118,7 @@ metadata:
             },
             "security": {
               "image_pull_policy": "",
-              "force_hashed_images": "No"
+              "force_hashed_images": "No",
               "proxy": {
                 "http_proxy": "",
                 "https_proxy": "",

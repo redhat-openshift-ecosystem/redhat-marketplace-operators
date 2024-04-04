@@ -1851,4 +1851,4 @@ spec:
   relatedImages:
   - name: dynatrace-operator
     image: registry.connect.redhat.com/dynatrace/dynatrace-operator@sha256:842c38edcccf5b8fe6bb44d0839bb7491059c6becc1c62be7ef7a4648da1bea1
-  replaces: dynatrace-operator-rhmp.v0.15.0
+  replaces: dynatrace-operator.v0.15.0

@@ -21,7 +21,7 @@ metadata:
     features.operators.openshift.io/token-auth-azure: "false"
     features.operators.openshift.io/token-auth-gcp: "false"
   creationTimestamp: null
-  name: joget-dx8-openshift-operator.v0.0.9
+  name: joget-dx8-operator-rhmp.v0.0.9
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

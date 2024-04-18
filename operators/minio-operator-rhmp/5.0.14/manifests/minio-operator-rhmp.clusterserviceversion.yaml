@@ -94,7 +94,6 @@ metadata:
     features.operators.openshift.io/token-auth-aws: "false"
     features.operators.openshift.io/token-auth-azure: "false"
     features.operators.openshift.io/token-auth-gcp: "false"
-    olm.skipRange: '<5.0.14'
     k8sMinVersion: "1.18"
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/minio-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/minio-operator-rhmp/support?utm_source=openshift_console
@@ -783,3 +782,4 @@ spec:
     - image: quay.io/minio/minio@sha256:ea2c70cda70860c7d10f04ce1df640d3abb995784cb7aeedef8d4baa53a5a113
       name: minio-ea2c70cda70860c7d10f04ce1df640d3abb995784cb7aeedef8d4baa53a5a113-annotation
   version: 5.0.14
+  skips: minio-operator-rhmp.v5.0.13

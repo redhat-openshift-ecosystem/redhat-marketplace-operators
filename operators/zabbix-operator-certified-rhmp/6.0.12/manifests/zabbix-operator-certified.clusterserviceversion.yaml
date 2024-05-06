@@ -4345,7 +4345,7 @@ spec:
     image: registry.connect.redhat.com/zabbix/zabbix-web-service-60@sha256:97ffd3456ff245d2e07cda99ffa39a4ebe290ba4a6d290d9025ab83923a81a51
   - name: db_mysql
     image: registry.redhat.io/rhel9/mysql-80@sha256:9859aee4eb7e5f38ffbf69c397ae6deb1b0789ebbbd93b33749610a8df827aa4
-  replaces: zabbix-operator-certified-rhmp.v0.0.3
+  replaces: zabbix-operator-certified.v0.0.3
   selector:
     matchLabels:
       alm-owner-zabbix: zabbixoperator

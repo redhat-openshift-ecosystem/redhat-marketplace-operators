@@ -52,7 +52,7 @@ metadata:
     operatorframework.io/arch.ppc64le: supported
     operatorframework.io/arch.s390x: supported
     operatorframework.io/os.linux: supported
-  name: instana-agent-operator-rhmp.v2.0.30
+  name: instana-agent-operator.v2.0.30
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -368,18 +368,18 @@ spec:
           serviceAccountName: controller-manager
       deployments:
         - label:
-            app.kubernetes.io/name: instana-agent-operator-rhmp
+            app.kubernetes.io/name: instana-agent-operator
           name: controller-manager
           spec:
             replicas: 2
             selector:
               matchLabels:
-                app.kubernetes.io/name: instana-agent-operator-rhmp
+                app.kubernetes.io/name: instana-agent-operator
             strategy: {}
             template:
               metadata:
                 labels:
-                  app.kubernetes.io/name: instana-agent-operator-rhmp
+                  app.kubernetes.io/name: instana-agent-operator
               spec:
                 affinity:
                   nodeAffinity:

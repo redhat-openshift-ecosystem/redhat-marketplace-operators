@@ -447,5 +447,10 @@ spec:
   minKubeVersion: 1.11.0
   provider:
     name: Instana
-  replaces: instana-agent-operator.v2.0.30
+  relatedImages:
+  - image: icr.io/instana/instana-agent-operator@sha256:a1c2f3e3b8f0e7185dbf20c1798a6dc65c0216925ea01f9ff50e298f06c02280
+    name: instana-agent-operator
+  - image: icr.io/instana/agent@sha256:44d66ecbc5defbafac3d1b81a51fb4736acebf93b29005e0acceb9b2cfa9912e
+    name: instana-agent
+  replaces: instana-agent-operator-rhmp.v2.0.30
   version: 2.0.31

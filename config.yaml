@@ -8,3 +8,4 @@ tests:
   - name: check_operator_name
     ignore_operators:
       - ^falcon-operator-rhmp
+      - ^couchbase-enterprise-certified-rhmp

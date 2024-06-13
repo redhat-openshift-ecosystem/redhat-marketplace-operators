@@ -9,3 +9,4 @@ tests:
     ignore_operators:
       - ^falcon-operator-rhmp
       - ^couchbase-enterprise-certified-rhmp
+      - ^crunchy-postgres-operator-rhmp

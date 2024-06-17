@@ -39,7 +39,7 @@ metadata:
     features.operators.openshift.io/token-auth-aws: 'false'
     features.operators.openshift.io/token-auth-azure: 'false'
     features.operators.openshift.io/token-auth-gcp: 'false'
-  name: dynatrace-operator.v1.1.1
+  name: dynatrace-operator-rhmp.v1.1.1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

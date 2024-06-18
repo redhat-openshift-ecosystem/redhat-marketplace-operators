@@ -7,6 +7,7 @@ organization: redhat-marketplace
 tests:
   - name: check_operator_name
     ignore_operators:
+      - ^dynatrace-operator-rhmp
       - ^falcon-operator-rhmp
       - ^couchbase-enterprise-certified-rhmp
       - ^crunchy-postgres-operator-rhmp

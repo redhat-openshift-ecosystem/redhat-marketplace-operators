@@ -23,9 +23,9 @@ metadata:
     description: |-
       vFunction is a cutting-edge code analysis, machine learning, and automation to boost your Java modernization projects.
     certified: "Red Hat certified"
-    containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:ffbcefde787cf6c050ae48375bc48a5b73b02479d789327013606a36751caf9b
+    containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:93684240a06f0d581941a0af2f7c600c81ec27d6f47793067e8dbbcd5e64ba7f
     support: vFunction
-    createdAt: 2024-06-23T08:12:00Z
+    createdAt: 2024-06-23T09:14:02Z
     alm-examples: |-
       [
         {
@@ -1040,26 +1040,26 @@ spec:
                       - name: OPERATORHUB
                         value: "true"
                       - name: RELATED_IMAGE_VFUNCTION_MYSQL_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-mysql@sha256:70b9aa9d6d3a77c732a000b18a1ee2889444e26415b350ea00ea3eb966c8ba1d
+                        value: registry.connect.redhat.com/vfunction/vfunction-mysql@sha256:109d3c777628e25864fe60c17ecc90f0006eb115868488f7528eb1bafd7c65bc
                       - name: RELATED_IMAGE_VFUNCTION_NGINX_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-nginx@sha256:73e2c205104011254b64eda7bdf80b1f50584e9cfaf39cd091b2ab667efe43ab
+                        value: registry.connect.redhat.com/vfunction/vfunction-nginx@sha256:559232fad55c3ecdb385e481e8c307368ed3717c692154f6a2deca649aecaeb6
                       - name: RELATED_IMAGE_VFUNCTION_STORAGE_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-storage@sha256:f4c48ab67c43355cae6894d522f658ba7cb9937d3f2a6d00cab0687562d6280a
+                        value: registry.connect.redhat.com/vfunction/vfunction-storage@sha256:91c4f0c252e8dec89398c53b9af49e8afe5be7fdbd24d61771e6baad454fdf24
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_PARSER_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-parser@sha256:6aa8683cbbe22463ee2f714218976285b62e3caeafa260026343b4f30cf03e04
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-parser@sha256:b824e3eef5991a4cccc4efbdb0131afd4e063a7171bbb8b7b13f5459d60a4673
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_IDP_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-idp@sha256:c7757dbadcecc52adace68232df6b80b8ff930603e7ced55f6583b0756230de5
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-idp@sha256:2254f8626653736720c9cd6225bba5e6061b52b272802870f05647dcb49b7c99
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_MEASUREMENTS_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-measurements@sha256:bc0d797b9569b1eeb799281e4cc1cdf7985fe978e7729dd554defc37c0d99d77
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-measurements@sha256:9702a0a251ef5123af8ed85f744f428b013c8dc8004b83afb10521e88e842b10
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_ORGANIZATIONS_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-organizations@sha256:440885607065e4116b3203fbbfcac99f7c12c474aa45ffcb9e443f93b9ff4b64
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-organizations@sha256:4186ba8f9549c32b4976a3628de82dc87bfc9ab4648bfe8c990e3557bff42738
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_USERS_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-users@sha256:c9870ba4ca3c9be4ed6bd357824e4e1179b7c34016ad22fac84f6d60ecd0b455
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-users@sha256:f55785bed6b91b7e86c59c553b9fbe27a547817aad11fdbb81b10f92815aaf28
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_OTLP_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-otlp@sha256:36fa88f13c1a233a34931449fec455bacd2b8367d27cdec9db943215fbc73d29
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-otlp@sha256:7c21387025982155caedcf0fe82908fd546cbea00735a6eb4adbde2a36b34290
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_DM_ORIGINAL_IMAGE
-                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-dm@sha256:3971aaea343b444ddfc8fb8cb336fcc5496b64a310849343e9f92c8c24c72895
-                    image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:ffbcefde787cf6c050ae48375bc48a5b73b02479d789327013606a36751caf9b
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-dm@sha256:e12588566233cb1c91d7af080a3958905c495f904eb9d4fa4bd39a335eba3f11
+                    image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:93684240a06f0d581941a0af2f7c600c81ec27d6f47793067e8dbbcd5e64ba7f
                     imagePullPolicy: Always
                     livenessProbe:
                       exec:
@@ -1296,24 +1296,24 @@ spec:
     app.kubernetes.io/managed-by: operator
   relatedImages:
     - name: vfunction-server-operator
-      image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:ffbcefde787cf6c050ae48375bc48a5b73b02479d789327013606a36751caf9b
+      image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:93684240a06f0d581941a0af2f7c600c81ec27d6f47793067e8dbbcd5e64ba7f
     - name: vfunction-mysql
-      image: registry.connect.redhat.com/vfunction/vfunction-mysql@sha256:70b9aa9d6d3a77c732a000b18a1ee2889444e26415b350ea00ea3eb966c8ba1d
+      image: registry.connect.redhat.com/vfunction/vfunction-mysql@sha256:109d3c777628e25864fe60c17ecc90f0006eb115868488f7528eb1bafd7c65bc
     - name: vfunction-nginx
-      image: registry.connect.redhat.com/vfunction/vfunction-nginx@sha256:73e2c205104011254b64eda7bdf80b1f50584e9cfaf39cd091b2ab667efe43ab
+      image: registry.connect.redhat.com/vfunction/vfunction-nginx@sha256:559232fad55c3ecdb385e481e8c307368ed3717c692154f6a2deca649aecaeb6
     - name: vfunction-storage
-      image: registry.connect.redhat.com/vfunction/vfunction-storage@sha256:f4c48ab67c43355cae6894d522f658ba7cb9937d3f2a6d00cab0687562d6280a
+      image: registry.connect.redhat.com/vfunction/vfunction-storage@sha256:91c4f0c252e8dec89398c53b9af49e8afe5be7fdbd24d61771e6baad454fdf24
     - name: vfunction-vfapi-parser
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-parser@sha256:6aa8683cbbe22463ee2f714218976285b62e3caeafa260026343b4f30cf03e04
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-parser@sha256:b824e3eef5991a4cccc4efbdb0131afd4e063a7171bbb8b7b13f5459d60a4673
     - name: vfunction-vfapi-idp
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-idp@sha256:c7757dbadcecc52adace68232df6b80b8ff930603e7ced55f6583b0756230de5
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-idp@sha256:2254f8626653736720c9cd6225bba5e6061b52b272802870f05647dcb49b7c99
     - name: vfunction-vfapi-measurements
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-measurements@sha256:bc0d797b9569b1eeb799281e4cc1cdf7985fe978e7729dd554defc37c0d99d77
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-measurements@sha256:9702a0a251ef5123af8ed85f744f428b013c8dc8004b83afb10521e88e842b10
     - name: vfunction-vfapi-organizations
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-organizations@sha256:440885607065e4116b3203fbbfcac99f7c12c474aa45ffcb9e443f93b9ff4b64
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-organizations@sha256:4186ba8f9549c32b4976a3628de82dc87bfc9ab4648bfe8c990e3557bff42738
     - name: vfunction-vfapi-users
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-users@sha256:c9870ba4ca3c9be4ed6bd357824e4e1179b7c34016ad22fac84f6d60ecd0b455
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-users@sha256:f55785bed6b91b7e86c59c553b9fbe27a547817aad11fdbb81b10f92815aaf28
     - name: vfunction-vfapi-otlp
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-otlp@sha256:36fa88f13c1a233a34931449fec455bacd2b8367d27cdec9db943215fbc73d29
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-otlp@sha256:7c21387025982155caedcf0fe82908fd546cbea00735a6eb4adbde2a36b34290
     - name: vfunction-vfapi-dm
-      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-dm@sha256:3971aaea343b444ddfc8fb8cb336fcc5496b64a310849343e9f92c8c24c72895
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-dm@sha256:e12588566233cb1c91d7af080a3958905c495f904eb9d4fa4bd39a335eba3f11

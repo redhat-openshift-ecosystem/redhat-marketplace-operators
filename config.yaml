@@ -12,3 +12,4 @@ tests:
       - ^dynatrace-operator-rhmp
       - ^falcon-operator-rhmp
       - ^instana-agent-operator-rhmp
+      - ^sumologic-kubernetes-collection-helm-operator-rhmp

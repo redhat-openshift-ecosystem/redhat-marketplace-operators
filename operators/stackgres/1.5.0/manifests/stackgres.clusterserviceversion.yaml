@@ -9305,7 +9305,6 @@ spec:
     name: OnGres
     url: https://ongres.com
   version: 1.5.0
-  
   relatedImages:
     - name: kubectl_1_25_5
       image: quay.io/ongres/kubectl@sha256:20ba4329217b11c82ff8665c1f81599a75f8d4319e9546b6fd6ec86a12608914

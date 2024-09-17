@@ -4295,7 +4295,7 @@ spec:
                 - name: RELATED_IMAGE_ZBX_WEB_MYSQL
                   value: registry.connect.redhat.com/zabbix/zabbix-web-mysql-60:6.0.33
                 - name: RELATED_IMAGE_ZBX_JAVA_GATEWAY
-                  value: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60:6.0.33
+                  value: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60:6.0.30
                 - name: RELATED_IMAGE_ZBX_PROXY_MYSQL
                   value: registry.connect.redhat.com/zabbix/zabbix-proxy-mysql-60:6.0.33
                 - name: RELATED_IMAGE_ZBX_PROXY_SQLITE

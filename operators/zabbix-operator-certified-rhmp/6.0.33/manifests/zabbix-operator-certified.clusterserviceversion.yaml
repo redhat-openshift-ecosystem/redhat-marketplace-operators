@@ -4618,7 +4618,7 @@ spec:
     name: zbx-server-mysql
   - image: registry.connect.redhat.com/zabbix/zabbix-web-mysql-60:6.0.33
     name: zbx-web-mysql
-  - image: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60:6.0.33
+  - image: registry.connect.redhat.com/zabbix/zabbix-java-gateway-60:6.0.30
     name: zbx-java-gateway
   - image: registry.connect.redhat.com/zabbix/zabbix-proxy-mysql-60:6.0.33
     name: zbx-proxy-mysql

@@ -560,7 +560,7 @@ metadata:
     capabilities: Seamless Upgrades
     categories: Monitoring, Networking
     certified: "true"
-    containerImage: registry.connect.redhat.com/zabbix/zabbixoperator-certified:v6.0.29
+    containerImage: registry.connect.redhat.com/zabbix/zabbixoperator-certified:v6.0.33
     createdAt: "2024-09-17T07:08:56Z"
     description: Zabbix operator with multiple deployment variants and different components
     features.operators.openshift.io/disconnected: "true"

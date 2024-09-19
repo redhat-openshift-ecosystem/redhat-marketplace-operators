@@ -101,6 +101,7 @@ metadata:
     features.operators.openshift.io/cnf: 'false'
     features.operators.openshift.io/cni: 'false'
     features.operators.openshift.io/csi: 'false'
+    olm.skipRange: '>= 1.4.3 < 1.7.0'
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/stackgres/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/stackgres/support?utm_source=openshift_console
   name: stackgres.v1.9.0
@@ -12080,3 +12081,4 @@ spec:
       name: stackgres-admin-ui
     - image: quay.io/stackgres/jobs@sha256:d268bb334078ba9f901b2c1f500eb9c617d3b0ddf42853f6339f59d71b32b9a8
       name: stackgres-jobs
+  replaces: stackgres.v1.8.1

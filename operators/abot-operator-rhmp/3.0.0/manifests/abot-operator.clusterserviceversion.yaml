@@ -223,8 +223,8 @@ metadata:
     createdAt: "2024-10-03T20:32:24Z"
     operators.operatorframework.io/builder: operator-sdk-v1.33.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/support?utm_source=openshift_console
   name: abot-operator.3.0.0
   namespace: placeholder
 spec:

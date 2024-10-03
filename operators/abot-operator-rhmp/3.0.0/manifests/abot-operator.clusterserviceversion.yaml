@@ -1,0 +1,522 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "abot.com/v3",
+          "kind": "Abot",
+          "metadata": {
+            "name": "abot-sample"
+          },
+          "spec": {
+            "abotanalytics": {
+              "image": "registry.connect.redhat.com/rebaca/abot-analytics@sha256:c854d9eafbe26f834e10f5a97a587b2a2bf05558554897817bb8e2556124b75d",
+              "resources": {
+                "limits": {
+                  "cpu": "4000m",
+                  "ephemeral-storage": "8Gi",
+                  "memory": "6000Mi"
+                },
+                "requests": {
+                  "cpu": "2000m",
+                  "ephemeral-storage": "4Gi",
+                  "memory": "4000Mi"
+                }
+              }
+            },
+            "abotanalyticsbase": {
+              "image": "registry.connect.redhat.com/rebaca/abot-analyticsbase@sha256:dcc2a417a889acd6ec63538a6dfa393d4c1942dac178a04e5d65189a1ae054dc",
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "1000Mi"
+                },
+                "requests": {
+                  "cpu": "1000m",
+                  "memory": "1000Mi"
+                }
+              }
+            },
+            "abotbaseimage": "registry.connect.redhat.com/rebaca/abot-baseimage@sha256:2cbe38298d26be5896e0dc071aae111dd921d0dbd05c3525290f6ff31c73e926",
+            "abotbdd": {
+              "image": "registry.connect.redhat.com/rebaca/abot-bdd@sha256:d5c6bfe12a548cbdb4e0d83d5f18e5ab0c17c3af5340e437b2d0c23740c9c9e6",
+              "resources": {
+                "limits": {
+                  "cpu": "2000m",
+                  "ephemeral-storage": "8Gi",
+                  "memory": "2000Mi"
+                },
+                "requests": {
+                  "cpu": "1000m",
+                  "ephemeral-storage": "4Gi",
+                  "memory": "1000Mi"
+                }
+              }
+            },
+            "abotgrafana": {
+              "image": "registry.redhat.io/rhel8/grafana@sha256:d894cd34f2d8cac30e0fab69bd869f4b0f258b5086a8fd7ead0c5886ce2c5f7a",
+              "resources": {
+                "limits": {
+                  "cpu": "500m",
+                  "memory": "1500Mi"
+                },
+                "requests": {
+                  "cpu": "300m",
+                  "memory": "1000Mi"
+                }
+              }
+            },
+            "abotgui": {
+              "image": "registry.connect.redhat.com/rebaca/abot-gui@sha256:78b512d6bd223a1f5d35f4cbd221f6637e2c9267726ce8899ee5d86aaac82b6f",
+              "resources": {
+                "limits": {
+                  "cpu": "4000m",
+                  "ephemeral-storage": "8Gi",
+                  "memory": "6000Mi"
+                },
+                "requests": {
+                  "cpu": "2000m",
+                  "ephemeral-storage": "4Gi",
+                  "memory": "4000Mi"
+                }
+              }
+            },
+            "abotkibana": {
+              "image": "registry.connect.redhat.com/elastic/kibana@sha256:2be3542d50f51ad786ead958a399f26852339e9417279688aad194c6794336ce",
+              "resources": {
+                "limits": {
+                  "cpu": "200m",
+                  "memory": "1000Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "500Mi"
+                }
+              }
+            },
+            "abotlogstash": {
+              "image": "registry.connect.redhat.com/elastic/logstash@sha256:dbc25dc5c31dfee08e86221af9f549b50075b2ccf7f255779c5f022c54cd892e",
+              "resources": {
+                "limits": {
+                  "cpu": "800m",
+                  "memory": "3000Mi"
+                },
+                "requests": {
+                  "cpu": "400m",
+                  "memory": "2000Mi"
+                }
+              }
+            },
+            "abotmongo": {
+              "image": "registry.connect.redhat.com/rebaca/abot-mongodb@sha256:be9059e7e8bc1636a84575416b823c20463228785598662ee81c27e4c3c987dc",
+              "resources": {
+                "limits": {
+                  "cpu": "200m",
+                  "memory": "500Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "300Mi"
+                }
+              }
+            },
+            "abotnginx": {
+              "image": "registry.connect.redhat.com/rebaca/abot-nginx@sha256:3edc22b40cd30230768115efdceec3d054d71f78214b4100b7425d8484154378",
+              "resources": {
+                "limits": {
+                  "cpu": "200m",
+                  "memory": "500Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "300Mi"
+                }
+              }
+            },
+            "abotrabbitmq": {
+              "image": "registry.connect.redhat.com/rebaca/abot-rabbitmq@sha256:e609bec067fe7740590bb272db27d1a7770db47a0fc802e2288c022e101c9e25",
+              "resources": {
+                "limits": {
+                  "cpu": "800m",
+                  "memory": "1000Mi"
+                },
+                "requests": {
+                  "cpu": "400m",
+                  "memory": "500Mi"
+                }
+              }
+            },
+            "abotsidecar": {
+              "alertmanagerimage": "registry.redhat.io/rhacm2/prometheus-alertmanager-rhel8@sha256:ecaee8ad24a9c7cb3b945ee6d2c1275b9de2a676e1868abc2687e687385b3f6a",
+              "kubestatemetricsimage": "registry.redhat.io/rhacm2/kube-state-metrics-rhel8@sha256:e6bb6fa0c155bebf64749368dd951c15f1dbfa3559e2ba6734d3661d3a95c00c",
+              "prometheusimage": "registry.connect.redhat.com/kasten/prometheus@sha256:1e490fcccdd50c1026150ba4cad7c29297d2b73b3d5c80240ff31509e666363d",
+              "resources": {
+                "limits": {
+                  "cpu": "2000m",
+                  "memory": "8000Mi"
+                },
+                "requests": {
+                  "cpu": "1000m",
+                  "memory": "6000Mi"
+                }
+              }
+            },
+            "elasticsearch": {
+              "image": "registry.connect.redhat.com/elastic/elasticsearch@sha256:f47fd7df80ab05635e31d733f6969d38205f9f81cf95da8594a047f3d07c59ae",
+              "replicas": 3,
+              "resources": {
+                "limits": {
+                  "cpu": "1200m",
+                  "memory": "3000Mi"
+                },
+                "requests": {
+                  "cpu": "800m",
+                  "memory": "1000Mi"
+                }
+              },
+              "volumeClaim": {
+                "storage": "50Gi"
+              }
+            },
+            "imagePullPolicy": "IfNotPresent",
+            "initContainers": {
+              "image": "registry.access.redhat.com/ubi8/ubi@sha256:a965f33ee4ee57dc8e40a1f9350ddf28ed0727b6cf80db46cdad0486a7580f9d",
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "100Mi"
+                },
+                "requests": {
+                  "cpu": "100m",
+                  "memory": "100Mi"
+                }
+              }
+            },
+            "protocol": "https",
+            "pvc": {
+              "abotvol": "100Gi",
+              "analyticsvol": "100Gi",
+              "databak": "10Gi",
+              "mongovol": "10Gi",
+              "prometheusvol": "10Gi"
+            },
+            "replicas": 1,
+            "security": {
+              "fsGroup": 1018450000,
+              "seLinuxOptions": {
+                "level": "s0:c123,c456"
+              }
+            },
+            "service": {
+              "type": "ClusterIP"
+            },
+            "serviceAccount": {
+              "name": "abot"
+            },
+            "storageclass": "ocs-storagecluster-cephfs"
+          }
+        }
+      ]
+    capabilities: Basic Install
+    createdAt: "2024-10-03T20:32:24Z"
+    operators.operatorframework.io/builder: operator-sdk-v1.33.0
+    operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/support?utm_source=openshift_console
+  name: abot-operator.3.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - kind: Abot
+      name: abots.abot.com
+      version: v3
+  description: A Helm based operator for deploying Abot application in Openshift cluster.
+    The ABot Test Bench is a test automation tool for 4G, 5G and ORAN Telecom networks
+    that follow specifications and use standards driven design and compliance as specified
+    by the 3GPP consortium. It provides a platform for a user to quickly check for
+    protocol compliance and test for load characteristics of a particular system under
+    test.
+  displayName: Abot Operator-v3.0.0
+  icon:
+  - base64data: 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
+    mediatype: image/png
+  install:
+    spec:
+      clusterPermissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - namespaces
+          verbs:
+          - get
+        - apiGroups:
+          - ""
+          resources:
+          - secrets
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+        - apiGroups:
+          - abot.com
+          resources:
+          - abots
+          - abots/status
+          - abots/finalizers
+          verbs:
+          - create
+          - delete
+          - get
+          - list
+          - patch
+          - update
+          - watch
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - clusterrolebindings
+          - clusterroles
+          verbs:
+          - '*'
+        - apiGroups:
+          - security.openshift.io
+          resources:
+          - securitycontextconstraints
+          verbs:
+          - '*'
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          - persistentvolumeclaims
+          - resourcequotas
+          - secrets
+          - serviceaccounts
+          - services
+          verbs:
+          - '*'
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          resources:
+          - rolebindings
+          - roles
+          verbs:
+          - '*'
+        - apiGroups:
+          - apps
+          resources:
+          - deployments
+          - statefulsets
+          verbs:
+          - '*'
+        - apiGroups:
+          - route.openshift.io
+          resources:
+          - routes
+          verbs:
+          - '*'
+        - apiGroups:
+          - authentication.k8s.io
+          resources:
+          - tokenreviews
+          verbs:
+          - create
+        - apiGroups:
+          - authorization.k8s.io
+          resources:
+          - subjectaccessreviews
+          verbs:
+          - create
+        serviceAccountName: abot-operator-controller-manager
+      deployments:
+      - label:
+          app.kubernetes.io/component: manager
+          app.kubernetes.io/created-by: abot-operator
+          app.kubernetes.io/instance: controller-manager
+          app.kubernetes.io/managed-by: kustomize
+          app.kubernetes.io/name: deployment
+          app.kubernetes.io/part-of: abot-operator
+          control-plane: controller-manager
+        name: abot-operator-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              annotations:
+                kubectl.kubernetes.io/default-container: manager
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - args:
+                - --secure-listen-address=0.0.0.0:8443
+                - --upstream=http://127.0.0.1:8080/
+                - --logtostderr=true
+                - --v=0
+                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e34f912158985525f6efb3c4b675f20854fc677c867d12fe3cd2e971309428dc
+                name: kube-rbac-proxy
+                ports:
+                - containerPort: 8443
+                  name: https
+                  protocol: TCP
+                resources:
+                  limits:
+                    cpu: 500m
+                    memory: 128Mi
+                  requests:
+                    cpu: 5m
+                    memory: 64Mi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              - args:
+                - --health-probe-bind-address=:8081
+                - --metrics-bind-address=127.0.0.1:8080
+                - --leader-elect
+                - --leader-election-id=abot-operator
+                image: registry.connect.redhat.com/rebaca/abot-operator@sha256:d3e8e1b6988827b3c636bdfcb57cda26870089d90cf2a732be522f5474c0a734
+                livenessProbe:
+                  httpGet:
+                    path: /healthz
+                    port: 8081
+                  initialDelaySeconds: 15
+                  periodSeconds: 20
+                name: manager
+                readinessProbe:
+                  httpGet:
+                    path: /readyz
+                    port: 8081
+                  initialDelaySeconds: 5
+                  periodSeconds: 10
+                resources:
+                  limits:
+                    cpu: "6"
+                    memory: 8Gi
+                  requests:
+                    cpu: "3"
+                    memory: 4Gi
+                securityContext:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                    - ALL
+              securityContext:
+                runAsNonRoot: true
+              serviceAccountName: abot-operator-controller-manager
+              terminationGracePeriodSeconds: 10
+      permissions:
+      - rules:
+        - apiGroups:
+          - ""
+          resources:
+          - configmaps
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - coordination.k8s.io
+          resources:
+          - leases
+          verbs:
+          - get
+          - list
+          - watch
+          - create
+          - update
+          - patch
+          - delete
+        - apiGroups:
+          - ""
+          resources:
+          - events
+          verbs:
+          - create
+          - patch
+        serviceAccountName: abot-operator-controller-manager
+    strategy: deployment
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: false
+    type: AllNamespaces
+  keywords:
+  - 5G
+  - 4G
+  - ORAN
+  - test tool
+  - compliance
+  - interop
+  links:
+  - name: Abot Operator
+    url: https://abot-operator.domain
+  maintainers:
+  - email: suchismita.nag@rebaca.com
+    name: Suchismita Nag
+  - email: samir@rebaca.com
+    name: Samir Chatterjee
+  maturity: alpha
+  provider:
+    name: Rebaca Technologies Pvt Ltd
+    url: https://www.rebaca.com/telecom/solutions
+  version: 3.0.0
+  relatedImages:
+  - name: abot-analytics
+    image: registry.connect.redhat.com/rebaca/abot-analytics@sha256:c854d9eafbe26f834e10f5a97a587b2a2bf05558554897817bb8e2556124b75d
+  - name: abot-analyticsbase
+    image: registry.connect.redhat.com/rebaca/abot-analyticsbase@sha256:dcc2a417a889acd6ec63538a6dfa393d4c1942dac178a04e5d65189a1ae054dc
+  - name: abot-bdd
+    image: registry.connect.redhat.com/rebaca/abot-bdd@sha256:d5c6bfe12a548cbdb4e0d83d5f18e5ab0c17c3af5340e437b2d0c23740c9c9e6
+  - name: grafana
+    image: registry.redhat.io/rhel8/grafana@sha256:d894cd34f2d8cac30e0fab69bd869f4b0f258b5086a8fd7ead0c5886ce2c5f7a
+  - name: abot-gui
+    image: registry.connect.redhat.com/rebaca/abot-gui@sha256:78b512d6bd223a1f5d35f4cbd221f6637e2c9267726ce8899ee5d86aaac82b6f
+  - name: kibana
+    image: registry.connect.redhat.com/elastic/kibana@sha256:2be3542d50f51ad786ead958a399f26852339e9417279688aad194c6794336ce
+  - name: logstash
+    image: registry.connect.redhat.com/elastic/logstash@sha256:dbc25dc5c31dfee08e86221af9f549b50075b2ccf7f255779c5f022c54cd892e
+  - name: abot-mongodb
+    image: registry.connect.redhat.com/rebaca/abot-mongodb@sha256:be9059e7e8bc1636a84575416b823c20463228785598662ee81c27e4c3c987dc
+  - name: abot-nginx
+    image: registry.connect.redhat.com/rebaca/abot-nginx@sha256:3edc22b40cd30230768115efdceec3d054d71f78214b4100b7425d8484154378
+  - name: abot-baseimage
+    image: registry.connect.redhat.com/rebaca/abot-baseimage@sha256:2cbe38298d26be5896e0dc071aae111dd921d0dbd05c3525290f6ff31c73e926
+  - name: abot-rabbitmq
+    image: registry.connect.redhat.com/rebaca/abot-rabbitmq@sha256:e609bec067fe7740590bb272db27d1a7770db47a0fc802e2288c022e101c9e25
+  - name: prometheus-rhel
+    image: registry.connect.redhat.com/kasten/prometheus@sha256:1e490fcccdd50c1026150ba4cad7c29297d2b73b3d5c80240ff31509e666363d
+  - name: kubestatemetrics
+    image: registry.redhat.io/rhacm2/kube-state-metrics-rhel8@sha256:e6bb6fa0c155bebf64749368dd951c15f1dbfa3559e2ba6734d3661d3a95c00c
+  - name: alertmanager
+    image: registry.redhat.io/rhacm2/prometheus-alertmanager-rhel8@sha256:ecaee8ad24a9c7cb3b945ee6d2c1275b9de2a676e1868abc2687e687385b3f6a
+  - name: elasticsearch
+    image: registry.connect.redhat.com/elastic/elasticsearch@sha256:f47fd7df80ab05635e31d733f6969d38205f9f81cf95da8594a047f3d07c59ae
+  - name: ubi
+    image: registry.access.redhat.com/ubi8/ubi@sha256:a965f33ee4ee57dc8e40a1f9350ddf28ed0727b6cf80db46cdad0486a7580f9d
+  - name: ose-kube-rbac-proxy
+    image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e34f912158985525f6efb3c4b675f20854fc677c867d12fe3cd2e971309428dc
+  - name: abot-operator
+    image: registry.connect.redhat.com/rebaca/abot-operator@sha256:d3e8e1b6988827b3c636bdfcb57cda26870089d90cf2a732be522f5474c0a734

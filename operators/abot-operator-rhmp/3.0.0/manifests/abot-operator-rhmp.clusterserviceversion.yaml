@@ -535,3 +535,5 @@ spec:
     image: registry.access.redhat.com/ubi8/ubi@sha256:a965f33ee4ee57dc8e40a1f9350ddf28ed0727b6cf80db46cdad0486a7580f9d
   - name: ose-kube-rbac-proxy
     image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:e34f912158985525f6efb3c4b675f20854fc677c867d12fe3cd2e971309428dc
+  - name: abot-operator
+    image: registry.connect.redhat.com/rebaca/abot-operator@sha256:d3e8e1b6988827b3c636bdfcb57cda26870089d90cf2a732be522f5474c0a734

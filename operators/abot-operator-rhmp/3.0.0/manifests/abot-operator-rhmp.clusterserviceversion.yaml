@@ -238,6 +238,7 @@ metadata:
     features.operators.openshift.io/token-auth-gcp: "false"
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/support?utm_source=openshift_console
+    support: https://abot.rebaca.com/support/
   name: abot-operator-rhmp.v3.0.0
   namespace: placeholder
 spec:

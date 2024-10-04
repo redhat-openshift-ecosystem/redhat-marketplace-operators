@@ -225,7 +225,7 @@ metadata:
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/support?utm_source=openshift_console
-  name: abot-operator.3.0.0
+  name: abot-operator-rhmp.v3.0.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -336,17 +336,17 @@ spec:
           - subjectaccessreviews
           verbs:
           - create
-        serviceAccountName: abot-operator-controller-manager
+        serviceAccountName: abot-operator-rhmp-controller-manager
       deployments:
       - label:
           app.kubernetes.io/component: manager
-          app.kubernetes.io/created-by: abot-operator
+          app.kubernetes.io/created-by: abot-operator-rhmp
           app.kubernetes.io/instance: controller-manager
           app.kubernetes.io/managed-by: kustomize
           app.kubernetes.io/name: deployment
-          app.kubernetes.io/part-of: abot-operator
+          app.kubernetes.io/part-of: abot-operator-rhmp
           control-plane: controller-manager
-        name: abot-operator-controller-manager
+        name: abot-operator-rhmp-controller-manager
         spec:
           replicas: 1
           selector:
@@ -388,7 +388,7 @@ spec:
                 - --health-probe-bind-address=:8081
                 - --metrics-bind-address=127.0.0.1:8080
                 - --leader-elect
-                - --leader-election-id=abot-operator
+                - --leader-election-id=abot-operator-rhmp
                 image: registry.connect.redhat.com/rebaca/abot-operator@sha256:d3e8e1b6988827b3c636bdfcb57cda26870089d90cf2a732be522f5474c0a734
                 livenessProbe:
                   httpGet:
@@ -417,7 +417,7 @@ spec:
                     - ALL
               securityContext:
                 runAsNonRoot: true
-              serviceAccountName: abot-operator-controller-manager
+              serviceAccountName: abot-operator-rhmp-controller-manager
               terminationGracePeriodSeconds: 10
       permissions:
       - rules:
@@ -452,7 +452,7 @@ spec:
           verbs:
           - create
           - patch
-        serviceAccountName: abot-operator-controller-manager
+        serviceAccountName: abot-operator-rhmp-controller-manager
     strategy: deployment
   installModes:
   - supported: true

@@ -220,7 +220,10 @@ metadata:
         }
       ]
     capabilities: Basic Install
+    categories: Networking
+    containerImage: registry.connect.redhat.com/rebaca/abot-operator@sha256:d3e8e1b6988827b3c636bdfcb57cda26870089d90cf2a732be522f5474c0a734
     createdAt: "2024-10-03T20:32:24Z"
+    description: The ABot Test Bench is a test automation tool for 4G, 5G and ORAN Telecom networks that follow specifications and use standards driven design and compliance as specified by the 3GPP consortium.
     operators.operatorframework.io/builder: operator-sdk-v1.33.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/pricing?utm_source=openshift_console

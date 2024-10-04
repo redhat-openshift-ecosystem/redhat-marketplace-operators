@@ -241,7 +241,7 @@ metadata:
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/support?utm_source=openshift_console
     operators.openshift.io/valid-subscription: '["ABot Basic License for 15 days"]'
     support: https://abot.rebaca.com/support/
-  name: abot-operator.3.0.0
+  name: abot-operator-rhmp.3.0.0
   namespace: placeholder
   #capabilities: Basic Install
 spec:

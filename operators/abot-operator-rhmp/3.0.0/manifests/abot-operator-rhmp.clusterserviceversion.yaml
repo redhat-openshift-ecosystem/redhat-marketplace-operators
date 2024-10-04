@@ -225,7 +225,7 @@ metadata:
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/abot-operator-rhmp/support?utm_source=openshift_console
-  name: abot-operator-rhmp.3.0.0
+  name: abot-operator.3.0.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

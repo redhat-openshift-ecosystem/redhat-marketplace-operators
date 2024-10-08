@@ -246,7 +246,7 @@ metadata:
   namespace: placeholder
   #capabilities: Basic Install
 spec:
-  replaces: abot-operator-rhmp.2.0.0
+  replaces: abot-operator.2.0.0
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:

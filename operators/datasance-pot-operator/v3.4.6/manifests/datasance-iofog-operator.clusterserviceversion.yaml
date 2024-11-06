@@ -42,17 +42,17 @@ metadata:
             "services": {
               "controller": {
                 "type": "LoadBalancer",
-                "annotations": 
+                "annotations":
                   "service.beta.kubernetes.io/azure-load-balancer-internal: false"
               },
               "proxy": {
                 "type": "LoadBalancer",
-                "annotations": 
+                "annotations":
                   "service.beta.kubernetes.io/azure-load-balancer-internal: false"
               },
               "router": {
                 "type": "LoadBalancer",
-                "annotations": 
+                "annotations":
                   "service.beta.kubernetes.io/azure-load-balancer-internal: false"
               }
             },

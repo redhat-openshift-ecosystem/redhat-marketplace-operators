@@ -1,0 +1,269 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: |-
+      [
+        {
+          "apiVersion": "coroot.com/v1",
+          "kind": "Coroot",
+          "metadata": {
+            "name": "coroot",
+            "namespace": "coroot"
+          },
+          "spec": {
+            "enterpriseEdition": {
+              "licenseKey": "LICENSE-KEY",
+              "version": "1.5.15"
+            },
+            "nodeAgent": {
+              "version": "1.22.0"
+            },
+            "clusterAgent": {
+              "version": "1.1.1"
+            },
+            "clickhouse": {
+              "replicas": 2,
+              "shards": 3,
+              "storage": {
+                "size": "200Gi"
+              }
+            },
+            "prometheus": {
+              "storage": {
+                "size": "100Gi"
+              }
+            }
+          }
+        }
+      ]
+    capabilities: Deep Insights
+    features.operators.openshift.io/disconnected: 'true'
+    features.operators.openshift.io/proxy-aware: 'false'
+    features.operators.openshift.io/fips-compliant: 'false'
+    features.operators.openshift.io/tls-profiles: 'false'
+    features.operators.openshift.io/token-auth-aws: 'false'
+    features.operators.openshift.io/token-auth-azure: 'false'
+    features.operators.openshift.io/token-auth-gcp: 'false'
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/coroot-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/coroot-rhmp/support?utm_source=openshift_console
+  name: coroot-operator.1.0.2
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+      - description: Coroot is the Schema for the coroots API
+        displayName: Coroot
+        kind: Coroot
+        name: coroots.coroot.com
+        version: v1
+  description: An open-source observability platform using eBPF to gather telemetry data, providing actionable insights for quick issue detection and resolution in Kubernetes and VM environments.
+  displayName: Coroot
+  install:
+    strategy: deployment
+    spec:
+      clusterPermissions:
+        - rules:
+            - apiGroups:
+                - ""
+              resources:
+                - endpoints
+                - namespaces
+                - nodes
+                - persistentvolumes
+                - pods
+              verbs:
+                - get
+                - list
+                - watch
+            - apiGroups:
+                - ""
+              resources:
+                - events
+              verbs:
+                - create
+                - patch
+            - apiGroups:
+                - ""
+              resources:
+                - persistentvolumeclaims
+                - serviceaccounts
+                - services
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - ""
+              resources:
+                - secrets
+              verbs:
+                - create
+                - list
+                - watch
+            - apiGroups:
+                - apps
+              resources:
+                - cronjobs
+                - daemonsets
+                - deployments
+                - replicasets
+                - statefulsets
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - batch
+              resources:
+                - cronjobs
+                - jobs
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - coroot.com
+              resources:
+                - coroots
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - coroot.com
+              resources:
+                - coroots/finalizers
+              verbs:
+                - update
+            - apiGroups:
+                - coroot.com
+              resources:
+                - coroots/status
+              verbs:
+                - get
+                - patch
+                - update
+            - apiGroups:
+                - rbac.authorization.k8s.io
+              resources:
+                - clusterrolebindings
+                - clusterroles
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+            - apiGroups:
+                - storage.k8s.io
+              resources:
+                - storageclasses
+                - volumeattachments
+              verbs:
+                - create
+                - delete
+                - get
+                - list
+                - patch
+                - update
+                - watch
+          serviceAccountName: coroot-operator
+      deployments:
+        - label:
+            app.kubernetes.io/name: coroot-operator
+          name: coroot-operator
+          spec:
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: coroot-operator
+            strategy: {}
+            template:
+              metadata:
+                labels:
+                  app.kubernetes.io/name: coroot-operator
+              spec:
+                containers:
+                  - image: ghcr.io/coroot/coroot-operator@sha256:fa6ac2a789d98a35ee6be839f5b0880c21fc2b8f9e2cb1c769193d6d22535ed3
+                    livenessProbe:
+                      httpGet:
+                        path: /healthz
+                        port: 8081
+                      initialDelaySeconds: 15
+                      periodSeconds: 20
+                    name: operator
+                    readinessProbe:
+                      httpGet:
+                        path: /readyz
+                        port: 8081
+                      initialDelaySeconds: 5
+                      periodSeconds: 10
+                    resources:
+                      limits:
+                        cpu: 500m
+                        memory: 256Mi
+                      requests:
+                        cpu: 100m
+                        memory: 64Mi
+                securityContext:
+                  runAsNonRoot: true
+                serviceAccountName: coroot-operator
+                terminationGracePeriodSeconds: 10
+  installModes:
+    - type: OwnNamespace
+      supported: true
+    - type: SingleNamespace
+      supported: false
+    - type: MultiNamespace
+      supported: false
+    - type: AllNamespaces
+      supported: false
+  keywords:
+    - monitoring
+    - coroot
+    - observability
+  links:
+    - name: Operator Source
+      url: https://github.com/coroot/coroot-operator
+  maturity: stable
+  maintainers:
+    - email: support@coroot.com
+      name: Coroot Inc.
+  provider:
+    name: Coroot Inc.
+    url: https://coroot.com
+  version: 1.0.2
+  relatedImages:
+    - name: coroot-operator
+      image: ghcr.io/coroot/coroot-operator@sha256:fa6ac2a789d98a35ee6be839f5b0880c21fc2b8f9e2cb1c769193d6d22535ed3
+    - name: coroot-ee
+      image: ghcr.io/coroot/coroot-ee@sha256:925ecc321f4d9a1dd5fffc156729d62fab570ddd990b4a12aaf556d96997862f
+    - name: coroot-node-agent
+      image: ghcr.io/coroot/coroot-node-agent@sha256:31a26b2b9018250aedb5ffee6d210113997e51cc34b699ab1a27b5487cf33e88
+    - name: coroot-cluster-agent
+      image: ghcr.io/coroot/coroot-cluster-agent@sha256:6b7f3b127285f7add7d4a1d8ce41ff5edf2ef87a716eee04443492e794931a2e
+    - name: clickhouse
+      image: ghcr.io/coroot/clickhouse@sha256:cfb4a91fe247a437ea29aeb789066ccb0b6d156a75fefe4b813036265347ad37
+    - name: prometheus
+      image: ghcr.io/coroot/prometheus@sha256:14797e1b2f223eb2ed68d3302205493362a1a463b5a5a2df02bfa38bed40c8ea
+    - name: kube-state-metrics
+      image: ghcr.io/coroot/kube-state-metrics@sha256:3144f86a6b3473967bf939240c5e0d025354c2a3bed65a6264b26cbcbc215cdb

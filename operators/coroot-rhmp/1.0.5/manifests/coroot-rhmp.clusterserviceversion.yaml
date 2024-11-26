@@ -47,7 +47,7 @@ metadata:
     features.operators.openshift.io/token-auth-gcp: 'false'
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/coroot-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/coroot-rhmp/support?utm_source=openshift_console
-  name: coroot-operator.1.0.5
+  name: coroot-rhmp.1.0.5
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

@@ -27,7 +27,7 @@ metadata:
     repository: https://github.com/Dynatrace/dynatrace-operator
     support: Dynatrace
     createdAt: '2024-12-10T08:51:19.699601'
-    olm.skipRange: <1.4.0
+    olm.skips: dynatrace-operator-rhmp.v1.3.2
     marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/dynatrace-operator-rhmp/pricing?utm_source=openshift_console
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/dynatrace-operator-rhmp/support?utm_source=openshift_console
     operators.openshift.io/valid-subscription: '["Dynatrace Platform Subscription
@@ -2216,4 +2216,3 @@ spec:
   relatedImages:
   - name: dynatrace-operator
     image: registry.connect.redhat.com/dynatrace/dynatrace-operator@sha256:4bd009fc4131c78dc54b41eae068406c6e1ccca0771e732595c7cb04bfc5feb6
-  replaces: dynatrace-operator-rhmp.v1.3.2

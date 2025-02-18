@@ -25,7 +25,7 @@ metadata:
     certified: "Red Hat certified"
     containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:8a9a185fcc41a6c3e47fefef43f5fb59a142ba066f1c92ae7a69e23d91644946
     support: vFunction
-    createdAt: 2025-02-15T17:58:56Z
+    createdAt: 2025-02-18T12:22:36Z
     alm-examples: |-
       [
         {

@@ -1406,4 +1406,4 @@ spec:
       alm-owner-couchbase: couchbaseoperator
       operated-by: couchbaseoperator
   version: 2.8.0-1
-  replaces: couchbase-operator.v2.7.0-3
+  replaces: couchbase-operator.v2.7.0-4

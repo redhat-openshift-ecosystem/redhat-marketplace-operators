@@ -7235,7 +7235,7 @@ relatedImages:
   name: postgres-operator
 schema: olm.bundle
 ---
-image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:a548c75c155296ee0bdb94ebaad15a1e8e0dc18ff2a6b96ef0ec7e9cb42df0db
+image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:36ac585cc9fd8a8011ee75b5d5de73b6f6c16b5f39f625c8e6c1b6ca6e57b3b4
 name: postgresoperator.v5.8.2
 package: crunchy-postgres-operator-rhmp
 properties:
@@ -7639,7 +7639,7 @@ relatedImages:
   name: POSTGRES_16
 - image: registry.connect.redhat.com/crunchydata/crunchy-upgrade@sha256:0448e87a79ed21a5e5248d46c523c3f7f684f6a221e67b3c54b9a6c4278a6284
   name: PGUPGRADE
-- image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:a548c75c155296ee0bdb94ebaad15a1e8e0dc18ff2a6b96ef0ec7e9cb42df0db
+- image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:36ac585cc9fd8a8011ee75b5d5de73b6f6c16b5f39f625c8e6c1b6ca6e57b3b4
   name: ""
 - image: registry.connect.redhat.com/crunchydata/postgres-operator@sha256:2e010468471f3c55acdfe67e7b71d15af973fb5708d4a1199eeace03e4da4d69
   name: postgres-operator

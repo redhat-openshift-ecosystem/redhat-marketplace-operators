@@ -99,6 +99,8 @@ entries:
   schema: olm.bundle
 - image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:80d6307c857bd110bfa0bf3b36a9da7be670132e5e15831ddc99b48bbd299fd3
   schema: olm.bundle
-- image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:a548c75c155296ee0bdb94ebaad15a1e8e0dc18ff2a6b96ef0ec7e9cb42df0db
+- image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:36ac585cc9fd8a8011ee75b5d5de73b6f6c16b5f39f625c8e6c1b6ca6e57b3b4
   schema: olm.bundle
 schema: olm.template.basic
+
+

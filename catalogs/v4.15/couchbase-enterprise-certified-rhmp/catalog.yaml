@@ -85,7 +85,7 @@ properties:
     version: v2
 - type: olm.package
   value:
-    packageName: couchbase-enterprise-certified
+    packageName: couchbase-enterprise-certified-rhmp
     version: 2.8.1-2
 - type: olm.bundle.object
   value:

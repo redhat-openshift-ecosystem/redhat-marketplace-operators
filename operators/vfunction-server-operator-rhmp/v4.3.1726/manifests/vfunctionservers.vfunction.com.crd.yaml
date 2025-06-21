@@ -354,6 +354,8 @@ spec:
                   type: string
                 vfapiIdpImage:
                   type: string
+                vfapiMcpImage:
+                  type: string
                 vfapiMeasurementsImage:
                   type: string
                 vfapiOrganizationsImage:

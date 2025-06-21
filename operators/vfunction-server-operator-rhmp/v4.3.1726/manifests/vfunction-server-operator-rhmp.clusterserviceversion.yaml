@@ -23,9 +23,9 @@ metadata:
     description: |-
       vFunction is a cutting-edge code analysis, machine learning, and automation to boost your Java modernization projects.
     certified: "Red Hat certified"
-    containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:d5cfc2217465244c0b13eb3f67e9f4650a380a66738ddd41caadf554a66dcff5
+    containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:b6cf3458e5b1a9ee8c7a307d80af9884e16b660d975f0f4e7420dfd984163432
     support: vFunction
-    createdAt: 2025-06-21T11:34:43Z
+    createdAt: 2025-06-21T16:06:40Z
     alm-examples: |-
       [
         {
@@ -720,6 +720,11 @@ spec:
             path: vfapiIdpImage
             x-descriptors:
               - urn:alm:descriptor:text
+          - description: Current vfapi MCP image
+            displayName: vFunction Vfapi MCP Image
+            path: vfapiMcpImage
+            x-descriptors:
+              - urn:alm:descriptor:text
           - description: Current vfapi parser image
             displayName: vFunction Vfapi parser Image
             path: vfapiParserImage
@@ -1014,7 +1019,7 @@ spec:
         - **affinity.node\_selectors**: Enter the node selectors for the deployments (optional).
             - **key**: Enter the key for the node selector.
             - **value**: Enter the value for the node selector.
-            - **services**: Enter the services for the node selector. A comma-separated list of services to which the node selector applies. If not specified, the node selector will apply to all services. List of possible services: mysql, nginx, storage, vfapi-parser, vfapi-users, vfapi-organizations, vfapi-idp, vfapi-measurements, vfapi-otlp, vfapi-dm. (optional).
+            - **services**: Enter the services for the node selector. A comma-separated list of services to which the node selector applies. If not specified, the node selector will apply to all services. List of possible services: mysql, nginx, storage, vfapi-parser, vfapi-users, vfapi-organizations, vfapi-idp, vfapi-mcp, vfapi-measurements, vfapi-otlp, vfapi-dm. (optional).
         - **affinity.additional\_labels**: Enter additional labels for the deployments (optional).
             - **key**: Enter the key for the additional label.
             - **value**: Enter the value for the additional label.
@@ -1155,6 +1160,8 @@ spec:
                         value: registry.connect.redhat.com/vfunction/vfunction-vfapi-parser@sha256:11870afded6f86128fb0ce8949f5bcdad97eadce41e9818aa5c3a163534a7e14
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_IDP_ORIGINAL_IMAGE
                         value: registry.connect.redhat.com/vfunction/vfunction-vfapi-idp@sha256:78463cfacc8bdfb3f0e6a0d1fae0788b15c718e3c2149f9fceddc800709286c7
+                      - name: RELATED_IMAGE_VFUNCTION_VFAPI_MCP_ORIGINAL_IMAGE
+                        value: registry.connect.redhat.com/vfunction/vfunction-vfapi-mcp@sha256:9ce634aa0b22c9ab4331b194507b1581cc7cbccae994ddfa308d642aa90e03d0
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_MEASUREMENTS_ORIGINAL_IMAGE
                         value: registry.connect.redhat.com/vfunction/vfunction-vfapi-measurements@sha256:b0d4acbcbff4f2423eec374d0b1389ed7cfcb52cc49e7a8d45857d252d368665
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_ORGANIZATIONS_ORIGINAL_IMAGE
@@ -1165,7 +1172,7 @@ spec:
                         value: registry.connect.redhat.com/vfunction/vfunction-vfapi-otlp@sha256:f880f0e06c41daf92719a822d4a2e0f3c2ba82ea02b96f4da5d9b30f8a1986f3
                       - name: RELATED_IMAGE_VFUNCTION_VFAPI_DM_ORIGINAL_IMAGE
                         value: registry.connect.redhat.com/vfunction/vfunction-vfapi-dm@sha256:2e0f0306baf2b121d93ab916ce482d6627de10913c50430463bb2acde95f795f
-                    image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:d5cfc2217465244c0b13eb3f67e9f4650a380a66738ddd41caadf554a66dcff5
+                    image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:b6cf3458e5b1a9ee8c7a307d80af9884e16b660d975f0f4e7420dfd984163432
                     imagePullPolicy: Always
                     livenessProbe:
                       exec:
@@ -1402,7 +1409,7 @@ spec:
     app.kubernetes.io/managed-by: operator
   relatedImages:
     - name: vfunction-server-operator
-      image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:d5cfc2217465244c0b13eb3f67e9f4650a380a66738ddd41caadf554a66dcff5
+      image: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:b6cf3458e5b1a9ee8c7a307d80af9884e16b660d975f0f4e7420dfd984163432
     - name: vfunction-mysql
       image: registry.connect.redhat.com/vfunction/vfunction-mysql@sha256:54eaefd7e9fb10e3c10816f6a2942b0f8a3cd3ba22782224f446764f8798db20
     - name: vfunction-nginx
@@ -1413,6 +1420,8 @@ spec:
       image: registry.connect.redhat.com/vfunction/vfunction-vfapi-parser@sha256:11870afded6f86128fb0ce8949f5bcdad97eadce41e9818aa5c3a163534a7e14
     - name: vfunction-vfapi-idp
       image: registry.connect.redhat.com/vfunction/vfunction-vfapi-idp@sha256:78463cfacc8bdfb3f0e6a0d1fae0788b15c718e3c2149f9fceddc800709286c7
+    - name: vfunction-vfapi-mcp
+      image: registry.connect.redhat.com/vfunction/vfunction-vfapi-mcp@sha256:9ce634aa0b22c9ab4331b194507b1581cc7cbccae994ddfa308d642aa90e03d0
     - name: vfunction-vfapi-measurements
       image: registry.connect.redhat.com/vfunction/vfunction-vfapi-measurements@sha256:b0d4acbcbff4f2423eec374d0b1389ed7cfcb52cc49e7a8d45857d252d368665
     - name: vfunction-vfapi-organizations

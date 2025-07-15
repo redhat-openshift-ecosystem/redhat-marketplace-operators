@@ -197,6 +197,12 @@ name: 2.8.1
 package: couchbase-enterprise-certified-rhmp
 schema: olm.channel
 ---
+entries:
+- name: couchbase-operator.v2.8.1-1
+  skiprange: '>=2.6.4-6 <=2.8.0-2'
+name: stable
+schema: olm.channel
+---
 image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:d0cb2adb505acc874a145499c49e2c0be3211a7278bbee8f1176a0f378889c3e
 name: couchbase-operator.v2.6.4-6
 package: couchbase-enterprise-certified-rhmp

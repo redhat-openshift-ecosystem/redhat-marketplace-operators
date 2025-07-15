@@ -15,24 +15,21 @@ entries:
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.5.1-2
-    skips:
-    - couchbase-operator.v2.5.1-1
+    skiprange: '>=2.5.0-1 <=2.5.1-1'
   name: 2.5.1
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.5.2-2
-    skips:
-    - couchbase-operator.v2.5.2-1
+    skiprange: '>=2.5.0-1 <=2.5.2-1'
   name: 2.5.2
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.6.0-1
-    skipRange: '>=2.2.4-1 <=2.5.0-1'
+    skipRange: '>=2.2.4-1 <=2.5.2-2'
   - name: couchbase-operator.v2.6.0-2
-    skips:
-    - couchbase-operator.v2.6.0-1
+    skiprange: '>=2.5.0-1 <=2.6.0-1'
   name: 2.6.0
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
@@ -51,29 +48,32 @@ entries:
 - entries:
   - name: couchbase-operator.v2.6.4-6
   - name: couchbase-operator.v2.6.4-7
-    skips:
-    - couchbase-operator.v2.6.4-6
+    skiprange: '>=2.5.0-1 <=2.6.4-6'
   name: 2.6.4
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.7.0-5
-    skips:
-    - couchbase-operator.v2.7.0-4
+    skiprange: '>=2.5.0-1 <=2.7.0-4'
   name: 2.7.0
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.8.1-1
+    skiprange: '>=2.5.0-1 <=2.8.0-2'
   name: 2.8.1
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
+  - name: couchbase-operator.v2.8.0-1
   - name: couchbase-operator.v2.8.0-2
-    skips:
-    - couchbase-operator.v2.8.0-1
+    skiprange: '>=2.5.0-1 <=2.8.0-1'
+  name: 2.8.0
+  package: couchbase-enterprised-certified-rhmp
+  schema: olm.channel
+- entries:
   - name: couchbase-operator.v2.8.1-1
-    replaces: couchbase-operator.v2.8.0-2
+    skiprange: '>=2.5.0-1 <=2.8.0-2'
   name: stable
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel

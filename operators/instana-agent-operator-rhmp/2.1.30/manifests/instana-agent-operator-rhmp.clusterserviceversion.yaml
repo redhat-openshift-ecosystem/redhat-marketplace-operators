@@ -497,5 +497,5 @@ spec:
       name: instana-agent-operator
     - image: icr.io/instana/agent@sha256:e4916643bc441ac873148b185eeb1e37b1edb189bfb34acb9cfaa5c2226c09b1
       name: instana-agent
-  replaces: instana-agent-operator.v2.1.29
+  replaces: instana-agent-operator.v2.1.28
   version: 2.1.30

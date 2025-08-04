@@ -25,7 +25,7 @@ metadata:
     certified: "Red Hat certified"
     containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:a5a0f47f7fb9219139f8d749da14950a8c39698b340644011485dfbec54ebe8b
     support: vFunction
-    createdAt: 2025-08-04T15:16:34Z
+    createdAt: 2025-08-04T16:10:32Z
     alm-examples: |-
       [
         {
@@ -808,7 +808,348 @@ spec:
             x-descriptors:
               - urn:alm:descriptor:text
   displayName: vFunction Operator
-  description: "\n## Introduction\n\n[vFunction](https://www.vfunction.com/) is a cloud-native modernization platform that combines dynamic and static code analysis, machine learning, and automation to automatically identify and extract services from existing applications. vFunction is the only platform purpose-built for modernization of Java applications.\n\nThe vFunction modernization process starts by learning the running monolithic application, and surfacing the interdependencies within it. Using AI, the platform analyzes and identifies services that can be separated from the application. This decomposition can present a range of micro, mini, or even macro services, depending on your application environment, each being an independently deployable and scalable application component.\n\nvFunction automates the extraction of these services, enabling you to modernize your monolith, quickly and easily.\n\n## The vFunction platform\n\nThe platform consists of 3 basic components; the server, the controller package, and a tools package. The server runs as an operand on an OpenShift environment. The controller package is installed on the machine that runs the monolithic application which can be either a Linux or a Windows machine, and the tools are run on a development machine, with access to the code of the monolithic application.\n\nThe controller package consists of three elements: the vFunction agent, that collects data during the dynamic analysis phase; the vFunction Viper application, that performs static analysis on the binaries of the application; and the vFunction controller that handles all the communication between the agent, Viper, and the vFunction server.\n\nThe vFunction agent is a mix of a Java and native agent, and needs to run on the JVM that is currently running your application. [Refer to the vFunction OOB Support Matrix document](https://drive.google.com/file/d/1ccq8LFab1FrYAimDUxwgjiCOdk4QuVzs/view) for a list of supported application servers and JVMs.\n\nThis operator installs a vFunction server instance to be connected later with one or more vFunction controllers installed on your application machine(s).\n\n## Before You Start\n\nThe vFunction operator requires a Red Hat OpenShift Kubernetes Application Platform 4.x.\n\nThe cluster recommended configuration (which is the same as the minimal one) should consist of:\n\n- *1 master node*\n\n- *1 worker node*\n\n- *Storage capacity enough for dynamically provision 2 PVs of 50G each*\n\n- *A default StorageClass configured*\n\nvFunction doesn’t provide any encryption mechanism for data stored on any attached storage. If required, encryption can be achieved by the client by using its own external means on the storage itself.\n\nvFunction supports backup of all critical data as part of the application. Nevertheless, for complete backup of entire data it is recommended that the client apply its own storage based backup mechanism.\n\n## Install Prerequisites\n\n###Cluster:\nThe operator was certified and tested on OCP 4.6 - 4.17.\nIf you encounter any issue with other OCP versions or cloud providers please contact info@vfunction.com.\n\n###Storage:\nThe operator creates two new PersistentVolumeClaims (PVCs) during installation time. For their creation, it relies on the default StorageClass to dynamically provision two PersistentVolumes (PVs). The system must have a default StorageClass in place.\nBoth PersistentVolumes are defaulted to access with ReadWriteOnce mode, but you can change this by specifying a different access mode in the YAML file.\nNotes:\n- There is an option to specify a specific StorageClass for the PersistentVolumeClaims.\n- There is an option to specify the use of a specific pre-created PersistentVolume for each PersistentVolumeClaim\n- There is an option to specify a pre-created PersistentVolumeClaim for each Deployment.\n- There is an option to change the access mode for each PersistentVolumeClaim.\n\n###Project:\nThe operator should be installed in a new and dedicated project (namespace). If you intend to install more than one vFunction operands in the same cluster, please use different projects for each one. Installation of more than one operand on the same cluster will allow scaling by load balancing multiple applications to different vFunction servers.\n\n## Installation instructions\n\n1. Prepare the YAML file to use in the installation:\n\n    a. Copy the following YAML template into a text editor:\n\n    ```yaml\n        apiVersion: vfunction.com/v1\n        kind: VfunctionServer\n        metadata:\n          name: vfunction\n          namespace: vfunction\n          labels:\n            name: vfunction\n            app.kubernetes.io/name: vfunction\n            app.kubernetes.io/instance: vfunction-server\n            app.kubernetes.io/managed-by: operator\n        spec:\n          host: \"http://my.domain.com\"\n          org_name: \"MyCompany\"\n          upgrade: \"Never\"\n          admin:\n            email: \"admin@mycompany.com\"\n            name: \"Admin\"\n            password: \"Password1!\"\n          measurements:\n            min_number_of_services: \"2\"\n            max_number_of_services: \"10\"\n            max_pod_memory_capacity: \"16G\"\n            max_pod_cpu_capacity: \"1\"\n            S3:\n              bucket: \"\"\n              key: \"\"\n              secret: \"\"\n          smtp:\n            password: \"\"\n            url: \"\"\n            identity: \"\"\n            user: \"\"\n          authentication:\n            authority: \"\"\n            client_id: \"\"\n            client_secret: \"\"\n            jwks_url: \"\"\n            issuer: \"\"\n            ca_root_crt: |\n              -----BEGIN CERTIFICATE-----\n              ...\n              -----END CERTIFICATE-----\n          tls:\n            use_letsencrypt: \"No\"\n            crt: |\n              -----BEGIN CERTIFICATE-----\n              ...\n              -----END CERTIFICATE-----\n            key: |\n              -----BEGIN PRIVATE KEY-----\n              ...\n              -----END PRIVATE KEY-----\n          nginx:\n            force_http: \"No\"\n            ipv6_disabled: \"No\"\n            service_type: \"\"\n          route:\n            use_route: \"Yes\"\n            tls_termination: \"edge\"\n            use_tls_certificate: \"No\"\n          mysql:\n            external_mysql_ip: \"\"\n            external_mysql_user: \"\"\n            external_mysql_password: \"\"\n            max_pod_memory_capacity: \"4G\"\n            max_pod_cpu_capacity: \"1\"\n          storage:\n            storage_class: \"\"\n            mysql_persistent_volume: \"\"\n            mysql_persistent_volume_claim: \"\"\n            mysql_persistent_volume_claim_access_mode: \"ReadWriteOnce\"\n            storage_persistent_volume: \"\"\n            storage_persistent_volume_claim: \"\"\n            storage_persistent_volume_claim_access_mode: \"ReadWriteOnce\"\n            lets_encrypt_persistent_volume: \"\"\n            lets_encrypt_persistent_volume_claim: \"\"\n            lets_encrypt_persistent_volume_claim_access_mode: \"ReadWriteOnce\" \n          distributed:\n              otlp:\n                min_number_of_services: \"1\"\n                max_number_of_services: \"10\"\n                max_pod_memory_capacity: \"8G\"\n                max_pod_cpu_capacity: \"1\"\n                max_folder_size_in_mb: \"200\"\n              dm:\n                min_number_of_services: \"1\"\n                max_number_of_services: \"10\"\n                max_pod_memory_capacity: \"8G\"\n                max_pod_cpu_capacity: \"1\"\n          backup:\n            mysql:\n              restore_during_installation: \"No\"\n              S3:\n                bucket: \"\"\n                key: \"\"\n                secret: \"\"\n          security:\n            image_pull_policy: \"\"\n            force_hashed_images: \"No\"\n            set_pod_resources: \"Yes\"\n            proxy:\n              http_proxy: \"\"\n              https_proxy: \"\"\n              additional_no_proxy: \"\"\n            use_rate_limiting: \"No\"\n            requests_per_second: \"10\"\n          affinity:\n            node_affinity:\n              - key: \"\"\n                operator: \"\"\n                values: \"\"\n                services: \"\"\n            node_selectors:\n              - key: \"\"\n                value: \"\"\n                services: \"\"\n            additional_labels:\n              - key: \"\"\n                value: \"\"\n                services: \"\"\n            additional_annotations:\n              - key: \"\"\n                value: \"\"\n                services: \"\"\n    ```\n    b. Customize the template fields by replacing with your information:\n\n    - **host**: Enter the FQDN for accessing the vFunction dashboard.\n                Make sure that you use a domain name and not an IP address. Writing \"https://\" will mandate TLS while writing \"http://\" will expose the server through HTTP.\n    - **org_name**: Enter your organization name.\n    - **upgrade**: Choose auto-upgrade mode.\n        - **Daily**: The operator will check for a new version every day at 3 AM and will install it automatically.\n        - **Always**: The operator will check for a new version every 10 minutes and will install it automatically.\n        - **Never**: The automatic upgrading mechanism is off (default).\n        - **Maintenance**: Put the operator in a maintenance mode.\n    - **admin.email**: Enter the email address of your administrator.\n    - **admin.name**: Enter the name of your administrator.\n    - **admin.password**: Enter the password you want to use for the vFunction administrator.\n                          The password should be at least 8 characters long, and consist of at least one lowercase letter, at least one uppercase letter, at least one number, and at least one special character.\n    - **measurements.min\\_num\\_of\\_services**: Minimum Number of measurement service pods.\n    - **measurements.max\\_num\\_of\\_services**: Maximum Number of measurement service pods.\n    - **measurements.max\\_pod\\_memory\\_capacity**: Maximum memory capacity limit for measurement service pods. (Default is \"8G\").\n    - **measurements.max\\_pod\\_cpu\\_capacity**: Maximum CPU capacity limit for measurement service pods. (Default is \"1\").\n    - **measurements.pod\\_ephemeral\\_storage**: Ephemeral Storage Capacity for measurement service pods. (Default is \"1G\").\n    - **measurements.S3**: Save all measurements data to S3, instead of local PV (optional).\n        - **measurements.S3.bucket**: Measurements S3 bucket name.\n        - **measurements.S3.key**: Measurements S3 key.\n        - **measurements.S3.secret**: Measurements S3 secret.\n        - **measurements.S3.region**: Measurements S3 region.\n    - **smtp.user**: Enter the email address for a designated user for the SMTP server (optional).\n    - **smtp.password**: Enter this user’s password (optional).\n    - **smtp.identity**: Enter this user’s password (optional).\n    - **smtp.url**: Enter the SMTP server URL (optional).\n    - **authentication.authority**: Authority for authentication (Optional).\n    - **authentication.client_id**: Client ID for authentication (Optional).\n    - **authentication.client_secret**: Client Secret for authentication (Optional).\n    - **authentication.jwks_url**: JWKS URL for authentication (Optional).\n    - **authentication.issuer**: Issuer for authentication (Optional).\n    - **authentication.ca\\_root\\_crt**: CA root certificate for authentication (Optional).\n    - **tls.use_letsencrypt**: If your host FQDN starts with “https”, choose whether to use Let’s Encrypt to obtain certificates.\n    - **tls.crt**: If your host FQDN starts with “https”, paste in the certifications you have for using the TLS connection (Applicable only if you don’t use Let’s Encrypt).\n    - **tls.key**: If your host FQDN starts with “https”, enter the key you have for using the TLS connection (Applicable only if you don’t use Let’s Encrypt).\n    - **nginx.force_http**: Force internal NGINX to listen on http even if the host FQDN starts with “https”.\n                            This is useful if you want to use a TLS termination proxy in front of vFunction, other then the route provided by the operator.\n    - **nginx.ipv6_disabled**: Disable IPv6 on internal NGINX.\n    - **nginx.service_type**: Set the service type for the internal NGINX service - ClusterIP, NodePort or LoadBalancer.\n    - **route.use_route**: Use OpenShift route to expose vFunction. (Default is \"Yes\").\n    - **route.tls_termination**: Set the TLS termination type for the OpenShift route - edge, passthrough or reencrypt. (Default is \"edge\").\n    - **route.use\\_tls\\_certificate**: Use TLS certificate for OpenShift route (as provided in tls.crt and tls.key) - instead of the default one defined for the route controller in your cluster. (Default is \"No\").\n    - **mysql.external\\_mysql\\_ip**: If you want to use an external MySQL database, enter its IP address.\n    - **mysql.external\\_mysql\\_user**: If you want to use an external MySQL database, enter its user name.\n    - **mysql.external\\_mysql\\_password**: If you want to use an external MySQL database, enter its password.\n    - **mysql.max\\_pod\\_memory\\_capacity**: Maximum memory capacity limit for MySQL pod. (Default is \"2G\").\n    - **mysql.max\\_pod\\_cpu\\_capacity**: Maximum CPU capacity limit for MySQL pod. (Default is \"1\").\n    - **mysql.pod\\_ephemeral\\_storage**: Ephemeral Storage Capacity for MySQL pod. (Default is \"1G\").\n    - **storage.storage\\_class**: If you want to use a specific StorageClass for all PVCs, other than the default one, enter its name.\n    - **storage.mysql\\_persistent\\_volume**: If you want to use a specific PV for mysql PVC, other than the dynamically provisioned one, enter its name.\n    - **storage.mysql\\_persistent\\_volume\\_claim**: If you want to use a specific pre-created PVC for mysql deployment, other than the dynamically provisioned one, enter its name.\n    - **storage.mysql\\_persistent\\_volume\\_claim\\access\\_mode**: If you want to use a specific access mode for mysql PVC, other than the default one, enter its name. (Default is \"ReadWriteOnce\").\n    - **storage.storage\\_persistent\\_volume**: If you want to use a specific PV for storage PVC, other than the dynamically provisioned one, enter its name.\n    - **storage.storage\\_persistent\\_volume\\_claim**: If you want to use a specific pre-created PVC for storage deployment, other than the dynamically provisioned one, enter its name.\n    - **storage.storage\\_persistent\\_volume\\_claim\\access\\_mode**: If you want to use a specific access mode for storage PVC, other than the default one, enter its name. (Default is \"ReadWriteOnce\").\n    - **storage.lets\\_encrypt\\_persistent\\_volume**: If you want to use a specific PV for lets encrypt PVC, other than the dynamically provisioned one, enter its name.\n    - **storage.lets\\_encrypt\\_persistent\\_volume\\_claim**: If you want to use a specific pre-created PVC for lets encrypt deployment, other than the dynamically provisioned one, enter its name.\n    - **storage.lets\\_encrypt\\_persistent\\_volume\\_claim\\access\\_mode**: If you want to use a specific access mode for lets encrypt PVC, other than the default one, enter its name. (Default is \"ReadWriteOnce\").\n    - **distributed.otlp.min\\_number\\_of\\_services**: Minimum Number of OTLP pods.\n    - **distributed.otlp.max\\_number\\_of\\_services**: Maximum Number of OTLP pods.\n    - **distributed.otlp.max\\_pod\\_memory\\_capacity**: Maximum memory capacity for OTLP pods. (Default is \"1G\").\n    - **distributed.otlp.max\\_pod\\_cpu\\_capacity**: Maximum CPU capacity for OTLP pods. (Default is \"1\").\n    - **distributed.otlp.pod\\_ephemeral\\_storage**: Ephemeral Storage Capacity for OTLP service pods. (Default is \"250M\").\n    - **distributed.otlp.max\\_folder\\_size\\_in\\_mb**: Maximum folder size in MB for OTLP pods. (Default is \"200\").\n    - **distributed.dm.min\\_number\\_of\\_services**: Minimum Number of dm pods.\n    - **distributed.dm.max\\_number\\_of\\_services**: Maximum Number of dm pods.\n    - **distributed.dm.max\\_pod\\_memory\\_capacity**: Maximum memory capacity for dm pods. (Default is \"8G\").\n    - **distributed.dm.max\\_pod\\_cpu\\_capacity**: Maximum CPU capacity for dm pods. (Default is \"1\").\n    - **distributed.dm.pod\\_ephemeral\\_storage**: Ephemeral Storage Capacity for dm service pods. (Default is \"1G\").\n    - **backup.mysql.restore\\_during\\_installation**: If you want, during installation, to restore the backup from the latest kept backup with the same major version (if available on attached DB storage or S3 bucket), choose \"Yes\".\n    - **backup.mysql.S3**: Backup MySQL to S3 (optional).\n        - **backup.mysql.S3.bucket**: MySQL backup S3 bucket name.\n        - **backup.mysql.S3.key**: MySQL backup S3 key.\n        - **backup.mysql.S3.secret**: MySQL backup S3 secret.\n        - **backup.mysql.S3.region**: MySQL backup S3 region.\n    - **security.image\\_pull\\_policy**: If you want to use a custom image pull policy for all deployments, enter it here (optional).\n    - **security.force\\_hashed\\_images**: If you want to use hashed images for all deployments, choose \"Yes\".\n    - **security.set\\_pod\\_resources**: If you want to not set resource requests and limits for all deployments, choose \"No\".\n    - **security.proxy.http\\_proxy**: Enter the address of an HTTP proxy (optional).\n    - **security.proxy.https\\_proxy**: Enter the address of an HTTPS proxy (optional).\n    - **security.proxy.additional\\_no\\_proxy**: Enter additional addresses to exclude from proxying (optional).\n    - **security.use\\_rate\\_limiting**: If you want to use rate limiting in nginx, choose \"Yes\".\n    - **security.requests\\_per\\_second**: Enter the number of requests per second for rate limiting.\n    - **affinity.node\\_affinity**: Enter the node affinity for the deployments (optional). There is only one nodeSelectorTerm as requiredDuringSchedulingIgnoredDuringExecution, but it can contain multiple matchExpressions (which are ANDed together).\n        - **key**: Enter the key for the node affinity.\n        - **operator**: Enter the operator for the node affinity (In, NotIn, Exists, DoesNotExist, Gt, Lt).\n        - **values**: Enter the values for the node affinity. A comma-separated list of values.\n        - **services**: Enter the services for the node affinity. A comma-separated list of services to which the node affinity applies. If not specified, the node affinity will apply to all services. List of possible services: mysql, nginx, storage, vfapi-parser, vfapi-users, vfapi-organizations, vfapi-idp, vfapi-mcp, vfapi-measurements, vfapi-otlp, vfapi-dm. (optional).\n    - **affinity.node\\_selectors**: Enter the node selectors for the deployments (optional).\n        - **key**: Enter the key for the node selector.\n        - **value**: Enter the value for the node selector.\n        - **services**: Enter the services for the node selector. A comma-separated list of services to which the node selector applies. If not specified, the node selector will apply to all services. List of possible services: mysql, nginx, storage, vfapi-parser, vfapi-users, vfapi-organizations, vfapi-idp, vfapi-mcp, vfapi-measurements, vfapi-otlp, vfapi-dm. (optional).\n    - **affinity.additional\\_labels**: Enter additional labels for the deployments (optional).\n        - **key**: Enter the key for the additional label.\n        - **value**: Enter the value for the additional label.\n        - **services**: Enter the services for the additional label. See above at the node selectors section for more details. (optional).\n    - **affinity.additional\\_annotations**: Enter additional annotations for the deployments (optional).\n        - **key**: Enter the key for the additional annotation.\n        - **value**: Enter the value for the additional annotation.\n        - **services**: Enter the services for the additional annotation. See above at the node selectors section for more details. (optional).\n1. In the Installed Operators window choose and click on vFunction Operator and then Create Instance.\n1. In the Create vFunctionServer window, paste the YAML file that you created in step 1.\n1. Click Create.\n1. You can now click on your new created vFunction operand in order to see its details and installation progress.\n\n## Verifying the installation\n\nCheck that the operand installed successfully:\n\n1. Check that the \"Operand State\" property shows “Working”.\n1. Check that the \"Successfully Installed\" property shows \"Yes\".\n\nIf \"Operand State\" shows \"Failed\", it indicates the operand wasn’t installed correctly. Check the events and logs for all pods (operator and image containers) for any issues. In the event that you cannot troubleshoot, contact vFunction support.\n\n## After installation\n\nThe vFunction site is now accessible via the newly created vFunction application custom address, for example, my.domain.com. There are two ways you can access the vFunction dashboard.\n\n### Access using the router canonical hostname\n\n1. Update your DNS provider by creating a canonical name (CNAME) record.\nThis record should point to your host address, and to the ”vfunction” subdomain of the OpenShift canonical router hostname as the alias.\nFor example, ***my.domain.com.   CNAME   vfunction.apps.ocp4.my-openshift.com.***\n2. Find your cluster Router Canonical Hostname address in the newly created vfunction-route-xxx under your vFunction OpenShift project -> **Networking** -> **Routes** -> **vfunction-route-xxx** route -> **Router Canonical Hostname** field.\nYou can now access the dashboard using your defined \"host\" spec property (as above).\n\n### Access using the nginx service location\n\nYou may use this access method if your OpenShift is installed on a provider that supports exposing LoadBalancer-type services.\n1. Update your DNS provider by creating a canonical name (CNAME) record.\nThis record should point to your host address and to the vfunction-nginx-xxx service location.\nFor example, ***my.domain.com.   CNAME   a05951ed7cdf-1394239323.us-east-1.elb.amazonaws.com.***\n1. Point your custom domain to the vfunction-nginx-xxx service's external IP location, which you can find in the OpenShift project > **Networking** -> **Services** -> **vfunction-nginx-xxx** service > **Service Address** > **Location** field.\n\n## Upgrade and Rollback\n\nThe vFunction operator includes a built-in auto-upgrade mechanism.\n\nYou can choose one of 4 upgrading modes:\n- **Daily**: The operator will check for a new version every day at 3 AM and will install it automatically.\n- **Always**: The operator will check for a new version every 10 minutes and will install it automatically.\n- **Never**: The automatic upgrading mechanism is off (default).\n- **Maintenance**: Put the operator in a maintenance mode.\n\nFor an on-demand upgrade,  you can change anytime the upgrading mode from “Never” to “Always”, wait for the operand to be upgraded, and change again to “Never”.\n\nDuring the upgrade, the \"Operand State\" property will change to “Upgrading...” and back again to “Working” after a successful upgrade.\n\nIn case of a failure upgrading the operand, an automatic rollback to the last working version will occur. The failed version will be marked as defective and the operator will not try to upgrade to it again.\n\nChoosing the \"Maintenance\" option will tell the operator to take down all pods, so you can safely fix storage issues, return volumes from snapshots, etc.\nAfter finishing the maintenance, return the upgrade mode to your original desired policy."
+  description: |2-
+
+    ## Introduction
+
+    [vFunction](https://www.vfunction.com/) is a cloud-native modernization platform that combines dynamic and static code analysis, machine learning, and automation to automatically identify and extract services from existing applications. vFunction is the only platform purpose-built for modernization of Java applications.
+
+    The vFunction modernization process starts by learning the running monolithic application, and surfacing the interdependencies within it. Using AI, the platform analyzes and identifies services that can be separated from the application. This decomposition can present a range of micro, mini, or even macro services, depending on your application environment, each being an independently deployable and scalable application component.
+
+    vFunction automates the extraction of these services, enabling you to modernize your monolith, quickly and easily.
+
+    ## The vFunction platform
+
+    The platform consists of 3 basic components; the server, the controller package, and a tools package. The server runs as an operand on an OpenShift environment. The controller package is installed on the machine that runs the monolithic application which can be either a Linux or a Windows machine, and the tools are run on a development machine, with access to the code of the monolithic application.
+
+    The controller package consists of three elements: the vFunction agent, that collects data during the dynamic analysis phase; the vFunction Viper application, that performs static analysis on the binaries of the application; and the vFunction controller that handles all the communication between the agent, Viper, and the vFunction server.
+
+    The vFunction agent is a mix of a Java and native agent, and needs to run on the JVM that is currently running your application. [Refer to the vFunction OOB Support Matrix document](https://drive.google.com/file/d/1ccq8LFab1FrYAimDUxwgjiCOdk4QuVzs/view) for a list of supported application servers and JVMs.
+
+    This operator installs a vFunction server instance to be connected later with one or more vFunction controllers installed on your application machine(s).
+
+    ## Before You Start
+
+    The vFunction operator requires a Red Hat OpenShift Kubernetes Application Platform 4.x.
+
+    The cluster recommended configuration (which is the same as the minimal one) should consist of:
+
+    - *1 master node*
+
+    - *1 worker node*
+
+    - *Storage capacity enough for dynamically provision 2 PVs of 50G each*
+
+    - *A default StorageClass configured*
+
+    vFunction doesn’t provide any encryption mechanism for data stored on any attached storage. If required, encryption can be achieved by the client by using its own external means on the storage itself.
+
+    vFunction supports backup of all critical data as part of the application. Nevertheless, for complete backup of entire data it is recommended that the client apply its own storage based backup mechanism.
+
+    ## Install Prerequisites
+
+    ###Cluster:
+    The operator was certified and tested on OCP 4.6 - 4.17.
+    If you encounter any issue with other OCP versions or cloud providers please contact info@vfunction.com.
+
+    ###Storage:
+    The operator creates two new PersistentVolumeClaims (PVCs) during installation time. For their creation, it relies on the default StorageClass to dynamically provision two PersistentVolumes (PVs). The system must have a default StorageClass in place.
+    Both PersistentVolumes are defaulted to access with ReadWriteOnce mode, but you can change this by specifying a different access mode in the YAML file.
+    Notes:
+    - There is an option to specify a specific StorageClass for the PersistentVolumeClaims.
+    - There is an option to specify the use of a specific pre-created PersistentVolume for each PersistentVolumeClaim
+    - There is an option to specify a pre-created PersistentVolumeClaim for each Deployment.
+    - There is an option to change the access mode for each PersistentVolumeClaim.
+
+    ###Project:
+    The operator should be installed in a new and dedicated project (namespace). If you intend to install more than one vFunction operands in the same cluster, please use different projects for each one. Installation of more than one operand on the same cluster will allow scaling by load balancing multiple applications to different vFunction servers.
+
+    ## Installation instructions
+
+    1. Prepare the YAML file to use in the installation:
+
+        a. Copy the following YAML template into a text editor:
+
+        ```yaml
+            apiVersion: vfunction.com/v1
+            kind: VfunctionServer
+            metadata:
+              name: vfunction
+              namespace: vfunction
+              labels:
+                name: vfunction
+                app.kubernetes.io/name: vfunction
+                app.kubernetes.io/instance: vfunction-server
+                app.kubernetes.io/managed-by: operator
+            spec:
+              host: "http://my.domain.com"
+              org_name: "MyCompany"
+              upgrade: "Never"
+              admin:
+                email: "admin@mycompany.com"
+                name: "Admin"
+                password: "Password1!"
+              measurements:
+                min_number_of_services: "2"
+                max_number_of_services: "10"
+                max_pod_memory_capacity: "16G"
+                max_pod_cpu_capacity: "1"
+                S3:
+                  bucket: ""
+                  key: ""
+                  secret: ""
+              smtp:
+                password: ""
+                url: ""
+                identity: ""
+                user: ""
+              authentication:
+                authority: ""
+                client_id: ""
+                client_secret: ""
+                jwks_url: ""
+                issuer: ""
+                ca_root_crt: |
+                  -----BEGIN CERTIFICATE-----
+                  ...
+                  -----END CERTIFICATE-----
+              tls:
+                use_letsencrypt: "No"
+                crt: |
+                  -----BEGIN CERTIFICATE-----
+                  ...
+                  -----END CERTIFICATE-----
+                key: |
+                  -----BEGIN PRIVATE KEY-----
+                  ...
+                  -----END PRIVATE KEY-----
+              nginx:
+                force_http: "No"
+                ipv6_disabled: "No"
+                service_type: ""
+              route:
+                use_route: "Yes"
+                tls_termination: "edge"
+                use_tls_certificate: "No"
+              mysql:
+                external_mysql_ip: ""
+                external_mysql_user: ""
+                external_mysql_password: ""
+                max_pod_memory_capacity: "4G"
+                max_pod_cpu_capacity: "1"
+              storage:
+                storage_class: ""
+                mysql_persistent_volume: ""
+                mysql_persistent_volume_claim: ""
+                mysql_persistent_volume_claim_access_mode: "ReadWriteOnce"
+                storage_persistent_volume: ""
+                storage_persistent_volume_claim: ""
+                storage_persistent_volume_claim_access_mode: "ReadWriteOnce"
+                lets_encrypt_persistent_volume: ""
+                lets_encrypt_persistent_volume_claim: ""
+                lets_encrypt_persistent_volume_claim_access_mode: "ReadWriteOnce"
+              distributed:
+                  otlp:
+                    min_number_of_services: "1"
+                    max_number_of_services: "10"
+                    max_pod_memory_capacity: "8G"
+                    max_pod_cpu_capacity: "1"
+                    max_folder_size_in_mb: "200"
+                  dm:
+                    min_number_of_services: "1"
+                    max_number_of_services: "10"
+                    max_pod_memory_capacity: "8G"
+                    max_pod_cpu_capacity: "1"
+              backup:
+                mysql:
+                  restore_during_installation: "No"
+                  S3:
+                    bucket: ""
+                    key: ""
+                    secret: ""
+              security:
+                image_pull_policy: ""
+                force_hashed_images: "No"
+                set_pod_resources: "Yes"
+                proxy:
+                  http_proxy: ""
+                  https_proxy: ""
+                  additional_no_proxy: ""
+                use_rate_limiting: "No"
+                requests_per_second: "10"
+              affinity:
+                node_affinity:
+                  - key: ""
+                    operator: ""
+                    values: ""
+                    services: ""
+                node_selectors:
+                  - key: ""
+                    value: ""
+                    services: ""
+                additional_labels:
+                  - key: ""
+                    value: ""
+                    services: ""
+                additional_annotations:
+                  - key: ""
+                    value: ""
+                    services: ""
+        ```
+        b. Customize the template fields by replacing with your information:
+
+        - **host**: Enter the FQDN for accessing the vFunction dashboard.
+                    Make sure that you use a domain name and not an IP address. Writing "https://" will mandate TLS while writing "http://" will expose the server through HTTP.
+        - **org_name**: Enter your organization name.
+        - **upgrade**: Choose auto-upgrade mode.
+            - **Daily**: The operator will check for a new version every day at 3 AM and will install it automatically.
+            - **Always**: The operator will check for a new version every 10 minutes and will install it automatically.
+            - **Never**: The automatic upgrading mechanism is off (default).
+            - **Maintenance**: Put the operator in a maintenance mode.
+        - **admin.email**: Enter the email address of your administrator.
+        - **admin.name**: Enter the name of your administrator.
+        - **admin.password**: Enter the password you want to use for the vFunction administrator.
+                              The password should be at least 8 characters long, and consist of at least one lowercase letter, at least one uppercase letter, at least one number, and at least one special character.
+        - **measurements.min\_num\_of\_services**: Minimum Number of measurement service pods.
+        - **measurements.max\_num\_of\_services**: Maximum Number of measurement service pods.
+        - **measurements.max\_pod\_memory\_capacity**: Maximum memory capacity limit for measurement service pods. (Default is "8G").
+        - **measurements.max\_pod\_cpu\_capacity**: Maximum CPU capacity limit for measurement service pods. (Default is "1").
+        - **measurements.pod\_ephemeral\_storage**: Ephemeral Storage Capacity for measurement service pods. (Default is "1G").
+        - **measurements.S3**: Save all measurements data to S3, instead of local PV (optional).
+            - **measurements.S3.bucket**: Measurements S3 bucket name.
+            - **measurements.S3.key**: Measurements S3 key.
+            - **measurements.S3.secret**: Measurements S3 secret.
+            - **measurements.S3.region**: Measurements S3 region.
+        - **smtp.user**: Enter the email address for a designated user for the SMTP server (optional).
+        - **smtp.password**: Enter this user’s password (optional).
+        - **smtp.identity**: Enter this user’s password (optional).
+        - **smtp.url**: Enter the SMTP server URL (optional).
+        - **authentication.authority**: Authority for authentication (Optional).
+        - **authentication.client_id**: Client ID for authentication (Optional).
+        - **authentication.client_secret**: Client Secret for authentication (Optional).
+        - **authentication.jwks_url**: JWKS URL for authentication (Optional).
+        - **authentication.issuer**: Issuer for authentication (Optional).
+        - **authentication.ca\_root\_crt**: CA root certificate for authentication (Optional).
+        - **tls.use_letsencrypt**: If your host FQDN starts with “https”, choose whether to use Let’s Encrypt to obtain certificates.
+        - **tls.crt**: If your host FQDN starts with “https”, paste in the certifications you have for using the TLS connection (Applicable only if you don’t use Let’s Encrypt).
+        - **tls.key**: If your host FQDN starts with “https”, enter the key you have for using the TLS connection (Applicable only if you don’t use Let’s Encrypt).
+        - **nginx.force_http**: Force internal NGINX to listen on http even if the host FQDN starts with “https”.
+                                This is useful if you want to use a TLS termination proxy in front of vFunction, other then the route provided by the operator.
+        - **nginx.ipv6_disabled**: Disable IPv6 on internal NGINX.
+        - **nginx.service_type**: Set the service type for the internal NGINX service - ClusterIP, NodePort or LoadBalancer.
+        - **route.use_route**: Use OpenShift route to expose vFunction. (Default is "Yes").
+        - **route.tls_termination**: Set the TLS termination type for the OpenShift route - edge, passthrough or reencrypt. (Default is "edge").
+        - **route.use\_tls\_certificate**: Use TLS certificate for OpenShift route (as provided in tls.crt and tls.key) - instead of the default one defined for the route controller in your cluster. (Default is "No").
+        - **mysql.external\_mysql\_ip**: If you want to use an external MySQL database, enter its IP address.
+        - **mysql.external\_mysql\_user**: If you want to use an external MySQL database, enter its user name.
+        - **mysql.external\_mysql\_password**: If you want to use an external MySQL database, enter its password.
+        - **mysql.max\_pod\_memory\_capacity**: Maximum memory capacity limit for MySQL pod. (Default is "2G").
+        - **mysql.max\_pod\_cpu\_capacity**: Maximum CPU capacity limit for MySQL pod. (Default is "1").
+        - **mysql.pod\_ephemeral\_storage**: Ephemeral Storage Capacity for MySQL pod. (Default is "1G").
+        - **storage.storage\_class**: If you want to use a specific StorageClass for all PVCs, other than the default one, enter its name.
+        - **storage.mysql\_persistent\_volume**: If you want to use a specific PV for mysql PVC, other than the dynamically provisioned one, enter its name.
+        - **storage.mysql\_persistent\_volume\_claim**: If you want to use a specific pre-created PVC for mysql deployment, other than the dynamically provisioned one, enter its name.
+        - **storage.mysql\_persistent\_volume\_claim\access\_mode**: If you want to use a specific access mode for mysql PVC, other than the default one, enter its name. (Default is "ReadWriteOnce").
+        - **storage.storage\_persistent\_volume**: If you want to use a specific PV for storage PVC, other than the dynamically provisioned one, enter its name.
+        - **storage.storage\_persistent\_volume\_claim**: If you want to use a specific pre-created PVC for storage deployment, other than the dynamically provisioned one, enter its name.
+        - **storage.storage\_persistent\_volume\_claim\access\_mode**: If you want to use a specific access mode for storage PVC, other than the default one, enter its name. (Default is "ReadWriteOnce").
+        - **storage.lets\_encrypt\_persistent\_volume**: If you want to use a specific PV for lets encrypt PVC, other than the dynamically provisioned one, enter its name.
+        - **storage.lets\_encrypt\_persistent\_volume\_claim**: If you want to use a specific pre-created PVC for lets encrypt deployment, other than the dynamically provisioned one, enter its name.
+        - **storage.lets\_encrypt\_persistent\_volume\_claim\access\_mode**: If you want to use a specific access mode for lets encrypt PVC, other than the default one, enter its name. (Default is "ReadWriteOnce").
+        - **distributed.otlp.min\_number\_of\_services**: Minimum Number of OTLP pods.
+        - **distributed.otlp.max\_number\_of\_services**: Maximum Number of OTLP pods.
+        - **distributed.otlp.max\_pod\_memory\_capacity**: Maximum memory capacity for OTLP pods. (Default is "1G").
+        - **distributed.otlp.max\_pod\_cpu\_capacity**: Maximum CPU capacity for OTLP pods. (Default is "1").
+        - **distributed.otlp.pod\_ephemeral\_storage**: Ephemeral Storage Capacity for OTLP service pods. (Default is "250M").
+        - **distributed.otlp.max\_folder\_size\_in\_mb**: Maximum folder size in MB for OTLP pods. (Default is "200").
+        - **distributed.dm.min\_number\_of\_services**: Minimum Number of dm pods.
+        - **distributed.dm.max\_number\_of\_services**: Maximum Number of dm pods.
+        - **distributed.dm.max\_pod\_memory\_capacity**: Maximum memory capacity for dm pods. (Default is "8G").
+        - **distributed.dm.max\_pod\_cpu\_capacity**: Maximum CPU capacity for dm pods. (Default is "1").
+        - **distributed.dm.pod\_ephemeral\_storage**: Ephemeral Storage Capacity for dm service pods. (Default is "1G").
+        - **backup.mysql.restore\_during\_installation**: If you want, during installation, to restore the backup from the latest kept backup with the same major version (if available on attached DB storage or S3 bucket), choose "Yes".
+        - **backup.mysql.S3**: Backup MySQL to S3 (optional).
+            - **backup.mysql.S3.bucket**: MySQL backup S3 bucket name.
+            - **backup.mysql.S3.key**: MySQL backup S3 key.
+            - **backup.mysql.S3.secret**: MySQL backup S3 secret.
+            - **backup.mysql.S3.region**: MySQL backup S3 region.
+        - **security.image\_pull\_policy**: If you want to use a custom image pull policy for all deployments, enter it here (optional).
+        - **security.force\_hashed\_images**: If you want to use hashed images for all deployments, choose "Yes".
+        - **security.set\_pod\_resources**: If you want to not set resource requests and limits for all deployments, choose "No".
+        - **security.proxy.http\_proxy**: Enter the address of an HTTP proxy (optional).
+        - **security.proxy.https\_proxy**: Enter the address of an HTTPS proxy (optional).
+        - **security.proxy.additional\_no\_proxy**: Enter additional addresses to exclude from proxying (optional).
+        - **security.use\_rate\_limiting**: If you want to use rate limiting in nginx, choose "Yes".
+        - **security.requests\_per\_second**: Enter the number of requests per second for rate limiting.
+        - **affinity.node\_affinity**: Enter the node affinity for the deployments (optional). There is only one nodeSelectorTerm as requiredDuringSchedulingIgnoredDuringExecution, but it can contain multiple matchExpressions (which are ANDed together).
+            - **key**: Enter the key for the node affinity.
+            - **operator**: Enter the operator for the node affinity (In, NotIn, Exists, DoesNotExist, Gt, Lt).
+            - **values**: Enter the values for the node affinity. A comma-separated list of values.
+            - **services**: Enter the services for the node affinity. A comma-separated list of services to which the node affinity applies. If not specified, the node affinity will apply to all services. List of possible services: mysql, nginx, storage, vfapi-parser, vfapi-users, vfapi-organizations, vfapi-idp, vfapi-mcp, vfapi-measurements, vfapi-otlp, vfapi-dm. (optional).
+        - **affinity.node\_selectors**: Enter the node selectors for the deployments (optional).
+            - **key**: Enter the key for the node selector.
+            - **value**: Enter the value for the node selector.
+            - **services**: Enter the services for the node selector. A comma-separated list of services to which the node selector applies. If not specified, the node selector will apply to all services. List of possible services: mysql, nginx, storage, vfapi-parser, vfapi-users, vfapi-organizations, vfapi-idp, vfapi-mcp, vfapi-measurements, vfapi-otlp, vfapi-dm. (optional).
+        - **affinity.additional\_labels**: Enter additional labels for the deployments (optional).
+            - **key**: Enter the key for the additional label.
+            - **value**: Enter the value for the additional label.
+            - **services**: Enter the services for the additional label. See above at the node selectors section for more details. (optional).
+        - **affinity.additional\_annotations**: Enter additional annotations for the deployments (optional).
+            - **key**: Enter the key for the additional annotation.
+            - **value**: Enter the value for the additional annotation.
+            - **services**: Enter the services for the additional annotation. See above at the node selectors section for more details. (optional).
+    1. In the Installed Operators window choose and click on vFunction Operator and then Create Instance.
+    1. In the Create vFunctionServer window, paste the YAML file that you created in step 1.
+    1. Click Create.
+    1. You can now click on your new created vFunction operand in order to see its details and installation progress.
+
+    ## Verifying the installation
+
+    Check that the operand installed successfully:
+
+    1. Check that the "Operand State" property shows “Working”.
+    1. Check that the "Successfully Installed" property shows "Yes".
+
+    If "Operand State" shows "Failed", it indicates the operand wasn’t installed correctly. Check the events and logs for all pods (operator and image containers) for any issues. In the event that you cannot troubleshoot, contact vFunction support.
+
+    ## After installation
+
+    The vFunction site is now accessible via the newly created vFunction application custom address, for example, my.domain.com. There are two ways you can access the vFunction dashboard.
+
+    ### Access using the router canonical hostname
+
+    1. Update your DNS provider by creating a canonical name (CNAME) record.
+    This record should point to your host address, and to the ”vfunction” subdomain of the OpenShift canonical router hostname as the alias.
+    For example, ***my.domain.com.   CNAME   vfunction.apps.ocp4.my-openshift.com.***
+    2. Find your cluster Router Canonical Hostname address in the newly created vfunction-route-xxx under your vFunction OpenShift project -> **Networking** -> **Routes** -> **vfunction-route-xxx** route -> **Router Canonical Hostname** field.
+    You can now access the dashboard using your defined "host" spec property (as above).
+
+    ### Access using the nginx service location
+
+    You may use this access method if your OpenShift is installed on a provider that supports exposing LoadBalancer-type services.
+    1. Update your DNS provider by creating a canonical name (CNAME) record.
+    This record should point to your host address and to the vfunction-nginx-xxx service location.
+    For example, ***my.domain.com.   CNAME   a05951ed7cdf-1394239323.us-east-1.elb.amazonaws.com.***
+    1. Point your custom domain to the vfunction-nginx-xxx service's external IP location, which you can find in the OpenShift project > **Networking** -> **Services** -> **vfunction-nginx-xxx** service > **Service Address** > **Location** field.
+
+    ## Upgrade and Rollback
+
+    The vFunction operator includes a built-in auto-upgrade mechanism.
+
+    You can choose one of 4 upgrading modes:
+    - **Daily**: The operator will check for a new version every day at 3 AM and will install it automatically.
+    - **Always**: The operator will check for a new version every 10 minutes and will install it automatically.
+    - **Never**: The automatic upgrading mechanism is off (default).
+    - **Maintenance**: Put the operator in a maintenance mode.
+
+    For an on-demand upgrade,  you can change anytime the upgrading mode from “Never” to “Always”, wait for the operand to be upgraded, and change again to “Never”.
+
+    During the upgrade, the "Operand State" property will change to “Upgrading...” and back again to “Working” after a successful upgrade.
+
+    In case of a failure upgrading the operand, an automatic rollback to the last working version will occur. The failed version will be marked as defective and the operator will not try to upgrade to it again.
+
+    Choosing the "Maintenance" option will tell the operator to take down all pods, so you can safely fix storage issues, return volumes from snapshots, etc.
+    After finishing the maintenance, return the upgrade mode to your original desired policy.
   icon:
     - base64data: "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"
       mediatype: "image/jpeg"

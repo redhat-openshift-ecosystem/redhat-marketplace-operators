@@ -14,7 +14,7 @@ metadata:
             "name": "cb-example"
           },
           "spec": {
-            "image": "registry.connect.redhat.com/couchbase/operator-rhmp@sha256:5213e1c50c238e30bcc50c98b337ea3a145234f79e4bdc7a4ed46504a14f914a",
+            "image": "registry.connect.redhat.com/couchbase/server@sha256:033c0b2b8eb12ac63a158754dce20d9787a470c77252c60bd4d9e11f5b2dbc7a",
             "cluster": {
               "clusterName": "cb-example",
               "dataServiceMemoryQuota": "256Mi",
@@ -1205,7 +1205,7 @@ spec:
                   value: registry.connect.redhat.com/couchbase/server@sha256:643272bd58b0b584863400d281f1dcb147099c7f2120a947347be4b1f97391a7
                 - name: RELATED_IMAGE_COUCHBASE_SERVER_7_6_3_4
                   value: registry.connect.redhat.com/couchbase/server@sha256:437cd5aa05ff057b17f47d2500dec7cefca21682eb0f4badff4538dc164bc1a7
-                image: registry.connect.redhat.com/couchbase/operator@sha256:707571a7881bc12d5f1b0b1a94eb3c675d5c0ea0114c994a47ceb5aa79df4013
+                image: registry.connect.redhat.com/couchbase/operator@sha256:a79e1b6781d5f8badf664e7efea6e2889e43fae6e0d37169d766685dcd6ff394
                 name: couchbase-operator
                 ports:
                 - containerPort: 8080
@@ -1354,7 +1354,7 @@ spec:
     strategy: deployment
   relatedImages:
     - name: couchbase-operator
-      image: registry.connect.redhat.com/couchbase/operator@sha256:707571a7881bc12d5f1b0b1a94eb3c675d5c0ea0114c994a47ceb5aa79df4013
+      image: registry.connect.redhat.com/couchbase/operator@sha256:a79e1b6781d5f8badf664e7efea6e2889e43fae6e0d37169d766685dcd6ff394
     - name: couchbase-server
       image: registry.connect.redhat.com/couchbase/server@sha256:033c0b2b8eb12ac63a158754dce20d9787a470c77252c60bd4d9e11f5b2dbc7a
     - name: couchbase-backup

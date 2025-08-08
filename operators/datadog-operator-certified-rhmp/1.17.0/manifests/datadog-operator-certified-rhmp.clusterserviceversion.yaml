@@ -209,6 +209,8 @@ metadata:
     features.operators.openshift.io/token-auth-azure: "false"
     features.operators.openshift.io/token-auth-gcp: "false"
     olm.skipRange: '>=1.7.0 <1.17.0'
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator-certified-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/datadog-operator-certified-rhmp/support?utm_source=openshift_console
   labels:
     operatorframework.io/arch.amd64: supported
     operatorframework.io/arch.arm64: supported

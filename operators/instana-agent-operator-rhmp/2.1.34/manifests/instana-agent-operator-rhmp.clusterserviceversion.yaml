@@ -48,12 +48,12 @@ metadata:
     features.operators.openshift.io/token-auth-aws: "false"
     features.operators.openshift.io/token-auth-azure: "false"
     features.operators.openshift.io/token-auth-gcp: "false"
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/instana-agent-operator-rhmp/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/instana-agent-operator-rhmp/support?utm_source=openshift_console
     operators.operatorframework.io/builder: operator-sdk-v1.23.0
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v3
     repository: https://github.com/instana/instana-agent-operator
     support: Instana
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/instana-agent-operator-rhmp/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/instana-agent-operator-rhmp/support?utm_source=openshift_console
   labels:
     operatorframework.io/arch.amd64: supported
     operatorframework.io/arch.ppc64le: supported
@@ -530,5 +530,10 @@ spec:
   minKubeVersion: 1.11.0
   provider:
     name: Instana
+  relatedImages:
+    - image: icr.io/instana/instana-agent-operator@sha256:fa0256052739250c2d8abcae975254ed36ea3f4009443828a5e47da0f394723a
+      name: instana-agent-operator-fa0256052739250c2d8abcae975254ed36ea3f4009443828a5e47da0f394723a-annotation
+    - image: icr.io/instana/instana-agent-operator@sha256:fa0256052739250c2d8abcae975254ed36ea3f4009443828a5e47da0f394723a
+      name: manager
   replaces: instana-agent-operator.v2.1.33
   version: 2.1.34

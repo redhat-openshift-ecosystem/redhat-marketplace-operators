@@ -2441,5 +2441,5 @@ spec:
     webhookPath: /inject
   relatedImages:
   - name: dynatrace-operator
-    image: 'null'
+    image: registry.connect.redhat.com/dynatrace/dynatrace-operator@sha256:ee7ed0ca8d8367f6bf95ca828fb64f8ffd24aafb38b4a5e59409289c1e0b0a39
   replaces: dynatrace-operator-rhmp.v1.6.2

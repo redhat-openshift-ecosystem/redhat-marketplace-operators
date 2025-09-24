@@ -2442,4 +2442,4 @@ spec:
   relatedImages:
   - name: dynatrace-operator
     image: 'null'
-  replaces: dynatrace-operator-rhmp.v1.7.1
+  replaces: dynatrace-operator-rhmp.v1.6.2

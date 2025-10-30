@@ -56,6 +56,8 @@ entries:
     replaces: postgresoperator.v5.8.1
   - name: postgresoperator.v5.8.3
     replaces: postgresoperator.v5.8.2
+  - name: postgresoperator.v5.8.4
+    replaces: postgresoperator.v5.8.3
   name: v5
   package: crunchy-postgres-operator-rhmp
   schema: olm.channel
@@ -104,5 +106,7 @@ entries:
 - image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:36ac585cc9fd8a8011ee75b5d5de73b6f6c16b5f39f625c8e6c1b6ca6e57b3b4
   schema: olm.bundle
 - image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:19c9d44cb9a0c7f52501fcb589750f3e85e270d066423bcadac593dd79e48ff4
+  schema: olm.bundle
+- image: registry.connect.redhat.com/crunchydata/postgres-operator-bundle-marketplace@sha256:b2da089e64a53c0214a6fae71ac7d91f940ff029ad5b7d51ac47bc47e2e85c27
   schema: olm.bundle
 schema: olm.template.basic

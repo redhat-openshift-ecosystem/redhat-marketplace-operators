@@ -2,8 +2,8 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: ClusterServiceVersion
 metadata:
   annotations:
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/aerospike-kubernetes-operator-rhmp/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/aerospike-kubernetes-operator-rhmp/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/aerospike-kubernetes-operator/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/aerospike-kubernetes-operator/support?utm_source=openshift_console
     features.operators.openshift.io/disconnected: "false"
     features.operators.openshift.io/fips-compliant: "false"
     features.operators.openshift.io/proxy-aware: "false"

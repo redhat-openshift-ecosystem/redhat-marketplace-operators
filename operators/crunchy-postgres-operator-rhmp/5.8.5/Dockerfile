@@ -22,6 +22,6 @@ LABEL \
 	operators.operatorframework.io.bundle.channels.v1="v5" \
 	operators.operatorframework.io.bundle.channel.default.v1="v5" \
 	com.redhat.delivery.operator.bundle=true \
-	com.redhat.openshift.versions="v4.12-v4.20"
+	com.redhat.openshift.versions="v4.12-v4.19"
 
 COPY --from=builder /build/ /

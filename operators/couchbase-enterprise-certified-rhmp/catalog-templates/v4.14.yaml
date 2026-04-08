@@ -15,22 +15,34 @@ entries:
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.5.1-2
-    skiprange: '>=2.5.0-1 <=2.5.1-1'
+    skips:
+    - couchbase-operator.v2.5.1-1
   name: 2.5.1
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.5.2-2
-    skiprange: '>=2.5.0-1 <=2.5.2-1'
+    skips:
+    - couchbase-operator.v2.5.2-1
   name: 2.5.2
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.6.0-1
-    skipRange: '>=2.2.4-1 <=2.5.2-2'
+    skipRange: '>=2.2.2 <=2.5.0-1'
   - name: couchbase-operator.v2.6.0-2
-    skiprange: '>=2.5.0-1 <=2.6.0-1'
+    skips:
+    - couchbase-operator.v2.6.0-1
   name: 2.6.0
+  package: couchbase-enterprise-certified-rhmp
+  schema: olm.channel
+- entries:
+  - name: couchbase-operator.v2.6.1-1
+    skipRange: '>=2.2.4-1 <=2.5.1-1'
+  - name: couchbase-operator.v2.6.1-2
+    skips:
+    - couchbase-operator.v2.6.1-1
+  name: 2.6.1
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
@@ -47,39 +59,52 @@ entries:
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.6.4-6
+    skipRange: '>=2.2.4-1 <=2.6.2-3'
   - name: couchbase-operator.v2.6.4-7
-    skiprange: '>=2.5.0-1 <=2.6.4-6'
+    skipRange: '>=2.2.4-1 <=2.6.2-3'
+    replaces: couchbase-operator.v2.6.4-6
   name: 2.6.4
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.7.0-5
-    skiprange: '>=2.5.0-1 <=2.7.0-4'
+    skipRange: '>=2.2.4-1 <=2.7.0-4'
   name: 2.7.0
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.7.1-1
-    skipRange: '>=2.5.0-1 <=2.7.0-5'
+    skipRange: '>=2.2.4-1 <=2.7.0-5'
   name: 2.7.1
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
-  - name: couchbase-operator.v2.8.1-1
-    skiprange: '>=2.5.0-1 <=2.8.0-2'
-  name: 2.8.1
-  package: couchbase-enterprise-certified-rhmp
-  schema: olm.channel
-- entries:
   - name: couchbase-operator.v2.8.0-1
+    skipRange: '>=2.2.4-1 <=2.7.0-5'
   - name: couchbase-operator.v2.8.0-2
-    skiprange: '>=2.5.0-1 <=2.8.0-1'
+    skipRange: '>=2.2.4-1 <=2.7.0-5'
+    replaces: couchbase-operator.v2.8.0-1
   name: 2.8.0
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
   - name: couchbase-operator.v2.8.1-1
-    skiprange: '>=2.5.0-1 <=2.8.0-2'
+    skipRange: '>=2.2.4-1 <=2.8.0-2'
+  name: 2.8.1
+  package: couchbase-enterprise-certified-rhmp
+  schema: olm.channel
+- entries:
+  - name: couchbase-operator.v2.9.0-1
+    skiprange: '>=2.2.4-1 <=2.8.1-2'
+  name: 2.9.0
+  package: couchbase-enterprise-certified-rhmp
+  schema: olm.channel
+- entries:
+  - name: couchbase-operator.v2.8.1-1
+    skiprange: '>=2.2.4-1 <=2.8.0-2'
+  - name: couchbase-operator.v2.9.0-1
+    skiprange: '>=2.6.4-6 <=2.8.1-2'
+    replaces: couchbase-operator.v2.8.1-1
   name: stable
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
@@ -111,6 +136,12 @@ entries:
   schema: olm.bundle
 - image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:5213e1c50c238e30bcc50c98b337ea3a145234f79e4bdc7a4ed46504a14f914a
   schema: olm.bundle
-- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:00f7ce0148988e93679d4b53b45ae8d2ad54f308b908940e7b28504318f718c6
+- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:18afb132ea2b65c0ecac4777a56cb9d04a82a97f09bf04073311b62417f80fd5
+  schema: olm.bundle
+- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:fb841973af7318222c5c46f870ba6e0e8217858fdb1889115348f26d00a6e70f
+  schema: olm.bundle
+- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:5933c4e344b50d9364a02437c9c4ad177243190eaf29d9aad70ef391f58288ea
+  schema: olm.bundle
+- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:5d9e962108fb7db3d42752a0d84e1a0708873c9204412e2c463c88e90ccd7586
   schema: olm.bundle
 schema: olm.template.basic

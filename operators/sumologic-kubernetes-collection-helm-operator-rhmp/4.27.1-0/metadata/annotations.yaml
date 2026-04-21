@@ -18,3 +18,7 @@ annotations:
   com.redhat.openshift.versions: v4.14-v4.21
   com.redhat.delivery.operator.bundle: true
   operators.operatorframework.io.bundle.channel.default.v1: alpha
+
+  ## Annotations required for the Red Hat Marketplace, see: https://github.com/redhat-openshift-ecosystem/certification-releases/blob/main/4.9/ga/troubleshooting.md#annotations-validation
+  marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/sumologic-kubernetes-collection-helm-operator/pricing?utm_source=openshift_console
+  marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/sumologic-kubernetes-collection-helm-operator/support?utm_source=openshift_console

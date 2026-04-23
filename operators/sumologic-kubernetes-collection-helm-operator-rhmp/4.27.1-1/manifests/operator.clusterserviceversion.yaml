@@ -41,7 +41,7 @@ metadata:
     marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/sumologic-kubernetes-collection-helm-operator-rhmp/support?utm_source=openshift_console
     repository: https://github.com/SumoLogic/sumologic-kubernetes-collection-helm-operator.git
     support: Sumo Logic
-  name: sumologic-kubernetes-collection-helm-operator.v4.27.1-0
+  name: sumologic-kubernetes-collection-helm-operator.v4.27.1-1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -401,7 +401,7 @@ spec:
                 - name: RELATED_IMAGE_KUBE_RBAC_PROXY
                   value: registry.connect.redhat.com/sumologic/kube-rbac-proxy@sha256:a119a01cfc8930ff123a00c67faebe4200431e53a786ae8dd37ff1776e17409c
                 - name: RELATED_IMAGE_KUBE_STATE_METRICS
-                  value: registry.connect.redhat.com/sumologic/kube-state-metrics@sha256:7748e568d07ac8880899876f3d05de7e1008000214cc94d40d6731678c2438cf
+                  value: registry.connect.redhat.com/sumologic/kube-state-metrics@sha256:a48055ea8611c5b1aa12be58381cc7112f1ab4edabd225e600af681690a4cd3f
                 - name: RELATED_IMAGE_KUBERNETES_SETUP
                   value: registry.connect.redhat.com/sumologic/kubernetes-setup@sha256:f07eaf68fa11ffc708e4485a83bd3763fc5712f7d73d29edfe5b9c9e08f05df6
                 - name: RELATED_IMAGE_KUBERNETES_TOOLS_KUBECTL
@@ -413,7 +413,7 @@ spec:
                 - name: RELATED_IMAGE_NODE_EXPORTER
                   value: registry.connect.redhat.com/sumologic/node-exporter@sha256:11e9e604432a66d9b388cb1bf70eac077c7f0372d1264342ef927d76b8ef0272
                 - name: RELATED_IMAGE_OPENTELEMETRY_OPERATOR
-                  value: registry.connect.redhat.com/sumologic/opentelemetry-operator@sha256:db93d4dd072b7f2d3de167e86895a0db6b930bb03555ef5a6935649817dd2a1e
+                  value: registry.connect.redhat.com/sumologic/opentelemetry-operator@sha256:cf4c871416bc30cc3fcd7e40835acc6c0282eba3b86134c783db7c7a10a3e265
                 - name: RELATED_IMAGE_PROMETHEUS_CONFIG_RELOADER
                   value: registry.connect.redhat.com/sumologic/prometheus-config-reloader@sha256:0b605d36782afd8f50fd631d0e9c7b19d39ce962af89b7a737b2f09a8ceff291
                 - name: RELATED_IMAGE_PROMETHEUS_OPERATOR
@@ -523,7 +523,7 @@ spec:
     name: RELATED_IMAGE_BUSYBOX
   - image: registry.connect.redhat.com/sumologic/kube-rbac-proxy@sha256:a119a01cfc8930ff123a00c67faebe4200431e53a786ae8dd37ff1776e17409c
     name: RELATED_IMAGE_KUBE_RBAC_PROXY
-  - image: registry.connect.redhat.com/sumologic/kube-state-metrics@sha256:7748e568d07ac8880899876f3d05de7e1008000214cc94d40d6731678c2438cf
+  - image: registry.connect.redhat.com/sumologic/kube-state-metrics@sha256:a48055ea8611c5b1aa12be58381cc7112f1ab4edabd225e600af681690a4cd3f
     name: RELATED_IMAGE_KUBE_STATE_METRICS
   - image: registry.connect.redhat.com/sumologic/kubernetes-setup@sha256:f07eaf68fa11ffc708e4485a83bd3763fc5712f7d73d29edfe5b9c9e08f05df6
     name: RELATED_IMAGE_KUBERNETES_SETUP
@@ -535,7 +535,7 @@ spec:
     name: RELATED_IMAGE_NGINX_UNPRIVILEGED
   - image: registry.connect.redhat.com/sumologic/node-exporter@sha256:11e9e604432a66d9b388cb1bf70eac077c7f0372d1264342ef927d76b8ef0272
     name: RELATED_IMAGE_NODE_EXPORTER
-  - image: registry.connect.redhat.com/sumologic/opentelemetry-operator@sha256:db93d4dd072b7f2d3de167e86895a0db6b930bb03555ef5a6935649817dd2a1e
+  - image: registry.connect.redhat.com/sumologic/opentelemetry-operator@sha256:cf4c871416bc30cc3fcd7e40835acc6c0282eba3b86134c783db7c7a10a3e265
     name: RELATED_IMAGE_OPENTELEMETRY_OPERATOR
   - image: registry.connect.redhat.com/sumologic/prometheus-config-reloader@sha256:0b605d36782afd8f50fd631d0e9c7b19d39ce962af89b7a737b2f09a8ceff291
     name: RELATED_IMAGE_PROMETHEUS_CONFIG_RELOADER
@@ -555,5 +555,5 @@ spec:
     name: RELATED_IMAGE_TELEGRAF
   - image: registry.connect.redhat.com/sumologic/thanos@sha256:16faf7191668e86d8b576bba055dd0cbdeb009635976b9e07bd00f926032f11c
     name: RELATED_IMAGE_THANOS
-  replaces: sumologic-kubernetes-collection-helm-operator.v4.21.0-0
-  version: 4.27.1-0
+  replaces: sumologic-kubernetes-collection-helm-operator.v4.27.1-0
+  version: 4.27.1-1

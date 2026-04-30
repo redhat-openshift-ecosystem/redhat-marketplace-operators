@@ -47,11 +47,20 @@ entries:
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
+  - name: couchbase-operator.v2.9.1-1
+    skiprange: '>=2.2.4-1 <=2.9.0-1'
+  name: 2.9.1
+  package: couchbase-enterprise-certified-rhmp
+  schema: olm.channel
+- entries:
   - name: couchbase-operator.v2.8.1-1
     skiprange: '>=2.2.4-1 <=2.8.0-2'
   - name: couchbase-operator.v2.9.0-1
     skiprange: '>=2.6.4-6 <=2.8.1-2'
     replaces: couchbase-operator.v2.8.1-1
+  - name: couchbase-operator.v2.9.1-1
+    skiprange: '>=2.2.4-1 <=2.9.0-1'
+    replaces: couchbase-operator.v2.9.0-1
   name: stable
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
@@ -68,5 +77,7 @@ entries:
 - image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:41c4fbaaeeb3e3c16ef1f1af6b15654141691a1c781865857f6ad1d3815a0750
   schema: olm.bundle
 - image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:5d9e962108fb7db3d42752a0d84e1a0708873c9204412e2c463c88e90ccd7586
+  schema: olm.bundle
+- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:c8339bb87cd9980e80aa4eef98842d6731d93699abcc4987d7ef4c7e651795cf
   schema: olm.bundle
 schema: olm.template.basic

@@ -138,11 +138,11 @@ metadata:
       ]
     capabilities: Basic Install
     createdAt: "2026-04-30T16:56:37Z"
-    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/simplyblock-operator-rhmp/pricing?utm_source=openshift_console
-    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/simplyblock-operator-rhmp/support?utm_source=openshift_console
+    marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/simplyblock-operator/pricing?utm_source=openshift_console
+    marketplace.openshift.io/support-workflow: https://marketplace.redhat.com/en-us/operators/simplyblock-operator/support?utm_source=openshift_console
     operators.operatorframework.io/builder: operator-sdk-v1.42.2
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v4
-  name: simplyblock-operator-rhmp.v0.1.0
+  name: simplyblock-operator.v0.1.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

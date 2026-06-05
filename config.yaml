@@ -13,6 +13,9 @@ tests:
       - ^falcon-operator-rhmp
       - ^instana-agent-operator-rhmp
       - ^sumologic-kubernetes-collection-helm-operator-rhmp
+  - name: check_bundle_higher_than_channel_head
+    ignore_operators:
+      - ^instana-agent-operator-rhmp
 
 index_image:
   repository: quay.io/redhat/redhat----redhat-marketplace-index

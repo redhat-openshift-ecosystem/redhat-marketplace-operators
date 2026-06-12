@@ -107,11 +107,18 @@ entries:
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
 - entries:
+  - name: couchbase-operator.v2.8.2-1
+  name: 2.8.2
+  package: couchbase-enterprise-certified-rhmp
+  schema: olm.channel
+- entries:
   - name: couchbase-operator.v2.8.0-2
     skips:
     - couchbase-operator.v2.8.0-1
   - name: couchbase-operator.v2.8.1-1
     replaces: couchbase-operator.v2.8.0-2
+  - name: couchbase-operator.v2.8.2-1
+    replaces: couchbase-operator.v2.8.1-1
   name: stable
   package: couchbase-enterprise-certified-rhmp
   schema: olm.channel
@@ -160,5 +167,7 @@ entries:
 - image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:c352f5633beef2eaaa324dda66b9b484e5ea79efbbc3b781079f2e9d10c880a9
   schema: olm.bundle
 - image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:5213e1c50c238e30bcc50c98b337ea3a145234f79e4bdc7a4ed46504a14f914a
+  schema: olm.bundle
+- image: registry.connect.redhat.com/couchbase/operator-rhmp@sha256:8594e0061de881c0e1634b1649160c5ae6defa1a22c30bfd1d92ae44465461e0
   schema: olm.bundle
 schema: olm.template.basic

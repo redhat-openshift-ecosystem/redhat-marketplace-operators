@@ -244,7 +244,7 @@ spec:
   skips:
     - aerospike-kubernetes-operator-rhmp.v4.4.0
   relatedImages:
-    - image: quay.io/aerospike/aerospike-kubernetes-operator@sha256:b6ea7d7c38ca3b0bfb1249cae2e46775c64869f3514b7ad2100fc0891e0e02a4
+    - image: quay.io/aerospike/aerospike-kubernetes-operator@sha256:9679dd46d67d25ab7255f0e84bcda454613405eae4c9a87e4bb2fe531e691063
       name: manager
   apiservicedefinitions: {}
   customresourcedefinitions:

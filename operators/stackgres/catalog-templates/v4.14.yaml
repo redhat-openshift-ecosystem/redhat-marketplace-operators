@@ -26,6 +26,8 @@ entries:
     replaces: stackgres.v1.18.7
   - name: stackgres.v1.19.0-rc1
     replaces: stackgres.v1.18.8
+  - name: stackgres.v1.19.0-rc2
+    replaces: stackgres.v1.19.0-rc1
   name: candidate
   package: stackgres
   schema: olm.channel
@@ -46,6 +48,8 @@ entries:
     - stackgres.v1.18.2
   - name: stackgres.v1.18.8
     replaces: stackgres.v1.18.7
+  - name: stackgres.v1.19.0-rc2
+    replaces: stackgres.v1.18.8
   name: fast
   package: stackgres
   schema: olm.channel
@@ -96,4 +100,7 @@ entries:
 - schema: olm.bundle
   image: 
     registry.connect.redhat.com/ongres/stackgres-1@sha256:2b376f3598624d43a1dcfdb5958c928281d6162b02910bc79a2c5577dc9457fb
+- schema: olm.bundle
+  image: 
+    registry.connect.redhat.com/ongres/stackgres-1@sha256:6aadf29bf5a8ef92edf34fca4638862e522f07039bc60281dff39c57db2684f2
 schema: olm.template.basic

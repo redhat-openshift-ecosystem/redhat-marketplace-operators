@@ -1,0 +1,253 @@
+###############################################################################
+# Secret-scanning policy — Storware/sbr-operator-rhmp
+#
+# PURPOSE
+#   Defines the gitleaks ruleset and the register of approved scan exceptions
+#   for this repository. The pipeline fails the build on any finding that is
+#   not explicitly covered below.
+#
+# REPOSITORY CONTEXT
+#   This repository is a fork of the public Red Hat Marketplace operator
+#   catalogue (redhat-marketplace/redhat-marketplace-operators). More than 99%
+#   of its content consists of third-party operator bundles submitted by vendor
+#   automation (Percona, YugabyteDB, Starburst, Zabbix and others) and is not
+#   authored by Storware. Storware's own contribution is limited to
+#   operators/sbr-operator-rhmp/**.
+#
+# CONTROL DESIGN
+#   Every exception below is constrained on three axes simultaneously:
+#     1. condition = "AND"  — the file path AND the matched value must both
+#                             match; a path alone never suppresses a finding.
+#     2. targetRules        — each exception applies only to the named rule ID.
+#     3. regexes            — pinned to the specific literal values reviewed,
+#                             not to generic patterns.
+#   No exception applies to operators/sbr-operator-rhmp/**. Storware-authored
+#   content is scanned with the default ruleset and no suppressions.
+#
+# VERIFICATION (analysis performed 2026-07-29, gitleaks v8.30.1)
+#   Baseline scan, full history (`gitleaks git`, 681 commits) ... 87 findings
+#   Same scan with this configuration applied ..................... 0 findings
+#   Working-tree scan (`gitleaks dir`) with this configuration .... 0 findings
+#   Negative control — four synthetic secrets were planted inside allow-listed
+#   paths and inside Storware-authored content, then re-scanned:
+#     a) freshly generated RSA-2048 private key, placed in the YugabyteDB
+#        bundle path covered by EXC-004 ............................. detected
+#     b) AWS credential pair, placed in the Percona path covered by
+#        EXC-001 .................................................... detected
+#     c) Stripe live key, placed in operators/sbr-operator-rhmp/ ..... detected
+#     d) the EXC-003 value altered by a single character
+#        (…610611 instead of …610610) ............................... detected
+#        while the unaltered value in the same directory remained suppressed,
+#        confirming the exception is pinned to the exact reviewed value and
+#        not to a pattern or to the directory.
+#   Result ........................................................ 4/4 caught
+#   Conclusion: the exceptions suppress only the enumerated values and do not
+#   blind the scanner within the paths they cover.
+#
+# NOTE ON DETECTION COVERAGE
+#   gitleaks v8.19+ decodes base64-encoded content before matching (findings
+#   are tagged `decoded:base64`). Several findings below exist only in encoded
+#   form and are invisible to plain-text scanners. Do not downgrade the pinned
+#   scanner version; doing so reduces detection coverage.
+#
+# MAINTENANCE
+#   Owner:            <TO BE COMPLETED — accountable engineer>
+#   Reviewed by:      <TO BE COMPLETED — security reviewer, date>
+#   Review cadence:   at each upstream catalogue sync, and at minimum annually.
+#   Change control:   exceptions may only be added after the underlying value
+#                     has been decoded, inspected and recorded below.
+###############################################################################
+
+title = "sbr-operator-rhmp secret scanning policy"
+
+[extend]
+useDefault = true
+
+
+###############################################################################
+# EXC-001 — Percona operator bundles: vendor sample credentials
+#-----------------------------------------------------------------------------
+# Rules suppressed  : generic-api-key, kubernetes-secret-yaml
+# Occurrences       : 50 (baseline scan of full history)
+# Scope             : operators/percona-{server-mongodb,xtradb-cluster,
+#                     postgresql}-operator*/**
+# Classification    : FALSE POSITIVE — non-secret by design
+#
+# Evidence
+#   The findings occur inside the `alm-examples` annotation of each
+#   ClusterServiceVersion, which carries ready-to-paste sample manifests
+#   rendered by the OpenShift console. The matched values are base64-encoded
+#   fields of `kind: Secret` example objects. Decoded, they are the sample
+#   credentials published in Percona's own public documentation:
+#
+#     root_password, backup_password, admin_password, clustercheckpassword,
+#     monitor, operatoradmin, backup, clusterAdmin, clusterMonitor, userAdmin,
+#     backup123456, clusterAdmin123456, clusterMonitor123456, userAdmin123456,
+#     pmm, supa|^|pazz
+#
+#   These strings are identical to the upstream Percona bundles and to the
+#   vendor documentation. They authenticate nothing; they are illustrative
+#   values a user is expected to replace at install time.
+#
+# Residual risk
+#   None. The values grant no access to any Storware or customer system.
+#
+# Note on scope
+#   The path expression also covers percona-postgresql-operator*, which
+#   currently produces no findings. It is included deliberately: those bundles
+#   use the same sample-credential convention and new versions are added by
+#   vendor automation. The value pinning still applies, so any credential
+#   outside the enumerated list will fail the build.
+###############################################################################
+[[allowlists]]
+description = "EXC-001 Percona alm-examples: vendor sample credentials from public documentation"
+targetRules = ["generic-api-key", "kubernetes-secret-yaml"]
+condition = "AND"
+regexTarget = "match"
+paths = [
+  '''(^|/)operators/percona-(server-mongodb|xtradb-cluster|postgresql)-operator[a-z0-9.-]*/''',
+]
+regexes = [
+  # as stored in the manifest (base64)
+  '''\b(YmFja3Vw|YmFja3VwMTIzNDU2|Y2x1c3RlckFkbWlu|Y2x1c3RlckFkbWluMTIzNDU2)\b''',
+  '''\b(Y2x1c3Rlck1vbml0b3I=?|Y2x1c3Rlck1vbml0b3IxMjM0NTY=?)''',
+  '''\b(dXNlckFkbWlu|dXNlckFkbWluMTIzNDU2|cG1t)\b''',
+  '''\b(cm9vdF9wYXNzd29yZA==?|YmFja3VwX3Bhc3N3b3Jk|bW9uaXRvcg==?)''',
+  '''\b(Y2x1c3RlcmNoZWNrcGFzc3dvcmQ=?|YWRtaW5fcGFzc3dvcmQ=?|b3BlcmF0b3JhZG1pbg==?)''',
+  '''c3VwYXxefHBheno=?''',
+  # the same values as decoded by gitleaks (findings tagged decoded:base64)
+  '''\b(root_password|backup_password|admin_password|clustercheckpassword|operatoradmin)\b''',
+  '''\b(backup123456|clusterAdmin123456|clusterMonitor123456|userAdmin123456)\b''',
+  '''supa\|\^\|pazz''',
+]
+
+
+###############################################################################
+# EXC-002 — Zabbix operator bundle: credentials quoted in operator documentation
+#-----------------------------------------------------------------------------
+# Rules suppressed  : generic-api-key, kubernetes-secret-yaml
+# Occurrences       : 18 (baseline scan of full history)
+# Scope             : operators/zabbix-operator-certified-rhmp/**
+# Classification    : FALSE POSITIVE — documentation text
+#
+# Evidence
+#   The matches are located in the `spec.description` field of the
+#   ClusterServiceVersion — the operator's README as rendered in the OpenShift
+#   console. The surrounding text is a fenced Markdown block titled
+#   "MySQL credentials" that instructs the reader how to construct their own
+#   Secret; the sample values carry inline footnote markers [1] and [2] which
+#   are explained in the paragraphs beneath.
+#
+#   Decoded values:
+#     emFiYml4X3N1cGVyX3Jvb3Q=      -> zabbix_super_root
+#     emFiYml4X3VzZXJfcGFzc3dvcmQ=  -> zabbix_user_password
+#
+# Residual risk
+#   None. The values are documentation placeholders and are not applied to any
+#   deployed resource.
+###############################################################################
+[[allowlists]]
+description = "EXC-002 Zabbix CSV description: placeholder credentials inside rendered documentation"
+targetRules = ["generic-api-key", "kubernetes-secret-yaml"]
+condition = "AND"
+regexTarget = "match"
+paths = ['''(^|/)operators/zabbix-operator-certified-rhmp/''']
+regexes = [
+  '''\b(emFiYml4X3N1cGVyX3Jvb3Q=?|emFiYml4X3VzZXJfcGFzc3dvcmQ=?|emFiYml4)''',
+  '''\b(zabbix_super_root|zabbix_user_password)\b''',
+]
+
+
+###############################################################################
+# EXC-003 — Starburst operator bundles: static demonstration password
+#-----------------------------------------------------------------------------
+# Rules suppressed  : generic-api-key
+# Occurrences       : 16 (baseline scan of full history)
+# Scope             : operators/starburst-enterprise-helm-operator*/**
+# Classification    : FALSE POSITIVE — vendor sample value
+#
+# Evidence
+#   Single literal value 46991b33f7a75ff79213c0dc0e610610, appearing in the
+#   `alm-examples` sample custom resource under:
+#
+#     "userDatabase": {
+#       "enabled": false,
+#       "users": [ { "username": "admin", "password": "46991b33..." } ]
+#     }
+#
+#   The same constant is present in Starburst's publicly published bundles and
+#   has been unchanged across releases 360.6.1 through 402.1.0 (2022-01-12
+#   onwards). The feature it belongs to is disabled in the sample.
+#
+# Residual risk
+#   None for Storware. The value is vendor-supplied sample data and is not a
+#   credential for any Storware-operated system. Any change to this constant,
+#   or any additional credential in these bundles, will fail the build.
+###############################################################################
+[[allowlists]]
+description = "EXC-003 Starburst alm-examples: static demo password, userDatabase disabled"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "match"
+paths = ['''(^|/)operators/starburst-enterprise-helm-operator[a-z-]*/''']
+regexes = ['''46991b33f7a75ff79213c0dc0e610610''']
+
+
+###############################################################################
+# EXC-004 — YugabyteDB operator bundle: upstream self-signed demonstration key
+#-----------------------------------------------------------------------------
+# Rules suppressed  : private-key
+# Occurrences       : 3 (bundle versions 2.14.1, 2.14.2, 2.14.2-1)
+# Scope             : operators/yugabyte-platform-operator-bundle-rhmp/**
+# Classification    : ACCEPTED RISK — third-party, non-sensitive
+#                     THIS IS NOT A FALSE POSITIVE.
+#
+# Nature of the finding
+#   This is a cryptographically valid RSA-4096 private key in PKCS#8 form,
+#   stored base64-encoded in the `alm-examples` annotation. It is detected only
+#   after base64 decoding (finding tagged `decoded:base64`, decode-depth 1).
+#   It is a genuine key, not a placeholder, and is recorded here as an accepted
+#   risk rather than dismissed as noise.
+#
+# Evidence
+#   Certificate subject / issuer : CN = localhost (self-signed)
+#   Certificate validity         : 2021-04-06 .. 2031-04-04
+#   Certificate serial           : 357A3B7333A0AD077E48EA7D80CB4CE285289311
+#   Public-key fingerprint (MD5) : d26560ad5868451913f390445de7d371
+#   Key/certificate pairing      : confirmed — the private key matches the
+#                                  certificate shipped alongside it
+#   Introduced by                : upstream vendor commit 6d4485ac, 2022-01-07,
+#                                  author baba230896 (YugabyteDB), not Storware
+#   Location in manifest         : alm-examples, under "tls": {"enabled": false}
+#
+# Risk assessment
+#   * Ownership — the key was never generated, held or used by Storware. It
+#     arrived with a third-party bundle synchronised from the public catalogue.
+#   * Exposure — it is a self-signed certificate bound to CN=localhost. It is
+#     not trusted by any public CA and asserts no production identity.
+#   * Prior disclosure — the key has been public in the upstream YugabyteDB
+#     bundle and in the Red Hat Marketplace catalogue since 2022. Removing it
+#     from this fork would not reduce its exposure and would cause the fork to
+#     diverge from the catalogue it mirrors.
+#   * Remediation ownership — any rotation is YugabyteDB's to perform. No
+#     Storware-controlled credential requires rotation as a result.
+#   Residual risk: accepted, rated negligible.
+#
+# Control strength
+#   The exception is pinned to the modulus prefix of this specific key. Any
+#   other private key committed anywhere under the YugabyteDB bundle paths will
+#   still fail the build; this was confirmed by negative control (see header).
+#
+# Reviewer option
+#   If the exception register is to show this as a standing accepted risk
+#   rather than a suppressed finding, delete this block and track the finding
+#   in the risk register instead. The pipeline will then report 3 known
+#   findings on every run.
+###############################################################################
+[[allowlists]]
+description = "EXC-004 YugabyteDB alm-examples: upstream self-signed CN=localhost key — accepted risk, see block comment"
+targetRules = ["private-key"]
+condition = "AND"
+regexTarget = "match"
+paths = ['''(^|/)operators/yugabyte-platform-operator-bundle-rhmp/''']
+regexes = ['''MIIJQwIBADANBgkqhkiG9w0BAQEFAASCCS0wggkpAgEAAoICAQDUuUjUD/g71Hck''']

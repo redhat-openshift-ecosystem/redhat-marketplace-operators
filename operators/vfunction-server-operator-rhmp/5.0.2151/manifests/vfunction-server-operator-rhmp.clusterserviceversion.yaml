@@ -26,7 +26,7 @@ metadata:
     containerImage: registry.connect.redhat.com/vfunction/vfunction-server-operator@sha256:aa170b98525c07318efab67c5c78288ecb6c3279b1e510452fb450789e445168
     support: vFunction
     repository: https://github.com/redhat-openshift-ecosystem/certified-operators
-    createdAt: 2026-09-16T13:51:22Z
+    createdAt: 2026-09-17T17:45:01Z
     alm-examples: |-
       [
         {
@@ -1703,7 +1703,7 @@ spec:
     - name: Terms
       url: https://www.vfunction.com/eula/
   version: 5.0.2151
-  replaces: vfunction-server-operator.v4.6.2035
+  replaces: vfunction-server-operator.v4.7.2072
   labels:
     name: vfunction-server-operator
     app.kubernetes.io/name: vfunction

@@ -155,4 +155,14 @@ entries:
 - schema: olm.bundle
   image: 
     registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:3b1dd5c5015132e520fefb2ff83de4e859e359b8f000cf0ae4873774296f4833
+- schema: olm.channel
+  name: stable-v7.0
+  package: zabbix-operator-certified-rhmp
+  entries:
+  - name: zabbix-operator-certified-rhmp.v7.0.30
+    replaces: zabbix-operator-certified-rhmp.v6.0.48
+    skipRange: '>=6.0.0 <7.0.30'
+- schema: olm.bundle
+  image: 
+    registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:c3c03c0eb2f8cbef1814564250b4e8c36f3688cd3fbe17948600f404e88f652a
 schema: olm.template.basic

@@ -34,6 +34,16 @@ entries:
     - stackgres.v1.19.0-rc4
     - stackgres.v1.19.0-rc5
     - stackgres.v1.19.0
+  - name: stackgres.v1.19.2
+    replaces: stackgres.v1.18.8
+    skips:
+    - stackgres.v1.19.0-rc1
+    - stackgres.v1.19.0-rc2
+    - stackgres.v1.19.0-rc3
+    - stackgres.v1.19.0-rc4
+    - stackgres.v1.19.0-rc5
+    - stackgres.v1.19.0
+    - stackgres.v1.19.1
   name: candidate
   package: stackgres
   schema: olm.channel
@@ -62,6 +72,15 @@ entries:
     - stackgres.v1.19.0-rc4
     - stackgres.v1.19.0-rc5
     - stackgres.v1.19.0
+  - name: stackgres.v1.19.2
+    replaces: stackgres.v1.18.8
+    skips:
+    - stackgres.v1.19.0-rc2
+    - stackgres.v1.19.0-rc3
+    - stackgres.v1.19.0-rc4
+    - stackgres.v1.19.0-rc5
+    - stackgres.v1.19.0
+    - stackgres.v1.19.1
   name: fast
   package: stackgres
   schema: olm.channel
@@ -81,6 +100,11 @@ entries:
     replaces: stackgres.v1.18.8
     skips:
     - stackgres.v1.19.0
+  - name: stackgres.v1.19.2
+    replaces: stackgres.v1.18.8
+    skips:
+    - stackgres.v1.19.0
+    - stackgres.v1.19.1
   name: stable
   package: stackgres
   schema: olm.channel
@@ -93,4 +117,7 @@ entries:
 - schema: olm.bundle
   image: 
     registry.connect.redhat.com/ongres/stackgres-1@sha256:9d565555da7d346022ea3c8150ae19b740adcbea4b2d2f7411ea9fa1780d6d20
+- schema: olm.bundle
+  image: 
+    registry.connect.redhat.com/ongres/stackgres-1@sha256:c264a553aefad1e58156f07a21d8f1a7282317349ae71dcef963dcaa5017178c
 schema: olm.template.basic

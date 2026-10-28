@@ -1,0 +1,15 @@
+---
+schema: olm.template.basic
+entries:
+- schema: olm.package
+  name: zabbix-operator-certified-rhmp
+  defaultChannel: stable-v7.0
+- schema: olm.channel
+  name: stable-v7.0
+  package: zabbix-operator-certified-rhmp
+  entries:
+  - name: zabbix-operator-certified-rhmp.v7.0.32-1
+    skipRange: '>=6.0.0 <7.0.32-1'
+- schema: olm.bundle
+  image: 
+    registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:41acdac952182f6df7718a809ae004ed54272daed3f813d2e643e342a15957b8

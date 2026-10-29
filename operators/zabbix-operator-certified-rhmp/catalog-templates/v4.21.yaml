@@ -175,10 +175,16 @@ entries:
   - name: zabbix-operator-certified-rhmp.v7.4.14
     replaces: zabbix-operator-certified-rhmp.v7.0.30
     skipRange: '>=6.0.0 <7.4.14'
+  - name: zabbix-operator-certified-rhmp.v7.4.16
+    replaces: zabbix-operator-certified-rhmp.v7.4.14
+    skipRange: '>=6.0.0 <7.4.16'
 - schema: olm.bundle
   image: 
     registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:252c8f6827e812da58a9f009cd00ad3566f41ab950b8afcd0e81f6fab272a892
 - schema: olm.bundle
   image: 
     registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:41acdac952182f6df7718a809ae004ed54272daed3f813d2e643e342a15957b8
+- schema: olm.bundle
+  image: 
+    registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:6f2f954c8d17f3e5a98bc7dda7740411a0d1dc3bd521b64b5fb0d346221f94e8
 schema: olm.template.basic

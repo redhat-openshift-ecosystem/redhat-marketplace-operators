@@ -54,6 +54,9 @@ entries:
     skipRange: '>=6.0.0 <6.0.47'
   - name: zabbix-operator-certified-rhmp.v6.0.48
     replaces: zabbix-operator-certified-rhmp.v6.0.47
+  - name: zabbix-operator-certified-rhmp.v6.0.49
+    replaces: zabbix-operator-certified-rhmp.v6.0.48
+    skipRange: '>=6.0.0 <6.0.49'
   name: lts
   package: zabbix-operator-certified-rhmp
   schema: olm.channel
@@ -104,6 +107,9 @@ entries:
     skipRange: '>=6.0.0 <6.0.47'
   - name: zabbix-operator-certified-rhmp.v6.0.48
     replaces: zabbix-operator-certified-rhmp.v6.0.47
+  - name: zabbix-operator-certified-rhmp.v6.0.49
+    replaces: zabbix-operator-certified-rhmp.v6.0.48
+    skipRange: '>=6.0.0 <6.0.49'
   name: stable-v6.0
   package: zabbix-operator-certified-rhmp
   schema: olm.channel
@@ -187,4 +193,7 @@ entries:
 - schema: olm.bundle
   image: 
     registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:6f2f954c8d17f3e5a98bc7dda7740411a0d1dc3bd521b64b5fb0d346221f94e8
+- schema: olm.bundle
+  image: 
+    registry.connect.redhat.com/zabbix/zabbixoperator-certified-bundle-marketplace@sha256:04f34eb229da4cc639c9864e8f504158e92430dc9bab2e46671064b510a6c6e5
 schema: olm.template.basic
